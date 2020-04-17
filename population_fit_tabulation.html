@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-04-17 Fri 13:26 -->
+<!-- 2020-04-17 Fri 14:09 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Population Fittings</title>
@@ -245,6 +245,28 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
@@ -253,22 +275,26 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org51d1247">Fit Populations vs Time<code>[75%]</code>&#xa0;&#xa0;&#xa0;<span class="tag"><span class="URGENT">URGENT</span>&#xa0;<span class="IMPORTANT">IMPORTANT</span></span></a>
+<li><a href="#org293a6c3">Fit Populations vs Time</a>
 <ul>
-<li><a href="#org8a2f55d">Data Convention</a></li>
-<li><a href="#org63f722a">Fit PPV3 S1-Population No Trivial Hops (Tammie Style)</a></li>
-<li><a href="#org987c752">Fit PPV3 S1-Populations Growth</a>
+<li><a href="#org3a2d940">Data Convention</a></li>
+<li><a href="#org90f2c04">Fit PPV3 S1-Population No Trivial Hops (Tammie Style)</a>
 <ul>
-<li><a href="#orgf3f6fb1">Vacuum</a></li>
-<li><a href="#org73a913e">Ch3OH</a></li>
-<li><a href="#org8ed1ffa">Ch3OH-5s</a></li>
+<li><a href="#org81484db">For Tammies Fit \(\frac{Ae^{t/\tau}}{A+e^{t/\tau}} - \frac{A}{1+A}\)</a></li>
 </ul>
 </li>
-<li><a href="#orgba22d27">Fit PPV3-NO2 S1-Population Growth</a>
+<li><a href="#orga3712d7">Fit PPV3 S1-Populations Growth</a>
 <ul>
-<li><a href="#org94e4017">Vacuum</a></li>
-<li><a href="#org9615e44">Ch3OH</a></li>
-<li><a href="#org9d4d1f9">Ch3OH-5s</a></li>
+<li><a href="#org251246a">Vacuum</a></li>
+<li><a href="#org0d55578">Ch3OH</a></li>
+<li><a href="#org04275c3">Ch3OH-5s</a></li>
+</ul>
+</li>
+<li><a href="#orga756a8c">Fit PPV3-NO2 S1-Population Growth</a>
+<ul>
+<li><a href="#org58b28aa">Vacuum</a></li>
+<li><a href="#orgc9ad691">Ch3OH</a></li>
+<li><a href="#org3ee013d">Ch3OH-5s</a></li>
 </ul>
 </li>
 </ul>
@@ -276,24 +302,25 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-org51d1247" class="outline-2">
-<h2 id="org51d1247">Fit Populations vs Time<code>[75%]</code>&#xa0;&#xa0;&#xa0;<span class="tag"><span class="URGENT">URGENT</span>&#xa0;<span class="IMPORTANT">IMPORTANT</span></span></h2>
-<div class="outline-text-2" id="text-org51d1247">
+<div id="outline-container-org293a6c3" class="outline-2">
+<h2 id="org293a6c3">Fit Populations vs Time</h2>
+<div class="outline-text-2" id="text-org293a6c3">
 </div>
-<div id="outline-container-org8a2f55d" class="outline-3">
-<h3 id="org8a2f55d">Data Convention</h3>
-<div class="outline-text-3" id="text-org8a2f55d">
+<div id="outline-container-org3a2d940" class="outline-3">
+<h3 id="org3a2d940">Data Convention</h3>
+<div class="outline-text-3" id="text-org3a2d940">
 <p>
 all<sub>pops.txt</sub>: | t | Sm | S1 | S2 | &#x2026;. | Sn |
 </p>
 </div>
 </div>
-<div id="outline-container-org63f722a" class="outline-3">
-<h3 id="org63f722a">Fit PPV3 S1-Population No Trivial Hops (Tammie Style)</h3>
-<div class="outline-text-3" id="text-org63f722a">
-<p>
-For Tammies Fit A*exp(t/tau)/(A+exp(t/tau) - A/(1+A)
-</p>
+<div id="outline-container-org90f2c04" class="outline-3">
+<h3 id="org90f2c04">Fit PPV3 S1-Population No Trivial Hops (Tammie Style)</h3>
+<div class="outline-text-3" id="text-org90f2c04">
+</div>
+<div id="outline-container-org81484db" class="outline-4">
+<h4 id="org81484db">For Tammies Fit \(\frac{Ae^{t/\tau}}{A+e^{t/\tau}} - \frac{A}{1+A}\)</h4>
+<div class="outline-text-4" id="text-org81484db">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -304,33 +331,39 @@ For Tammies Fit A*exp(t/tau)/(A+exp(t/tau) - A/(1+A)
 </colgroup>
 <tbody>
 <tr>
+<td class="org-right">\(\tau\)</td>
 <td class="org-right">A</td>
-<td class="org-right">tau</td>
 </tr>
 
 <tr>
-<td class="org-right">1.28</td>
 <td class="org-right">253</td>
+<td class="org-right">1.28</td>
 </tr>
 </tbody>
 </table>
+
+<div class="figure">
+<p><img src="./Images/population_fit_tabulation/ppv3_vacuum_no_trivial_s1_vs_fitted.png" alt="ppv3_vacuum_no_trivial_s1_vs_fitted.png" />
+</p>
 </div>
 </div>
-<div id="outline-container-org987c752" class="outline-3">
-<h3 id="org987c752">Fit PPV3 S1-Populations Growth</h3>
-<div class="outline-text-3" id="text-org987c752">
+</div>
+</div>
+<div id="outline-container-orga3712d7" class="outline-3">
+<h3 id="orga3712d7">Fit PPV3 S1-Populations Growth</h3>
+<div class="outline-text-3" id="text-orga3712d7">
 <p>
 The best fit was linear with Ax+b, but I don't expect that this would hold after
 a sufficient amount of time. 
 </p>
 </div>
-<div id="outline-container-orgf3f6fb1" class="outline-4">
-<h4 id="orgf3f6fb1">Vacuum</h4>
-<div class="outline-text-4" id="text-orgf3f6fb1">
+<div id="outline-container-org251246a" class="outline-4">
+<h4 id="org251246a">Vacuum</h4>
+<div class="outline-text-4" id="text-org251246a">
 </div>
 <ul class="org-ul">
-<li><a id="org4eee68b"></a>For fit Ax + B<br />
-<div class="outline-text-5" id="text-org4eee68b">
+<li><a id="orgf502545"></a>For fit Ax + B<br />
+<div class="outline-text-5" id="text-orgf502545">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -353,8 +386,8 @@ a sufficient amount of time.
 </table>
 </div>
 </li>
-<li><a id="org1eb0601"></a>For fit A/(1+exp(-(t-ti)/k))<br />
-<div class="outline-text-5" id="text-org1eb0601">
+<li><a id="orgc9ab156"></a>For fit A/(1+exp(-(t-ti)/k))<br />
+<div class="outline-text-5" id="text-orgc9ab156">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -381,8 +414,8 @@ a sufficient amount of time.
 </table>
 </div>
 </li>
-<li><a id="org01e091e"></a>For fit A*exp(t/k)/(A+exp(t/k))-(A/(1+A))<br />
-<div class="outline-text-5" id="text-org01e091e">
+<li><a id="org3567ba0"></a>For fit \(\frac{Ae^{t/\tau}}{A+e^{t/\tau}} - \frac{A}{1+A}\)<br />
+<div class="outline-text-5" id="text-org3567ba0">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -393,7 +426,7 @@ a sufficient amount of time.
 </colgroup>
 <tbody>
 <tr>
-<td class="org-right">k</td>
+<td class="org-right">\(\tau\)</td>
 <td class="org-right">A</td>
 </tr>
 
@@ -410,8 +443,8 @@ a sufficient amount of time.
 </div>
 </div>
 </li>
-<li><a id="orgbc8ef07"></a>Using Tenua<br />
-<div class="outline-text-5" id="text-orgbc8ef07">
+<li><a id="org8f18209"></a>Using Tenua<br />
+<div class="outline-text-5" id="text-org8f18209">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -425,8 +458,8 @@ a sufficient amount of time.
 <thead>
 <tr>
 <th scope="col" class="org-left">Transition</th>
-<th scope="col" class="org-right">1/k</th>
 <th scope="col" class="org-right">k</th>
+<th scope="col" class="org-right">\(\tau\)</th>
 </tr>
 </thead>
 <tbody>
@@ -483,13 +516,13 @@ a sufficient amount of time.
 </li>
 </ul>
 </div>
-<div id="outline-container-org73a913e" class="outline-4">
-<h4 id="org73a913e">Ch3OH</h4>
-<div class="outline-text-4" id="text-org73a913e">
+<div id="outline-container-org0d55578" class="outline-4">
+<h4 id="org0d55578">Ch3OH</h4>
+<div class="outline-text-4" id="text-org0d55578">
 </div>
 <ul class="org-ul">
-<li><a id="orgf91a2d4"></a>For fit Ax + B<br />
-<div class="outline-text-5" id="text-orgf91a2d4">
+<li><a id="org4e8f71b"></a>For fit \(Ax + B\)<br />
+<div class="outline-text-5" id="text-org4e8f71b">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -512,8 +545,8 @@ a sufficient amount of time.
 </table>
 </div>
 </li>
-<li><a id="org8a14e01"></a>For fit A/(1+exp(-(t-ti)/k))<br />
-<div class="outline-text-5" id="text-org8a14e01">
+<li><a id="orgd0d1351"></a>For fit A/(1+exp(-(t-ti)/k))<br />
+<div class="outline-text-5" id="text-orgd0d1351">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -540,8 +573,13 @@ a sufficient amount of time.
 </table>
 </div>
 </li>
-<li><a id="org311d556"></a>For fit A*exp(t/k)/(A+exp(t/k))-(A/(1+A))<br />
-<div class="outline-text-5" id="text-org311d556">
+<li><a id="org670a341"></a>For fit \(\frac{Ae^{t/\tau}}{A+e^{t/\tau}} - \frac{A}{1+A}\)<br />
+<div class="outline-text-5" id="text-org670a341">
+
+<div class="figure">
+<p><img src="./Images/population_fit_tabulation/ppv3_ch3oh_s1_vs_fitted.png" alt="ppv3_ch3oh_s1_vs_fitted.png" />
+</p>
+</div>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -552,7 +590,7 @@ a sufficient amount of time.
 </colgroup>
 <tbody>
 <tr>
-<td class="org-right">k</td>
+<td class="org-right">\(\tau\)</td>
 <td class="org-right">A</td>
 </tr>
 
@@ -564,8 +602,8 @@ a sufficient amount of time.
 </table>
 </div>
 </li>
-<li><a id="orgae467ca"></a>Using Tenua<br />
-<div class="outline-text-5" id="text-orgae467ca">
+<li><a id="org7de6f62"></a>Using Tenua<br />
+<div class="outline-text-5" id="text-org7de6f62">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -579,8 +617,8 @@ a sufficient amount of time.
 <thead>
 <tr>
 <th scope="col" class="org-left">Transition</th>
-<th scope="col" class="org-right">1/k</th>
 <th scope="col" class="org-right">k</th>
+<th scope="col" class="org-right">\(\tau\)</th>
 </tr>
 </thead>
 <tbody>
@@ -637,12 +675,13 @@ a sufficient amount of time.
 </li>
 </ul>
 </div>
-<div id="outline-container-org8ed1ffa" class="outline-4">
-<h4 id="org8ed1ffa">Ch3OH-5s</h4>
-<div class="outline-text-4" id="text-org8ed1ffa">
-<p>
-For fit Ax + B
-</p>
+<div id="outline-container-org04275c3" class="outline-4">
+<h4 id="org04275c3">Ch3OH-5s</h4>
+<div class="outline-text-4" id="text-org04275c3">
+</div>
+<ul class="org-ul">
+<li><a id="org4f08dae"></a>For fit Ax + B<br />
+<div class="outline-text-5" id="text-org4f08dae">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -663,9 +702,10 @@ For fit Ax + B
 </tr>
 </tbody>
 </table>
-<p>
-For fit A/(1+exp(-(t-ti)/k))
-</p>
+</div>
+</li>
+<li><a id="orgccca94c"></a>For fit A/(1+exp(-(t-ti)/k))<br />
+<div class="outline-text-5" id="text-orgccca94c">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -690,9 +730,39 @@ For fit A/(1+exp(-(t-ti)/k))
 </tr>
 </tbody>
 </table>
-<p>
-Using Tenua
+</div>
+</li>
+<li><a id="orgf6a9afc"></a>For fit \(\frac{Ae^{t/\tau}}{A+e^{t/\tau}} - \frac{A}{1+A}\)<br />
+<div class="outline-text-5" id="text-orgf6a9afc">
+
+<div class="figure">
+<p><img src="./Images/population_fit_tabulation/ppv3_ch3oh_5s_s1_vs_fitted.png" alt="ppv3_ch3oh_5s_s1_vs_fitted.png" />
 </p>
+</div>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">\(\tau\)</td>
+<td class="org-right">A</td>
+</tr>
+
+<tr>
+<td class="org-right">549.56</td>
+<td class="org-right">1.10</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li><a id="org346d7de"></a>Using Tenua<br />
+<div class="outline-text-5" id="text-org346d7de">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -706,8 +776,8 @@ Using Tenua
 <thead>
 <tr>
 <th scope="col" class="org-left">Transition</th>
-<th scope="col" class="org-right">1/k</th>
 <th scope="col" class="org-right">k</th>
+<th scope="col" class="org-right">\(\tau\)</th>
 </tr>
 </thead>
 <tbody>
@@ -761,11 +831,13 @@ Using Tenua
 </tbody>
 </table>
 </div>
+</li>
+</ul>
 </div>
 </div>
-<div id="outline-container-orgba22d27" class="outline-3">
-<h3 id="orgba22d27">Fit PPV3-NO2 S1-Population Growth</h3>
-<div class="outline-text-3" id="text-orgba22d27">
+<div id="outline-container-orga756a8c" class="outline-3">
+<h3 id="orga756a8c">Fit PPV3-NO2 S1-Population Growth</h3>
+<div class="outline-text-3" id="text-orga756a8c">
 <p>
 For all cases, the logistic equation
 </p>
@@ -776,12 +848,13 @@ A/(1+exp(-(t-ti)/k))
 best fit the data by a large margin
 </p>
 </div>
-<div id="outline-container-org94e4017" class="outline-4">
-<h4 id="org94e4017">Vacuum</h4>
-<div class="outline-text-4" id="text-org94e4017">
-<p>
-For fit A/(1+exp(-(t-ti)/k))
-</p>
+<div id="outline-container-org58b28aa" class="outline-4">
+<h4 id="org58b28aa">Vacuum</h4>
+<div class="outline-text-4" id="text-org58b28aa">
+</div>
+<ul class="org-ul">
+<li><a id="org9271957"></a>For fit A/(1+exp(-(t-ti)/k))<br />
+<div class="outline-text-5" id="text-org9271957">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -806,9 +879,15 @@ For fit A/(1+exp(-(t-ti)/k))
 </tr>
 </tbody>
 </table>
-<p>
-For fit A*exp(t/k)/(A+exp(t/k))-(A/(1+A))
+</div>
+</li>
+<li><a id="orga938b20"></a>For fit \(\frac{Ae^{t/\tau}}{A+e^{t/\tau}} - \frac{A}{1+A}\)<br />
+<div class="outline-text-5" id="text-orga938b20">
+
+<div class="figure">
+<p><img src="./Images/population_fit_tabulation/ppv3no2_vacuum_s1_vs_fitted.png" alt="ppv3no2_vacuum_s1_vs_fitted.png" />
 </p>
+</div>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -819,7 +898,7 @@ For fit A*exp(t/k)/(A+exp(t/k))-(A/(1+A))
 </colgroup>
 <tbody>
 <tr>
-<td class="org-right">k</td>
+<td class="org-right">\(\tau\)</td>
 <td class="org-right">A</td>
 </tr>
 
@@ -829,9 +908,10 @@ For fit A*exp(t/k)/(A+exp(t/k))-(A/(1+A))
 </tr>
 </tbody>
 </table>
-<p>
-Tenua Fit
-</p>
+</div>
+</li>
+<li><a id="org6e35f31"></a>Tenua Fit<br />
+<div class="outline-text-5" id="text-org6e35f31">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -845,8 +925,8 @@ Tenua Fit
 <thead>
 <tr>
 <th scope="col" class="org-left">Transition</th>
-<th scope="col" class="org-right">1/k</th>
 <th scope="col" class="org-right">k</th>
+<th scope="col" class="org-right">\(\tau\)</th>
 </tr>
 </thead>
 <tbody>
@@ -882,13 +962,16 @@ Tenua Fit
 </tbody>
 </table>
 </div>
+</li>
+</ul>
 </div>
-<div id="outline-container-org9615e44" class="outline-4">
-<h4 id="org9615e44">Ch3OH</h4>
-<div class="outline-text-4" id="text-org9615e44">
-<p>
-For fit A/(1+exp(-(t-ti)/k))
-</p>
+<div id="outline-container-orgc9ad691" class="outline-4">
+<h4 id="orgc9ad691">Ch3OH</h4>
+<div class="outline-text-4" id="text-orgc9ad691">
+</div>
+<ul class="org-ul">
+<li><a id="orgdf4d986"></a>For fit A/(1+exp(-(t-ti)/k))<br />
+<div class="outline-text-5" id="text-orgdf4d986">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -913,9 +996,15 @@ For fit A/(1+exp(-(t-ti)/k))
 </tr>
 </tbody>
 </table>
-<p>
-For fit A*exp(t/k)/(A+exp(t/k))-(A/(1+A))
+</div>
+</li>
+<li><a id="org66dcf3b"></a>For fit \(\frac{Ae^{t/\tau}}{A+e^{t/\tau}} - \frac{A}{1+A}\)<br />
+<div class="outline-text-5" id="text-org66dcf3b">
+
+<div class="figure">
+<p><img src="./Images/population_fit_tabulation/ppv3no2_ch3oh_s1_vs_fitted.png" alt="ppv3no2_ch3oh_s1_vs_fitted.png" />
 </p>
+</div>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -926,7 +1015,7 @@ For fit A*exp(t/k)/(A+exp(t/k))-(A/(1+A))
 </colgroup>
 <tbody>
 <tr>
-<td class="org-right">k</td>
+<td class="org-right">\(\tau\)</td>
 <td class="org-right">A</td>
 </tr>
 
@@ -936,9 +1025,10 @@ For fit A*exp(t/k)/(A+exp(t/k))-(A/(1+A))
 </tr>
 </tbody>
 </table>
-<p>
-Tenua Fit
-</p>
+</div>
+</li>
+<li><a id="org4264609"></a>Tenua Fit<br />
+<div class="outline-text-5" id="text-org4264609">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -952,8 +1042,8 @@ Tenua Fit
 <thead>
 <tr>
 <th scope="col" class="org-left">Transition</th>
-<th scope="col" class="org-right">1/k</th>
 <th scope="col" class="org-right">k</th>
+<th scope="col" class="org-right">\(\tau\)</th>
 </tr>
 </thead>
 <tbody>
@@ -989,13 +1079,16 @@ Tenua Fit
 </tbody>
 </table>
 </div>
+</li>
+</ul>
 </div>
-<div id="outline-container-org9d4d1f9" class="outline-4">
-<h4 id="org9d4d1f9">Ch3OH-5s</h4>
-<div class="outline-text-4" id="text-org9d4d1f9">
-<p>
-For fit A/(1+exp(-(t-ti)/k))
-</p>
+<div id="outline-container-org3ee013d" class="outline-4">
+<h4 id="org3ee013d">Ch3OH-5s</h4>
+<div class="outline-text-4" id="text-org3ee013d">
+</div>
+<ul class="org-ul">
+<li><a id="org1177325"></a>For fit A/(1+exp(-(t-ti)/k))<br />
+<div class="outline-text-5" id="text-org1177325">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -1020,9 +1113,15 @@ For fit A/(1+exp(-(t-ti)/k))
 </tr>
 </tbody>
 </table>
-<p>
-For fit A*exp(t/k)/(A+exp(t/k))-(A/(1+A))
+</div>
+</li>
+<li><a id="orgb4a64db"></a>For fit \(\frac{Ae^{t/\tau}}{A+e^{t/\tau}} - \frac{A}{1+A}\)<br />
+<div class="outline-text-5" id="text-orgb4a64db">
+
+<div class="figure">
+<p><img src="./Images/population_fit_tabulation/ppv3no2_ch3oh_5s_s1_vs_fitted.png" alt="ppv3no2_ch3oh_5s_s1_vs_fitted.png" />
 </p>
+</div>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -1033,7 +1132,7 @@ For fit A*exp(t/k)/(A+exp(t/k))-(A/(1+A))
 </colgroup>
 <tbody>
 <tr>
-<td class="org-right">k</td>
+<td class="org-right">\(\tau\)</td>
 <td class="org-right">A</td>
 </tr>
 
@@ -1043,9 +1142,10 @@ For fit A*exp(t/k)/(A+exp(t/k))-(A/(1+A))
 </tr>
 </tbody>
 </table>
-<p>
-Tenua Fit
-</p>
+</div>
+</li>
+<li><a id="orgb830e91"></a>Tenua Fit<br />
+<div class="outline-text-5" id="text-orgb830e91">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -1059,8 +1159,8 @@ Tenua Fit
 <thead>
 <tr>
 <th scope="col" class="org-left">Transition</th>
-<th scope="col" class="org-right">1/k</th>
 <th scope="col" class="org-right">k</th>
+<th scope="col" class="org-right">$&tau;</th>
 </tr>
 </thead>
 <tbody>
@@ -1096,13 +1196,15 @@ Tenua Fit
 </tbody>
 </table>
 </div>
+</li>
+</ul>
 </div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: dustin</p>
-<p class="date">Created: 2020-04-17 Fri 13:26</p>
+<p class="date">Created: 2020-04-17 Fri 14:09</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
