@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-03-25 Wed 21:11 -->
+<!-- 2020-04-17 Fri 13:26 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>My Sprints</title>
+<title>Population Fittings</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="dustin" />
 <style type="text/css">
@@ -248,25 +248,27 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">My Sprints</h1>
+<h1 class="title">Population Fittings</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org562f2fe"><span class="done DONE">DONE</span> Fit Populations vs Time<code>[100%]</code></a>
+<li><a href="#org51d1247">Fit Populations vs Time<code>[75%]</code>&#xa0;&#xa0;&#xa0;<span class="tag"><span class="URGENT">URGENT</span>&#xa0;<span class="IMPORTANT">IMPORTANT</span></span></a>
 <ul>
-<li><a href="#org5e9e9dd"><span class="done DONE">DONE</span> Fit PPV3 S1-Populations Growth</a>
+<li><a href="#org8a2f55d">Data Convention</a></li>
+<li><a href="#org63f722a">Fit PPV3 S1-Population No Trivial Hops (Tammie Style)</a></li>
+<li><a href="#org987c752">Fit PPV3 S1-Populations Growth</a>
 <ul>
-<li><a href="#org543a42d">Vacuum</a></li>
-<li><a href="#orgb1ecc6c">Ch3OH</a></li>
-<li><a href="#org172f964">Ch3OH-5s</a></li>
+<li><a href="#orgf3f6fb1">Vacuum</a></li>
+<li><a href="#org73a913e">Ch3OH</a></li>
+<li><a href="#org8ed1ffa">Ch3OH-5s</a></li>
 </ul>
 </li>
-<li><a href="#org471570c"><span class="done DONE">DONE</span> Fit PPV3-NO2 S1-Population Growth</a>
+<li><a href="#orgba22d27">Fit PPV3-NO2 S1-Population Growth</a>
 <ul>
-<li><a href="#org8446e2b">Vacuum</a></li>
-<li><a href="#orgf353af4">Ch3OH</a></li>
-<li><a href="#orgfb3c620">Ch3OH-5s</a></li>
+<li><a href="#org94e4017">Vacuum</a></li>
+<li><a href="#org9615e44">Ch3OH</a></li>
+<li><a href="#org9d4d1f9">Ch3OH-5s</a></li>
 </ul>
 </li>
 </ul>
@@ -274,24 +276,61 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-org562f2fe" class="outline-2">
-<h2 id="org562f2fe"><span class="done DONE">DONE</span> Fit Populations vs Time<code>[100%]</code></h2>
-<div class="outline-text-2" id="text-org562f2fe">
+<div id="outline-container-org51d1247" class="outline-2">
+<h2 id="org51d1247">Fit Populations vs Time<code>[75%]</code>&#xa0;&#xa0;&#xa0;<span class="tag"><span class="URGENT">URGENT</span>&#xa0;<span class="IMPORTANT">IMPORTANT</span></span></h2>
+<div class="outline-text-2" id="text-org51d1247">
 </div>
-<div id="outline-container-org5e9e9dd" class="outline-3">
-<h3 id="org5e9e9dd"><span class="done DONE">DONE</span> Fit PPV3 S1-Populations Growth</h3>
-<div class="outline-text-3" id="text-org5e9e9dd">
+<div id="outline-container-org8a2f55d" class="outline-3">
+<h3 id="org8a2f55d">Data Convention</h3>
+<div class="outline-text-3" id="text-org8a2f55d">
+<p>
+all<sub>pops.txt</sub>: | t | Sm | S1 | S2 | &#x2026;. | Sn |
+</p>
+</div>
+</div>
+<div id="outline-container-org63f722a" class="outline-3">
+<h3 id="org63f722a">Fit PPV3 S1-Population No Trivial Hops (Tammie Style)</h3>
+<div class="outline-text-3" id="text-org63f722a">
+<p>
+For Tammies Fit A*exp(t/tau)/(A+exp(t/tau) - A/(1+A)
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">A</td>
+<td class="org-right">tau</td>
+</tr>
+
+<tr>
+<td class="org-right">1.28</td>
+<td class="org-right">253</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org987c752" class="outline-3">
+<h3 id="org987c752">Fit PPV3 S1-Populations Growth</h3>
+<div class="outline-text-3" id="text-org987c752">
 <p>
 The best fit was linear with Ax+b, but I don't expect that this would hold after
-a sufficient amount of time.
+a sufficient amount of time. 
 </p>
 </div>
-<div id="outline-container-org543a42d" class="outline-4">
-<h4 id="org543a42d">Vacuum</h4>
-<div class="outline-text-4" id="text-org543a42d">
-<p>
-For fit Ax + B
-</p>
+<div id="outline-container-orgf3f6fb1" class="outline-4">
+<h4 id="orgf3f6fb1">Vacuum</h4>
+<div class="outline-text-4" id="text-orgf3f6fb1">
+</div>
+<ul class="org-ul">
+<li><a id="org4eee68b"></a>For fit Ax + B<br />
+<div class="outline-text-5" id="text-org4eee68b">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -312,9 +351,10 @@ For fit Ax + B
 </tr>
 </tbody>
 </table>
-<p>
-For fit A/(1+exp(-(t-ti)/k))
-</p>
+</div>
+</li>
+<li><a id="org1eb0601"></a>For fit A/(1+exp(-(t-ti)/k))<br />
+<div class="outline-text-5" id="text-org1eb0601">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -339,9 +379,39 @@ For fit A/(1+exp(-(t-ti)/k))
 </tr>
 </tbody>
 </table>
-<p>
-Using Tenua
+</div>
+</li>
+<li><a id="org01e091e"></a>For fit A*exp(t/k)/(A+exp(t/k))-(A/(1+A))<br />
+<div class="outline-text-5" id="text-org01e091e">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">k</td>
+<td class="org-right">A</td>
+</tr>
+
+<tr>
+<td class="org-right">671</td>
+<td class="org-right">1.1558</td>
+</tr>
+</tbody>
+</table>
+
+<div class="figure">
+<p><img src="./Images/population_fit_tabulation/ppv3_vacuum_s1_vs_fitted.png" alt="ppv3_vacuum_s1_vs_fitted.png" />
 </p>
+</div>
+</div>
+</li>
+<li><a id="orgbc8ef07"></a>Using Tenua<br />
+<div class="outline-text-5" id="text-orgbc8ef07">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -410,13 +480,16 @@ Using Tenua
 </tbody>
 </table>
 </div>
+</li>
+</ul>
 </div>
-<div id="outline-container-orgb1ecc6c" class="outline-4">
-<h4 id="orgb1ecc6c">Ch3OH</h4>
-<div class="outline-text-4" id="text-orgb1ecc6c">
-<p>
-For fit Ax + B
-</p>
+<div id="outline-container-org73a913e" class="outline-4">
+<h4 id="org73a913e">Ch3OH</h4>
+<div class="outline-text-4" id="text-org73a913e">
+</div>
+<ul class="org-ul">
+<li><a id="orgf91a2d4"></a>For fit Ax + B<br />
+<div class="outline-text-5" id="text-orgf91a2d4">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -437,9 +510,10 @@ For fit Ax + B
 </tr>
 </tbody>
 </table>
-<p>
-For fit A/(1+exp(-(t-ti)/k))
-</p>
+</div>
+</li>
+<li><a id="org8a14e01"></a>For fit A/(1+exp(-(t-ti)/k))<br />
+<div class="outline-text-5" id="text-org8a14e01">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -464,9 +538,34 @@ For fit A/(1+exp(-(t-ti)/k))
 </tr>
 </tbody>
 </table>
-<p>
-Using Tenua
-</p>
+</div>
+</li>
+<li><a id="org311d556"></a>For fit A*exp(t/k)/(A+exp(t/k))-(A/(1+A))<br />
+<div class="outline-text-5" id="text-org311d556">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">k</td>
+<td class="org-right">A</td>
+</tr>
+
+<tr>
+<td class="org-right">693.43</td>
+<td class="org-right">1.06</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li><a id="orgae467ca"></a>Using Tenua<br />
+<div class="outline-text-5" id="text-orgae467ca">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -535,10 +634,12 @@ Using Tenua
 </tbody>
 </table>
 </div>
+</li>
+</ul>
 </div>
-<div id="outline-container-org172f964" class="outline-4">
-<h4 id="org172f964">Ch3OH-5s</h4>
-<div class="outline-text-4" id="text-org172f964">
+<div id="outline-container-org8ed1ffa" class="outline-4">
+<h4 id="org8ed1ffa">Ch3OH-5s</h4>
+<div class="outline-text-4" id="text-org8ed1ffa">
 <p>
 For fit Ax + B
 </p>
@@ -662,9 +763,9 @@ Using Tenua
 </div>
 </div>
 </div>
-<div id="outline-container-org471570c" class="outline-3">
-<h3 id="org471570c"><span class="done DONE">DONE</span> Fit PPV3-NO2 S1-Population Growth</h3>
-<div class="outline-text-3" id="text-org471570c">
+<div id="outline-container-orgba22d27" class="outline-3">
+<h3 id="orgba22d27">Fit PPV3-NO2 S1-Population Growth</h3>
+<div class="outline-text-3" id="text-orgba22d27">
 <p>
 For all cases, the logistic equation
 </p>
@@ -675,9 +776,9 @@ A/(1+exp(-(t-ti)/k))
 best fit the data by a large margin
 </p>
 </div>
-<div id="outline-container-org8446e2b" class="outline-4">
-<h4 id="org8446e2b">Vacuum</h4>
-<div class="outline-text-4" id="text-org8446e2b">
+<div id="outline-container-org94e4017" class="outline-4">
+<h4 id="org94e4017">Vacuum</h4>
+<div class="outline-text-4" id="text-org94e4017">
 <p>
 For fit A/(1+exp(-(t-ti)/k))
 </p>
@@ -782,9 +883,9 @@ Tenua Fit
 </table>
 </div>
 </div>
-<div id="outline-container-orgf353af4" class="outline-4">
-<h4 id="orgf353af4">Ch3OH</h4>
-<div class="outline-text-4" id="text-orgf353af4">
+<div id="outline-container-org9615e44" class="outline-4">
+<h4 id="org9615e44">Ch3OH</h4>
+<div class="outline-text-4" id="text-org9615e44">
 <p>
 For fit A/(1+exp(-(t-ti)/k))
 </p>
@@ -889,9 +990,9 @@ Tenua Fit
 </table>
 </div>
 </div>
-<div id="outline-container-orgfb3c620" class="outline-4">
-<h4 id="orgfb3c620">Ch3OH-5s</h4>
-<div class="outline-text-4" id="text-orgfb3c620">
+<div id="outline-container-org9d4d1f9" class="outline-4">
+<h4 id="org9d4d1f9">Ch3OH-5s</h4>
+<div class="outline-text-4" id="text-org9d4d1f9">
 <p>
 For fit A/(1+exp(-(t-ti)/k))
 </p>
@@ -1001,7 +1102,7 @@ Tenua Fit
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: dustin</p>
-<p class="date">Created: 2020-03-25 Wed 21:11</p>
+<p class="date">Created: 2020-04-17 Fri 13:26</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
