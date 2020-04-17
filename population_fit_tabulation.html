@@ -1,0 +1,1008 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2020-03-25 Wed 21:11 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>My Sprints</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="dustin" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">My Sprints</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org562f2fe"><span class="done DONE">DONE</span> Fit Populations vs Time<code>[100%]</code></a>
+<ul>
+<li><a href="#org5e9e9dd"><span class="done DONE">DONE</span> Fit PPV3 S1-Populations Growth</a>
+<ul>
+<li><a href="#org543a42d">Vacuum</a></li>
+<li><a href="#orgb1ecc6c">Ch3OH</a></li>
+<li><a href="#org172f964">Ch3OH-5s</a></li>
+</ul>
+</li>
+<li><a href="#org471570c"><span class="done DONE">DONE</span> Fit PPV3-NO2 S1-Population Growth</a>
+<ul>
+<li><a href="#org8446e2b">Vacuum</a></li>
+<li><a href="#orgf353af4">Ch3OH</a></li>
+<li><a href="#orgfb3c620">Ch3OH-5s</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org562f2fe" class="outline-2">
+<h2 id="org562f2fe"><span class="done DONE">DONE</span> Fit Populations vs Time<code>[100%]</code></h2>
+<div class="outline-text-2" id="text-org562f2fe">
+</div>
+<div id="outline-container-org5e9e9dd" class="outline-3">
+<h3 id="org5e9e9dd"><span class="done DONE">DONE</span> Fit PPV3 S1-Populations Growth</h3>
+<div class="outline-text-3" id="text-org5e9e9dd">
+<p>
+The best fit was linear with Ax+b, but I don't expect that this would hold after
+a sufficient amount of time.
+</p>
+</div>
+<div id="outline-container-org543a42d" class="outline-4">
+<h4 id="org543a42d">Vacuum</h4>
+<div class="outline-text-4" id="text-org543a42d">
+<p>
+For fit Ax + B
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">A</td>
+<td class="org-right">B</td>
+</tr>
+
+<tr>
+<td class="org-right">0.000475592</td>
+<td class="org-right">-0.011878799</td>
+</tr>
+</tbody>
+</table>
+<p>
+For fit A/(1+exp(-(t-ti)/k))
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">k</td>
+<td class="org-right">A</td>
+<td class="org-right">ti</td>
+</tr>
+
+<tr>
+<td class="org-right">104.3133786</td>
+<td class="org-right">0.2442377</td>
+<td class="org-right">284.6610760</td>
+</tr>
+</tbody>
+</table>
+<p>
+Using Tenua
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Transition</th>
+<th scope="col" class="org-right">1/k</th>
+<th scope="col" class="org-right">k</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Sm-&gt;S8</td>
+<td class="org-right">0.0559787870</td>
+<td class="org-right">17.863910</td>
+</tr>
+
+<tr>
+<td class="org-left">S8-&gt;S7</td>
+<td class="org-right">0.0817304828</td>
+<td class="org-right">12.235337</td>
+</tr>
+
+<tr>
+<td class="org-left">S7-&gt;S8</td>
+<td class="org-right">0.0043447882</td>
+<td class="org-right">230.16082</td>
+</tr>
+
+<tr>
+<td class="org-left">S7-&gt;SL</td>
+<td class="org-right">0.0037677679</td>
+<td class="org-right">265.40913</td>
+</tr>
+
+<tr>
+<td class="org-left">SL-&gt;S2</td>
+<td class="org-right">0.0153428064</td>
+<td class="org-right">65.177124</td>
+</tr>
+
+<tr>
+<td class="org-left">S2-&gt;SL</td>
+<td class="org-right">0.0007614631</td>
+<td class="org-right">1313.2613</td>
+</tr>
+
+<tr>
+<td class="org-left">S2-&gt;S1</td>
+<td class="org-right">0.0019174279</td>
+<td class="org-right">521.53200</td>
+</tr>
+
+<tr>
+<td class="org-left">S1-&gt;S2</td>
+<td class="org-right">0.0011739160</td>
+<td class="org-right">851.84971</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orgb1ecc6c" class="outline-4">
+<h4 id="orgb1ecc6c">Ch3OH</h4>
+<div class="outline-text-4" id="text-orgb1ecc6c">
+<p>
+For fit Ax + B
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">A</td>
+<td class="org-right">B</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0003968665</td>
+<td class="org-right">-0.0077699055</td>
+</tr>
+</tbody>
+</table>
+<p>
+For fit A/(1+exp(-(t-ti)/k))
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">k</td>
+<td class="org-right">A</td>
+<td class="org-right">ti</td>
+</tr>
+
+<tr>
+<td class="org-right">94.6872926</td>
+<td class="org-right">0.1895741</td>
+<td class="org-right">257.4800193</td>
+</tr>
+</tbody>
+</table>
+<p>
+Using Tenua
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Transition</th>
+<th scope="col" class="org-right">1/k</th>
+<th scope="col" class="org-right">k</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Sm-&gt;S8</td>
+<td class="org-right">0.0524247921</td>
+<td class="org-right">19.074945</td>
+</tr>
+
+<tr>
+<td class="org-left">S8-&gt;S7</td>
+<td class="org-right">0.0848753339</td>
+<td class="org-right">11.781986</td>
+</tr>
+
+<tr>
+<td class="org-left">S7-&gt;S8</td>
+<td class="org-right">0.0044358106</td>
+<td class="org-right">225.43794</td>
+</tr>
+
+<tr>
+<td class="org-left">S7-&gt;SL</td>
+<td class="org-right">0.0032550289</td>
+<td class="org-right">307.21693</td>
+</tr>
+
+<tr>
+<td class="org-left">SL-&gt;S2</td>
+<td class="org-right">0.0142610273</td>
+<td class="org-right">70.121176</td>
+</tr>
+
+<tr>
+<td class="org-left">S2-&gt;SL</td>
+<td class="org-right">0.0006694887</td>
+<td class="org-right">1493.6772</td>
+</tr>
+
+<tr>
+<td class="org-left">S2-&gt;S1</td>
+<td class="org-right">0.0011392569</td>
+<td class="org-right">877.76515</td>
+</tr>
+
+<tr>
+<td class="org-left">S1-&gt;S2</td>
+<td class="org-right">0.0000420979</td>
+<td class="org-right">23754.154</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org172f964" class="outline-4">
+<h4 id="org172f964">Ch3OH-5s</h4>
+<div class="outline-text-4" id="text-org172f964">
+<p>
+For fit Ax + B
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">A</td>
+<td class="org-right">B</td>
+</tr>
+
+<tr>
+<td class="org-right">0.0005625508</td>
+<td class="org-right">-0.0231432645</td>
+</tr>
+</tbody>
+</table>
+<p>
+For fit A/(1+exp(-(t-ti)/k))
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">k</td>
+<td class="org-right">A</td>
+<td class="org-right">ti</td>
+</tr>
+
+<tr>
+<td class="org-right">72.6618384</td>
+<td class="org-right">0.2381899</td>
+<td class="org-right">251.6529838</td>
+</tr>
+</tbody>
+</table>
+<p>
+Using Tenua
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Transition</th>
+<th scope="col" class="org-right">1/k</th>
+<th scope="col" class="org-right">k</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Sm-&gt;S8</td>
+<td class="org-right">0.0531921463</td>
+<td class="org-right">18.799768</td>
+</tr>
+
+<tr>
+<td class="org-left">S8-&gt;S7</td>
+<td class="org-right">0.0911041525</td>
+<td class="org-right">10.976448</td>
+</tr>
+
+<tr>
+<td class="org-left">S7-&gt;S8</td>
+<td class="org-right">0.0054925934</td>
+<td class="org-right">182.06336</td>
+</tr>
+
+<tr>
+<td class="org-left">S7-&gt;SL</td>
+<td class="org-right">0.0041852124</td>
+<td class="org-right">238.93650</td>
+</tr>
+
+<tr>
+<td class="org-left">SL-&gt;S2</td>
+<td class="org-right">0.0165812768</td>
+<td class="org-right">60.308987</td>
+</tr>
+
+<tr>
+<td class="org-left">S2-&gt;SL</td>
+<td class="org-right">0.0008082376</td>
+<td class="org-right">1237.2599</td>
+</tr>
+
+<tr>
+<td class="org-left">S2-&gt;S1</td>
+<td class="org-right">0.0051486809</td>
+<td class="org-right">194.22451</td>
+</tr>
+
+<tr>
+<td class="org-left">S1-&gt;S2</td>
+<td class="org-right">0.0083264550</td>
+<td class="org-right">120.09913</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="outline-container-org471570c" class="outline-3">
+<h3 id="org471570c"><span class="done DONE">DONE</span> Fit PPV3-NO2 S1-Population Growth</h3>
+<div class="outline-text-3" id="text-org471570c">
+<p>
+For all cases, the logistic equation
+</p>
+<pre class="example">
+A/(1+exp(-(t-ti)/k))
+</pre>
+<p>
+best fit the data by a large margin
+</p>
+</div>
+<div id="outline-container-org8446e2b" class="outline-4">
+<h4 id="org8446e2b">Vacuum</h4>
+<div class="outline-text-4" id="text-org8446e2b">
+<p>
+For fit A/(1+exp(-(t-ti)/k))
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">k</td>
+<td class="org-right">A</td>
+<td class="org-right">ti</td>
+</tr>
+
+<tr>
+<td class="org-right">30.8981204</td>
+<td class="org-right">0.9624794</td>
+<td class="org-right">113.5144066</td>
+</tr>
+</tbody>
+</table>
+<p>
+For fit A*exp(t/k)/(A+exp(t/k))-(A/(1+A))
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">k</td>
+<td class="org-right">A</td>
+</tr>
+
+<tr>
+<td class="org-right">84.671654</td>
+<td class="org-right">1.646086</td>
+</tr>
+</tbody>
+</table>
+<p>
+Tenua Fit
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Transition</th>
+<th scope="col" class="org-right">1/k</th>
+<th scope="col" class="org-right">k</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Sm-&gt;S9</td>
+<td class="org-right">0.0285350764</td>
+<td class="org-right">35.044588</td>
+</tr>
+
+<tr>
+<td class="org-left">S9-&gt;SL</td>
+<td class="org-right">0.0245247832</td>
+<td class="org-right">40.775080</td>
+</tr>
+
+<tr>
+<td class="org-left">SL-&gt;S2</td>
+<td class="org-right">0.0206036417</td>
+<td class="org-right">48.535109</td>
+</tr>
+
+<tr>
+<td class="org-left">S2-&gt;S1</td>
+<td class="org-right">0.0344350054</td>
+<td class="org-right">29.040216</td>
+</tr>
+
+<tr>
+<td class="org-left">S1-&gt;S2</td>
+<td class="org-right">0.0008938455</td>
+<td class="org-right">1118.7616</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orgf353af4" class="outline-4">
+<h4 id="orgf353af4">Ch3OH</h4>
+<div class="outline-text-4" id="text-orgf353af4">
+<p>
+For fit A/(1+exp(-(t-ti)/k))
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">k</td>
+<td class="org-right">A</td>
+<td class="org-right">ti</td>
+</tr>
+
+<tr>
+<td class="org-right">37.6187580</td>
+<td class="org-right">0.9425959</td>
+<td class="org-right">118.6864337</td>
+</tr>
+</tbody>
+</table>
+<p>
+For fit A*exp(t/k)/(A+exp(t/k))-(A/(1+A))
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">k</td>
+<td class="org-right">A</td>
+</tr>
+
+<tr>
+<td class="org-right">90.407955</td>
+<td class="org-right">1.624839</td>
+</tr>
+</tbody>
+</table>
+<p>
+Tenua Fit
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Transition</th>
+<th scope="col" class="org-right">1/k</th>
+<th scope="col" class="org-right">k</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Sm-&gt;S9</td>
+<td class="org-right">0.0289895778</td>
+<td class="org-right">34.495156</td>
+</tr>
+
+<tr>
+<td class="org-left">S9-&gt;SL</td>
+<td class="org-right">0.0264918518</td>
+<td class="org-right">37.747456</td>
+</tr>
+
+<tr>
+<td class="org-left">SL-&gt;S2</td>
+<td class="org-right">0.0206599239</td>
+<td class="org-right">48.402889</td>
+</tr>
+
+<tr>
+<td class="org-left">S2-&gt;S1</td>
+<td class="org-right">0.0233659078</td>
+<td class="org-right">42.797396</td>
+</tr>
+
+<tr>
+<td class="org-left">S1-&gt;S2</td>
+<td class="org-right">0.0010342606</td>
+<td class="org-right">966.87431</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orgfb3c620" class="outline-4">
+<h4 id="orgfb3c620">Ch3OH-5s</h4>
+<div class="outline-text-4" id="text-orgfb3c620">
+<p>
+For fit A/(1+exp(-(t-ti)/k))
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">k</td>
+<td class="org-right">A</td>
+<td class="org-right">ti</td>
+</tr>
+
+<tr>
+<td class="org-right">37.4634913</td>
+<td class="org-right">0.9283205</td>
+<td class="org-right">121.0073596</td>
+</tr>
+</tbody>
+</table>
+<p>
+For fit A*exp(t/k)/(A+exp(t/k))-(A/(1+A))
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">k</td>
+<td class="org-right">A</td>
+</tr>
+
+<tr>
+<td class="org-right">93.802466</td>
+<td class="org-right">1.616496</td>
+</tr>
+</tbody>
+</table>
+<p>
+Tenua Fit
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Transition</th>
+<th scope="col" class="org-right">1/k</th>
+<th scope="col" class="org-right">k</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Sm-&gt;S9</td>
+<td class="org-right">0.0278909741</td>
+<td class="org-right">35.853893</td>
+</tr>
+
+<tr>
+<td class="org-left">S9-&gt;SL</td>
+<td class="org-right">0.0263872547</td>
+<td class="org-right">37.897084</td>
+</tr>
+
+<tr>
+<td class="org-left">SL-&gt;S2</td>
+<td class="org-right">0.0201009872</td>
+<td class="org-right">49.748800</td>
+</tr>
+
+<tr>
+<td class="org-left">S2-&gt;S1</td>
+<td class="org-right">0.0196875488</td>
+<td class="org-right">50.793525</td>
+</tr>
+
+<tr>
+<td class="org-left">S1-&gt;S2</td>
+<td class="org-right">0.0010433400</td>
+<td class="org-right">958.46033</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: dustin</p>
+<p class="date">Created: 2020-03-25 Wed 21:11</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
