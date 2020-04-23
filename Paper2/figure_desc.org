@@ -1,0 +1,17 @@
+#+TITLE: Paper 2 Figure Description
+#+SETUPFILE: ~/Templates/org-html-themes/setup/theme-readtheorg.setup
+#+OPTIONS: num:nil todo:nil stat:nil
+#+TODO: TODO(t) PROJECT(p) NEXT(n) ONGOING(o) WAITING(w@) SOMEDAY(s!) | DONE CANCELLED(c) UNFINISHED(u)
+#+TAGS: EMAIL(e) BUG(b) METHOD(m) URGENT(u) IMPORTANT(i) SHORT(s)
+#+COLUMNS: %7TODO(To Do) %32ITEM(Task) %6CLOCKSUM(Clock) %8EFFORT(Estimate){:}
+#+PROPERTY: Effort_ALL 0:05 0:10 0:15 0:30 0:45 1:00 1:30 2:00
+* PPV3 [0/3]
+** NEXT Populations
+#+CAPTION: Population of the first excited state (S_1) of PPV_3 in various solvents obtained from the fraction of trajectories in each state.
+[[./Images/population_fit_tabulation/ppv3_s1_pop_v_solvent.png]]
+** NEXT BLA
+** NEXT Dihedral
+* PPV3-NO2
+** NEXT Populations
+** NEXT BLA
+** NEXT Dihedral
