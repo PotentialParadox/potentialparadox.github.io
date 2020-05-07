@@ -61,7 +61,6 @@ a sufficient amount of time.
    #+TBLFM: $3=1/$2
 *** NEXT [#A] Ch3OH
     :LOGBOOK:
-    CLOCK: [2020-04-17 Fri 11:55]
     - State "WAITING"    from "WAITING"    [2020-04-14 Tue 11:38] \\
       gator: 50340523
     - State "WAITING"    from              [2020-04-13 Mon 16:39] \\

@@ -5,13 +5,62 @@
 #+TAGS: EMAIL(e) BUG(b) METHOD(m) URGENT(u) IMPORTANT(i) SHORT(s)
 #+COLUMNS: %7TODO(To Do) %32ITEM(Task) %6CLOCKSUM(Clock) %8EFFORT(Estimate){:}
 #+PROPERTY: Effort_ALL 0:05 0:10 0:15 0:30 0:45 1:00 1:30 2:00
-* PPV3 [0/3]
-** NEXT Populations
-#+CAPTION: Population of the first excited state (S_1) of PPV_3 in various solvents obtained from the fraction of trajectories in each state.
-[[./Images/population_fit_tabulation/ppv3_s1_pop_v_solvent.png]]
-** NEXT BLA
-** NEXT Dihedral
-* PPV3-NO2
-** NEXT Populations
-** NEXT BLA
-** NEXT Dihedral
+* Populations [2/2]
+** DONE Vacuum
+Shown below are the population trajectories for PPV_3 and PPV_{3}-NO_{2} in
+vacuum. States with very short lifespans were dropped for clarity.
+*** DONE PPV_3-No-Trivial
+Using no trivial crossing and basic decoherence, the population plot looks very
+similar to that found in Tammie's thesis
+#+CAPTION: Populations for the excited states with extended lifespans for PPV_{3}. S_{m} represents the initial state, which varied from S_{9} to S_{15}.
+[[./Images/population_fit_tabulation/ppv3_no_trivial.png]]
+    CLOSED: [2020-05-04 Mon 15:53]
+*** DONE PPV_3
+#+CAPTION: Populations for the excited states with extended lifespans for PPV_{3}. S_{m} represents the initial state, which varied from S_{9} to S_{15}.
+[[./Images/population_fit_tabulation/ppv3_pop_vacuum.png]]
+*** DONE PPV_3-NO_2
+    CLOSED: [2020-05-01 Fri 14:26]
+#+CAPTION: Populations for the excited states with extended lifespans for PPV_{3}-NO_2. S_{m} represents the initial state, which varied from S_{9} to S_{15}.
+[[./Images/population_fit_tabulation/ppv3no2_pop_vacuum.png]]
+** DONE S1 vs Time
+   CLOSED: [2020-05-01 Fri 14:26]
+To the following graphs we fitted a function
+$\frac{Ae^{t/\tau}}{A+e^{t/\tau}} - \frac{A}{1+A}$
+to produce the accompanying tables, where $\tau$ is the time constant, and A
+normalizing factor restricting the S_1 population from becoming greater than 1.
+*** DONE PPV_3
+    CLOSED: [2020-05-01 Fri 14:26]
+ #+CAPTION: Population of the first excited state (S_1) of PPV_3 in various solvents obtained from the fraction of trajectories in each state.
+ [[./Images/population_fit_tabulation/ppv3_s1_pop_v_solvent.png]]
+| Solvent           | $\tau$ (fs) |    A |
+| Vacuum            |         671 | 1.16 |
+| CH_{3}OH          |         693 | 1.06 |
+| CH_{3}OH with 5QM |         550 | 1.10 |
+*** DONE PPV_3-NO_2
+    CLOSED: [2020-05-01 Fri 14:26]
+ #+CAPTION: Population of the first excited state (S_1) of PPV_3-NO_2 in various solvents obtained from the fraction of trajectories in each state.
+[[./Images/population_fit_tabulation/ppv3no2_s1_pop_v_solvent.png]]
+| Solvent           | $\tau$ (fs) |    A |
+| Vacuum            |        84.6 | 1.64 |
+| CH_{3}OH          |        90.4 | 1.62 |
+| CH_{3}OH with 5QM |        93.8 | 1.61 |
+* DONE Potential Energy Decay [2/2]
+  CLOSED: [2020-05-05 Tue 19:02]
+** DONE PPV_3
+#+CAPTION: Average potential energy during dynamics at 300K. Vacuum (No Trivial) is dynamics ran without trivial crossings. 
+[[./Images/potential_energies/ppv3.png]]
+** DONE PPV_3-NO_2
+   CLOSED: [2020-05-05 Tue 19:02]
+#+CAPTION: Average potential energy during dynamics at 300K.
+[[./Images/potential_energies/ppv3-no2.png]]
+* Absorption & Fluorescence [0/2]
+** NEXT PPV3 All Solvents
+** NEXT PPV3-NO2 All Solvents
+* BLA [0/2]
+** NEXT PPV_3
+#+CAPTION: BLA parameter average over the ensemble of PPV3 trajectories starting at states, S_0, S_1, and S_m
+   [[./Images/bla/ppv3.png]]
+** NEXT PPV_3-NO_2
+* Dihedral
+** NEXT PPV_3
+** NEXT PPV_3-NO_2
