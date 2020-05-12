@@ -61,6 +61,7 @@ normalizing factor restricting the S_1 population from becoming greater than 1.
 #+CAPTION: BLA parameter average over the ensemble of PPV3 trajectories starting at states, S_0, S_1, and S_m
    [[./Images/bla/ppv3.png]]
 ** NEXT PPV_3-NO_2
+   [[./Images/bla/ppv3-no2.png]]
 * Dihedral
 ** NEXT PPV_3
 ** NEXT PPV_3-NO_2
