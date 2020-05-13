@@ -13,6 +13,7 @@ collect_blas <- function (runtime, timestep, infile, state){
     mutate(BLA = (`1`+`3`)/2 - `2`) %>% 
     mutate(t = as.numeric(t)) %>% 
     mutate(State = state)
+  s1_bond_data
 }
 
 plot_blas <- function(bond_data){
