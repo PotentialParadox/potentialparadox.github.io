@@ -64,6 +64,9 @@ normalizing factor restricting the S_1 population from becoming greater than 1.
    [[./Images/bla/ppv3-no2.png]]
 * Dihedral
 ** NEXT PPV_3
+#+CAPTION: Torsional angles averaged over the ensemble of trajectories for S_0, S_1, and S_m for PPV_{3} in vacuum.
+[[./Images/dihedral/ppv3-vac.png]]
+
 ** NEXT PPV_3-NO_2
 #+CAPTION: Torsional angles averaged over the ensemble of trajectories for S_0, S_1, and S_m for PPV_{3}-NO_{2} in vacuum.
    [[./Images/dihedral/ppv3-no2-vac.png]]
