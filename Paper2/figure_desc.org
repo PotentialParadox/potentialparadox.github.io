@@ -67,3 +67,5 @@ normalizing factor restricting the S_1 population from becoming greater than 1.
 ** NEXT PPV_3-NO_2
 #+CAPTION: Torsional angles averaged over the ensemble of trajectories for S_0, S_1, and S_m for PPV_{3}-NO_{2} in vacuum.
    [[./Images/dihedral/ppv3-no2-vac.png]]
+#+CAPTION: Torsional angles averaged over the ensemble of trajectories for S_m for PPV_{3}-NO_{2} in vacuum, a classical methanol box, and a classical methanol box with the closest 5 methanols included in the QM calculation.
+[[./Images/dihedral/ppv3-no2-sm.png]]
