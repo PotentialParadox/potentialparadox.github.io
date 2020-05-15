@@ -163,6 +163,14 @@ sm_ppv3_vac <- collect_dihedrals(runtime = 3,
                                  solvent = "Vacuum",
                                  location = '') %>% head(11)
 
+# Sm Vacuum from ~/home/dustin/backup4/TestRuns/Paper2/ppv3-validation/vacuum-bla
+# 65 Trajectories
+sm_ppv3_vac_bla <- collect_dihedrals(runtime = 1,
+                                     infile = 'dihedral-ppv3-sm-bla.csv',
+                                     state = "Sm BLA",
+                                     solvent = "Vacuum",
+                                     location = '')
+
 # Sm from /home/dustin/backup4/TestRuns/Paper2/ppv3-validation/tammie_reproduction/vacuum-no-trivial
 # This has a 0.1fs timestep
 sm_ppv3_vac_no_trivial <- collect_dihedrals(runtime = 0.5,
@@ -201,3 +209,40 @@ dihedral_data <- bind_rows(
   s1_ppv3_vac
 )
 plot_dihedrals(dihedral_data, description = "Description")
+
+#############################
+# PPV3 Solvent Comparison
+#############################
+# Sm Vacuum from ~/home/dustin/backup4/TestRuns/Paper2/ppv3-validation/vacuum
+# Note that there were restart_0 (ds = 0.5fs, tf = 500fs) and restart_1 (ds = 0.1fs, ti=500fs, tf=1000fs)
+# We only care about restart_0
+# We can average all the dihedrals in this one
+# [[11, 12, 15, 16], [18, 17, 16, 15], [10, 9, 8, 7], [5, 4, 7, 8]]
+# 254 Trajectories
+sm_ppv3_vac <- collect_dihedrals(runtime = 3,
+                                 infile = 'dihedral-ppv3-sm.csv',
+                                 state = "Sm",
+                                 solvent = "Vacuum",
+                                 location = '') %>% head(11) # Weird because of the aformentioned timing differences
+# Sm CH3OH from ~/home/dustin/backup4/TestRuns/Paper2/ppv3-validation/ch3oh
+# 592 Trajectories
+sm_ppv3_ch3oh <- collect_dihedrals(runtime = 0.5,
+                                   infile = 'dihedral-ppv3-sm-ch3oh.csv',
+                                   state = 'Sm',
+                                   solvent = "Methanol",
+                                   location = '')
+# Sm CH3OH from ~/home/dustin/backup4/TestRuns/Paper2/ppv3-validation/ch3oh_5s
+# 589 Trajectories
+sm_ppv3_ch3oh_5s <- collect_dihedrals(runtime = 0.5,
+                                   infile = 'dihedral-ppv3-sm-ch3oh-5s.csv',
+                                   state = 'Sm',
+                                   solvent = "Methanol 5QM",
+                                   location = '')
+
+dihedral_data <- bind_rows(
+  sm_ppv3_vac,
+  sm_ppv3_ch3oh,
+  sm_ppv3_ch3oh_5s
+)
+
+plot_dihedrals(dihedral_data, "Solvent")
