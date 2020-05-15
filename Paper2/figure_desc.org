@@ -59,15 +59,18 @@ normalizing factor restricting the S_1 population from becoming greater than 1.
 * BLA [0/2]
 ** NEXT PPV_3
 #+CAPTION: BLA parameter average over the ensemble of PPV3 trajectories starting at states, S_0, S_1, and S_m
-   [[./Images/bla/ppv3.png]]
+   [[./Images/bla/ppv3-vac.png]]
 ** NEXT PPV_3-NO_2
-   [[./Images/bla/ppv3-no2.png]]
-* Dihedral
-** NEXT PPV_3
+   [[./Images/bla/ppv3-no2-vac.png]]
+* Dihedral [2/2]
+** DONE PPV_3
+   CLOSED: [2020-05-15 Fri 12:24]
 #+CAPTION: Torsional angles averaged over the ensemble of trajectories for S_0, S_1, and S_m for PPV_{3} in vacuum.
 [[./Images/dihedral/ppv3-vac.png]]
-
-** NEXT PPV_3-NO_2
+#+CAPTION: Torsional angles averaged over the ensemble of trajectories for S_m for PPV_{3} in vacuum, a classical methanol box, and a classical methanol box with the closest 5 methanol molecules included in the QM calculation.
+[[./Images/dihedral/ppv3-sm.png]]
+** DONE PPV_3-NO_2
+   CLOSED: [2020-05-15 Fri 12:24]
 #+CAPTION: Torsional angles averaged over the ensemble of trajectories for S_0, S_1, and S_m for PPV_{3}-NO_{2} in vacuum.
    [[./Images/dihedral/ppv3-no2-vac.png]]
 #+CAPTION: Torsional angles averaged over the ensemble of trajectories for S_m for PPV_{3}-NO_{2} in vacuum, a classical methanol box, and a classical methanol box with the closest 5 methanol molecules included in the QM calculation.
