@@ -4,7 +4,7 @@ setwd('~/Documents/paper2/bla')
 collect_blas <- function (runtime, infile, state, location, solvent){
   data <- read_csv(infile, col_names = FALSE)
   nsteps <- ncol(data) - 1
-  time_labels <- (0:(nsteps-1))*runtime/(nsteps)
+  time_labels <- (0:(nsteps-1))*runtime/(nsteps -1)
   names(data) <- c('Bond', time_labels)
   s1_bond_data <- data %>% gather(key = "t", value = "Length", -Bond) %>% 
     group_by(Bond, t) %>% 
@@ -53,7 +53,7 @@ s1_ppv3_vac <- collect_blas(runtime = 1,
 # Bonds (17,16), (16, 15), (15, 12)
 # Bonds (4,7), (7, 8), (8, 9)
 sm_ppv3_vac <- collect_blas(runtime = 1,
-                            infile = 'bla-ppv3-sm.csv',
+                            infile = 'bla-ppv3-sm-bla.csv',
                             state = 'Sm',
                             location = '',
                             solvent = "Vacuum")
@@ -64,6 +64,28 @@ bond_data <- bind_rows(
 )
 plot_blas(bond_data = bond_data, "State")
 
+
+######################
+# PPV3 Sm
+######################
+# Sm - Vacuum from ~/backup4/TestRuns/Paper2/ppv3-validation/vacuum
+# Bonds (17,16), (16, 15), (15, 12)
+# Bonds (4,7), (7, 8), (8, 9)
+# 254 Trajectories
+sm_ppv3_vac <- collect_blas(runtime = 1,
+                            infile = 'bla-ppv3-sm-bla.csv',
+                            state = 'Sm',
+                            location = '',
+                            solvent = "Vacuum")
+
+# Sm - CH3OH from ~/backup4/TestRuns/Paper2/ppv3-validation/vacuum
+# central benzen rings are atoms 12, 13, 14, 9, 10, 11
+bond_data <- bind_rows(
+  sm_ppv3_vac
+)
+
+plot_blas(bond_data, "Solvent")
+
 ######################
 # PPV3 - NO2
 ######################
@@ -71,10 +93,19 @@ timestep = 5 #fs
 # S0 & S1 - Vacuum from ~/backup1/TestRuns/Paper1/ppvno2-vacuum
 # Near to NO2 Bonds: (6, 7), (7, 8), (8, 9)
 # Far from NO2 Bonds: (17, 16) (16, 15), (15, 14)
-s0_ppv3_no2_vac <- collect_blas(runtime = 10,
-                                infile = 'bla-ppv3-no2-s0.csv',
-                                state = 'S0') %>% 
-  mutate(t = t - 4) %>% 
+s0_ppv3_no2_vac_near <- collect_blas(runtime = 10,
+                                infile = 'bla-ppv3-no2-s0-1.csv',
+                                state = 'S0',
+                                location = "Near",
+                                solvent = "Vacuum") %>% 
+  mutate(t = t - 9) %>% 
+  filter(t > 0)
+s0_ppv3_no2_vac_far <- collect_blas(runtime = 10,
+                                     infile = 'bla-ppv3-no2-s0-2.csv',
+                                     state = 'S0',
+                                     location = "Far",
+                                     solvent = "Vacuum") %>% 
+  mutate(t = t - 9) %>% 
   filter(t > 0)
 
 s1_ppv3_no2_vac_near <- collect_blas(runtime = 10,
@@ -102,6 +133,8 @@ sm_ppv3_no2_vac_far <- collect_blas(runtime = 1,
                                     solvent = "Vacuum")
 
 bond_data <- bind_rows(
+  s0_ppv3_no2_vac_near,
+  s0_ppv3_no2_vac_far,
   s1_ppv3_no2_vac_near,
   s1_ppv3_no2_vac_far,
   sm_ppv3_no2_vac_near,
