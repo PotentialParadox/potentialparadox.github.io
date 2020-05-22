@@ -109,8 +109,8 @@ sm_ppv3_no2_vac_far <- collect_dihedrals(runtime = 0.5,
                                          state = "Sm",
                                          solvent = "Vacuum",
                                          location = "Far")
-# Sm - CH3OH from ~/backup4/TestRuns/Paper2/ppv-no2-validation/ch3oh/mm
-# Near angles are [[7,8,9,10],[16,15,14,13]
+# Sm - CH3OH from ~/backup3/TestRuns/Paper2/ppv-no2-validation/ch3oh
+# Near angles are [[5,6,7,8],[7,8,9,10]
 # Far angles are [[18,17,16,15], [16,15,14,13]]
 # 560 Trajectories
 sm_ppv3_no2_ch3oh_near <- collect_dihedrals(runtime = 0.5,
@@ -123,8 +123,8 @@ sm_ppv3_no2_ch3oh_far <- collect_dihedrals(runtime = 0.5,
                                            state = "Sm",
                                            solvent = "Methanol",
                                            location = "Far")
-# Sm - CH3OH-5s from ~/backup4/TestRuns/Paper2/ppv-no2-validation/ch3oh/5s
-# Near angles are [[7,8,9,10],[16,15,14,13]
+# Sm - CH3OH-5s from ~/backup3/TestRuns/Paper2/ppv-no2-validation/ch3oh
+# Near angles are [[7,8,9,10],[7,8,9,10]
 # Far angles are [[18,17,16,15], [16,15,14,13]]
 # 509 Trajectories
 sm_ppv3_no2_ch3oh_5s_near <- collect_dihedrals(runtime = 0.5,
@@ -246,3 +246,4 @@ dihedral_data <- bind_rows(
 )
 
 plot_dihedrals(dihedral_data, "Solvent")
+

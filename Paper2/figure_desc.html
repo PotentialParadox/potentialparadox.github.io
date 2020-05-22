@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-05-15 Fri 11:45 -->
+<!-- 2020-05-22 Fri 13:11 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Paper 2 Figure Description</title>
@@ -199,6 +199,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<script type="text/javascript" src="http://livejs.com/live.js"></script>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -275,65 +276,132 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgf494fa5">Populations </a>
+<li><a href="#orgaaf86e0">Computational Details</a>
 <ul>
-<li><a href="#orgbbc15a1">Vacuum</a>
-<ul>
-<li><a href="#org9307d94">PPV<sub>3</sub>-No-Trivial</a></li>
-<li><a href="#org8e4c5cc">PPV<sub>3</sub></a></li>
-<li><a href="#orgdafa791">PPV<sub>3</sub>-NO<sub>2</sub></a></li>
+<li><a href="#org56c975e">Ground State Sampling</a></li>
+<li><a href="#orgdb1d2b4">Pulse Pump Calculations</a></li>
+<li><a href="#org619a01f">S<sub>m</sub> Non Adiabatic Dynamics</a></li>
 </ul>
 </li>
-<li><a href="#orgc2ec19f">S1 vs Time</a>
+<li><a href="#org267b98d">Populations </a>
 <ul>
-<li><a href="#org11ed509">PPV<sub>3</sub></a></li>
-<li><a href="#orgc999e7d">PPV<sub>3</sub>-NO<sub>2</sub></a></li>
+<li><a href="#orga09efae">Vacuum</a>
+<ul>
+<li><a href="#orgeff0206">PPV<sub>3</sub>-No-Trivial</a></li>
+<li><a href="#orgbaf3395">PPV<sub>3</sub></a></li>
+<li><a href="#org0631d5d">PPV<sub>3</sub>-NO<sub>2</sub></a></li>
+</ul>
+</li>
+<li><a href="#orgfe2b587">S1 vs Time</a>
+<ul>
+<li><a href="#orgd84831c">PPV<sub>3</sub></a></li>
+<li><a href="#org64a0dfd">PPV<sub>3</sub>-NO<sub>2</sub></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org1eeb81b">Potential Energy Decay </a>
+<li><a href="#org01a0fa3">Potential Energy Decay </a>
 <ul>
-<li><a href="#org08073d6">PPV<sub>3</sub></a></li>
-<li><a href="#org4343dbb">PPV<sub>3</sub>-NO<sub>2</sub></a></li>
+<li><a href="#org26be809">PPV<sub>3</sub></a></li>
+<li><a href="#org6b20807">PPV<sub>3</sub>-NO<sub>2</sub></a></li>
 </ul>
 </li>
-<li><a href="#org58843a9">Absorption &amp; Fluorescence </a>
+<li><a href="#org632156c">Absorption &amp; Fluorescence </a>
 <ul>
-<li><a href="#orgc65ed9e">PPV3 All Solvents</a></li>
-<li><a href="#org2bd2142">PPV3-NO2 All Solvents</a></li>
+<li><a href="#orgd39db9f">PPV3 All Solvents</a></li>
+<li><a href="#org3593604">PPV3-NO2 All Solvents</a></li>
 </ul>
 </li>
-<li><a href="#org109ff6b">BLA </a>
+<li><a href="#orgc08b044">BLA </a>
 <ul>
-<li><a href="#org99ee7a4">PPV<sub>3</sub></a></li>
-<li><a href="#org5342a7b">PPV<sub>3</sub>-NO<sub>2</sub></a></li>
+<li><a href="#org92a88e0">PPV<sub>3</sub></a></li>
+<li><a href="#org18df725">PPV<sub>3</sub>-NO<sub>2</sub></a></li>
 </ul>
 </li>
-<li><a href="#org469d3c1">Dihedral</a>
+<li><a href="#org31df47b">Dihedral </a>
 <ul>
-<li><a href="#org486fe14">PPV<sub>3</sub></a></li>
-<li><a href="#org5aa7da6">PPV<sub>3</sub>-NO<sub>2</sub></a></li>
+<li><a href="#org03473fc">PPV<sub>3</sub></a></li>
+<li><a href="#orgc9bb90b">PPV<sub>3</sub>-NO<sub>2</sub></a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf494fa5" class="outline-2">
-<h2 id="orgf494fa5">Populations </h2>
-<div class="outline-text-2" id="text-orgf494fa5">
+<div id="outline-container-orgaaf86e0" class="outline-2">
+<h2 id="orgaaf86e0">Computational Details</h2>
+<div class="outline-text-2" id="text-orgaaf86e0">
 </div>
-<div id="outline-container-orgbbc15a1" class="outline-3">
-<h3 id="orgbbc15a1">Vacuum</h3>
-<div class="outline-text-3" id="text-orgbbc15a1">
+<div id="outline-container-org56c975e" class="outline-3">
+<h3 id="org56c975e">Ground State Sampling</h3>
+<div class="outline-text-3" id="text-org56c975e">
+<p>
+We equilibrated the system to a temperature set to 300K. To collect a broad
+enough sampling, we sampled from a 1024 ps, with a 0.5 fs timestep fully
+classical trajectories using the AMBER force field. We performed a separate
+trajectory for each situation combination of solute / with solvent including
+whether the solvent was included in the QM calculations. We had a total of 6
+separate 1024 ps classical trajectories, PPV3 in Vacuum, CH<sub>3OH</sub>, and 5QM CH<sub>3OH</sub>
+and PPV<sub>3</sub>-NO<sub>2</sub> in Vacuum, CH<sub>3OH</sub>, and 5QM CH<sub>3OH</sub>. 1024 snapshots where taken at
+1ps, 2ps .. 1024ps. We used the final frame of those tranjectories as the
+initial conditions for an additional 4ps using the AM1 semiempical Hamiltonian
+Born-Oppenheimer on the molecules to be included in future QM calculations to
+allow the system to relax. The 4 ps timescale was determined using the
+information form the previous paper. The simulations were described the Langevin
+equations at a temperature set to 300 K with the Langevin friction parameter set
+to 20 ps<sup>-1</sup>. The final frames of these QM trajectories were then used as the
+initial conditions for the following pulse pump calculations.
+</p>
+</div>
+</div>
+<div id="outline-container-orgdb1d2b4" class="outline-3">
+<h3 id="orgdb1d2b4">Pulse Pump Calculations</h3>
+<div class="outline-text-3" id="text-orgdb1d2b4">
+<p>
+Pump-Probe Spectroscopy is and experimental technique commonly performed in the
+study of ultrafast electonic statte dynamics. In the case of conjugated polymers
+in can be used to study the dlocalized excictronic
+tranisions that are accessible through and excitation of the S1 state but not
+the ground state S0. To simulate this behavior, we take the final snapshot of
+the QM ground state calculations and perform a single point calculation at the
+S1 state to find the next state with the highest oscillator strength. We looked
+specifically for a large peak in oscillator strength, at least twice the amount
+of any other. Those trajectories that failed to meet those conditions were
+filtered out from the following calculations. We recorded the successful state
+transitions and used them for the S<sub>m</sub> state tully excited state calculations dynamics.
+</p>
+</div>
+</div>
+<div id="outline-container-org619a01f" class="outline-3">
+<h3 id="org619a01f">S<sub>m</sub> Non Adiabatic Dynamics</h3>
+<div class="outline-text-3" id="text-org619a01f">
+<p>
+Using the same snapshot used for the Pulse Pump calculations and their
+corresponding trajectories, we used the previously calculated state from the
+pulse pump as our initial state and perform a 500 fs dyanmics with timestep of
+0.5 fs, and nuclear coordinate dyanmics described by the Langevin dynamics with
+temperature set to 300K and friction set to 20<sup>-1</sup>. The dyanmics were allowed
+to behave non-adiabatically and we treated any trivial crossing by collapsing
+the wavefunction. The dynamics did not include QM ewald. 
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org267b98d" class="outline-2">
+<h2 id="org267b98d">Populations </h2>
+<div class="outline-text-2" id="text-org267b98d">
+</div>
+<div id="outline-container-orga09efae" class="outline-3">
+<h3 id="orga09efae">Vacuum</h3>
+<div class="outline-text-3" id="text-orga09efae">
 <p>
 Shown below are the population trajectories for PPV<sub>3</sub> and PPV<sub>3</sub>-NO<sub>2</sub> in
 vacuum. States with very short lifespans were dropped for clarity.
 </p>
 </div>
-<div id="outline-container-org9307d94" class="outline-4">
-<h4 id="org9307d94">PPV<sub>3</sub>-No-Trivial</h4>
-<div class="outline-text-4" id="text-org9307d94">
+<div id="outline-container-orgeff0206" class="outline-4">
+<h4 id="orgeff0206">PPV<sub>3</sub>-No-Trivial</h4>
+<div class="outline-text-4" id="text-orgeff0206">
 <p>
 Using no trivial crossing and basic decoherence, the population plot looks very
 similar to that found in Tammie's thesis
@@ -344,9 +412,9 @@ similar to that found in Tammie's thesis
 </p>
 </div>
 </div>
-<div id="outline-container-org8e4c5cc" class="outline-4">
-<h4 id="org8e4c5cc">PPV<sub>3</sub></h4>
-<div class="outline-text-4" id="text-org8e4c5cc">
+<div id="outline-container-orgbaf3395" class="outline-4">
+<h4 id="orgbaf3395">PPV<sub>3</sub></h4>
+<div class="outline-text-4" id="text-orgbaf3395">
 
 <div class="figure">
 <p><img src="./Images/population_fit_tabulation/ppv3_pop_vacuum.png" alt="ppv3_pop_vacuum.png" />
@@ -355,9 +423,9 @@ similar to that found in Tammie's thesis
 </div>
 </div>
 </div>
-<div id="outline-container-orgdafa791" class="outline-4">
-<h4 id="orgdafa791">PPV<sub>3</sub>-NO<sub>2</sub></h4>
-<div class="outline-text-4" id="text-orgdafa791">
+<div id="outline-container-org0631d5d" class="outline-4">
+<h4 id="org0631d5d">PPV<sub>3</sub>-NO<sub>2</sub></h4>
+<div class="outline-text-4" id="text-org0631d5d">
 
 <div class="figure">
 <p><img src="./Images/population_fit_tabulation/ppv3no2_pop_vacuum.png" alt="ppv3no2_pop_vacuum.png" />
@@ -367,9 +435,9 @@ similar to that found in Tammie's thesis
 </div>
 </div>
 </div>
-<div id="outline-container-orgc2ec19f" class="outline-3">
-<h3 id="orgc2ec19f">S1 vs Time</h3>
-<div class="outline-text-3" id="text-orgc2ec19f">
+<div id="outline-container-orgfe2b587" class="outline-3">
+<h3 id="orgfe2b587">S1 vs Time</h3>
+<div class="outline-text-3" id="text-orgfe2b587">
 <p>
 To the following graphs we fitted a function
 \(\frac{Ae^{t/\tau}}{A+e^{t/\tau}} - \frac{A}{1+A}\)
@@ -377,9 +445,9 @@ to produce the accompanying tables, where \(\tau\) is the time constant, and A
 normalizing factor restricting the S<sub>1</sub> population from becoming greater than 1.
 </p>
 </div>
-<div id="outline-container-org11ed509" class="outline-4">
-<h4 id="org11ed509">PPV<sub>3</sub></h4>
-<div class="outline-text-4" id="text-org11ed509">
+<div id="outline-container-orgd84831c" class="outline-4">
+<h4 id="orgd84831c">PPV<sub>3</sub></h4>
+<div class="outline-text-4" id="text-orgd84831c">
 
 <div class="figure">
 <p><img src="./Images/population_fit_tabulation/ppv3_s1_pop_v_solvent.png" alt="ppv3_s1_pop_v_solvent.png" />
@@ -424,9 +492,9 @@ normalizing factor restricting the S<sub>1</sub> population from becoming greate
 </table>
 </div>
 </div>
-<div id="outline-container-orgc999e7d" class="outline-4">
-<h4 id="orgc999e7d">PPV<sub>3</sub>-NO<sub>2</sub></h4>
-<div class="outline-text-4" id="text-orgc999e7d">
+<div id="outline-container-org64a0dfd" class="outline-4">
+<h4 id="org64a0dfd">PPV<sub>3</sub>-NO<sub>2</sub></h4>
+<div class="outline-text-4" id="text-org64a0dfd">
 
 <div class="figure">
 <p><img src="./Images/population_fit_tabulation/ppv3no2_s1_pop_v_solvent.png" alt="ppv3no2_s1_pop_v_solvent.png" />
@@ -473,13 +541,13 @@ normalizing factor restricting the S<sub>1</sub> population from becoming greate
 </div>
 </div>
 </div>
-<div id="outline-container-org1eeb81b" class="outline-2">
-<h2 id="org1eeb81b">Potential Energy Decay </h2>
-<div class="outline-text-2" id="text-org1eeb81b">
+<div id="outline-container-org01a0fa3" class="outline-2">
+<h2 id="org01a0fa3">Potential Energy Decay </h2>
+<div class="outline-text-2" id="text-org01a0fa3">
 </div>
-<div id="outline-container-org08073d6" class="outline-3">
-<h3 id="org08073d6">PPV<sub>3</sub></h3>
-<div class="outline-text-3" id="text-org08073d6">
+<div id="outline-container-org26be809" class="outline-3">
+<h3 id="org26be809">PPV<sub>3</sub></h3>
+<div class="outline-text-3" id="text-org26be809">
 
 <div class="figure">
 <p><img src="./Images/potential_energies/ppv3.png" alt="ppv3.png" />
@@ -488,9 +556,9 @@ normalizing factor restricting the S<sub>1</sub> population from becoming greate
 </div>
 </div>
 </div>
-<div id="outline-container-org4343dbb" class="outline-3">
-<h3 id="org4343dbb">PPV<sub>3</sub>-NO<sub>2</sub></h3>
-<div class="outline-text-3" id="text-org4343dbb">
+<div id="outline-container-org6b20807" class="outline-3">
+<h3 id="org6b20807">PPV<sub>3</sub>-NO<sub>2</sub></h3>
+<div class="outline-text-3" id="text-org6b20807">
 
 <div class="figure">
 <p><img src="./Images/potential_energies/ppv3-no2.png" alt="ppv3-no2.png" />
@@ -500,73 +568,78 @@ normalizing factor restricting the S<sub>1</sub> population from becoming greate
 </div>
 </div>
 </div>
-<div id="outline-container-org58843a9" class="outline-2">
-<h2 id="org58843a9">Absorption &amp; Fluorescence </h2>
-<div class="outline-text-2" id="text-org58843a9">
+<div id="outline-container-org632156c" class="outline-2">
+<h2 id="org632156c">Absorption &amp; Fluorescence </h2>
+<div class="outline-text-2" id="text-org632156c">
 </div>
-<div id="outline-container-orgc65ed9e" class="outline-3">
-<h3 id="orgc65ed9e">PPV3 All Solvents</h3>
+<div id="outline-container-orgd39db9f" class="outline-3">
+<h3 id="orgd39db9f">PPV3 All Solvents</h3>
 </div>
-<div id="outline-container-org2bd2142" class="outline-3">
-<h3 id="org2bd2142">PPV3-NO2 All Solvents</h3>
+<div id="outline-container-org3593604" class="outline-3">
+<h3 id="org3593604">PPV3-NO2 All Solvents</h3>
 </div>
 </div>
-<div id="outline-container-org109ff6b" class="outline-2">
-<h2 id="org109ff6b">BLA </h2>
-<div class="outline-text-2" id="text-org109ff6b">
+<div id="outline-container-orgc08b044" class="outline-2">
+<h2 id="orgc08b044">BLA </h2>
+<div class="outline-text-2" id="text-orgc08b044">
 </div>
-<div id="outline-container-org99ee7a4" class="outline-3">
-<h3 id="org99ee7a4">PPV<sub>3</sub></h3>
-<div class="outline-text-3" id="text-org99ee7a4">
+<div id="outline-container-org92a88e0" class="outline-3">
+<h3 id="org92a88e0">PPV<sub>3</sub></h3>
+<div class="outline-text-3" id="text-org92a88e0">
 
 <div class="figure">
-<p><img src="./Images/bla/ppv3.png" alt="ppv3.png" />
+<p><img src="./Images/bla/ppv3-vac.png" alt="ppv3-vac.png" />
 </p>
 <p><span class="figure-number">Figure 7: </span>BLA parameter average over the ensemble of PPV3 trajectories starting at states, S<sub>0</sub>, S<sub>1</sub>, and S<sub>m</sub></p>
 </div>
 </div>
 </div>
-<div id="outline-container-org5342a7b" class="outline-3">
-<h3 id="org5342a7b">PPV<sub>3</sub>-NO<sub>2</sub></h3>
-<div class="outline-text-3" id="text-org5342a7b">
+<div id="outline-container-org18df725" class="outline-3">
+<h3 id="org18df725">PPV<sub>3</sub>-NO<sub>2</sub></h3>
+<div class="outline-text-3" id="text-org18df725">
 
 <div class="figure">
-<p><img src="./Images/bla/ppv3-no2.png" alt="ppv3-no2.png" />
+<p><img src="./Images/bla/ppv3-no2-vac.png" alt="ppv3-no2-vac.png" />
 </p>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-org469d3c1" class="outline-2">
-<h2 id="org469d3c1">Dihedral</h2>
-<div class="outline-text-2" id="text-org469d3c1">
+<div id="outline-container-org31df47b" class="outline-2">
+<h2 id="org31df47b">Dihedral </h2>
+<div class="outline-text-2" id="text-org31df47b">
 </div>
-<div id="outline-container-org486fe14" class="outline-3">
-<h3 id="org486fe14">PPV<sub>3</sub></h3>
-<div class="outline-text-3" id="text-org486fe14">
+<div id="outline-container-org03473fc" class="outline-3">
+<h3 id="org03473fc">PPV<sub>3</sub></h3>
+<div class="outline-text-3" id="text-org03473fc">
 
 <div class="figure">
 <p><img src="./Images/dihedral/ppv3-vac.png" alt="ppv3-vac.png" />
 </p>
 <p><span class="figure-number">Figure 9: </span>Torsional angles averaged over the ensemble of trajectories for S<sub>0</sub>, S<sub>1</sub>, and S<sub>m</sub> for PPV<sub>3</sub> in vacuum.</p>
 </div>
-</div>
-</div>
 
-<div id="outline-container-org5aa7da6" class="outline-3">
-<h3 id="org5aa7da6">PPV<sub>3</sub>-NO<sub>2</sub></h3>
-<div class="outline-text-3" id="text-org5aa7da6">
+<div class="figure">
+<p><img src="./Images/dihedral/ppv3-sm.png" alt="ppv3-sm.png" />
+</p>
+<p><span class="figure-number">Figure 10: </span>Torsional angles averaged over the ensemble of trajectories for S<sub>m</sub> for PPV<sub>3</sub> in vacuum, a classical methanol box, and a classical methanol box with the closest 5 methanol molecules included in the QM calculation.</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc9bb90b" class="outline-3">
+<h3 id="orgc9bb90b">PPV<sub>3</sub>-NO<sub>2</sub></h3>
+<div class="outline-text-3" id="text-orgc9bb90b">
 
 <div class="figure">
 <p><img src="./Images/dihedral/ppv3-no2-vac.png" alt="ppv3-no2-vac.png" />
 </p>
-<p><span class="figure-number">Figure 10: </span>Torsional angles averaged over the ensemble of trajectories for S<sub>0</sub>, S<sub>1</sub>, and S<sub>m</sub> for PPV<sub>3</sub>-NO<sub>2</sub> in vacuum.</p>
+<p><span class="figure-number">Figure 11: </span>Torsional angles averaged over the ensemble of trajectories for S<sub>0</sub>, S<sub>1</sub>, and S<sub>m</sub> for PPV<sub>3</sub>-NO<sub>2</sub> in vacuum.</p>
 </div>
 
 <div class="figure">
 <p><img src="./Images/dihedral/ppv3-no2-sm.png" alt="ppv3-no2-sm.png" />
 </p>
-<p><span class="figure-number">Figure 11: </span>Torsional angles averaged over the ensemble of trajectories for S<sub>m</sub> for PPV<sub>3</sub>-NO<sub>2</sub> in vacuum, a classical methanol box, and a classical methanol box with the closest 5 methanol molecules included in the QM calculation.</p>
+<p><span class="figure-number">Figure 12: </span>Torsional angles averaged over the ensemble of trajectories for S<sub>m</sub> for PPV<sub>3</sub>-NO<sub>2</sub> in vacuum, a classical methanol box, and a classical methanol box with the closest 5 methanol molecules included in the QM calculation.</p>
 </div>
 </div>
 </div>
@@ -574,7 +647,7 @@ normalizing factor restricting the S<sub>1</sub> population from becoming greate
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: dustin</p>
-<p class="date">Created: 2020-05-15 Fri 11:45</p>
+<p class="date">Created: 2020-05-22 Fri 13:11</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

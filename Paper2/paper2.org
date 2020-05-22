@@ -1,0 +1,45 @@
+#+TITLE: Paper 2
+#+SETUPFILE: ~/Templates/org-html-themes/setup/theme-readtheorg.setup
+#+OPTIONS: num:nil todo:nil stat:nil
+#+TODO: TODO(t) PROJECT(p) NEXT(n) ONGOING(o) WAITING(w@) SOMEDAY(s!) | DONE CANCELLED(c) UNFINISHED(u)
+#+TAGS: EMAIL(e) BUG(b) METHOD(m) URGENT(u) IMPORTANT(i) SHORT(s)
+#+COLUMNS: %7TODO(To Do) %32ITEM(Task) %6CLOCKSUM(Clock) %8EFFORT(Estimate){:}
+#+PROPERTY: Effort_ALL 0:05 0:10 0:15 0:30 0:45 1:00 1:30 2:00
+* Computational Details
+** Ground State Sampling
+We equilibrated the system to a temperature set to 300K. To collect a broad
+enough sampling, we sampled from a 1024 ps, with a 0.5 fs timestep fully
+classical trajectories using the AMBER force field. We performed a separate
+trajectory for each situation combination of solute / with solvent including
+whether the solvent was included in the QM calculations. We had a total of 6
+separate 1024 ps classical trajectories, PPV3 in Vacuum, CH_3OH, and 5QM CH_3OH
+and PPV_3-NO_2 in Vacuum, CH_3OH, and 5QM CH_3OH. 1024 snapshots where taken at
+1ps, 2ps .. 1024ps. We used the final frame of those tranjectories as the
+initial conditions for an additional 4ps using the AM1 semiempical Hamiltonian
+Born-Oppenheimer on the molecules to be included in future QM calculations to
+allow the system to relax. The 4 ps timescale was determined using the
+information form the previous paper. The simulations were described the Langevin
+equations at a temperature set to 300 K with the Langevin friction parameter set
+to 20 ps^{-1}. The final frames of these QM trajectories were then used as the
+initial conditions for the following pulse pump calculations.
+** Pulse Pump Calculations
+Pump-Probe Spectroscopy is and experimental technique commonly performed in the
+study of ultrafast electonic statte dynamics. In the case of conjugated polymers
+in can be used to study the dlocalized excictronic
+tranisions that are accessible through and excitation of the S1 state but not
+the ground state S0. To simulate this behavior, we take the final snapshot of
+the QM ground state calculations and perform a single point calculation at the
+S1 state to find the next state with the highest oscillator strength. We looked
+specifically for a large peak in oscillator strength, at least twice the amount
+of any other. Those trajectories that failed to meet those conditions were
+filtered out from the following calculations. We recorded the successful state
+transitions and used them for the S_m state tully excited state calculations dynamics.
+** S_m Non Adiabatic Dynamics
+Using the same snapshot used for the Pulse Pump calculations and their
+corresponding trajectories, we used the previously calculated state from the
+pulse pump as our initial state and perform a 500 fs dyanmics with timestep of
+0.5 fs, and nuclear coordinate dyanmics described by the Langevin dynamics with
+temperature set to 300K and friction set to 20^{-1}. The dyanmics were allowed
+to behave non-adiabatically and we treated any trivial crossing by collapsing
+the wavefunction. The dynamics did not include QM ewald. The potential energy of
+these dyanmics can be found here. 
