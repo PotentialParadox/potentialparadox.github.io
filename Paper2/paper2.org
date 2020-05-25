@@ -40,6 +40,85 @@ corresponding trajectories, we used the previously calculated state from the
 pulse pump as our initial state and perform a 500 fs dyanmics with timestep of
 0.5 fs, and nuclear coordinate dyanmics described by the Langevin dynamics with
 temperature set to 300K and friction set to 20^{-1}. The dyanmics were allowed
-to behave non-adiabatically and we treated any trivial crossing by collapsing
-the wavefunction. The dynamics did not include QM ewald. The potential energy of
-these dyanmics can be found here. 
+to behave non-adiabatically and we tested for trivial unavoided crossing between
+excited states.The dynamics did not include QM ewald.
+* Population Analysis 
+#+CAPTION: Populations for the excited states with extended lifespans for PPV_{3} and PPV_3-NO_2. S_{m} represents the initial state. label:fig:all-populations 
+[[./Images/population_fit_tabulation/all_pops.png]]
+
+#+CAPTION: Fitting Parameters for the model of the rise of the S_{1} population. label:table:s1 
+| Solvent           | Solute         |             $\tau$ (fs) |    A |
+| Vacuum NT         | PPV_3          | 258 !! Tammies (394) !! | 1.28 |
+| Vacuum            | PPV_3          |                     671 | 1.16 |
+| CH_{3}OH          | PPV_3          |                     693 | 1.06 |
+| CH_{3}OH with 5QM | PPV_3          |                     550 | 1.10 |
+| Vacuum            | PPV_{3}-NO_{2} |                    84.6 | 1.64 |
+| CH_{3}OH          | PPV_{3}-NO_{2} |                    90.4 | 1.62 |
+| CH_{3}OH with 5QM | PPV_{3}-NO_{2} |                    93.8 | 1.61 |
+
+Figure ref:fig:all-populations shows the population of each state calculated as
+the number of trajectories at the state's potential energy surface over the
+total number of trajectories. S_m represents the initial state calculated using
+the pulse pump calculations previously done. States S_7 and S_9 are included as
+the only other "slow" states, or states that reached a population of more than
+0.05. The other states were excluded from the graph. These charts show that the
+addition of the NO_2 oligimors dramatically speed up the state relaxation. S_m
+ranged from S_9 to S_15 for PPV_3 and S_11 to S_21 for PPV_{3}-NO_{2}. Figure
+ref:fig:s1-populations, shows the rise of the S_{1} populations over the first
+500 fs after excitation. We model these rises by fitting the curves to the
+function
+\begin{equation}
+f(t) = \frac{Ae^{t/\tau}}{A+e^{t/\tau}} - \frac{A}{1+A}
+\end{equation}
+where $t$ is time, $\tau$ is the relaxation, and $A$ is a constant that
+normalizes such that the populations remain between 0 and 1. The results are displayed in ref:table:s1. 
+We clearly see that adding a test for trivial-nonavoided crossing slows the rate
+of relaxation from a time constant of 258~fs. This is to be expected since we
+are now preventing transitions (mostly downward) that should not occur. The
+methanol have mixed results with regards to PPV3 and seem to slightly slow the
+relaxation of PPV3-NO_2. 
+
+
+
+
+ #+CAPTION: Population of the first excited state (S_1) of PPV_3 and PPV_{3}-NO_{2} in various solvents obtained from the fraction of trajectories in each state. label:fig:s1-populations
+ [[./Images/population_fit_tabulation/s1.png]]
+
+** Potential Energies
+The potential energies averaged over !!N-PPV3!! and !!N-PPV3-NO2!! completed
+trajectories are shown in figures ref:fig:ppv3-potential and
+ref:fig:ppv3-no2-potential. The corresponding S_0 and S_1 states are shown for
+comparison and are the last 500 fs of a 10 ps run for each of those states. As
+the initial S_m trajectories reduce the potential energies reduce towards the
+corresponding S_1 steady state energies. From figure
+ref:fig:ppv3-no2-s1-populations, we can see that by 400 fs, most of the population
+in the PPV_{3}-NO_{2} trajectories are on the S_1 potential energy surface.
+After 400ps, any reduction in the potential energy is due to adiabatic
+relaxation. We include for comparison in figure ref:fig:ppv3-potential the
+potential energy relaxation form the initial S_m trajectories without using a
+test for trivial unavoided crossings tracking the spacialization of the
+electronic transitions as implemented by the Tretiak group labeled (S_{m} Vacuum
+NT). By taking into account a test for trivial non-avoided crossings, we see a
+notable reduction in the rate of relaxation. This matches what we see in the
+growth of the S_1 populations as seen in ref:fig:ppv3-s1-populations, where
+without the tests for trivial crossings, the S_1 state rises much quicker. 
+
+The energies between the solvent and vacuum. The potential energie of the solute
+in vacuum is noticablly smaller than in vacuum as to be expected. The rate of
+relaxation in methanol for PPV_3-NO_2 is slightly faster than in vacuum, but
+negligable in the case PPV_3. Adding the 5 solvents to the calculation did not
+seem to result in any noticable differences in regards to the potential energy
+relaxation rate for either PPV_3 or PPV_{3}-NO_{2}. There's a larger difference
+between the S_1 relaxed potential energies for PPV_{3{-NO_2 than there is at the
+initial S_{m} states.
+
+#+CAPTION: Average potential energy during dynamics at 300K for PPV_{3}. Vacuum (No Trivial) is dynamics ran without trivial crossings. label:fig:ppv3-potential 
+[[./Images/potential_energies/ppv3.png]]
+
+#+CAPTION: Average potential energy during dynamics at 300K for PPV_{3}-NO_{2}. label:fig:ppv3-no2-potential 
+[[./Images/potential_energies/ppv3-no2.png]]
+
+
+* Bibliography
+bibliographystyle:apalike
+bibliography:paper2.bib
