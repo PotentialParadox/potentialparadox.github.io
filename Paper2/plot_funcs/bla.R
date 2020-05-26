@@ -20,17 +20,21 @@ collect_blas <- function (runtime, infile, state, location, solvent){
   s1_bond_data
 }
 
-plot_blas <- function(bond_data, description){
+plot_blas <- function(bond_data, legend_breaks, labels, description, state_colors){
   bond_data %>%
     ggplot(aes_string(x = "t", y="BLA", color = description)) +
     geom_line(alpha = 0.5) +
-    geom_smooth(method = 'gam', formula = y ~ s(x, bs = "cs")) +
+    geom_smooth(method = 'gam', formula = y ~ s(x, bs = "cs"), se=FALSE) +
+    scale_color_manual(breaks = legend_breaks, labels = legend_labels, values = state_colors) +
     labs(x = "Time (ps)") +
+    facet_wrap(vars(Solute)) +
     theme_bw() +
-    theme(axis.text=element_text(size=20),
+    theme(axis.text=element_text(size=15),
           axis.title=element_text(size=20),
-          legend.title = element_text(size = 15),
-          legend.text = element_text(size = 15)
+          legend.title = element_blank(),
+          legend.text = element_text(size = 15),
+          legend.text.align = 0,
+          legend.position = "top"
     )
 }
 ######################
@@ -57,12 +61,11 @@ sm_ppv3_vac <- collect_blas(runtime = 1,
                             state = 'Sm',
                             location = '',
                             solvent = "Vacuum")
-bond_data <- bind_rows(
+ppv3_vac_bond_data <- bind_rows(
   s0_ppv3_vac,
   s1_ppv3_vac,
   sm_ppv3_vac
-)
-plot_blas(bond_data = bond_data, "State")
+) %>% mutate(Solute = 'PPV3')
 
 
 ######################
@@ -80,9 +83,9 @@ sm_ppv3_vac <- collect_blas(runtime = 1,
 
 # Sm - CH3OH from ~/backup4/TestRuns/Paper2/ppv3-validation/vacuum
 # central benzen rings are atoms 12, 13, 14, 9, 10, 11
-bond_data <- bind_rows(
+ppv3_sm_bond_data <- bind_rows(
   sm_ppv3_vac
-)
+) %>% mutate(Solute = 'PPV3')
 
 plot_blas(bond_data, "Solvent")
 
@@ -122,22 +125,71 @@ s1_ppv3_no2_vac_far <- collect_blas(runtime = 10,
 # Bonds same
 sm_ppv3_no2_vac_near <- collect_blas(runtime = 1,
                                      infile = 'bla-ppv3-no2-sm-1.csv',
-                                     state = 'Sm-near',
+                                     state = 'Sm',
                                      location = "Near",
                                      solvent = "Vacuum")
 
 sm_ppv3_no2_vac_far <- collect_blas(runtime = 1,
                                     infile = 'bla-ppv3-no2-sm-2.csv',
-                                    state = 'Sm-far',
+                                    state = 'Sm',
                                     location = "Far",
                                     solvent = "Vacuum")
 
-bond_data <- bind_rows(
+ppv3_no2_vac_bond_data <- bind_rows(
   s0_ppv3_no2_vac_near,
   s0_ppv3_no2_vac_far,
   s1_ppv3_no2_vac_near,
   s1_ppv3_no2_vac_far,
   sm_ppv3_no2_vac_near,
   sm_ppv3_no2_vac_far
+) %>% mutate(Solute = 'PPV3-NO2')
+
+######################################
+# Ploting for BLA Vacuum
+######################################
+bond_data <- bind_rows(
+  ppv3_vac_bond_data,
+  ppv3_no2_vac_bond_data
 )
-plot_blas(bond_data, description = "Description")
+
+legend_breaks <- c(
+  "S0",
+  "S0-Near",
+  "S0-Far",
+  "S1",
+  "S1-Near",
+  "S1-Far",
+  "Sm",
+  "Sm-Near",
+  "Sm-Far"
+)
+legend_labels <- c(
+  expression(paste(S[0])),
+  expression(paste(S[0], " Near")),
+  expression(paste(S[0], " Far")),
+  expression(paste(S[1])),
+  expression(paste(S[1], " Near")),
+  expression(paste(S[1], " Far")),
+  expression(paste(S[m])),
+  expression(paste(S[m], " Near")),
+  expression(paste(S[m], " Far"))
+)
+my_colors <- c(
+  "#EE421D",
+  "#F0755A",
+  "#681F0F",
+  "#27AED6",
+  "#2ECDFC",
+  "#299999",
+  "#18A74C",
+  "#107836",
+  "#22E368"
+)
+
+plot_blas(
+  bond_data,
+  legend_breaks = legend_breaks,
+  labels = legend_labels,
+  description = "Description",
+  state_colors = my_colors
+)

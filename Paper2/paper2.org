@@ -42,50 +42,50 @@ pulse pump as our initial state and perform a 500 fs dyanmics with timestep of
 temperature set to 300K and friction set to 20^{-1}. The dyanmics were allowed
 to behave non-adiabatically and we tested for trivial unavoided crossing between
 excited states.The dynamics did not include QM ewald.
-* Population Analysis 
-#+CAPTION: Populations for the excited states with extended lifespans for PPV_{3} and PPV_3-NO_2. S_{m} represents the initial state. label:fig:all-populations 
-[[./Images/population_fit_tabulation/all_pops.png]]
+** Population Analysis 
+ #+CAPTION: Populations for the excited states with extended lifespans for PPV_{3} and PPV_3-NO_2. S_{m} represents the initial state. label:fig:all-populations 
+ [[./Images/population_fit_tabulation/all_pops.png]]
 
-#+CAPTION: Fitting Parameters for the model of the rise of the S_{1} population. label:table:s1 
-| Solvent           | Solute         |             $\tau$ (fs) |    A |
-| Vacuum NT         | PPV_3          | 258 !! Tammies (394) !! | 1.28 |
-| Vacuum            | PPV_3          |                     671 | 1.16 |
-| CH_{3}OH          | PPV_3          |                     693 | 1.06 |
-| CH_{3}OH with 5QM | PPV_3          |                     550 | 1.10 |
-| Vacuum            | PPV_{3}-NO_{2} |                    84.6 | 1.64 |
-| CH_{3}OH          | PPV_{3}-NO_{2} |                    90.4 | 1.62 |
-| CH_{3}OH with 5QM | PPV_{3}-NO_{2} |                    93.8 | 1.61 |
+ #+CAPTION: Fitting Parameters for the model of the rise of the S_{1} population. label:table:s1 
+ | Solvent           | Solute         |             $\tau$ (fs) |    A |
+ | Vacuum NT         | PPV_3          | 258 !! Tammies (394) !! | 1.28 |
+ | Vacuum            | PPV_3          |                     671 | 1.16 |
+ | CH_{3}OH          | PPV_3          |                     693 | 1.06 |
+ | CH_{3}OH with 5QM | PPV_3          |                     550 | 1.10 |
+ | Vacuum            | PPV_{3}-NO_{2} |                    84.6 | 1.64 |
+ | CH_{3}OH          | PPV_{3}-NO_{2} |                    90.4 | 1.62 |
+ | CH_{3}OH with 5QM | PPV_{3}-NO_{2} |                    93.8 | 1.61 |
 
-Figure ref:fig:all-populations shows the population of each state calculated as
-the number of trajectories at the state's potential energy surface over the
-total number of trajectories. S_m represents the initial state calculated using
-the pulse pump calculations previously done. States S_7 and S_9 are included as
-the only other "slow" states, or states that reached a population of more than
-0.05. The other states were excluded from the graph. These charts show that the
-addition of the NO_2 oligimors dramatically speed up the state relaxation. S_m
-ranged from S_9 to S_15 for PPV_3 and S_11 to S_21 for PPV_{3}-NO_{2}. Figure
-ref:fig:s1-populations, shows the rise of the S_{1} populations over the first
-500 fs after excitation. We model these rises by fitting the curves to the
-function
-\begin{equation}
-f(t) = \frac{Ae^{t/\tau}}{A+e^{t/\tau}} - \frac{A}{1+A}
-\end{equation}
-where $t$ is time, $\tau$ is the relaxation, and $A$ is a constant that
-normalizes such that the populations remain between 0 and 1. The results are displayed in ref:table:s1. 
-We clearly see that adding a test for trivial-nonavoided crossing slows the rate
-of relaxation from a time constant of 258~fs. This is to be expected since we
-are now preventing transitions (mostly downward) that should not occur. The
-methanol have mixed results with regards to PPV3 and seem to slightly slow the
-relaxation of PPV3-NO_2. Experiments using ultrafast spectroscopy have shown that
-for PPV thin films the time constant for relaxations should be around 200 fs.
-However, that was on thin films and for PPV_3, the energy gap !! Average S_1 ->
-S_m energy gap) than in the thin film (0.8eV). Previous research using the
-NAESMD framework have shown a time constant of 394 fs, but this was without the
-test for trivial non-avoided crossings.
+ Figure ref:fig:all-populations shows the population of each state calculated as
+ the number of trajectories at the state's potential energy surface over the
+ total number of trajectories. S_m represents the initial state calculated using
+ the pulse pump calculations previously done. States S_7 and S_9 are included as
+ the only other "slow" states, or states that reached a population of more than
+ 0.05. The other states were excluded from the graph. These charts show that the
+ addition of the NO_2 oligimors dramatically speed up the state relaxation. S_m
+ ranged from S_9 to S_15 for PPV_3 and S_11 to S_21 for PPV_{3}-NO_{2}. Figure
+ ref:fig:s1-populations, shows the rise of the S_{1} populations over the first
+ 500 fs after excitation. We model these rises by fitting the curves to the
+ function
+ \begin{equation}
+ f(t) = \frac{Ae^{t/\tau}}{A+e^{t/\tau}} - \frac{A}{1+A}
+ \end{equation}
+ where $t$ is time, $\tau$ is the relaxation, and $A$ is a constant that
+ normalizes such that the populations remain between 0 and 1. The results are displayed in ref:table:s1. 
+ We clearly see that adding a test for trivial-nonavoided crossing slows the rate
+ of relaxation from a time constant of 258~fs. This is to be expected since we
+ are now preventing transitions (mostly downward) that should not occur. The
+ methanol have mixed results with regards to PPV3 and seem to slightly slow the
+ relaxation of PPV3-NO_2. Experiments using ultrafast spectroscopy have shown that
+ for PPV thin films the time constant for relaxations should be around 200 fs.
+ However, that was on thin films and for PPV_3, the energy gap !! Average S_1 ->
+ S_m energy gap) than in the thin film (0.8eV). Previous research using the
+ NAESMD framework have shown a time constant of 394 fs, but this was without the
+ test for trivial non-avoided crossings.
 
 
- #+CAPTION: Population of the first excited state (S_1) of PPV_3 and PPV_{3}-NO_{2} in various solvents obtained from the fraction of trajectories in each state. label:fig:s1-populations
- [[./Images/population_fit_tabulation/s1.png]]
+  #+CAPTION: Population of the first excited state (S_1) of PPV_3 and PPV_{3}-NO_{2} in various solvents obtained from the fraction of trajectories in each state. label:fig:s1-populations
+  [[./Images/population_fit_tabulation/s1.png]]
 
 ** Potential Energies
 The potential energies averaged over !!N-PPV3!! and !!N-PPV3-NO2!! completed
@@ -118,8 +118,57 @@ initial S_{m} states.
 #+CAPTION: Average potential energy during dynamics at 300K for PPV_{3} and PPV_{3}-NO_{2}. Vacuum NT is dynamics ran without trivial crossings. label:fig:ppv3-potential 
 [[./Images/potential_energies/relaxation.png]]
 
+** Bond Length Adjustment
+In figure [[ref:fig:bla-vacuum]], the BLA for both PPV_3 and PPV_{3}-NO_{2} in
+vacuum the ground state varies very little the two. We use shades of red the
+display the ground-state and shades of green to represent states that start in
+S_m and shades of blue the describe a first excited state trajectores. The
+ground state has very little variation. The first excited state splits in PPV_{3}-NO_{2},
+with the Far Side being described as being the furthest from the Nitro goup.  
+States SM and state S1 the atom group further from the Nitro group had a more
+distinct variation than the bla with the groups nearest the Nitro group The
+variation is most distinct and the first excited States the difference between
+the them on the S_m closed group is very much smaller and similar to what we found in
+the The potential Energies The Barley the Judgment relaxation, and ppb 3 ml to
+is significantly faster than that time of PPP. The ground-state energy that we
+found matches values performed from the previous research by Tammie as does the
+S5 started to take pla Big billy for the states for the trajectories that
+started in the initial M States showed a slider longer time for relaxation than
+that found and Tammy's research. FIXME I need to add Tammy's ballet data to the
+Bone length adjustment. The very quick relaxation of the bla in the states
+suggest that very quickly after the initial excitation, PPV_{3}-NO_{2} quickly
+stabilizes and flattens within first 500 fs. Later we will compare this
+to the dihedral angle to see if this matches our expectations. Previous research
+has shown that after this acceptation an actual Bond indices at the Scribe by
+the Wydber index shrinks well showing that the single bonds gain a significant
+amount double bond characteristics causing the molecule to Stiffen.
+
+#+CAPTION: Bond Length Adjustments for various states for PPV_3 and PPV_{3}-NO_{2} in vacuum. label:fig:bla-vacuum 
+[[./Images/bla/vacuum.png]]
+
 ** Dihedral Angles
 
+The ground state of molecule one is higher than a ground state molecule 2. the
+lines are shown that help guide the eye And that he drove for angle for the
+first excited state starts that's the same height as the ground state note that
+the trajectories that were initiated on the interstate a significantly lower we
+believe that this is due to that selection process of the post pump simulation
+Dihedral angle for the initial States trajectories down without trivial
+Crossings be a lot quicker than without the test for triple Crossings honor II
+molecule separation between groups closer to the Nitro group an insignificant
+for the Angleton on the adiabatic surface for the ground States BC separation
+over time between the relax that you draw angle between the group nearest and
+actual group and farthest from the Nitro group for the second molecule with and
+by the group furthest from the Nitro group being able to attain on average a
+higher dihedral angle rotation suggesting that the mall on the side of the Nitro
+group is overall flattered interesting Lee receive that the angles for SM
+nearest Nitro. Initially start out higher and then crosses angle for the
+furthest from the Nitro group this may be due to the lack of sampling because
+currently I'm only using 76 samples I'm working on that now
+
+
+#+CAPTION: Dihedral angles for various states for PPV_3 and PPV_{3}-NO_{2} in vacuum. label:fig:dihedral-vacuum 
+[[./Images/dihedral/vacuum.png]]
 
 * Bibliography
 bibliographystyle:apalike

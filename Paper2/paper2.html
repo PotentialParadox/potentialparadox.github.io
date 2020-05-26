@@ -1,0 +1,605 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2020-05-26 Tue 14:58 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Paper 2</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="dustin" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<script type="text/javascript" src="http://livejs.com/live.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Paper 2</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org65fe56d">Computational Details</a>
+<ul>
+<li><a href="#org679f09c">Ground State Sampling</a></li>
+<li><a href="#org66f61c1">Pulse Pump Calculations</a></li>
+<li><a href="#org17de73f">S<sub>m</sub> Non Adiabatic Dynamics</a></li>
+<li><a href="#org98fc2ff">Population Analysis</a></li>
+<li><a href="#org88027a7">Potential Energies</a></li>
+<li><a href="#orgc0cd118">Bond Length Adjustment</a></li>
+<li><a href="#org54d9f6d">Dihedral Angles</a></li>
+</ul>
+</li>
+<li><a href="#org6ef02e1">Bibliography</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org65fe56d" class="outline-2">
+<h2 id="org65fe56d">Computational Details</h2>
+<div class="outline-text-2" id="text-org65fe56d">
+</div>
+<div id="outline-container-org679f09c" class="outline-3">
+<h3 id="org679f09c">Ground State Sampling</h3>
+<div class="outline-text-3" id="text-org679f09c">
+<p>
+We equilibrated the system to a temperature set to 300K. To collect a broad
+enough sampling, we sampled from a 1024 ps, with a 0.5 fs timestep fully
+classical trajectories using the AMBER force field. We performed a separate
+trajectory for each situation combination of solute / with solvent including
+whether the solvent was included in the QM calculations. We had a total of 6
+separate 1024 ps classical trajectories, PPV3 in Vacuum, CH<sub>3OH</sub>, and 5QM CH<sub>3OH</sub>
+and PPV<sub>3</sub>-NO<sub>2</sub> in Vacuum, CH<sub>3OH</sub>, and 5QM CH<sub>3OH</sub>. 1024 snapshots where taken at
+1ps, 2ps .. 1024ps. We used the final frame of those tranjectories as the
+initial conditions for an additional 4ps using the AM1 semiempical Hamiltonian
+Born-Oppenheimer on the molecules to be included in future QM calculations to
+allow the system to relax. The 4 ps timescale was determined using the
+information form the previous paper. The simulations were described the Langevin
+equations at a temperature set to 300 K with the Langevin friction parameter set
+to 20 ps<sup>-1</sup>. The final frames of these QM trajectories were then used as the
+initial conditions for the following pulse pump calculations.
+</p>
+</div>
+</div>
+<div id="outline-container-org66f61c1" class="outline-3">
+<h3 id="org66f61c1">Pulse Pump Calculations</h3>
+<div class="outline-text-3" id="text-org66f61c1">
+<p>
+Pump-Probe Spectroscopy is and experimental technique commonly performed in the
+study of ultrafast electonic statte dynamics. In the case of conjugated polymers
+in can be used to study the dlocalized excictronic
+tranisions that are accessible through and excitation of the S1 state but not
+the ground state S0. To simulate this behavior, we take the final snapshot of
+the QM ground state calculations and perform a single point calculation at the
+S1 state to find the next state with the highest oscillator strength. We looked
+specifically for a large peak in oscillator strength, at least twice the amount
+of any other. Those trajectories that failed to meet those conditions were
+filtered out from the following calculations. We recorded the successful state
+transitions and used them for the S<sub>m</sub> state tully excited state calculations dynamics.
+</p>
+</div>
+</div>
+<div id="outline-container-org17de73f" class="outline-3">
+<h3 id="org17de73f">S<sub>m</sub> Non Adiabatic Dynamics</h3>
+<div class="outline-text-3" id="text-org17de73f">
+<p>
+Using the same snapshot used for the Pulse Pump calculations and their
+corresponding trajectories, we used the previously calculated state from the
+pulse pump as our initial state and perform a 500 fs dyanmics with timestep of
+0.5 fs, and nuclear coordinate dyanmics described by the Langevin dynamics with
+temperature set to 300K and friction set to 20<sup>-1</sup>. The dyanmics were allowed
+to behave non-adiabatically and we tested for trivial unavoided crossing between
+excited states.The dynamics did not include QM ewald.
+</p>
+</div>
+</div>
+<div id="outline-container-org98fc2ff" class="outline-3">
+<h3 id="org98fc2ff">Population Analysis</h3>
+<div class="outline-text-3" id="text-org98fc2ff">
+
+<div class="figure">
+<p><img src="./Images/population_fit_tabulation/all_pops.png" alt="all_pops.png" />
+</p>
+<p><span class="figure-number">Figure 1: </span>Populations for the excited states with extended lifespans for PPV<sub>3</sub> and PPV<sub>3</sub>-NO<sub>2</sub>. S<sub>m</sub> represents the initial state. <div id="fig:all-populations"></div></p>
+</div>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption class="t-above"><span class="table-number">Table 1:</span> Fitting Parameters for the model of the rise of the S<sub>1</sub> population. <div id="table:s1"></div></caption>
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Solvent</td>
+<td class="org-left">Solute</td>
+<td class="org-right">\(\tau\) (fs)</td>
+<td class="org-right">A</td>
+</tr>
+
+<tr>
+<td class="org-left">Vacuum NT</td>
+<td class="org-left">PPV<sub>3</sub></td>
+<td class="org-right">258 !! Tammies (394) !!</td>
+<td class="org-right">1.28</td>
+</tr>
+
+<tr>
+<td class="org-left">Vacuum</td>
+<td class="org-left">PPV<sub>3</sub></td>
+<td class="org-right">671</td>
+<td class="org-right">1.16</td>
+</tr>
+
+<tr>
+<td class="org-left">CH<sub>3</sub>OH</td>
+<td class="org-left">PPV<sub>3</sub></td>
+<td class="org-right">693</td>
+<td class="org-right">1.06</td>
+</tr>
+
+<tr>
+<td class="org-left">CH<sub>3</sub>OH with 5QM</td>
+<td class="org-left">PPV<sub>3</sub></td>
+<td class="org-right">550</td>
+<td class="org-right">1.10</td>
+</tr>
+
+<tr>
+<td class="org-left">Vacuum</td>
+<td class="org-left">PPV<sub>3</sub>-NO<sub>2</sub></td>
+<td class="org-right">84.6</td>
+<td class="org-right">1.64</td>
+</tr>
+
+<tr>
+<td class="org-left">CH<sub>3</sub>OH</td>
+<td class="org-left">PPV<sub>3</sub>-NO<sub>2</sub></td>
+<td class="org-right">90.4</td>
+<td class="org-right">1.62</td>
+</tr>
+
+<tr>
+<td class="org-left">CH<sub>3</sub>OH with 5QM</td>
+<td class="org-left">PPV<sub>3</sub>-NO<sub>2</sub></td>
+<td class="org-right">93.8</td>
+<td class="org-right">1.61</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Figure <a href="#fig:all-populations">fig:all-populations</a> shows the population of each state calculated as
+the number of trajectories at the state's potential energy surface over the
+total number of trajectories. S<sub>m</sub> represents the initial state calculated using
+the pulse pump calculations previously done. States S<sub>7</sub> and S<sub>9</sub> are included as
+the only other "slow" states, or states that reached a population of more than
+0.05. The other states were excluded from the graph. These charts show that the
+addition of the NO<sub>2</sub> oligimors dramatically speed up the state relaxation. S<sub>m</sub>
+ranged from S<sub>9</sub> to S<sub>15</sub> for PPV<sub>3</sub> and S<sub>11</sub> to S<sub>21</sub> for PPV<sub>3</sub>-NO<sub>2</sub>. Figure
+<a href="#fig:s1-populations">fig:s1-populations</a>, shows the rise of the S<sub>1</sub> populations over the first
+500 fs after excitation. We model these rises by fitting the curves to the
+function
+</p>
+\begin{equation}
+f(t) = \frac{Ae^{t/\tau}}{A+e^{t/\tau}} - \frac{A}{1+A}
+\end{equation}
+<p>
+where \(t\) is time, \(\tau\) is the relaxation, and \(A\) is a constant that
+normalizes such that the populations remain between 0 and 1. The results are displayed in <a href="#table:s1">table:s1</a>. 
+We clearly see that adding a test for trivial-nonavoided crossing slows the rate
+of relaxation from a time constant of 258~fs. This is to be expected since we
+are now preventing transitions (mostly downward) that should not occur. The
+methanol have mixed results with regards to PPV3 and seem to slightly slow the
+relaxation of PPV3-NO<sub>2</sub>. Experiments using ultrafast spectroscopy have shown that
+for PPV thin films the time constant for relaxations should be around 200 fs.
+However, that was on thin films and for PPV<sub>3</sub>, the energy gap !! Average S<sub>1</sub> -&gt;
+S<sub>m</sub> energy gap) than in the thin film (0.8eV). Previous research using the
+NAESMD framework have shown a time constant of 394 fs, but this was without the
+test for trivial non-avoided crossings.
+</p>
+
+
+
+<div class="figure">
+<p><img src="./Images/population_fit_tabulation/s1.png" alt="s1.png" />
+</p>
+<p><span class="figure-number">Figure 2: </span>Population of the first excited state (S<sub>1</sub>) of PPV<sub>3</sub> and PPV<sub>3</sub>-NO<sub>2</sub> in various solvents obtained from the fraction of trajectories in each state. <div id="fig:s1-populations"></div></p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org88027a7" class="outline-3">
+<h3 id="org88027a7">Potential Energies</h3>
+<div class="outline-text-3" id="text-org88027a7">
+<p>
+The potential energies averaged over !!N-PPV3!! and !!N-PPV3-NO2!! completed
+trajectories are shown in figures <a href="#fig:ppv3-potential">fig:ppv3-potential</a> and
+<a href="#fig:ppv3-no2-potential">fig:ppv3-no2-potential</a>. The corresponding S<sub>0</sub> and S<sub>1</sub> states are shown for
+comparison and are the last 500 fs of a 10 ps run for each of those states. As
+the initial S<sub>m</sub> trajectories reduce the potential energies reduce towards the
+corresponding S<sub>1</sub> steady state energies. From figure
+<a href="#fig:ppv3-no2-s1-populations">fig:ppv3-no2-s1-populations</a>, we can see that by 400 fs, most of the population
+in the PPV<sub>3</sub>-NO<sub>2</sub> trajectories are on the S<sub>1</sub> potential energy surface.
+After 400ps, any reduction in the potential energy is due to adiabatic
+relaxation. We include for comparison in figure <a href="#fig:ppv3-potential">fig:ppv3-potential</a> the
+potential energy relaxation form the initial S<sub>m</sub> trajectories without using a
+test for trivial unavoided crossings tracking the spacialization of the
+electronic transitions as implemented by the Tretiak group labeled (S<sub>m</sub> Vacuum
+NT). By taking into account a test for trivial non-avoided crossings, we see a
+notable reduction in the rate of relaxation. This matches what we see in the
+growth of the S<sub>1</sub> populations as seen in <a href="#fig:ppv3-s1-populations">fig:ppv3-s1-populations</a>, where
+without the tests for trivial crossings, the S<sub>1</sub> state rises much quicker. 
+</p>
+
+<p>
+The energies between the solvent and vacuum. The potential energie of the solute
+in vacuum is noticablly smaller than in vacuum as to be expected. The rate of
+relaxation in methanol for PPV<sub>3</sub>-NO<sub>2</sub> is slightly faster than in vacuum, but
+negligable in the case PPV<sub>3</sub>. Adding the 5 solvents to the calculation did not
+seem to result in any noticable differences in regards to the potential energy
+relaxation rate for either PPV<sub>3</sub> or PPV<sub>3</sub>-NO<sub>2</sub>. There's a larger difference
+between the S<sub>1</sub> relaxed potential energies for PPV_{3{-NO<sub>2</sub> than there is at the
+initial S<sub>m</sub> states. 
+</p>
+
+
+<div class="figure">
+<p><img src="./Images/potential_energies/relaxation.png" alt="relaxation.png" />
+</p>
+<p><span class="figure-number">Figure 3: </span>Average potential energy during dynamics at 300K for PPV<sub>3</sub> and PPV<sub>3</sub>-NO<sub>2</sub>. Vacuum NT is dynamics ran without trivial crossings. <div id="fig:ppv3-potential"></div></p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc0cd118" class="outline-3">
+<h3 id="orgc0cd118">Bond Length Adjustment</h3>
+<div class="outline-text-3" id="text-orgc0cd118">
+<p>
+In figure <a href="#fig:bla-vacuum">fig:bla-vacuum</a>, the BLA for both PPV<sub>3</sub> and PPV<sub>3</sub>-NO<sub>2</sub> in
+vacuum the ground state varies very little the two. We use shades of red the
+display the ground-state and shades of green to represent states that start in
+S<sub>m</sub> and shades of blue the describe a first excited state trajectores. The
+ground state has very little variation. The first excited state splits in PPV<sub>3</sub>-NO<sub>2</sub>,
+with the Far Side being described as being the furthest from the Nitro goup.  
+States SM and state S1 the atom group further from the Nitro group had a more
+distinct variation than the bla with the groups nearest the Nitro group The
+variation is most distinct and the first excited States the difference between
+the them on the S<sub>m</sub> closed group is very much smaller and similar to what we found in
+the The potential Energies The Barley the Judgment relaxation, and ppb 3 ml to
+is significantly faster than that time of PPP. The ground-state energy that we
+found matches values performed from the previous research by Tammie as does the
+S5 started to take pla Big billy for the states for the trajectories that
+started in the initial M States showed a slider longer time for relaxation than
+that found and Tammy's research. FIXME I need to add Tammy's ballet data to the
+Bone length adjustment. The very quick relaxation of the bla in the states
+suggest that very quickly after the initial excitation, PPV<sub>3</sub>-NO<sub>2</sub> quickly
+stabilizes and flattens within first 500 fs. Later we will compare this
+to the dihedral angle to see if this matches our expectations. Previous research
+has shown that after this acceptation an actual Bond indices at the Scribe by
+the Wydber index shrinks well showing that the single bonds gain a significant
+amount double bond characteristics causing the molecule to Stiffen.
+</p>
+
+
+<div class="figure">
+<p><img src="./Images/bla/vacuum.png" alt="vacuum.png" />
+</p>
+<p><span class="figure-number">Figure 4: </span>Bond Length Adjustments for various states for PPV<sub>3</sub> and PPV<sub>3</sub>-NO<sub>2</sub> in vacuum. <div id="fig:bla-vacuum"></div></p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org54d9f6d" class="outline-3">
+<h3 id="org54d9f6d">Dihedral Angles</h3>
+<div class="outline-text-3" id="text-org54d9f6d">
+<p>
+The ground state of molecule one is higher than a ground state molecule 2. the
+lines are shown that help guide the eye And that he drove for angle for the
+first excited state starts that's the same height as the ground state note that
+the trajectories that were initiated on the interstate a significantly lower we
+believe that this is due to that selection process of the post pump simulation
+Dihedral angle for the initial States trajectories down without trivial
+Crossings be a lot quicker than without the test for triple Crossings honor II
+molecule separation between groups closer to the Nitro group an insignificant
+for the Angleton on the adiabatic surface for the ground States BC separation
+over time between the relax that you draw angle between the group nearest and
+actual group and farthest from the Nitro group for the second molecule with and
+by the group furthest from the Nitro group being able to attain on average a
+higher dihedral angle rotation suggesting that the mall on the side of the Nitro
+group is overall flattered interesting Lee receive that the angles for SM
+nearest Nitro. Initially start out higher and then crosses angle for the
+furthest from the Nitro group this may be due to the lack of sampling because
+currently I'm only using 76 samples I'm working on that now
+</p>
+
+
+
+<div class="figure">
+<p><img src="./Images/dihedral/vacuum.png" alt="vacuum.png" />
+</p>
+<p><span class="figure-number">Figure 5: </span>Dihedral angles for various states for PPV<sub>3</sub> and PPV<sub>3</sub>-NO<sub>2</sub> in vacuum. <div id="fig:dihedral-vacuum"></div></p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6ef02e1" class="outline-2">
+<h2 id="org6ef02e1">Bibliography</h2>
+<div class="outline-text-2" id="text-org6ef02e1">
+<p>
+
+<a href="paper2.bib">paper2.bib</a>
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: dustin</p>
+<p class="date">Created: 2020-05-26 Tue 14:58</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
