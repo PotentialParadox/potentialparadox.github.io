@@ -68,26 +68,7 @@ ppv3_vac_bond_data <- bind_rows(
 ) %>% mutate(Solute = 'PPV3')
 
 
-######################
-# PPV3 Sm
-######################
-# Sm - Vacuum from ~/backup4/TestRuns/Paper2/ppv3-validation/vacuum
-# Bonds (17,16), (16, 15), (15, 12)
-# Bonds (4,7), (7, 8), (8, 9)
-# 254 Trajectories
-sm_ppv3_vac <- collect_blas(runtime = 1,
-                            infile = 'bla-ppv3-sm-bla.csv',
-                            state = 'Sm',
-                            location = '',
-                            solvent = "Vacuum")
 
-# Sm - CH3OH from ~/backup4/TestRuns/Paper2/ppv3-validation/vacuum
-# central benzen rings are atoms 12, 13, 14, 9, 10, 11
-ppv3_sm_bond_data <- bind_rows(
-  sm_ppv3_vac
-) %>% mutate(Solute = 'PPV3')
-
-plot_blas(bond_data, "Solvent")
 
 ######################
 # PPV3 - NO2
@@ -193,3 +174,24 @@ plot_blas(
   description = "Description",
   state_colors = my_colors
 )
+
+######################
+# PPV3 Sm
+######################
+# Sm - Vacuum from ~/backup4/TestRuns/Paper2/ppv3-validation/vacuum
+# Bonds (17,16), (16, 15), (15, 12)
+# Bonds (4,7), (7, 8), (8, 9)
+# 254 Trajectories
+sm_ppv3_vac <- collect_blas(runtime = 1,
+                            infile = 'bla-ppv3-sm-bla.csv',
+                            state = 'Sm',
+                            location = '',
+                            solvent = "Vacuum")
+
+# Sm - CH3OH from ~/backup4/TestRuns/Paper2/ppv3-validation/vacuum
+# central benzen rings are atoms 12, 13, 14, 9, 10, 11
+ppv3_sm_bond_data <- bind_rows(
+  sm_ppv3_vac
+) %>% mutate(Solute = 'PPV3')
+
+plot_blas(bond_data, "Solvent")

@@ -148,6 +148,9 @@ amount double bond characteristics causing the molecule to Stiffen.
 
 ** Dihedral Angles
 
+#+CAPTION: Dihedral angles for various states for PPV_3 and PPV_{3}-NO_{2} in vacuum. label:fig:dihedral-vacuum 
+[[./Images/dihedral/vacuum.png]]
+
 The ground state of molecule one is higher than a ground state molecule 2. the
 lines are shown that help guide the eye And that he drove for angle for the
 first excited state starts that's the same height as the ground state note that
@@ -166,9 +169,10 @@ nearest Nitro. Initially start out higher and then crosses angle for the
 furthest from the Nitro group this may be due to the lack of sampling because
 currently I'm only using 76 samples I'm working on that now
 
+#+CAPTION: Dihedral angles for PPV_3 and PPV_{3}-NO_{2} in various solutes initialized to S_{m}. label:fig:dihedral-solvents
+[[./Images/dihedral/solvents.png]]
 
-#+CAPTION: Dihedral angles for various states for PPV_3 and PPV_{3}-NO_{2} in vacuum. label:fig:dihedral-vacuum 
-[[./Images/dihedral/vacuum.png]]
+
 
 * Bibliography
 bibliographystyle:apalike
