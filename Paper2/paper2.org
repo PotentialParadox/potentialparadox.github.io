@@ -5,7 +5,237 @@
 #+TAGS: EMAIL(e) BUG(b) METHOD(m) URGENT(u) IMPORTANT(i) SHORT(s)
 #+COLUMNS: %7TODO(To Do) %32ITEM(Task) %6CLOCKSUM(Clock) %8EFFORT(Estimate){:}
 #+PROPERTY: Effort_ALL 0:05 0:10 0:15 0:30 0:45 1:00 1:30 2:00
-* Computational Details
+* Introduction
+Because there's such a strong coupling between the vibration excite Electronics
+states of freedom mechanic molecules we must take into account not a tea bag
+Dynamics in order to produce reasonable simulations. We cannot assume that the
+nuclear coordinates are significantly slower than that of the electrons
+
+This type of research we have a ground thing above the ground state dim sleep
+populated manifold of excited States state board often swapping energy in other
+words the energy of one state at will be higher than another state at one point
+then at a later time the energy of that first date could be visited the energy
+of the other ones so we must all think you track of the order of the states. As
+a general rule we also need to be solving the structure ecrater the creation on
+the Fly for each electronic level . Calculating the potential energy surfaces
+for all these dates is quite complex and requires solutions to the shrinker
+equation the backend methods used to calculate these put the Chinese Services
+can range to externally complicated density functional Theory methods to others
+much more simplified to me empirical methods effort must be made to balance
+accuracy to efficiency in this regards.
+
+Hamacas that we're using have a high energy barrier between the ground state in
+the first excited States which matches up with Kasha’s rule.
+
+The characteristics of this electronic manifold overtime to be very useful to a
+multiple of different you scenarios such as the residence in which we care
+deeply about the molecules lowest level excited state or in light harvesting
+Light-harvesting applications and where the molecule excitation energy is being
+transferred to charge separation. The study of photosynthesis can also be how to
+buy this type of research that focuses on the non-radiative crossings The ground
+state.
+
+Ton of research has gone in the study and he's not on a team that is molecular
+Dynamics methodologies methodologies range from the extremely complicated
+inexpensive approaches such as I can figure is time-dependent Arkansas cabin air
+show for methods and Quantum movies The are quite similar ones such as ehrenfest
+Theory but the ones that this paper focuses on is specifically the toy surface
+hopping methodology used with a package, the not adiabatic said America the
+Dynamics package developed at Los Alamos.
+
+Anon idiopathic excited state Dynamics program has until recently been used only
+in implicit solvents or an explicit song fence without any type of Nadia body
+Dynamics only in the excited first excited States. in this paper we propose a
+method to extend the capabilities of the non adiabatic cold using the Amber
+package and its ability to do q m m m Dynamics and boxes.
+
+Are focuses on organic conjugated molecule specifically ppv 3 and PPP 2 as shown
+in the diagram.
+* Theoretical Methodology
+** Adiabatic Motion
+To find the excited state energies during dynamics, we calculate the Liouville
+eigenvalue equation
+
+\begin{align*}
+  \hat{\mathbf{\mathcal{L}}}\mathbf{\rho}_{0\alpha} = \Omega\mathbf{\rho}_{0\alpha}
+\end{align*}
+
+with \(\mathbf{\mathcal{L}}\) being the two-particle Louiville operator and
+\(\Omega\) the energy difference between the \(\alpha\) state and the ground
+state, where the Liouville operator can be found analytically by
+
+\begin{align*}
+  \hat{\mathbf{\mathcal{L}}}\mathbf{\rho}_{0\alpha} = \left[ \mathbf{F}^{\vec{R}}(\mathbf{\rho}_{00}), \mathbf{\rho}_{0\alpha} \right]
+  + \left[ \mathbf{V}^{\vec{R}}(\mathbf{\rho}_{0\alpha}), \mathbf{\rho}_{00} \right]
+\end{align*}
+
+and the single electron density matrix for each state of the system is described by
+
+\begin{align*}
+  (\mathbf{\rho}_{0\alpha})_{nm} =  \left< \psi_{alpha} \right| c_m^\dagger c_n \left| \psi_0 \right>.
+\end{align*}
+
+The excited state inter-qm region gradients are found by adding the transition
+energies gradients to the ground state gradients, where the transition energy
+gradients are
+
+The forces are then calculated analytically by the gradient of the ground state
+energy and the excited state energy.
+
+\begin{align*}
+  \vec{\nabla} E_{\alpha} = \vec{\nabla} E_0 + \vec{\nabla} \Omega_{\alpha}
+\end{align*}
+
+With the gradient of the ground state being calculated by
+
+\begin{align*}
+  \vec{\nabla} E_0 = \frac{1}{2}\mathbf{Tr} \left[ \left( \mathbf{t}^{\vec{R}} + \mathbf{F}^{\vec{R}} \right) \mathbf{\rho}_{00} \right]
+\end{align*}
+
+and the gradient of the excited state being
+
+\begin{align*}
+  \vec{\nabla}\Omega = \mathbf{Tr} \left[ \mathbf{F}^{\vec{R}} (\mathbf{\rho}_{\alpha\alpha} - \mathbf{\rho}_{00})\right]
+  + \mathbf{Tr} \left[\mathbf{V}^{\vec{R}}\mathbf{\rho}_{0\alpha}^\dagger \mathbf{\rho}_{0\alpha} \right]
+\end{align*}
+
+where \(\mathbf{\rho}_{ij}\) represents the density or transition density matrix for states i and
+j, \( \mathbf{F} \) is the Fock matrix,  \( \mathbf{t} \) is the kinetic operator acting on
+one-electron and \( \mathbf{V} \) is the column interchange operator.
+** Non-Adiabatic
+As each trajectory moves along its potential energy surface, we will consistently check to determine whether a state transition to occur.
+We do so by solving the time dependent Schrodinger equation numerically.
+
+\begin{equation} \label{eq:tullyHamiltonian} \mathbf{H} = \mathbf{T}_{R} +
+  \mathbf{H}_{0}(\mathbf{r},\mathbf{R})
+\end{equation}
+where the matrix elements of the electron Hamiltonian are
+
+\begin{equation} \label{eq:tullyVelements}
+  V_{ij}(\mathbf(R))=\left<\phi_i(\mathbf{r};\mathbf{R})\right|\mathbf{H}_{0}\left.(\mathbf{r};\mathbf{R})\phi_j(\mathbf{r};\mathbf{R})\right>
+\end{equation}
+We define the non-adiabatic coupling vector as
+
+\begin{equation} \label{eq:tullynacoupling} \mathbf{d}_{ij}\mathbf(R) =
+  \left<\phi_{i}(\mathbf{r};\mathbf{R})\right|\mathbf{\nabla}_{\mathbf{R}}\left.\phi_j(\mathbf{r};\mathbf{R})\right>
+\end{equation}
+We recall that the total wave function can be expanded into a linear
+sum of slaterdeterninants.
+
+\begin{equation} \label{eq:psiexpansion} \Psi(\mathbf{r},\mathbf{R},t) =
+  \sum_jc_j(t)\phi_j(\mathbf{r};\mathbf{R}) = c_j\left|\phi_j\right>
+\end{equation}
+If we take equation \ref{eq:psiexpansion} and place it into the time
+independent Schrodinger's equation,
+
+\begin{equation} \label{eq:tullyS1} i\hbar\frac{\partial}{\partial
+    t}c_j\left|\phi_j\right> = \mathbf{H} c_j \left|\phi_j\right>
+\end{equation}
+We can then apply the chain rule, and multiply each side on the left
+by $\left<\right. \phi \left|\right.$ giving,
+
+\begin{equation} \label{eq:tullyS2}
+  \left<\phi_k\right|i\hbar\left(c_j\left|\right.\dot{\phi}_j\left.\right>+\dot{c}_j\left|\phi_j\right>\right)=\left<\phi_k\right|\mathbf{H}c_j\left|\phi_j\right>
+\end{equation}
+Recognizing that
+
+\begin{equation} \label{eq:tullyS3}
+  \left<\phi_k\right|\dot{\phi}_j\left.\right>=\left<\phi_k\right|\frac{d\mathbf{R}}{dt}\frac{d}{d\mathbf{R}}\left|\phi_j\right>=\dot{\mathbf{R}}\cdot\mathbf{d}_{kj}(\mathbf{R})
+\end{equation}
+equation \ref{eq:tullyS2} simplifies to
+
+\begin{equation} \label{eq:tullyS4}
+  i\hbar\left(c_j\dot{\mathbf{R}}\cdot\mathbf{d}_{kj}+\dot{c}_j\delta_{kj}\right)
+  = c_jV_{kj} \rightarrow i\hbar\dot{c}_k =
+  c_j\left(V_{kj}-i\hbar\dot{\mathbf{R}}\cdot\mathbf{d}_{kj}\right)
+\end{equation}
+If we multiply equation \ref{eq:tullyS4} by $i \hbar \dot{c_{k}}$ and
+subtract from that its complex conjugate multiplied by $i\hbar c_{k}$,
+we get
+\begin{equation} \label{eq:tullyDF2}
+  i\hbar\dot{a}_{kl}=a_{jl}\left(V_{kj} - i\hbar \dot{\mathbf{R}} \cdot
+    \mathbf{d}_{kj} \right) - a_{kj} \left(V_{jl} - i\hbar \dot{\mathbf{R}}
+    \cdot \mathbf{d}_{jk} \right)
+\end{equation}
+where $a_{jl}$ are the density matrix components described by $a_{jl}=c_j^*c_l$.
+Our focus in the paper will be on the diagonal elements of $a$,
+which represent the population densities, that can be convenient
+summarize as
+
+\begin{equation} \label{eq:tullya2b} \dot{a}_{kk} = \sum_{l\ne
+    k}b_{kl},
+\end{equation}
+where
+
+\begin{equation} \label{eq:tullyb2a} b_{kj} =
+  \frac{2}{\hbar}\Im\left(a_{kj}^*V_{kj}\right) - 2\Re\left(a_{kj}^*
+    \dot{\mathbf{R}} \cdot \mathbf{d}_{kj}\right)
+\end{equation}
+This should be read as the rate of change of the kth state population
+is equal to the sum of the changes from the lth state to the kth
+state.
+The nonadiabatic coupling term $\mathbf{R} \cdot \mathbf{d}_{kj}$ is calculated analytically ``on the fly''.\cite{Nelson2014}\cite{Tommasini2001}\cite{Chernyak2000}\cite{Send2010}
+As an example, lets say we have two states $1$ and $2$.
+If we choose a small enough time step, the change in population will be
+approximately the rate the rate of change, and
+
+\begin{equation} \label{eq:tullya2g} \frac{a_{11}(t=\Delta t) -
+    a_{11}(t= 0)}{a_{11}(t=\Delta t)} \approx
+  \frac{\dot{a}_{22}(t=0)\Delta t}{a_{11}(t=0)} =
+  \frac{b_{21}(t=0)\Delta t}{a_{11}(t=0)} = g_{12}
+\end{equation}
+for small $\Delta t$.  $g_{12}$ is defined as the probability of
+moving from state 1 to state 2 in the current time step.  We next
+create a random number $\zeta$ A switch from step 1 to 2 will occur if
+
+\begin{equation} \label{eq:tullyjump1} \zeta < g_{12}
+\end{equation}
+Larger jumps are possible.  Generally, a switch from state i, to k will occur if
+
+\begin{equation} \label{eq:tullyjump2} \sum_{j=1}^{k-1}g_{ij} < \zeta
+  \le \sum_{j=1}^{k}g_{ij}
+\end{equation}
+
+* Computational Design
+#+caption: Swim-lane diagram describing the common timestep of the SANDER-NEXMD interface. label:scheme:nasqm 
+  [[./scripted_diagrams/nasqm_overview.png]]
+** Shown in figure [[ref:scheme:nasqm]] is a scheme describing a common timestep that occurs within the SANDER-NEXMD inferface
+** Starts from Amber
+*** Amber is a collection of programs, seemed appropriate for it to call nexmd
+*** Amber is also the one doing the actual propagation of the system
+*** NEXMD only needs the QM information
+** Amber sends the QM coordinates and thermostat to NEXMD
+*** NEXMD uses the thermostat to interpolate for the intermediary Quantum calculations
+** Calculates the energies using DFT or other semi-empirical methods such as AM1
+** Account for trivial crossings
+*** Need to do on-the-fly calculate the non-adiabatic couplings?
+**** To make many dynamics trajectories practical cite:nelson2020non 
+*** We use an analytical form of the non-adiabatic coupling derived using the Hellman-Feynman theorem. cite:tommasini2001electronic,chernyak2000density 
+  \[
+    \mathbf{d}_{ab}(\mathbf{R}) =
+  \frac{
+    \left< \Psi_a (\mathbf{r}, \mathbf{R}) \right|
+    \nabla_\mathbf{R} \hat{H}_{el} (\mathbf{r}, \mathbf{r})
+    \left| \Psi_b (\mathbf{r}, \mathbf{R}) \right>
+  }
+  {
+    E_b(\mathbf{R}) - E_a(\mathbf{R})
+  }
+  \]
+*** we check the over lap of the overlap of the density functions in the previous state 
+** Calculate QM Forces
+*** Forces are calculated using a analytical solutions FIXME: Show work here?
+** Finish Force Calculations
+*** Explain QM/MM
+** Propogate nuclear velocities
+*** Amber does both MM and QM velocities for 1 time step
+** Fewest Switches
+*** Describe Fewest Switches Here
+** With the new state chosen, AMBER now uses the average velocities to propagate the nuclear coordinates.
+** New random numbers are generated for the thermostats when appropriate
+
+* Computational Timings
+* Simulation Methods
 ** Ground State Sampling
 We equilibrated the system to a temperature set to 300K. To collect a broad
 enough sampling, we sampled from a 1024 ps, with a 0.5 fs timestep fully
@@ -23,17 +253,20 @@ equations at a temperature set to 300 K with the Langevin friction parameter set
 to 20 ps^{-1}. The final frames of these QM trajectories were then used as the
 initial conditions for the following pulse pump calculations.
 ** Pulse Pump Calculations
+*** Explain the pulse pump experiment
 Pump-Probe Spectroscopy is and experimental technique commonly performed in the
 study of ultrafast electonic statte dynamics. In the case of conjugated polymers
-in can be used to study the dlocalized excictronic
-tranisions that are accessible through and excitation of the S1 state but not
-the ground state S0. To simulate this behavior, we take the final snapshot of
-the QM ground state calculations and perform a single point calculation at the
-S1 state to find the next state with the highest oscillator strength. We looked
-specifically for a large peak in oscillator strength, at least twice the amount
-of any other. Those trajectories that failed to meet those conditions were
-filtered out from the following calculations. We recorded the successful state
-transitions and used them for the S_m state tully excited state calculations dynamics.
+in can be used to study the dlocalized excictronic tranisions that are
+accessible through and excitation of the S1 state but not the ground state S0.
+To simulate this behavior, we take the final snapshot of the QM ground state
+calculations and perform a single point calculation at the S1 state to find the
+next state with the highest oscillator strength.
+*** TODO Excited State Density Chart
+We looked specifically for a large peak in oscillator strength, at least twice
+the amount of any other. Those trajectories that failed to meet those conditions
+were filtered out from the following calculations. We recorded the successful
+state transitions and used them for the S_m state tully excited state
+calculations dynamics.
 ** S_m Non Adiabatic Dynamics
 Using the same snapshot used for the Pulse Pump calculations and their
 corresponding trajectories, we used the previously calculated state from the
@@ -42,7 +275,9 @@ pulse pump as our initial state and perform a 500 fs dyanmics with timestep of
 temperature set to 300K and friction set to 20^{-1}. The dyanmics were allowed
 to behave non-adiabatically and we tested for trivial unavoided crossing between
 excited states.The dynamics did not include QM ewald.
-** Population Analysis 
+* Simulation Results 
+** How many Data points were available.
+** State Populations 
  #+CAPTION: Populations for the excited states with extended lifespans for PPV_{3} and PPV_3-NO_2. S_{m} represents the initial state. label:fig:all-populations 
  [[./Images/population_fit_tabulation/all_pops.png]]
 
@@ -151,29 +386,68 @@ amount double bond characteristics causing the molecule to Stiffen.
 #+CAPTION: Dihedral angles for various states for PPV_3 and PPV_{3}-NO_{2} in vacuum. label:fig:dihedral-vacuum 
 [[./Images/dihedral/vacuum.png]]
 
-The ground state of molecule one is higher than a ground state molecule 2. the
-lines are shown that help guide the eye And that he drove for angle for the
-first excited state starts that's the same height as the ground state note that
-the trajectories that were initiated on the interstate a significantly lower we
-believe that this is due to that selection process of the post pump simulation
-Dihedral angle for the initial States trajectories down without trivial
-Crossings be a lot quicker than without the test for triple Crossings honor II
-molecule separation between groups closer to the Nitro group an insignificant
-for the Angleton on the adiabatic surface for the ground States BC separation
-over time between the relax that you draw angle between the group nearest and
-actual group and farthest from the Nitro group for the second molecule with and
-by the group furthest from the Nitro group being able to attain on average a
-higher dihedral angle rotation suggesting that the mall on the side of the Nitro
-group is overall flattered interesting Lee receive that the angles for SM
-nearest Nitro. Initially start out higher and then crosses angle for the
-furthest from the Nitro group this may be due to the lack of sampling because
-currently I'm only using 76 samples I'm working on that now
-
+*** Why do we want to do dihedral angels?
+The torsion angle around the vinylene segments have been shown to be highly coupled to the excited state. cite:nelson2011nonadiabatic,panda2013electronically  
+*** Description of the plot
+**** Lines are drawn to help guide the eye
+**** The S_1 and S_0 state plotted are from previous research
+**** Red is ground, Blue is S_1, Green is S_m
+**** S_m refers to trajectories that started after the pulse pump
+*** Inital Dihedral angle for S_m is lower than ground state
+**** Visual analysis as to why
+**** Previous paper have found that initial torsional angles strongly determine vertical excitations cite:barford2011ultrafast 
+*** Dihedral relaxation of S_1 may be slightly faster in ppv3-no2
+**** 0.5 ps vs 0.55 ps
+*** Dihedral relaxation of S_m significantly faster in ppv3-no2
+**** Suggests the increased relaxation is due to quick relaxation of the state population
+*** Dihedral relaxation without accounting for trivial crossings is slower
+**** Also suggest relaxation is due to quick drop in excited state.  
+*** Separation of the of the near and far S_m, before S_1
+**** Earlier than what occured in the bla caclulation
+*** Dihedral splits with ppv3-no2
+**** TODO Could this be because of the nitro group. Short 32 trajectory of PPV3-NO2 w/o methanol groups.
 #+CAPTION: Dihedral angles for PPV_3 and PPV_{3}-NO_{2} in various solutes initialized to S_{m}. label:fig:dihedral-solvents
 [[./Images/dihedral/solvents.png]]
 
-
+** Wiberg Bond Analysis
 
 * Bibliography
-bibliographystyle:apalike
+
+bibliographystyle:unsrt
 bibliography:paper2.bib
+* Papers To Read
+[[~/Documents/paper2/papers/tammies_review.pdf]]
+Major review article
+[[~/Documents/paper2/papers/sifainbjorgaard2018.pdf]]
+Sovlent effects on non-adiabatic dynamics of ppvo derivatives
+[[~/Documents/paper2/papers/tammies_thesis_chapter3.pdf]]
+Also gives and explanation of computations of excited states
+[[~/Documents/paper2/papers/tammies_thesis_chapter6.pdf]]
+Shows transfer of energy density of long chained ppv oligimors
+[[~/Documents/paper2/papers/tammies_open_shell.pdf]]
+Nexmd applied to openshells
+[[~/Documents/paper2/papers/zhangtretiak_photoisomization.pdf]]
+Shows Non-Radiative Relaxation of 4‐Styrylquinoline
+[[~/Documents/paper2/papers/pandaplasser2020.pdf]]
+Torsion potential vs length of ppv
+[[~/Documents/paper2/papers/tretiaksaxena2002.pdf]]
+Analyzes bla and torsions effect on bla dynamics
+[[~/Documents/paper2/papers/tretiakmukamel2002.pdf]]
+Long article describing the CEO Method
+[[~/Documents/paper2/papers/tretiakmukamel2002.pdf]]
+Very mathematically descriptive explanation of CEO applied to TDDFT
+[[~/Documents/paper2/papers/wongwant1998.pdf]]
+Experiment showing ultrafast planarization of oligimors
+[[~/Documents/paper2/papers/martens2016.pdf]]
+Revisists Mukamels and Tretiak's work
+[[~/Documents/paper2/papers/martens2020.pdf]]
+Applies surface hopping using selection by consensus 
+[[~/Documents/paper2/papers/akimovprzhdo2014.pdf]]
+Reformulates surface hopping to include entanglement and correlation of trajectories
+[[~/Documents/paper2/papers/perkinsherraez2015.pdf]]
+Applies surface hopping to analyze energy transfer and collisional quenching
+[[~/Documents/paper2/papers/jasperstechmann2002.pdf]]
+Adds Time Uncertainty to surface hopping 
+[[~/Documents/paper2/papers/jasper2002.pdf]]
+Adds a new method for treating classically forbidden hops during fewest switches
+

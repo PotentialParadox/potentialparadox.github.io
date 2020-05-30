@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-05-27 Wed 11:40 -->
+<!-- 2020-05-30 Sat 10:52 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Paper 2</title>
@@ -276,28 +276,486 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgcbfa5ed">Computational Details</a>
+<li><a href="#orgb6e3edb">Introduction</a></li>
+<li><a href="#orgc1f5b8d">Theoretical Methodology</a>
 <ul>
-<li><a href="#org70cd19b">Ground State Sampling</a></li>
-<li><a href="#org696e0fe">Pulse Pump Calculations</a></li>
-<li><a href="#org1fbc1e0">S<sub>m</sub> Non Adiabatic Dynamics</a></li>
-<li><a href="#org0fb66d5">Population Analysis</a></li>
-<li><a href="#org68ed04a">Potential Energies</a></li>
-<li><a href="#org82bdb53">Bond Length Adjustment</a></li>
-<li><a href="#org431b20d">Dihedral Angles</a></li>
+<li><a href="#orgbc621c7">Adiabatic Motion</a></li>
+<li><a href="#orgbbd5c5f">Non-Adiabatic</a></li>
 </ul>
 </li>
-<li><a href="#orgc489e79">Bibliography</a></li>
+<li><a href="#orgcb96f96">Computational Design</a>
+<ul>
+<li><a href="#org71c1376">Shown in figure ref:scheme:nasqm is a scheme describing a common timestep that occurs within the SANDER-NEXMD inferface</a></li>
+<li><a href="#org7f0e9fa">Starts from Amber</a>
+<ul>
+<li><a href="#orga0fa018">Amber is a collection of programs, seemed appropriate for it to call nexmd</a></li>
+<li><a href="#org8917c55">Amber is also the one doing the actual propagation of the system</a></li>
+<li><a href="#org2d80949">NEXMD only needs the QM information</a></li>
+</ul>
+</li>
+<li><a href="#org3d2dec7">Amber sends the QM coordinates and thermostat to NEXMD</a>
+<ul>
+<li><a href="#org578ac1d">NEXMD uses the thermostat to interpolate for the intermediary Quantum calculations</a></li>
+</ul>
+</li>
+<li><a href="#orgc7c2af6">Calculates the energies using DFT or other semi-empirical methods such as AM1</a></li>
+<li><a href="#org75c0bda">Account for trivial crossings</a>
+<ul>
+<li><a href="#orga67f9f0">Need to do on-the-fly calculate the non-adiabatic couplings?</a></li>
+<li><a href="#orgd4f8eb8">We use an analytical form of the non-adiabatic coupling derived using the Hellman-Feynman theorem. cite:tommasini2001electronic,chernyak2000density</a></li>
+<li><a href="#org0621468">we check the over lap of the overlap of the density functions in the previous state</a></li>
+</ul>
+</li>
+<li><a href="#orgca569df">Calculate QM Forces</a>
+<ul>
+<li><a href="#org90b8cf4">Forces are calculated using a analytical solutions FIXME: Show work here?</a></li>
+</ul>
+</li>
+<li><a href="#orgb5c9aff">Finish Force Calculations</a>
+<ul>
+<li><a href="#org003c9bd">Explain QM/MM</a></li>
+</ul>
+</li>
+<li><a href="#orga33addd">Propogate nuclear velocities</a>
+<ul>
+<li><a href="#orgb817c5b">Amber does both MM and QM velocities for 1 time step</a></li>
+</ul>
+</li>
+<li><a href="#org449d16d">Fewest Switches</a>
+<ul>
+<li><a href="#org565951f">Describe Fewest Switches Here</a></li>
+</ul>
+</li>
+<li><a href="#org6af9115">With the new state chosen, AMBER now uses the average velocities to propagate the nuclear coordinates.</a></li>
+<li><a href="#orgaff1d3c">New random numbers are generated for the thermostats when appropriate</a></li>
+</ul>
+</li>
+<li><a href="#org817008a">Computational Timings</a></li>
+<li><a href="#org9277785">Simulation Methods</a>
+<ul>
+<li><a href="#org2118eeb">Ground State Sampling</a></li>
+<li><a href="#org2f2b25d">Pulse Pump Calculations</a>
+<ul>
+<li><a href="#org99e270b">Explain the pulse pump experiment</a></li>
+<li><a href="#orgb703b75">Excited State Density Chart</a></li>
+</ul>
+</li>
+<li><a href="#orgf419384">S<sub>m</sub> Non Adiabatic Dynamics</a></li>
+</ul>
+</li>
+<li><a href="#orga720af9">Simulation Results</a>
+<ul>
+<li><a href="#org883c39e">How many Data points were available.</a></li>
+<li><a href="#org1035349">State Populations</a></li>
+<li><a href="#org57f2956">Potential Energies</a></li>
+<li><a href="#orgb8b88b7">Bond Length Adjustment</a></li>
+<li><a href="#org8d8c15c">Dihedral Angles</a>
+<ul>
+<li><a href="#org3e946dc">Why do we want to do dihedral angels?</a></li>
+<li><a href="#orgc842946">Description of the plot</a></li>
+<li><a href="#org1700241">Inital Dihedral angle for S<sub>m</sub> is lower than ground state</a></li>
+<li><a href="#orgf16a683">Dihedral relaxation of S<sub>1</sub> may be slightly faster in ppv3-no2</a></li>
+<li><a href="#orge9ae671">Dihedral relaxation of S<sub>m</sub> significantly faster in ppv3-no2</a></li>
+<li><a href="#org6884efc">Dihedral relaxation without accounting for trivial crossings is slower</a></li>
+<li><a href="#org9afec9f">Separation of the of the near and far S<sub>m</sub>, before S<sub>1</sub></a></li>
+<li><a href="#orgfd9e04a">Dihedral splits with ppv3-no2</a></li>
+</ul>
+</li>
+<li><a href="#org28b568e">Wiberg Bond Analysis</a></li>
+</ul>
+</li>
+<li><a href="#org4f63527">Bibliography</a></li>
+<li><a href="#org6feeca3">Papers To Read</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgcbfa5ed" class="outline-2">
-<h2 id="orgcbfa5ed">Computational Details</h2>
-<div class="outline-text-2" id="text-orgcbfa5ed">
+<div id="outline-container-orgb6e3edb" class="outline-2">
+<h2 id="orgb6e3edb">Introduction</h2>
+<div class="outline-text-2" id="text-orgb6e3edb">
+<p>
+Because there's such a strong coupling between the vibration excite Electronics
+states of freedom mechanic molecules we must take into account not a tea bag
+Dynamics in order to produce reasonable simulations. We cannot assume that the
+nuclear coordinates are significantly slower than that of the electrons
+</p>
+
+<p>
+This type of research we have a ground thing above the ground state dim sleep
+populated manifold of excited States state board often swapping energy in other
+words the energy of one state at will be higher than another state at one point
+then at a later time the energy of that first date could be visited the energy
+of the other ones so we must all think you track of the order of the states. As
+a general rule we also need to be solving the structure ecrater the creation on
+the Fly for each electronic level . Calculating the potential energy surfaces
+for all these dates is quite complex and requires solutions to the shrinker
+equation the backend methods used to calculate these put the Chinese Services
+can range to externally complicated density functional Theory methods to others
+much more simplified to me empirical methods effort must be made to balance
+accuracy to efficiency in this regards.
+</p>
+
+<p>
+Hamacas that we're using have a high energy barrier between the ground state in
+the first excited States which matches up with Kasha’s rule.
+</p>
+
+<p>
+The characteristics of this electronic manifold overtime to be very useful to a
+multiple of different you scenarios such as the residence in which we care
+deeply about the molecules lowest level excited state or in light harvesting
+Light-harvesting applications and where the molecule excitation energy is being
+transferred to charge separation. The study of photosynthesis can also be how to
+buy this type of research that focuses on the non-radiative crossings The ground
+state.
+</p>
+
+<p>
+Ton of research has gone in the study and he's not on a team that is molecular
+Dynamics methodologies methodologies range from the extremely complicated
+inexpensive approaches such as I can figure is time-dependent Arkansas cabin air
+show for methods and Quantum movies The are quite similar ones such as ehrenfest
+Theory but the ones that this paper focuses on is specifically the toy surface
+hopping methodology used with a package, the not adiabatic said America the
+Dynamics package developed at Los Alamos.
+</p>
+
+<p>
+Anon idiopathic excited state Dynamics program has until recently been used only
+in implicit solvents or an explicit song fence without any type of Nadia body
+Dynamics only in the excited first excited States. in this paper we propose a
+method to extend the capabilities of the non adiabatic cold using the Amber
+package and its ability to do q m m m Dynamics and boxes.
+</p>
+
+<p>
+Are focuses on organic conjugated molecule specifically ppv 3 and PPP 2 as shown
+in the diagram.
+</p>
 </div>
-<div id="outline-container-org70cd19b" class="outline-3">
-<h3 id="org70cd19b">Ground State Sampling</h3>
-<div class="outline-text-3" id="text-org70cd19b">
+</div>
+<div id="outline-container-orgc1f5b8d" class="outline-2">
+<h2 id="orgc1f5b8d">Theoretical Methodology</h2>
+<div class="outline-text-2" id="text-orgc1f5b8d">
+</div>
+<div id="outline-container-orgbc621c7" class="outline-3">
+<h3 id="orgbc621c7">Adiabatic Motion</h3>
+<div class="outline-text-3" id="text-orgbc621c7">
+<p>
+To find the excited state energies during dynamics, we calculate the Liouville
+eigenvalue equation
+</p>
+
+\begin{align*}
+  \hat{\mathbf{\mathcal{L}}}\mathbf{\rho}_{0\alpha} = \Omega\mathbf{\rho}_{0\alpha}
+\end{align*}
+
+<p>
+with \(\mathbf{\mathcal{L}}\) being the two-particle Louiville operator and
+\(\Omega\) the energy difference between the \(\alpha\) state and the ground
+state, where the Liouville operator can be found analytically by
+</p>
+
+\begin{align*}
+  \hat{\mathbf{\mathcal{L}}}\mathbf{\rho}_{0\alpha} = \left[ \mathbf{F}^{\vec{R}}(\mathbf{\rho}_{00}), \mathbf{\rho}_{0\alpha} \right]
+  + \left[ \mathbf{V}^{\vec{R}}(\mathbf{\rho}_{0\alpha}), \mathbf{\rho}_{00} \right]
+\end{align*}
+
+<p>
+and the single electron density matrix for each state of the system is described by
+</p>
+
+\begin{align*}
+  (\mathbf{\rho}_{0\alpha})_{nm} =  \left< \psi_{alpha} \right| c_m^\dagger c_n \left| \psi_0 \right>.
+\end{align*}
+
+<p>
+The excited state inter-qm region gradients are found by adding the transition
+energies gradients to the ground state gradients, where the transition energy
+gradients are
+</p>
+
+<p>
+The forces are then calculated analytically by the gradient of the ground state
+energy and the excited state energy.
+</p>
+
+\begin{align*}
+  \vec{\nabla} E_{\alpha} = \vec{\nabla} E_0 + \vec{\nabla} \Omega_{\alpha}
+\end{align*}
+
+<p>
+With the gradient of the ground state being calculated by
+</p>
+
+\begin{align*}
+  \vec{\nabla} E_0 = \frac{1}{2}\mathbf{Tr} \left[ \left( \mathbf{t}^{\vec{R}} + \mathbf{F}^{\vec{R}} \right) \mathbf{\rho}_{00} \right]
+\end{align*}
+
+<p>
+and the gradient of the excited state being
+</p>
+
+\begin{align*}
+  \vec{\nabla}\Omega = \mathbf{Tr} \left[ \mathbf{F}^{\vec{R}} (\mathbf{\rho}_{\alpha\alpha} - \mathbf{\rho}_{00})\right]
+  + \mathbf{Tr} \left[\mathbf{V}^{\vec{R}}\mathbf{\rho}_{0\alpha}^\dagger \mathbf{\rho}_{0\alpha} \right]
+\end{align*}
+
+<p>
+where \(\mathbf{\rho}_{ij}\) represents the density or transition density matrix for states i and
+j, \( \mathbf{F} \) is the Fock matrix,  \( \mathbf{t} \) is the kinetic operator acting on
+one-electron and \( \mathbf{V} \) is the column interchange operator.
+</p>
+</div>
+</div>
+<div id="outline-container-orgbbd5c5f" class="outline-3">
+<h3 id="orgbbd5c5f">Non-Adiabatic</h3>
+<div class="outline-text-3" id="text-orgbbd5c5f">
+<p>
+As each trajectory moves along its potential energy surface, we will consistently check to determine whether a state transition to occur.
+We do so by solving the time dependent Schrodinger equation numerically.
+</p>
+
+\begin{equation} \label{eq:tullyHamiltonian} \mathbf{H} = \mathbf{T}_{R} +
+  \mathbf{H}_{0}(\mathbf{r},\mathbf{R})
+\end{equation}
+<p>
+where the matrix elements of the electron Hamiltonian are
+</p>
+
+\begin{equation} \label{eq:tullyVelements}
+  V_{ij}(\mathbf(R))=\left<\phi_i(\mathbf{r};\mathbf{R})\right|\mathbf{H}_{0}\left.(\mathbf{r};\mathbf{R})\phi_j(\mathbf{r};\mathbf{R})\right>
+\end{equation}
+<p>
+We define the non-adiabatic coupling vector as
+</p>
+
+\begin{equation} \label{eq:tullynacoupling} \mathbf{d}_{ij}\mathbf(R) =
+  \left<\phi_{i}(\mathbf{r};\mathbf{R})\right|\mathbf{\nabla}_{\mathbf{R}}\left.\phi_j(\mathbf{r};\mathbf{R})\right>
+\end{equation}
+<p>
+We recall that the total wave function can be expanded into a linear
+sum of slaterdeterninants.
+</p>
+
+\begin{equation} \label{eq:psiexpansion} \Psi(\mathbf{r},\mathbf{R},t) =
+  \sum_jc_j(t)\phi_j(\mathbf{r};\mathbf{R}) = c_j\left|\phi_j\right>
+\end{equation}
+<p>
+If we take equation \ref{eq:psiexpansion} and place it into the time
+independent Schrodinger's equation,
+</p>
+
+\begin{equation} \label{eq:tullyS1} i\hbar\frac{\partial}{\partial
+    t}c_j\left|\phi_j\right> = \mathbf{H} c_j \left|\phi_j\right>
+\end{equation}
+<p>
+We can then apply the chain rule, and multiply each side on the left
+by $\left&lt;\right. &phi; \left|\right.$ giving,
+</p>
+
+\begin{equation} \label{eq:tullyS2}
+  \left<\phi_k\right|i\hbar\left(c_j\left|\right.\dot{\phi}_j\left.\right>+\dot{c}_j\left|\phi_j\right>\right)=\left<\phi_k\right|\mathbf{H}c_j\left|\phi_j\right>
+\end{equation}
+<p>
+Recognizing that
+</p>
+
+\begin{equation} \label{eq:tullyS3}
+  \left<\phi_k\right|\dot{\phi}_j\left.\right>=\left<\phi_k\right|\frac{d\mathbf{R}}{dt}\frac{d}{d\mathbf{R}}\left|\phi_j\right>=\dot{\mathbf{R}}\cdot\mathbf{d}_{kj}(\mathbf{R})
+\end{equation}
+<p>
+equation \ref{eq:tullyS2} simplifies to
+</p>
+
+\begin{equation} \label{eq:tullyS4}
+  i\hbar\left(c_j\dot{\mathbf{R}}\cdot\mathbf{d}_{kj}+\dot{c}_j\delta_{kj}\right)
+  = c_jV_{kj} \rightarrow i\hbar\dot{c}_k =
+  c_j\left(V_{kj}-i\hbar\dot{\mathbf{R}}\cdot\mathbf{d}_{kj}\right)
+\end{equation}
+<p>
+If we multiply equation \ref{eq:tullyS4} by \(i \hbar \dot{c_{k}}\) and
+subtract from that its complex conjugate multiplied by \(i\hbar c_{k}\),
+we get
+</p>
+\begin{equation} \label{eq:tullyDF2}
+  i\hbar\dot{a}_{kl}=a_{jl}\left(V_{kj} - i\hbar \dot{\mathbf{R}} \cdot
+    \mathbf{d}_{kj} \right) - a_{kj} \left(V_{jl} - i\hbar \dot{\mathbf{R}}
+    \cdot \mathbf{d}_{jk} \right)
+\end{equation}
+<p>
+where \(a_{jl}\) are the density matrix components described by \(a_{jl}=c_j^*c_l\).
+Our focus in the paper will be on the diagonal elements of \(a\),
+which represent the population densities, that can be convenient
+summarize as
+</p>
+
+\begin{equation} \label{eq:tullya2b} \dot{a}_{kk} = \sum_{l\ne
+    k}b_{kl},
+\end{equation}
+<p>
+where
+</p>
+
+\begin{equation} \label{eq:tullyb2a} b_{kj} =
+  \frac{2}{\hbar}\Im\left(a_{kj}^*V_{kj}\right) - 2\Re\left(a_{kj}^*
+    \dot{\mathbf{R}} \cdot \mathbf{d}_{kj}\right)
+\end{equation}
+<p>
+This should be read as the rate of change of the kth state population
+is equal to the sum of the changes from the lth state to the kth
+state.
+The nonadiabatic coupling term \(\mathbf{R} \cdot \mathbf{d}_{kj}\) is calculated analytically ``on the fly''.\cite{Nelson2014}\cite{Tommasini2001}\cite{Chernyak2000}\cite{Send2010}
+As an example, lets say we have two states \(1\) and \(2\).
+If we choose a small enough time step, the change in population will be
+approximately the rate the rate of change, and
+</p>
+
+\begin{equation} \label{eq:tullya2g} \frac{a_{11}(t=\Delta t) -
+    a_{11}(t= 0)}{a_{11}(t=\Delta t)} \approx
+  \frac{\dot{a}_{22}(t=0)\Delta t}{a_{11}(t=0)} =
+  \frac{b_{21}(t=0)\Delta t}{a_{11}(t=0)} = g_{12}
+\end{equation}
+<p>
+for small \(\Delta t\).  \(g_{12}\) is defined as the probability of
+moving from state 1 to state 2 in the current time step.  We next
+create a random number \(\zeta\) A switch from step 1 to 2 will occur if
+</p>
+
+\begin{equation} \label{eq:tullyjump1} \zeta < g_{12}
+\end{equation}
+<p>
+Larger jumps are possible.  Generally, a switch from state i, to k will occur if
+</p>
+
+\begin{equation} \label{eq:tullyjump2} \sum_{j=1}^{k-1}g_{ij} < \zeta
+  \le \sum_{j=1}^{k}g_{ij}
+\end{equation}
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcb96f96" class="outline-2">
+<h2 id="orgcb96f96">Computational Design</h2>
+<div class="outline-text-2" id="text-orgcb96f96">
+
+<div class="figure">
+<p><img src="./scripted_diagrams/nasqm_overview.png" alt="nasqm_overview.png" />
+</p>
+<p><span class="figure-number">Figure 1: </span>Swim-lane diagram describing the common timestep of the SANDER-NEXMD interface. <div id="scheme:nasqm"></div></p>
+</div>
+</div>
+<div id="outline-container-org71c1376" class="outline-3">
+<h3 id="org71c1376">Shown in figure <a href="#scheme:nasqm">scheme:nasqm</a> is a scheme describing a common timestep that occurs within the SANDER-NEXMD inferface</h3>
+</div>
+<div id="outline-container-org7f0e9fa" class="outline-3">
+<h3 id="org7f0e9fa">Starts from Amber</h3>
+<div class="outline-text-3" id="text-org7f0e9fa">
+</div>
+<div id="outline-container-orga0fa018" class="outline-4">
+<h4 id="orga0fa018">Amber is a collection of programs, seemed appropriate for it to call nexmd</h4>
+</div>
+<div id="outline-container-org8917c55" class="outline-4">
+<h4 id="org8917c55">Amber is also the one doing the actual propagation of the system</h4>
+</div>
+<div id="outline-container-org2d80949" class="outline-4">
+<h4 id="org2d80949">NEXMD only needs the QM information</h4>
+</div>
+</div>
+<div id="outline-container-org3d2dec7" class="outline-3">
+<h3 id="org3d2dec7">Amber sends the QM coordinates and thermostat to NEXMD</h3>
+<div class="outline-text-3" id="text-org3d2dec7">
+</div>
+<div id="outline-container-org578ac1d" class="outline-4">
+<h4 id="org578ac1d">NEXMD uses the thermostat to interpolate for the intermediary Quantum calculations</h4>
+</div>
+</div>
+<div id="outline-container-orgc7c2af6" class="outline-3">
+<h3 id="orgc7c2af6">Calculates the energies using DFT or other semi-empirical methods such as AM1</h3>
+</div>
+<div id="outline-container-org75c0bda" class="outline-3">
+<h3 id="org75c0bda">Account for trivial crossings</h3>
+<div class="outline-text-3" id="text-org75c0bda">
+</div>
+<div id="outline-container-orga67f9f0" class="outline-4">
+<h4 id="orga67f9f0">Need to do on-the-fly calculate the non-adiabatic couplings?</h4>
+<div class="outline-text-4" id="text-orga67f9f0">
+</div>
+<ul class="org-ul">
+<li><a id="org3fe25a5"></a>To make many dynamics trajectories practical <a class='org-ref-reference' href="#nelson2020non">nelson2020non</a><br /></li>
+</ul>
+</div>
+<div id="outline-container-orgd4f8eb8" class="outline-4">
+<h4 id="orgd4f8eb8">We use an analytical form of the non-adiabatic coupling derived using the Hellman-Feynman theorem. <a class='org-ref-reference' href="#tommasini2001electronic">tommasini2001electronic</a>,<a class='org-ref-reference' href="#chernyak2000density">chernyak2000density</a></h4>
+<div class="outline-text-4" id="text-orgd4f8eb8">
+<p>
+\[
+    \mathbf{d}_{ab}(\mathbf{R}) =
+  \frac{
+    \left< \Psi_a (\mathbf{r}, \mathbf{R}) \right|
+    \nabla_\mathbf{R} \hat{H}_{el} (\mathbf{r}, \mathbf{r})
+    \left| \Psi_b (\mathbf{r}, \mathbf{R}) \right>
+  }
+  {
+    E_b(\mathbf{R}) - E_a(\mathbf{R})
+  }
+  \]
+</p>
+</div>
+</div>
+<div id="outline-container-org0621468" class="outline-4">
+<h4 id="org0621468">we check the over lap of the overlap of the density functions in the previous state</h4>
+</div>
+</div>
+<div id="outline-container-orgca569df" class="outline-3">
+<h3 id="orgca569df">Calculate QM Forces</h3>
+<div class="outline-text-3" id="text-orgca569df">
+</div>
+<div id="outline-container-org90b8cf4" class="outline-4">
+<h4 id="org90b8cf4">Forces are calculated using a analytical solutions FIXME: Show work here?</h4>
+</div>
+</div>
+<div id="outline-container-orgb5c9aff" class="outline-3">
+<h3 id="orgb5c9aff">Finish Force Calculations</h3>
+<div class="outline-text-3" id="text-orgb5c9aff">
+</div>
+<div id="outline-container-org003c9bd" class="outline-4">
+<h4 id="org003c9bd">Explain QM/MM</h4>
+</div>
+</div>
+<div id="outline-container-orga33addd" class="outline-3">
+<h3 id="orga33addd">Propogate nuclear velocities</h3>
+<div class="outline-text-3" id="text-orga33addd">
+</div>
+<div id="outline-container-orgb817c5b" class="outline-4">
+<h4 id="orgb817c5b">Amber does both MM and QM velocities for 1 time step</h4>
+</div>
+</div>
+<div id="outline-container-org449d16d" class="outline-3">
+<h3 id="org449d16d">Fewest Switches</h3>
+<div class="outline-text-3" id="text-org449d16d">
+</div>
+<div id="outline-container-org565951f" class="outline-4">
+<h4 id="org565951f">Describe Fewest Switches Here</h4>
+</div>
+</div>
+<div id="outline-container-org6af9115" class="outline-3">
+<h3 id="org6af9115">With the new state chosen, AMBER now uses the average velocities to propagate the nuclear coordinates.</h3>
+</div>
+<div id="outline-container-orgaff1d3c" class="outline-3">
+<h3 id="orgaff1d3c">New random numbers are generated for the thermostats when appropriate</h3>
+</div>
+</div>
+
+<div id="outline-container-org817008a" class="outline-2">
+<h2 id="org817008a">Computational Timings</h2>
+</div>
+<div id="outline-container-org9277785" class="outline-2">
+<h2 id="org9277785">Simulation Methods</h2>
+<div class="outline-text-2" id="text-org9277785">
+</div>
+<div id="outline-container-org2118eeb" class="outline-3">
+<h3 id="org2118eeb">Ground State Sampling</h3>
+<div class="outline-text-3" id="text-org2118eeb">
 <p>
 We equilibrated the system to a temperature set to 300K. To collect a broad
 enough sampling, we sampled from a 1024 ps, with a 0.5 fs timestep fully
@@ -317,27 +775,40 @@ initial conditions for the following pulse pump calculations.
 </p>
 </div>
 </div>
-<div id="outline-container-org696e0fe" class="outline-3">
-<h3 id="org696e0fe">Pulse Pump Calculations</h3>
-<div class="outline-text-3" id="text-org696e0fe">
+<div id="outline-container-org2f2b25d" class="outline-3">
+<h3 id="org2f2b25d">Pulse Pump Calculations</h3>
+<div class="outline-text-3" id="text-org2f2b25d">
+</div>
+<div id="outline-container-org99e270b" class="outline-4">
+<h4 id="org99e270b">Explain the pulse pump experiment</h4>
+<div class="outline-text-4" id="text-org99e270b">
 <p>
 Pump-Probe Spectroscopy is and experimental technique commonly performed in the
 study of ultrafast electonic statte dynamics. In the case of conjugated polymers
-in can be used to study the dlocalized excictronic
-tranisions that are accessible through and excitation of the S1 state but not
-the ground state S0. To simulate this behavior, we take the final snapshot of
-the QM ground state calculations and perform a single point calculation at the
-S1 state to find the next state with the highest oscillator strength. We looked
-specifically for a large peak in oscillator strength, at least twice the amount
-of any other. Those trajectories that failed to meet those conditions were
-filtered out from the following calculations. We recorded the successful state
-transitions and used them for the S<sub>m</sub> state tully excited state calculations dynamics.
+in can be used to study the dlocalized excictronic tranisions that are
+accessible through and excitation of the S1 state but not the ground state S0.
+To simulate this behavior, we take the final snapshot of the QM ground state
+calculations and perform a single point calculation at the S1 state to find the
+next state with the highest oscillator strength.
 </p>
 </div>
 </div>
-<div id="outline-container-org1fbc1e0" class="outline-3">
-<h3 id="org1fbc1e0">S<sub>m</sub> Non Adiabatic Dynamics</h3>
-<div class="outline-text-3" id="text-org1fbc1e0">
+<div id="outline-container-orgb703b75" class="outline-4">
+<h4 id="orgb703b75">Excited State Density Chart</h4>
+<div class="outline-text-4" id="text-orgb703b75">
+<p>
+We looked specifically for a large peak in oscillator strength, at least twice
+the amount of any other. Those trajectories that failed to meet those conditions
+were filtered out from the following calculations. We recorded the successful
+state transitions and used them for the S<sub>m</sub> state tully excited state
+calculations dynamics.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf419384" class="outline-3">
+<h3 id="orgf419384">S<sub>m</sub> Non Adiabatic Dynamics</h3>
+<div class="outline-text-3" id="text-orgf419384">
 <p>
 Using the same snapshot used for the Pulse Pump calculations and their
 corresponding trajectories, we used the previously calculated state from the
@@ -349,14 +820,22 @@ excited states.The dynamics did not include QM ewald.
 </p>
 </div>
 </div>
-<div id="outline-container-org0fb66d5" class="outline-3">
-<h3 id="org0fb66d5">Population Analysis</h3>
-<div class="outline-text-3" id="text-org0fb66d5">
+</div>
+<div id="outline-container-orga720af9" class="outline-2">
+<h2 id="orga720af9">Simulation Results</h2>
+<div class="outline-text-2" id="text-orga720af9">
+</div>
+<div id="outline-container-org883c39e" class="outline-3">
+<h3 id="org883c39e">How many Data points were available.</h3>
+</div>
+<div id="outline-container-org1035349" class="outline-3">
+<h3 id="org1035349">State Populations</h3>
+<div class="outline-text-3" id="text-org1035349">
 
 <div class="figure">
 <p><img src="./Images/population_fit_tabulation/all_pops.png" alt="all_pops.png" />
 </p>
-<p><span class="figure-number">Figure 1: </span>Populations for the excited states with extended lifespans for PPV<sub>3</sub> and PPV<sub>3</sub>-NO<sub>2</sub>. S<sub>m</sub> represents the initial state. <div id="fig:all-populations"></div></p>
+<p><span class="figure-number">Figure 2: </span>Populations for the excited states with extended lifespans for PPV<sub>3</sub> and PPV<sub>3</sub>-NO<sub>2</sub>. S<sub>m</sub> represents the initial state. <div id="fig:all-populations"></div></p>
 </div>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -466,14 +945,14 @@ test for trivial non-avoided crossings.
 <div class="figure">
 <p><img src="./Images/population_fit_tabulation/s1.png" alt="s1.png" />
 </p>
-<p><span class="figure-number">Figure 2: </span>Population of the first excited state (S<sub>1</sub>) of PPV<sub>3</sub> and PPV<sub>3</sub>-NO<sub>2</sub> in various solvents obtained from the fraction of trajectories in each state. <div id="fig:s1-populations"></div></p>
+<p><span class="figure-number">Figure 3: </span>Population of the first excited state (S<sub>1</sub>) of PPV<sub>3</sub> and PPV<sub>3</sub>-NO<sub>2</sub> in various solvents obtained from the fraction of trajectories in each state. <div id="fig:s1-populations"></div></p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org68ed04a" class="outline-3">
-<h3 id="org68ed04a">Potential Energies</h3>
-<div class="outline-text-3" id="text-org68ed04a">
+<div id="outline-container-org57f2956" class="outline-3">
+<h3 id="org57f2956">Potential Energies</h3>
+<div class="outline-text-3" id="text-org57f2956">
 <p>
 The potential energies averaged over !!N-PPV3!! and !!N-PPV3-NO2!! completed
 trajectories are shown in figures <a href="#fig:ppv3-potential">fig:ppv3-potential</a> and
@@ -509,14 +988,14 @@ initial S<sub>m</sub> states.
 <div class="figure">
 <p><img src="./Images/potential_energies/relaxation.png" alt="relaxation.png" />
 </p>
-<p><span class="figure-number">Figure 3: </span>Average potential energy during dynamics at 300K for PPV<sub>3</sub> and PPV<sub>3</sub>-NO<sub>2</sub>. Vacuum NT is dynamics ran without trivial crossings. <div id="fig:ppv3-potential"></div></p>
+<p><span class="figure-number">Figure 4: </span>Average potential energy during dynamics at 300K for PPV<sub>3</sub> and PPV<sub>3</sub>-NO<sub>2</sub>. Vacuum NT is dynamics ran without trivial crossings. <div id="fig:ppv3-potential"></div></p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org82bdb53" class="outline-3">
-<h3 id="org82bdb53">Bond Length Adjustment</h3>
-<div class="outline-text-3" id="text-org82bdb53">
+<div id="outline-container-orgb8b88b7" class="outline-3">
+<h3 id="orgb8b88b7">Bond Length Adjustment</h3>
+<div class="outline-text-3" id="text-orgb8b88b7">
 <p>
 In figure <a href="#fig:bla-vacuum">fig:bla-vacuum</a>, the BLA for both PPV<sub>3</sub> and PPV<sub>3</sub>-NO<sub>2</sub> in
 vacuum the ground state varies very little the two. We use shades of red the
@@ -547,66 +1026,167 @@ amount double bond characteristics causing the molecule to Stiffen.
 <div class="figure">
 <p><img src="./Images/bla/vacuum.png" alt="vacuum.png" />
 </p>
-<p><span class="figure-number">Figure 4: </span>Bond Length Adjustments for various states for PPV<sub>3</sub> and PPV<sub>3</sub>-NO<sub>2</sub> in vacuum. <div id="fig:bla-vacuum"></div></p>
+<p><span class="figure-number">Figure 5: </span>Bond Length Adjustments for various states for PPV<sub>3</sub> and PPV<sub>3</sub>-NO<sub>2</sub> in vacuum. <div id="fig:bla-vacuum"></div></p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org431b20d" class="outline-3">
-<h3 id="org431b20d">Dihedral Angles</h3>
-<div class="outline-text-3" id="text-org431b20d">
+<div id="outline-container-org8d8c15c" class="outline-3">
+<h3 id="org8d8c15c">Dihedral Angles</h3>
+<div class="outline-text-3" id="text-org8d8c15c">
 
 <div class="figure">
 <p><img src="./Images/dihedral/vacuum.png" alt="vacuum.png" />
 </p>
-<p><span class="figure-number">Figure 5: </span>Dihedral angles for various states for PPV<sub>3</sub> and PPV<sub>3</sub>-NO<sub>2</sub> in vacuum. <div id="fig:dihedral-vacuum"></div></p>
+<p><span class="figure-number">Figure 6: </span>Dihedral angles for various states for PPV<sub>3</sub> and PPV<sub>3</sub>-NO<sub>2</sub> in vacuum. <div id="fig:dihedral-vacuum"></div></p>
+</div>
 </div>
 
+<div id="outline-container-org3e946dc" class="outline-4">
+<h4 id="org3e946dc">Why do we want to do dihedral angels?</h4>
+<div class="outline-text-4" id="text-org3e946dc">
 <p>
-The ground state of molecule one is higher than a ground state molecule 2. the
-lines are shown that help guide the eye And that he drove for angle for the
-first excited state starts that's the same height as the ground state note that
-the trajectories that were initiated on the interstate a significantly lower we
-believe that this is due to that selection process of the post pump simulation
-Dihedral angle for the initial States trajectories down without trivial
-Crossings be a lot quicker than without the test for triple Crossings honor II
-molecule separation between groups closer to the Nitro group an insignificant
-for the Angleton on the adiabatic surface for the ground States BC separation
-over time between the relax that you draw angle between the group nearest and
-actual group and farthest from the Nitro group for the second molecule with and
-by the group furthest from the Nitro group being able to attain on average a
-higher dihedral angle rotation suggesting that the mall on the side of the Nitro
-group is overall flattered interesting Lee receive that the angles for SM
-nearest Nitro. Initially start out higher and then crosses angle for the
-furthest from the Nitro group this may be due to the lack of sampling because
-currently I'm only using 76 samples I'm working on that now
+The torsion angle around the vinylene segments have been shown to be highly coupled to the excited state. <a class='org-ref-reference' href="#nelson2011nonadiabatic">nelson2011nonadiabatic</a>,<a class='org-ref-reference' href="#panda2013electronically">panda2013electronically</a>  
 </p>
-
+</div>
+</div>
+<div id="outline-container-orgc842946" class="outline-4">
+<h4 id="orgc842946">Description of the plot</h4>
+<div class="outline-text-4" id="text-orgc842946">
+</div>
+<ul class="org-ul">
+<li><a id="orgb7c32c5"></a>Lines are drawn to help guide the eye<br /></li>
+<li><a id="org78dd1c1"></a>The S<sub>1</sub> and S<sub>0</sub> state plotted are from previous research<br /></li>
+<li><a id="org2b24fe5"></a>Red is ground, Blue is S<sub>1</sub>, Green is S<sub>m</sub><br /></li>
+<li><a id="org97c3930"></a>S<sub>m</sub> refers to trajectories that started after the pulse pump<br /></li>
+</ul>
+</div>
+<div id="outline-container-org1700241" class="outline-4">
+<h4 id="org1700241">Inital Dihedral angle for S<sub>m</sub> is lower than ground state</h4>
+<div class="outline-text-4" id="text-org1700241">
+</div>
+<ul class="org-ul">
+<li><a id="org3f6dcf0"></a>Visual analysis as to why<br /></li>
+<li><a id="org8367d56"></a>Previous paper have found that initial torsional angles strongly determine vertical excitations <a class='org-ref-reference' href="#barford2011ultrafast">barford2011ultrafast</a><br /></li>
+</ul>
+</div>
+<div id="outline-container-orgf16a683" class="outline-4">
+<h4 id="orgf16a683">Dihedral relaxation of S<sub>1</sub> may be slightly faster in ppv3-no2</h4>
+<div class="outline-text-4" id="text-orgf16a683">
+</div>
+<ul class="org-ul">
+<li><a id="orgc302d3d"></a>0.5 ps vs 0.55 ps<br /></li>
+</ul>
+</div>
+<div id="outline-container-orge9ae671" class="outline-4">
+<h4 id="orge9ae671">Dihedral relaxation of S<sub>m</sub> significantly faster in ppv3-no2</h4>
+<div class="outline-text-4" id="text-orge9ae671">
+</div>
+<ul class="org-ul">
+<li><a id="org2cae06c"></a>Suggests the increased relaxation is due to quick relaxation of the state population<br /></li>
+</ul>
+</div>
+<div id="outline-container-org6884efc" class="outline-4">
+<h4 id="org6884efc">Dihedral relaxation without accounting for trivial crossings is slower</h4>
+<div class="outline-text-4" id="text-org6884efc">
+</div>
+<ul class="org-ul">
+<li><a id="orgf8c0b7a"></a>Also suggest relaxation is due to quick drop in excited state.<br /></li>
+</ul>
+</div>
+<div id="outline-container-org9afec9f" class="outline-4">
+<h4 id="org9afec9f">Separation of the of the near and far S<sub>m</sub>, before S<sub>1</sub></h4>
+<div class="outline-text-4" id="text-org9afec9f">
+</div>
+<ul class="org-ul">
+<li><a id="org4286827"></a>Earlier than what occured in the bla caclulation<br /></li>
+</ul>
+</div>
+<div id="outline-container-orgfd9e04a" class="outline-4">
+<h4 id="orgfd9e04a">Dihedral splits with ppv3-no2</h4>
+<div class="outline-text-4" id="text-orgfd9e04a">
+</div>
+<ul class="org-ul">
+<li><a id="org7ca6419"></a>Could this be because of the nitro group. Short 32 trajectory of PPV3-NO2 w/o methanol groups.<br />
+<div class="outline-text-5" id="text-org7ca6419">
 
 <div class="figure">
 <p><img src="./Images/dihedral/solvents.png" alt="solvents.png" />
 </p>
-<p><span class="figure-number">Figure 6: </span>Dihedral angles for PPV<sub>3</sub> and PPV<sub>3</sub>-NO<sub>2</sub> in various solutes initialized to S<sub>m</sub>. <div id="fig:dihedral-solvents"></div></p>
+<p><span class="figure-number">Figure 7: </span>Dihedral angles for PPV<sub>3</sub> and PPV<sub>3</sub>-NO<sub>2</sub> in various solutes initialized to S<sub>m</sub>. <div id="fig:dihedral-solvents"></div></p>
 </div>
 </div>
+</li>
+</ul>
 </div>
 </div>
 
+<div id="outline-container-org28b568e" class="outline-3">
+<h3 id="org28b568e">Wiberg Bond Analysis</h3>
+</div>
+</div>
 
-
-<div id="outline-container-orgc489e79" class="outline-2">
-<h2 id="orgc489e79">Bibliography</h2>
-<div class="outline-text-2" id="text-orgc489e79">
+<div id="outline-container-org4f63527" class="outline-2">
+<h2 id="org4f63527">Bibliography</h2>
+<div class="outline-text-2" id="text-org4f63527">
 <p>
 
-<a href="paper2.bib">paper2.bib</a>
+<h1 class='org-ref-bib-h1'>Bibliography</h1>
+<ul class='org-ref-bib'><li><a id="nelson2020non">[nelson2020non]</a> <a name="nelson2020non"></a>Nelson, White, Bjorgaard, Sifain, Zhang, Nebgen, Fernandez-Alberti, Mozyrsky, Roitberg & Tretiak, Non-adiabatic Excited-State Molecular Dynamics: Theory and Applications for Modeling Photophysics in Extended Molecular Materials, <i>Chemical Reviews</i>, <b>120(4)</b>, 2215-2287 (2020).</li>
+<li><a id="tommasini2001electronic">[tommasini2001electronic]</a> <a name="tommasini2001electronic"></a>Tommasini, Chernyak & Mukamel, Electronic density-matrix algorithm for nonadiabatic couplings in molecular dynamics simulations, <i>International Journal of Quantum Chemistry</i>, <b>85(4-5)</b>, 225-238 (2001).</li>
+<li><a id="chernyak2000density">[chernyak2000density]</a> <a name="chernyak2000density"></a>Chernyak & Mukamel, Density-matrix representation of nonadiabatic couplings in time-dependent density functional (TDDFT) theories, <i>The Journal of Chemical Physics</i>, <b>112(8)</b>, 3572-3579 (2000).</li>
+<li><a id="nelson2011nonadiabatic">[nelson2011nonadiabatic]</a> <a name="nelson2011nonadiabatic"></a>Nelson, Fernandez-Alberti, Chernyak, Roitberg & Tretiak, Nonadiabatic excited-state molecular dynamics modeling of photoinduced dynamics in conjugated molecules, <i>The Journal of Physical Chemistry B</i>, <b>115(18)</b>, 5402-5414 (2011).</li>
+<li><a id="panda2013electronically">[panda2013electronically]</a> <a name="panda2013electronically"></a>Panda, Plasser, Aquino, Burghardt & Lischka, Electronically excited states in poly (p-phenylenevinylene): vertical excitations and torsional potentials from high-level ab initio calculations, <i>The Journal of Physical Chemistry A</i>, <b>117(10)</b>, 2181-2189 (2013).</li>
+<li><a id="barford2011ultrafast">[barford2011ultrafast]</a> <a name="barford2011ultrafast"></a>Barford, Boczarow & Wharram, Ultrafast dynamical localization of photoexcited states in conformationally disordered poly (p-phenylenevinylene), <i>The Journal of Physical Chemistry A</i>, <b>115(33)</b>, 9111-9119 (2011).</li>
+</ul>
+</p>
+</div>
+</div>
+<div id="outline-container-org6feeca3" class="outline-2">
+<h2 id="org6feeca3">Papers To Read</h2>
+<div class="outline-text-2" id="text-org6feeca3">
+<p>
+<a href="file:///home/dustin/Documents/paper2/papers/tammies_review.pdf">file:///home/dustin/Documents/paper2/papers/tammies_review.pdf</a>
+Major review article
+<a href="file:///home/dustin/Documents/paper2/papers/sifainbjorgaard2018.pdf">file:///home/dustin/Documents/paper2/papers/sifainbjorgaard2018.pdf</a>
+Sovlent effects on non-adiabatic dynamics of ppvo derivatives
+<a href="file:///home/dustin/Documents/paper2/papers/tammies_thesis_chapter3.pdf">file:///home/dustin/Documents/paper2/papers/tammies_thesis_chapter3.pdf</a>
+Also gives and explanation of computations of excited states
+<a href="file:///home/dustin/Documents/paper2/papers/tammies_thesis_chapter6.pdf">file:///home/dustin/Documents/paper2/papers/tammies_thesis_chapter6.pdf</a>
+Shows transfer of energy density of long chained ppv oligimors
+<a href="file:///home/dustin/Documents/paper2/papers/tammies_open_shell.pdf">file:///home/dustin/Documents/paper2/papers/tammies_open_shell.pdf</a>
+Nexmd applied to openshells
+<a href="file:///home/dustin/Documents/paper2/papers/zhangtretiak_photoisomization.pdf">file:///home/dustin/Documents/paper2/papers/zhangtretiak_photoisomization.pdf</a>
+Shows Non-Radiative Relaxation of 4‐Styrylquinoline
+<a href="file:///home/dustin/Documents/paper2/papers/pandaplasser2020.pdf">file:///home/dustin/Documents/paper2/papers/pandaplasser2020.pdf</a>
+Torsion potential vs length of ppv
+<a href="file:///home/dustin/Documents/paper2/papers/tretiaksaxena2002.pdf">file:///home/dustin/Documents/paper2/papers/tretiaksaxena2002.pdf</a>
+Analyzes bla and torsions effect on bla dynamics
+<a href="file:///home/dustin/Documents/paper2/papers/tretiakmukamel2002.pdf">file:///home/dustin/Documents/paper2/papers/tretiakmukamel2002.pdf</a>
+Long article describing the CEO Method
+<a href="file:///home/dustin/Documents/paper2/papers/tretiakmukamel2002.pdf">file:///home/dustin/Documents/paper2/papers/tretiakmukamel2002.pdf</a>
+Very mathematically descriptive explanation of CEO applied to TDDFT
+<a href="file:///home/dustin/Documents/paper2/papers/wongwant1998.pdf">file:///home/dustin/Documents/paper2/papers/wongwant1998.pdf</a>
+Experiment showing ultrafast planarization of oligimors
+<a href="file:///home/dustin/Documents/paper2/papers/martens2016.pdf">file:///home/dustin/Documents/paper2/papers/martens2016.pdf</a>
+Revisists Mukamels and Tretiak's work
+<a href="file:///home/dustin/Documents/paper2/papers/martens2020.pdf">file:///home/dustin/Documents/paper2/papers/martens2020.pdf</a>
+Applies surface hopping using selection by consensus 
+<a href="file:///home/dustin/Documents/paper2/papers/akimovprzhdo2014.pdf">file:///home/dustin/Documents/paper2/papers/akimovprzhdo2014.pdf</a>
+Reformulates surface hopping to include entanglement and correlation of trajectories
+<a href="file:///home/dustin/Documents/paper2/papers/perkinsherraez2015.pdf">file:///home/dustin/Documents/paper2/papers/perkinsherraez2015.pdf</a>
+Applies surface hopping to analyze energy transfer and collisional quenching
+<a href="file:///home/dustin/Documents/paper2/papers/jasperstechmann2002.pdf">file:///home/dustin/Documents/paper2/papers/jasperstechmann2002.pdf</a>
+Adds Time Uncertainty to surface hopping 
+<a href="file:///home/dustin/Documents/paper2/papers/jasper2002.pdf">file:///home/dustin/Documents/paper2/papers/jasper2002.pdf</a>
+Adds a new method for treating classically forbidden hops during fewest switches
 </p>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: dustin</p>
-<p class="date">Created: 2020-05-27 Wed 11:40</p>
+<p class="date">Created: 2020-05-30 Sat 10:52</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

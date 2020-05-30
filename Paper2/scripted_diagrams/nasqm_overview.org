@@ -1,0 +1,32 @@
+#+BEGIN_SRC plantuml :file nasqm_overview.png
+@startuml
+|#AntiqueWhite|AMBER|
+|Sync|
+start
+:QM coordinates;
+:thermostat parameters;
+|#AntiqueWhite|NEXMD|
+:calculate QM energies;
+:account for trivial crossings;
+:propogate coefficients;
+:calculate QM forces;
+|Sync|
+:QM energies, forces, and density matrix;
+|AMBER|
+:finish force calculations;
+:propogate nuclear velocities;
+|Sync|
+:QM accelerations and velocities;
+|NEXMD|
+:choose state using fewest switches;
+|AMBER|
+:propogate nuclear coordinates;
+:generate thermostat parameters;
+|Sync|
+stop
+@endum
+#+end_src
+
+#+RESULTS:
+[[file:nasqm_overview.png]]
+

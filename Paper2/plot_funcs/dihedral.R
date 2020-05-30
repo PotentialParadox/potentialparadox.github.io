@@ -132,13 +132,13 @@ s1_ppv3_no2_vac_far <- collect_dihedrals(runtime = 10,
 # Near angles are [[7,8,9,10],[16,15,14,13]
 # Far angles are [[18,17,16,15], [16,15,14,13]]
 # 260 Trajectories
-sm_ppv3_no2_vac_near <- collect_dihedrals(runtime = 0.5,
+sm_ppv3_no2_vac_near <- collect_dihedrals(runtime = 1,
                                          infile = 'dihedral-ppv3-no2-sm-1.csv',
                                          state = "Sm",
                                          solvent = "Vacuum",
                                          location = 'Near')
 
-sm_ppv3_no2_vac_far <- collect_dihedrals(runtime = 0.5,
+sm_ppv3_no2_vac_far <- collect_dihedrals(runtime = 1,
                                          infile = 'dihedral-ppv3-no2-sm-2.csv',
                                          state = "Sm",
                                          solvent = "Vacuum",
@@ -162,8 +162,8 @@ ppv3_no2_vac_dihedral_data <- bind_rows(
   s0_ppv3_no2_vac_far,
   s1_ppv3_no2_vac_near,
   s1_ppv3_no2_vac_far,
-  sm_ppv3_no2_vac_near_1ps,
-  sm_ppv3_no2_vac_far_1ps
+  sm_ppv3_no2_vac_near,
+  sm_ppv3_no2_vac_far
 ) %>% 
   mutate(Location = as.factor(Location)) %>%
   mutate(State = as.factor(State)) %>% 
@@ -220,11 +220,6 @@ plot_dihedrals(dihedral_data,
                legend_breaks = legend_breaks,
                labels = legend_labels,
                state_colors = my_colors)
-
-
-
-plot_dihedrals(dihedral_data, description = "Solvent")
-
 
 
 
@@ -351,16 +346,15 @@ legend_labels <- c(
   "Methanol 5QM Far"
 )
 my_colors <- c(
-  "#EE421D",
-  "#994a39",
-  "#999999",
-  "#27AED6",
-  "#547d8a",
-  "#2ECDFC",
-  "#399944",
-  "#6a3999",
-  "#107836",
-  "#22E368"
+  "Vacuum" = "#EE421D",
+  "Vacuum-Near" = "#994a39",
+  "Vacuum-Far" = "#ff9780",
+  "Methanol" = "#1b3ccf",
+  "Methanol-Near" = "#122a94",
+  "Methanol-Far" = "#5c78f7",
+  "Methanol 5QM" = "#19a823",
+  "Methanol 5QM-Near" = "#0f6615",
+  "Methanol 5QM-Far" = "#5df567"
 )
 plot_dihedrals(
   dihedral_data = dihedral_data,
