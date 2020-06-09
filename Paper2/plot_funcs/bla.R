@@ -156,15 +156,15 @@ legend_labels <- c(
   expression(paste(S[m], " Far"))
 )
 my_colors <- c(
-  "#EE421D",
-  "#F0755A",
-  "#681F0F",
-  "#27AED6",
-  "#2ECDFC",
-  "#299999",
-  "#18A74C",
-  "#107836",
-  "#22E368"
+  "S0" = "#EE421D",
+  "S0-Near" = "#681F0F",
+  "S0-Far" = "#F0755A",
+  "S1" = "#27AED6",
+  "S1-Near" = "#299999",
+  "S1-Far" = "#2ECDFC", 
+  "Sm" = "#18A74C",
+  "Sm-Near" = "#107836",
+  "Sm-Far" = "#22E368"
 )
 
 plot_blas(

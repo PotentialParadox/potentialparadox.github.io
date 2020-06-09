@@ -236,6 +236,7 @@ Larger jumps are possible.  Generally, a switch from state i, to k will occur if
 
 * Computational Timings
 * Simulation Methods
+[[./scripted_diagrams/simulations-1.png]]
 ** Ground State Sampling
 We equilibrated the system to a temperature set to 300K. To collect a broad
 enough sampling, we sampled from a 1024 ps, with a 0.5 fs timestep fully
@@ -450,4 +451,29 @@ Applies surface hopping to analyze energy transfer and collisional quenching
 Adds Time Uncertainty to surface hopping 
 [[~/Documents/paper2/papers/jasper2002.pdf]]
 Adds a new method for treating classically forbidden hops during fewest switches
-
+[[~/Documents/paper2/papers/tully1990.pdf]]
+Original surface hopping method
+[[~/Documents/paper2/papers/tully2012.pdf]]
+##born1954dynamical##
+##born1927quantentheorie##
+Original paper on born openheimer expansion
+[[~/Documents/paper2/papers/subotnikalguire.pdf]]
+Only approximately diabatic representations exist for polyatomic molecules
+##joos2013decoherence
+Book on decoherence
+[[~/Documents/paper2/papers/landrysubotnik2011.pdf]]
+Why Decoherence can't be ignored
+[[~/Documents/paper2/papers/prezhdorossky1997.pdf]]
+Questions whether Decoherence should be ignored
+[[~/Documents/paper2/papers/tammies_thesis_chapter7.pdf]]
+How tammie solves the decoherence problem
+[[~/Documents/paper2/papers/websterschnitker1991.pdf]]
+Describes a decoherence approach where you project after every time step
+[[~/Documents/paper2/papers/habershonmanolopoulos2013.pdf]]
+Alternative approach to FSSH & Ehrenfest |  Ring-Polymer Molecular Dynamics
+[[~/Documents/paper2/papers/kapral2006.pdf]]
+Quantum-classical Liouville dynamics
+[[~/Documents/paper2/papers/silvathiel2010.pdf]]
+Benchmarks performance of AM1
+[[~/Documents/paper2/papers/morankelley2003.pdf]]
+Applies AM1 to chromophores
