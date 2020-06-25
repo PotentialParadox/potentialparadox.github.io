@@ -413,7 +413,6 @@ The torsion angle around the vinylene segments have been shown to be highly coup
 ** Wiberg Bond Analysis
 
 * Bibliography
-
 bibliographystyle:unsrt
 bibliography:paper2.bib
 * Papers To Read
@@ -421,9 +420,71 @@ bibliography:paper2.bib
   - Major review article
 - [[~/Documents/paper2/papers/parkkuo2013.pdf]]
   - Solvent effects on conjugated molecules
+  - PPVO molecules can be sythesized with the Horner−Wadsworth−Emmons reaction.
+  - Strong dipole-dipole solute-solent interactions responsible for strong solvatochromism
+  - Natural Transition orbitals of S_1 are pulled towards end groups with higher electronegativity
+  - Emission spectra depends much more on end group and solvent that Absorption sepectra
+  - The Stokes shifts in chloroform become even more drastic, varying from 57 nm for H-PPVO to 201 nm for NO 2 -PPVO.
+  - We prescribe smaller Stokes shifts as resulting from the dipole−dipole
+    (i.e., solvent-PPVO) interactions, controlled by the diffof ground and
+    excited state permanent dipoles of the substituted PPVO, as well as solvent
+    polarity, constituting the commonly observed solvatochromic effects.
+  - In contrast, we attribute the larger Stokes shifts to chromophore aggregation
+    where the close-packed PPVOs have strong intermolecular interactions leading
+    to the appearance of low-lying weakly emitting intermolecular excited
+    states. These aggregated states strongly affect excited states lifetimes and
+    PL quantum yield
+  - Absorption is dominated by single molecule absorption.
+  - Chromophore concentration does not affect spectra's
+  - Suggests that the spectroscopic shift is proportional to the weighted sum of g(ε static ) and g(ε optic ).
+  - Spectra of Chloroform
+    | Concentration | Absorption      | PL               | Description        |
+    | e-2 to e-7 M  | 427 nm (2.9 eV) | 632 nm (1.96 ev) | Aggregate Emission |
+    | < e-7 M       |                 | 480 nm (2.58 ev) | Single Molecule    |
+  - Spectra PPV3-NO2 over solvents e-6 M
+    | Solvent    | Absorption       | PL               |
+    | Chloroform | ~427 nm (2.9 eV) | 630 nm (1.96 ev) |
+    | DMSO       | ~427 nm (2.9 eV) | 500 nm (2.48 ev) |
+  - Such strong solvatochromism occurs due to combination of electrostatic
+    PPVO-solvent interactions intramolecular charge transfer, and aggregate
+    formation in solution.
 - [[~/Documents/paper2/papers/sifainbjorgaard2018.pdf]]
   - Sovlent effects on non-adiabatic dynamics of ppvo derivatives
   - Relaxation dependent on solvent
+  - PPVO stands for oligo(p-phenylenevinylene)
+  - Performs calculations with implicit solvent using CPCM treats the solvent as
+    a conductor which simpliﬁes numerical integration of Poisson’s equation at
+    the solute−solvent boundary.
+  - Trivial Crossing were taken into account
+  - In order to guarantee statistical convergence, each ensemble was comprised
+    of 635 trajectories.
+  - The laser excitations are at 4.30 eV with 0.15 eV line widths which mimic
+    the initial excitation for nonadiabatic dynamics into high-energy absorption
+    bands.
+  - Transitions are independent of molecular conformations across all ground
+    state dynamical data,
+  - {H, NO 2 } favors charge transfer toward the NO_2.
+  - To show relative diﬀerences in excited state energies as a function of ϵ,
+    the PESs of each molecule were shifted by their mean ground state energies
+    with ϵ = 1.
+    | Dielectric | Shift    |
+    |          1 | N.A      |
+    |         20 | 0.76 eV  |
+    |          2 | ~0.03 eV |
+    |          5 | ~0.6 eV  |
+  - Increasing solvent polarity stabilizes the energy levels and the degree of
+    stabilization depends on donor−acceptor groups, where more polar molecules
+    (i.e., {H, NO 2 } and {NH 2 , NO 2 }) are further stabilized in more polar
+    solvents.
+  - PPV3-NO2 has much quicker relazation times than PPV3 Should use for comparison
+  - Higher Dielectric dramatically slows relaxation times
+- [[~/Documents/paper2/papers/wooliu2005.pdf]]
+  - Further Studies on solvent effects on PPV groups
+  - Understanding how aqueous media influence the linear spectroscopy and TPA
+    15-17 of π-conjugated systems is of importance for fully optimizing
+    fluorescent tags used in two- photon fluorescence microscopy (TPM) 18 of
+    biological samples,such as living cells.
+  - Displays a redshift for PL spectra for higher dielectric solvents
 - [[~/Documents/paper2/papers/nelsonfernandez2011.pdf]]
   - Tammies Thesis Chapter 4
 - [[~/Documents/paper2/papers/tammies_thesis_chapter3.pdf]]
@@ -546,3 +607,27 @@ bibliography:paper2.bib
   - Describes how good AM1 heat of formation
 - [[~/Documents/paper2/papers/tretiaksaxena2001.pdf]]
   - AM1 with CEO fits well with experiments
+- [[~/Documents/paper2/papers/zhengfernandez2017.pdf]]
+  - Applies NEXMD to chlorphyll
+- [[~/Documents/paper2/papers/vincentmuuronen2016.pdf]]
+  - Describes why na dynamics is important even in reactions with closed shell reactants and products
+- [[~/Documents/paper2/papers/katanterenziani2005.pdf]]
+  - Light harvesting organic conjugated molecules
+- [[~/Documents/paper2/papers/dykstrahennebicq2008.pdf]]
+  - Experimental study showing how PPV3 forms conformational subunits defined by conjugations breaks
+- [[~/Documents/paper2/papers/nelsonondarse2018.pdf]]
+  - Nature paper by Tammie and Dianelys on following coherent exciton-vibratinal dynamics in conjugated systems
+- [[~/Documents/paper2/papers/rozzifalke2013.pdf]]
+  - Another Nature Article Applying NAMD for light harvesting predictions
+- [[~/Documents/paper2/papers/solerroitberg2012.pdf]]
+  - Adrian's paper on Unidirection energy tranjufer in conjugated dendrimers using NEXMD following state-specific vibrations
+- [[~/Documents/paper2/papers/solernelson2014.pdf]]
+  - Further calculations on signatures between nacoulpling and vibrational modes
+- [[~/Documents/paper2/papers/bagchi1989.pdf]]
+  - Emphasise importance of solvents on dynamics
+- [[~/Documents/paper2/papers/sohong2012.pdf]]
+  - Experimental paper on PPV3 oligimors and spectras
+- [[~/Documents/paper2/papers/cardozoaquino2014.pdf]]
+  - Experimental paper on PPV3 with spectra
+
+
