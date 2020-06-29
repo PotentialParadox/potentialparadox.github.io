@@ -257,7 +257,7 @@ initial conditions for the following pulse pump calculations.
 *** Explain the pulse pump experiment
 Pump-Probe Spectroscopy is and experimental technique commonly performed in the
 study of ultrafast electonic statte dynamics. In the case of conjugated polymers
-in can be used to study the dlocalized excictronic tranisions that are
+in can be used to study the localized excictronic tranisions that are
 accessible through and excitation of the S1 state but not the ground state S0.
 To simulate this behavior, we take the final snapshot of the QM ground state
 calculations and perform a single point calculation at the S1 state to find the
@@ -413,67 +413,221 @@ The torsion angle around the vinylene segments have been shown to be highly coup
 ** Wiberg Bond Analysis
 
 * Bibliography
-
 bibliographystyle:unsrt
 bibliography:paper2.bib
 * Papers To Read
-[[~/Documents/paper2/papers/tammies_review.pdf]]
-Major review article
-[[~/Documents/paper2/papers/sifainbjorgaard2018.pdf]]
-Sovlent effects on non-adiabatic dynamics of ppvo derivatives
-[[~/Documents/paper2/papers/tammies_thesis_chapter3.pdf]]
-Also gives and explanation of computations of excited states
-[[~/Documents/paper2/papers/tammies_thesis_chapter6.pdf]]
-Shows transfer of energy density of long chained ppv oligimors
-[[~/Documents/paper2/papers/tammies_open_shell.pdf]]
-Nexmd applied to openshells
-[[~/Documents/paper2/papers/zhangtretiak_photoisomization.pdf]]
-Shows Non-Radiative Relaxation of 4‐Styrylquinoline
-[[~/Documents/paper2/papers/pandaplasser2020.pdf]]
-Torsion potential vs length of ppv
-[[~/Documents/paper2/papers/tretiaksaxena2002.pdf]]
-Analyzes bla and torsions effect on bla dynamics
-[[~/Documents/paper2/papers/tretiakmukamel2002.pdf]]
-Long article describing the CEO Method
-[[~/Documents/paper2/papers/tretiakmukamel2002.pdf]]
-Very mathematically descriptive explanation of CEO applied to TDDFT
-[[~/Documents/paper2/papers/wongwant1998.pdf]]
-Experiment showing ultrafast planarization of oligimors
-[[~/Documents/paper2/papers/martens2016.pdf]]
-Revisists Mukamels and Tretiak's work
-[[~/Documents/paper2/papers/martens2020.pdf]]
-Applies surface hopping using selection by consensus 
-[[~/Documents/paper2/papers/akimovprzhdo2014.pdf]]
-Reformulates surface hopping to include entanglement and correlation of trajectories
-[[~/Documents/paper2/papers/perkinsherraez2015.pdf]]
-Applies surface hopping to analyze energy transfer and collisional quenching
-[[~/Documents/paper2/papers/jasperstechmann2002.pdf]]
-Adds Time Uncertainty to surface hopping 
-[[~/Documents/paper2/papers/jasper2002.pdf]]
-Adds a new method for treating classically forbidden hops during fewest switches
-[[~/Documents/paper2/papers/tully1990.pdf]]
-Original surface hopping method
-[[~/Documents/paper2/papers/tully2012.pdf]]
-##born1954dynamical##
-##born1927quantentheorie##
-Original paper on born openheimer expansion
-[[~/Documents/paper2/papers/subotnikalguire.pdf]]
-Only approximately diabatic representations exist for polyatomic molecules
-##joos2013decoherence
-Book on decoherence
-[[~/Documents/paper2/papers/landrysubotnik2011.pdf]]
-Why Decoherence can't be ignored
-[[~/Documents/paper2/papers/prezhdorossky1997.pdf]]
-Questions whether Decoherence should be ignored
-[[~/Documents/paper2/papers/tammies_thesis_chapter7.pdf]]
-How tammie solves the decoherence problem
-[[~/Documents/paper2/papers/websterschnitker1991.pdf]]
-Describes a decoherence approach where you project after every time step
-[[~/Documents/paper2/papers/habershonmanolopoulos2013.pdf]]
-Alternative approach to FSSH & Ehrenfest |  Ring-Polymer Molecular Dynamics
-[[~/Documents/paper2/papers/kapral2006.pdf]]
-Quantum-classical Liouville dynamics
-[[~/Documents/paper2/papers/silvathiel2010.pdf]]
-Benchmarks performance of AM1
-[[~/Documents/paper2/papers/morankelley2003.pdf]]
-Applies AM1 to chromophores
+- [[~/Documents/paper2/papers/tammies_review.pdf]]
+  - Major review article
+- [[~/Documents/paper2/papers/parkkuo2013.pdf]]
+  - Solvent effects on conjugated molecules
+  - PPVO molecules can be sythesized with the Horner−Wadsworth−Emmons reaction.
+  - Strong dipole-dipole solute-solent interactions responsible for strong solvatochromism
+  - Natural Transition orbitals of S_1 are pulled towards end groups with higher electronegativity
+  - Emission spectra depends much more on end group and solvent that Absorption sepectra
+  - The Stokes shifts in chloroform become even more drastic, varying from 57 nm for H-PPVO to 201 nm for NO 2 -PPVO.
+  - We prescribe smaller Stokes shifts as resulting from the dipole−dipole
+    (i.e., solvent-PPVO) interactions, controlled by the diffof ground and
+    excited state permanent dipoles of the substituted PPVO, as well as solvent
+    polarity, constituting the commonly observed solvatochromic effects.
+  - In contrast, we attribute the larger Stokes shifts to chromophore aggregation
+    where the close-packed PPVOs have strong intermolecular interactions leading
+    to the appearance of low-lying weakly emitting intermolecular excited
+    states. These aggregated states strongly affect excited states lifetimes and
+    PL quantum yield
+  - Absorption is dominated by single molecule absorption.
+  - Chromophore concentration does not affect spectra's
+  - Suggests that the spectroscopic shift is proportional to the weighted sum of g(ε static ) and g(ε optic ).
+  - Spectra of Chloroform
+    | Concentration | Absorption      | PL               | Description        |
+    | e-2 to e-7 M  | 427 nm (2.9 eV) | 632 nm (1.96 ev) | Aggregate Emission |
+    | < e-7 M       |                 | 480 nm (2.58 ev) | Single Molecule    |
+  - Spectra PPV3-NO2 over solvents e-6 M
+    | Solvent    | Absorption       | PL               |
+    | Chloroform | ~427 nm (2.9 eV) | 630 nm (1.96 ev) |
+    | DMSO       | ~427 nm (2.9 eV) | 500 nm (2.48 ev) |
+  - Such strong solvatochromism occurs due to combination of electrostatic
+    PPVO-solvent interactions intramolecular charge transfer, and aggregate
+    formation in solution.
+- [[~/Documents/paper2/papers/sifainbjorgaard2018.pdf]]
+  - Sovlent effects on non-adiabatic dynamics of ppvo derivatives
+  - Relaxation dependent on solvent
+  - PPVO stands for oligo(p-phenylenevinylene)
+  - Performs calculations with implicit solvent using CPCM treats the solvent as
+    a conductor which simpliﬁes numerical integration of Poisson’s equation at
+    the solute−solvent boundary.
+  - Trivial Crossing were taken into account
+  - In order to guarantee statistical convergence, each ensemble was comprised
+    of 635 trajectories.
+  - The laser excitations are at 4.30 eV with 0.15 eV line widths which mimic
+    the initial excitation for nonadiabatic dynamics into high-energy absorption
+    bands.
+  - Transitions are independent of molecular conformations across all ground
+    state dynamical data,
+  - {H, NO 2 } favors charge transfer toward the NO_2.
+  - To show relative diﬀerences in excited state energies as a function of ϵ,
+    the PESs of each molecule were shifted by their mean ground state energies
+    with ϵ = 1.
+    | Dielectric | Shift    |
+    |          1 | N.A      |
+    |         20 | 0.76 eV  |
+    |          2 | ~0.03 eV |
+    |          5 | ~0.6 eV  |
+  - Increasing solvent polarity stabilizes the energy levels and the degree of
+    stabilization depends on donor−acceptor groups, where more polar molecules
+    (i.e., {H, NO 2 } and {NH 2 , NO 2 }) are further stabilized in more polar
+    solvents.
+  - PPV3-NO2 has much quicker relazation times than PPV3 Should use for comparison
+  - Higher Dielectric dramatically slows relaxation times
+- [[~/Documents/paper2/papers/wooliu2005.pdf]]
+  - Further Studies on solvent effects on PPV groups
+  - Understanding how aqueous media influence the linear spectroscopy and TPA
+    15-17 of π-conjugated systems is of importance for fully optimizing
+    fluorescent tags used in two- photon fluorescence microscopy (TPM) 18 of
+    biological samples,such as living cells.
+  - Displays a redshift for PL spectra for higher dielectric solvents
+- [[~/Documents/paper2/papers/nelsonfernandez2011.pdf]]
+  - Tammies Thesis Chapter 4
+- [[~/Documents/paper2/papers/tammies_thesis_chapter3.pdf]]
+  - Also gives and explanation of computations of excited states
+- [[~/Documents/paper2/papers/tammies_thesis_chapter6.pdf]]
+  - Shows transfer of energy density of long chained ppv oligimors
+- [[~/Documents/paper2/papers/tammies_open_shell.pdf]]
+  - Nexmd applied to openshells
+- [[~/Documents/paper2/papers/zhangtretiak_photoisomization.pdf]]
+  - Shows Non-Radiative Relaxation of 4‐Styrylquinoline
+- [[~/Documents/paper2/papers/pandaplasser2020.pdf]]
+  - Torsion potential vs length of ppv
+- [[~/Documents/paper2/papers/tretiaksaxena2002.pdf]]
+  - Analyzes bla and torsions effect on bla dynamics
+- [[~/Documents/paper2/papers/tretiakmukamel2002.pdf]]
+  - Long article describing the CEO Method and how to analyze TDM
+- [[~/Documents/paper2/papers/tretiakmukamel2002.pdf]]
+  - Very mathematically descriptive explanation of CEO applied to TDDFT
+- [[~/Documents/paper2/papers/wongwant1998.pdf]]
+  - Experiment showing ultrafast planarization of oligimors
+- [[~/Documents/paper2/papers/martens2016.pdf]]
+  - Revisists Mukamels and Tretiak's work
+- [[~/Documents/paper2/papers/martens2020.pdf]]
+  - Applies surface hopping using selection by consensus 
+- [[~/Documents/paper2/papers/akimovprzhdo2014.pdf]]
+  - Reformulates surface hopping to include entanglement and correlation of trajectories
+- [[~/Documents/paper2/papers/perkinsherraez2015.pdf]]
+  - Applies surface hopping to analyze energy transfer and collisional quenching
+- [[~/Documents/paper2/papers/jasperstechmann2002.pdf]]
+  - Adds Time Uncertainty to surface hopping 
+- [[~/Documents/paper2/papers/jasper2002.pdf]]
+  - Adds a new method for treating classically forbidden hops during fewest switches
+- [[~/Documents/paper2/papers/tully1990.pdf]]
+  - Original surface hopping method
+- [[~/Documents/paper2/papers/tully2012.pdf]]
+- ##born1954dynamical##
+- ##born1927quantentheorie##
+  - Original paper on born openheimer expansion
+- [[~/Documents/paper2/papers/subotnikalguire.pdf]]
+  - Only approximately diabatic representations exist for polyatomic molecules
+- ##joos2013decoherence
+  - Book on decoherence
+- [[~/Documents/paper2/papers/landrysubotnik2011.pdf]]
+  - Why Decoherence can't be ignored
+- [[~/Documents/paper2/papers/prezhdorossky1997.pdf]]
+  - Questions whether Decoherence should be ignored
+- [[~/Documents/paper2/papers/tammies_thesis_chapter7.pdf]]
+  - How tammie solves the decoherence problem
+- [[~/Documents/paper2/papers/websterschnitker1991.pdf]]
+  - Describes a decoherence approach where you project after every time step
+- [[~/Documents/paper2/papers/habershonmanolopoulos2013.pdf]]
+  - Alternative approach to FSSH & Ehrenfest | Ring-Polymer Molecular Dynamics
+- [[~/Documents/paper2/papers/kapral2006.pdf]]
+  - Quantum-classical Liouville dynamics
+- [[~/Documents/paper2/papers/silvathiel2010.pdf]]
+  - Benchmarks performance of AM1
+- [[~/Documents/paper2/papers/morankelley2003.pdf]]
+  - Applies AM1 to chromophores
+- [[~/Documents/paper2/papers/tavernellibasile2010.pdf]]
+  - Nonadiabatic coupling vectors for excitedstates within time-dependent
+    densityfunctional theory in the Tamm–Dancoffapproximation and beyond
+- [[~/Documents/paper2/papers/tommasinichernyak2001.pdf]]
+  - Closed expressions for nonadiabatic couplings are derived using the
+    collective electronic oscillators (CEO) algorithm based on the
+    time‐dependent Hartree–Fock equations. Analytic derivatives allow the
+    calculation of transition density matrices and potential surfaces at
+    arbitrary nuclear geometries using a molecular dynamics trajectory that only
+    requires a CEO calculation at a single configuration. © 2001 John Wiley &
+    Sons, Inc. Int J Quantum Chem, 2001
+- [[~/Documents/paper2/papers/oubellchambers2015.pdf]]
+  - We present a complete derivation of derivative couplings between excited
+    states in the frame-work of adiabatic time-dependent density functional
+    response theory
+- [[~/Documents/paper2/papers/marcus1956.pdf]]
+  - Theorizes non-adiabatic solvent effects
+- [[~/Documents/paper2/papers/martinhay1998.pdf]]
+  - Hydrolysis of Ferric Ion in Water and Conformational Equilibrium. Experimental results of solvent effects
+- [[~/Documents/paper2/papers/schwartzpeteau1991.pdf]]
+  - Investigation of ultra fast excited state intramolecular proton transer of 3-hydroxyflavone
+- [[~/Documents/paper2/papers/baylissmcrae1954.pdf]]
+  - Early paper describing how solvents could shift spectras
+- [[~/Documents/paper2/papers/warshellevitt1976.pdf]]
+  - Original paper on QM/MM
+- [[~/Documents/paper2/papers/weingarcaravelli2012.pdf]]
+  - Applies nonadiabatic QM/MM to rhodopsin
+- [[~/Documents/paper2/papers/demoulinaltavilla2018.pdf]]
+  - Applies nonadiabatic QM/MM to fine tune retinal photoinduced decay in solutions
+- [[~/Documents/paper2/papers/weingartnenov2018.pdf]]
+  - COBRAMM 2.0—A software interface for tailoring molecular electronicstructure
+    calculations and running nanoscale (QM/MM) simulations
+- [[~/Documents/paper2/papers/paterliniferguson1998.pdf]]
+  - Using Langevin Equation with verlet integration
+- [[~/Documents/paper2/papers/shenaifernandez2016.pdf]]
+  - Thermostats should be included in ground state sampline, not much of an effect on namd in large molecules
+- [[~/Documents/paper2/papers/barbatti2011.pdf]]
+  - Describes trajectory surface hopping
+- [[~/Documents/paper2/papers/niklassontymczak2006.pdf]]
+  - Time Reversible b-o dynamics
+- [[~/Documents/paper2/papers/bjorgaardsheppard2018.pdf]]
+  - extended lagrangian applied to nexmd
+- [[~/Documents/paper2/papers/nelsonnaumov2016.pdf]]
+  - Can get a speed up if you ignore high energy states in NACR calculations
+- [[~/Documents/paper2/papers/fanghammes1999.pdf]]
+  - Describes the problem of trivial unavoided crossings
+- [[~/Documents/paper2/papers/wangbeljonne.pdf]]
+  - Flexible surface hopping
+- [[~/Documents/paper2/papers/tretiakisborn2009.pdf]]
+  - Compares iterative procedures such as davidson, lanczoz, arooldi, for RPA iterative solutions
+- [[~/Documents/paper2/papers/tretiakchernyak1996.pdf]]
+  - Original paper on the CEO approach
+- [[~/Documents/paper2/papers/wumalinintretiak2006.pdf]]
+  - Nature article on applying naesmd to find exiton-scattering on conjugated polymers
+- [[~/Documents/paper2/papers/martin2003.pdf]]
+  - Natural transition orbitals
+- [[~/Documents/paper2/papers/hernandeznelson2016.pdf]]
+  - Describes how to extract energy flow using NEXMD on mulitchromophoric molecules
+- [[~/Documents/paper2/papers/mukameltretiak1997.pdf]]
+  - Other original paper on the CEO Approach
+- [[~/Documents/paper2/papers/stewart2003.pdf]]
+  - Describes how good AM1 heat of formation
+- [[~/Documents/paper2/papers/tretiaksaxena2001.pdf]]
+  - AM1 with CEO fits well with experiments
+- [[~/Documents/paper2/papers/zhengfernandez2017.pdf]]
+  - Applies NEXMD to chlorphyll
+- [[~/Documents/paper2/papers/vincentmuuronen2016.pdf]]
+  - Describes why na dynamics is important even in reactions with closed shell reactants and products
+- [[~/Documents/paper2/papers/katanterenziani2005.pdf]]
+  - Light harvesting organic conjugated molecules
+- [[~/Documents/paper2/papers/dykstrahennebicq2008.pdf]]
+  - Experimental study showing how PPV3 forms conformational subunits defined by conjugations breaks
+- [[~/Documents/paper2/papers/nelsonondarse2018.pdf]]
+  - Nature paper by Tammie and Dianelys on following coherent exciton-vibratinal dynamics in conjugated systems
+- [[~/Documents/paper2/papers/rozzifalke2013.pdf]]
+  - Another Nature Article Applying NAMD for light harvesting predictions
+- [[~/Documents/paper2/papers/solerroitberg2012.pdf]]
+  - Adrian's paper on Unidirection energy tranjufer in conjugated dendrimers using NEXMD following state-specific vibrations
+- [[~/Documents/paper2/papers/solernelson2014.pdf]]
+  - Further calculations on signatures between nacoulpling and vibrational modes
+- [[~/Documents/paper2/papers/bagchi1989.pdf]]
+  - Emphasise importance of solvents on dynamics
+- [[~/Documents/paper2/papers/sohong2012.pdf]]
+  - Experimental paper on PPV3 oligimors and spectras
+- [[~/Documents/paper2/papers/cardozoaquino2014.pdf]]
+  - Experimental paper on PPV3 with spectra
+
+
