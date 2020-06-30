@@ -1,0 +1,100 @@
+- Problem
+  - Long conjugated polymers are very good at absorbing energy
+  - Picture of a nano-star
+  - particle in a box
+  - 2 -> 3 -> 4
+  - Strange things can happen in the excited state to either speed or slow this relaxation
+  - Most molecule dynamics programs assume that the motion of the electrons are decoupled from electrons
+    - We're assuming that the electrons are infinitely lighter and quicker than the nuclei.
+    - In this situation, the motion of the nuclie are dependent on the
+      electronic state, and the electronic state is dependent on the nuclie.
+    - How do we deal with this coupling?
+- Solutions
+  - Run Classical Ground State Dynamics then perform Excited Sated Energy Calculations on snapshots
+    - Excited State dynamics could be different.
+      - In the molecules I studied for example, the excited state had a
+        much more planer dynamics than ground state
+  - Run dynamics using the average forces of all the relevant excited states (Ehrenfest)
+    - Often the average force is not a very good approximation of either. 
+    - Think torsion in either direction. The average of these two will be no
+      torsion, but that doesn't represent either very well.
+  - Fewest Switches Surface Hopping (A form of MDQT)
+    - Run a swarm of trajectories that are allowed to switch between different states
+      - The proportion of the population that are on a certain state represent the probability of the state.
+      - Can be very expensive and requires some approximations
+- FSSH
+  - General Outline of the Dynamics
+    - Very Long MM trajectory
+    - Snapshot Every 1 PS, run QM Ground State
+    - Excite the System
+    - Allow each of these trajectories relax on their own.
+      - Sum the population in each state to get state probabilities over time.
+      - Analyze absorption and emission properties by looking at frequencies and oscillator strenghts
+  - The Long MM Trajectory
+    - The goal of our analysis is to derive the probability of states of a solute in solution.
+      - Their are quite a lot of possible conformations for a molecule
+      - A long run is necessary for decent sampling
+    - 1 PS between sample
+    - 500-1000 Samples for 40-60~ish atoms
+  - The QM Ground State Calculation
+    - Picture of Energy Relaxation
+    - The Algorithm used to decide whether to jump is very sensitive to energies.
+    - QM/MM energies are not going to be the same as MM
+    - Some time is needed to properly relax
+  - Excite the System
+    - Show Frank-Condon Chart
+    - We use laser excitations with a wave shape similar to that done in experiment
+    - Due to quantum uncertainty these states are also chosen base on a distribution Frank-Condon method
+    - Energy is not conserved
+    - Velocities and Coordinates are maintained in this step
+  - Let the system relax to steady state
+    - show overlapping state diagram
+    - The molecule will start at a very high excited state
+    - When near a crossing of the energies, we have a very strong coupling, the state can shift
+    - when there's a switch the velocities of the atoms are adjusted to conserve energy.
+      - Draw diagram of a diagram on the ipad
+  - Analyze the results
+    - Show Excited State Energy Relaxation
+    - Show Excited State Population Decay
+- Why With Solvent
+  - NEXMD can perform the above calculations already
+  - The choice to switch states is sensitive to energies
+  - Shift in emission and absorption spectra (Solvatochromic) are known to occur.
+  - NEXMD uses SQM as a backend, which is part of AMBERTOOLS.
+    - Should make it trivial to use a library in AMBER (it doesn't :( )
+  - Applications such as sensors, fluorescent tags, L.E.D's ......
+- How I did it
+  - Show Diagram of Interface
+  - Show Real Diagram of Interface
+- My Test Systems
+  - Show PPV3
+  - Show PPV3-NO2
+  - These systems are smallish
+  - These systems are well studied and show ultra fast relaxations
+  - My chosen Hamiltonian is known to work well with them
+- Spectra Shift of PPV3-NO2
+  - Show Emission Spectra
+  - Solvents with higher dielectric constants cause more a of shift
+  - Explain that this is with 20 closest QM Solvents
+  - larger Stokes shifts to chromophore aggregation
+    where the close-packed PPVOs have strong intermolecular interactions leading
+    to the appearance of low-lying weakly emitting intermolecular excited
+    states.
+  - We prescribe smaller Stokes shifts as resulting from the dipole−dipole
+    (i.e., solvent-PPVO) interactions, controlled by the diffof ground and
+    excited state permanent dipoles of the substituted PPVO, as well as solvent
+    polarity, constituting the commonly observed solvatochromic effects.
+- NonAdiabatic Calculations
+  - 1024 ps ground state at 300k with langevin 2ps$^{-1}$
+  - 1024 Ground QM trajectories for 4 PS
+  - Excited the state to the state with the highest oscillator strength from the first excited state
+    - This simulates a pulse pump laser excitation
+  - System was allow to relax of 500 fs.
+- Populations
+  - Show Population Charts
+- Potential Energies
+  - Show Potential Energies Charts
+- Bond Length Alternation
+  - Show Diagram of PPV3-NO2 with Bond Lables
+  - Show Bond Length Alternation Charts
+- Thank you!
