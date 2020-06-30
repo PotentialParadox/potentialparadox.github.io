@@ -55,6 +55,8 @@
       - Draw diagram of a diagram on the ipad
   - Analyze the results
     - Show Excited State Energy Relaxation
+    - Model the movement of the electron density
+    - View changes in the vibrational degrees of freedom
     - Show Excited State Population Decay
 - Why With Solvent
   - NEXMD can perform the above calculations already

@@ -9,6 +9,7 @@
 \usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,positioning,fit,calc,shapes.geometric}
 \usepackage{gensymb}
 \usepackage{subcaption}
+\usepackage[style=verbose,backend=bibtex]{biblatex}
 \usetikzlibrary{arrows,calc}
 \tikzset{
 %Define standard arrow tip
@@ -30,6 +31,8 @@ connection/.style={thick, dotted},
 \author{Dustin Tracy}
 \institute{University of Florida}
 \date{06/30/20}
+
+\addbibresource{paper2.bib}
 
 \begin{document}
 % Title
@@ -226,7 +229,6 @@ probabilities can be repurposed to follow the physical movement of the excited e
   \includegraphics[width=\textwidth]{Images/ppv3.png}
   \caption{PPV3}
  \end{figure}
- 
   \column{0.45\textwidth}
  \begin{figure}
   \includegraphics[width=\textwidth]{Images/ppvno2.png}
@@ -235,14 +237,110 @@ probabilities can be repurposed to follow the physical movement of the excited e
 \end{columns}
 \begin{block}{}
   \begin{itemize}
-    \item These systems are smallish
+    \item These systems are small
     \item These systems are well studied
     \item The Hamiltonian is known to provide reasonable results
   \end{itemize}
 \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{PPV3-NO$_2$ Solvatochromic Shift }
+  \includegraphics[width=\textwidth]{scripted_diagrams/spectra_simulation.pdf}
+\begin{columns}[c]
+  \column{0.55\textwidth}
+\begin{block}{}
+    \begin{table}[]
+    \begin{tabular}{lll}
+    Solvent & Viscosity &  Dielectric (debye) \\
+      \hline
+      CCL$_4$ & 0.91 & 2.24  \\
+      CH$_3$OH & 0.56 &  32.7 \\
+      CHCl$_3$ & 0.53 & 4.81 
+    \end{tabular}
+    \end{table}
+
+\end{block}
+
+  \column{0.35\textwidth}
+\begin{block}{}
+  Temperature: 300K\\
+  Langevin Constant: 2ps$^{-1}$
+\end{block}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{PPV3-NO$_2$ Solvatochromic Shift }
+\begin{columns}[b]
+  \column{0.45\textwidth}
+ \begin{figure}
+  \includegraphics[width=\textwidth]{Images/spectra_compared.png}
+  \caption{Emission shift found using explicit solvent.}
+ \end{figure}
+  \column{0.45\textwidth}
+ \begin{figure}
+  \includegraphics[width=\textwidth]{Images/sifain.jpeg}
+  \caption{Emission shift found using implicit solvent. Dotted lines are the emission
+    spectra. \footnotemark }
+ \end{figure}
+\end{columns}
+\footcitetext{sifain2018photoexcited}
+\end{frame}
+
+\begin{frame}
+  \frametitle{NonAdiabatic Calculation}
+  \includegraphics[width=\textwidth]{scripted_diagrams/nasimulation.pdf}
+\begin{block}{}
+  Temperature: 300K\\
+  Langevin Constant: 2ps$^{-1}$
+\end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{NonAdiabatic Calculation}
+\includegraphics[width=\textwidth]{Images/all_pops.png}
+Populations for the excited states with extended lifespans for PPV$_{3}$ and
+PPV3-NO$_2$. S$_{m}$ represents the initial state.
+
+\begin{block}{}
+  The addition of the CH$_3$ groups and NO$_2$ dramatically accelerates decay.
+\end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{NonAdiabatic Calculation}
+  \includegraphics[width=\textwidth]{Images/s1.png}
+
+  Population of the first excited state (S$_1$) of PPV3 and PPV3-NO$_{2}$ in
+  various solvents obtained from the fraction of trajectories in each state. NT
+  represents the simulation that did not account for trivial crossings.
 
 \end{frame}
 
+\begin{frame}
+  \frametitle{NonAdiabatic Calculation}
+  \includegraphics[width=0.7\textwidth]{Images/nasifain.jpeg} \footnotemark
+
+  Closest thing to compare the previous results to. An important difference is
+  the initial excited state and the langevin constant. What concerns me is the
+  significant solvent related S$_2$$\rightarrow$S$_1$ decay rate. Currently testing to this.
+
+  \footcitetext{sifain2018photoexcited}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Thank You!}
+  \centering
+  \includegraphics[width=0.4\textwidth]{Images/baby.jpg}
+\end{frame}
+
+
+
+ \begin{frame}
+     \printbibliography
+ \end{frame} 
 
 
 \end{document}
