@@ -6,10 +6,11 @@
 #+COLUMNS: %7TODO(To Do) %32ITEM(Task) %6CLOCKSUM(Clock) %8EFFORT(Estimate){:}
 #+PROPERTY: Effort_ALL 0:05 0:10 0:15 0:30 0:45 1:00 1:30 2:00
 * Introduction
-Because there's such a strong coupling between the vibration excite Electronics
-states of freedom mechanic molecules we must take into account not a tea bag
-Dynamics in order to produce reasonable simulations. We cannot assume that the
-nuclear coordinates are significantly slower than that of the electrons
+When strong couplings between the vibrational electronic states of freedom
+exist, the Born-Oppenheimer approximation breaks. This assumption that nuclear
+coordinate motion is negligible to electronic motion fails to be accurate and
+molecular dynamics must consider non-adiabatic behaviors in order to
+produce reasonably accurate simulations.
 
 This type of research we have a ground thing above the ground state dim sleep
 populated manifold of excited States state board often swapping energy in other
@@ -24,8 +25,8 @@ can range to externally complicated density functional Theory methods to others
 much more simplified to me empirical methods effort must be made to balance
 accuracy to efficiency in this regards.
 
-Hamacas that we're using have a high energy barrier between the ground state in
-the first excited States which matches up with Kasha’s rule.
+PPV_3-NO_2's high energy barrier between its ground state and
+first excited-state matches up with Kasha’s rule.
 
 The characteristics of this electronic manifold overtime to be very useful to a
 multiple of different you scenarios such as the residence in which we care
@@ -75,10 +76,6 @@ and the single electron density matrix for each state of the system is described
   (\mathbf{\rho}_{0\alpha})_{nm} =  \left< \psi_{alpha} \right| c_m^\dagger c_n \left| \psi_0 \right>.
 \end{align*}
 
-The excited state inter-qm region gradients are found by adding the transition
-energies gradients to the ground state gradients, where the transition energy
-gradients are
-
 The forces are then calculated analytically by the gradient of the ground state
 energy and the excited state energy.
 
@@ -95,7 +92,7 @@ With the gradient of the ground state being calculated by
 and the gradient of the excited state being
 
 \begin{align*}
-  \vec{\nabla}\Omega = \mathbf{Tr} \left[ \mathbf{F}^{\vec{R}} (\mathbf{\rho}_{\alpha\alpha} - \mathbf{\rho}_{00})\right]
+  \vec{\nabla}\Omega_{\alpha} = \mathbf{Tr} \left[ \mathbf{F}^{\vec{R}} (\mathbf{\rho}_{\alpha\alpha} - \mathbf{\rho}_{00})\right]
   + \mathbf{Tr} \left[\mathbf{V}^{\vec{R}}\mathbf{\rho}_{0\alpha}^\dagger \mathbf{\rho}_{0\alpha} \right]
 \end{align*}
 
@@ -103,9 +100,11 @@ where \(\mathbf{\rho}_{ij}\) represents the density or transition density matrix
 j, \( \mathbf{F} \) is the Fock matrix,  \( \mathbf{t} \) is the kinetic operator acting on
 one-electron and \( \mathbf{V} \) is the column interchange operator.
 ** Non-Adiabatic
-As each trajectory moves along its potential energy surface, we will consistently check to determine whether a state transition to occur.
-We do so by solving the time dependent Schrodinger equation numerically.
+As each trajectory moves along its potential energy surface, Tully's
+Fewest Switches Surface Hopping algorithm (FSSH) determines when a state
+transitions occurs.cite:tully2012perspective,tully1990molecular  
 
+We define the Hamiltonian be defined as
 \begin{equation} \label{eq:tullyHamiltonian} \mathbf{H} = \mathbf{T}_{R} +
   \mathbf{H}_{0}(\mathbf{r},\mathbf{R})
 \end{equation}
@@ -114,125 +113,103 @@ where the matrix elements of the electron Hamiltonian are
 \begin{equation} \label{eq:tullyVelements}
   V_{ij}(\mathbf(R))=\left<\phi_i(\mathbf{r};\mathbf{R})\right|\mathbf{H}_{0}\left.(\mathbf{r};\mathbf{R})\phi_j(\mathbf{r};\mathbf{R})\right>
 \end{equation}
-We define the non-adiabatic coupling vector as
 
-\begin{equation} \label{eq:tullynacoupling} \mathbf{d}_{ij}\mathbf(R) =
-  \left<\phi_{i}(\mathbf{r};\mathbf{R})\right|\mathbf{\nabla}_{\mathbf{R}}\left.\phi_j(\mathbf{r};\mathbf{R})\right>
-\end{equation}
-We recall that the total wave function can be expanded into a linear
-sum of slaterdeterninants.
+At each step we perform a montecarlo like decision
 
-\begin{equation} \label{eq:psiexpansion} \Psi(\mathbf{r},\mathbf{R},t) =
-  \sum_jc_j(t)\phi_j(\mathbf{r};\mathbf{R}) = c_j\left|\phi_j\right>
+\begin{equation} \label{eq:tullyjump2} 
+\sum_{j=1}^{k-1}g_{ij} < \zeta  \le \sum_{j=1}^{k}g_{ij}
 \end{equation}
-If we take equation \ref{eq:psiexpansion} and place it into the time
-independent Schrodinger's equation,
+hopping from state i to k when
+\begin{equation} \label{eq:tullyjump1} 
+  \zeta < g_{ik}
+\end{equation}
+where \zeta is a uniformly distributed random number from 0 to 1, and
 
-\begin{equation} \label{eq:tullyS1} i\hbar\frac{\partial}{\partial
-    t}c_j\left|\phi_j\right> = \mathbf{H} c_j \left|\phi_j\right>
+\begin{equation}
+g_{ik} = \frac{b_{ki}(t=0)\Delta t}{a_{ii}(t=0)}
 \end{equation}
-We can then apply the chain rule, and multiply each side on the left
-by $\left<\right. \phi \left|\right.$ giving,
 
-\begin{equation} \label{eq:tullyS2}
-  \left<\phi_k\right|i\hbar\left(c_j\left|\right.\dot{\phi}_j\left.\right>+\dot{c}_j\left|\phi_j\right>\right)=\left<\phi_k\right|\mathbf{H}c_j\left|\phi_j\right>
-\end{equation}
-Recognizing that
+with
 
-\begin{equation} \label{eq:tullyS3}
-  \left<\phi_k\right|\dot{\phi}_j\left.\right>=\left<\phi_k\right|\frac{d\mathbf{R}}{dt}\frac{d}{d\mathbf{R}}\left|\phi_j\right>=\dot{\mathbf{R}}\cdot\mathbf{d}_{kj}(\mathbf{R})
+\begin{equation} \label{eq:tullyb2a} 
+b_{kj} =
+        \frac{2}{\hbar}\Im\left(a_{kj}^*V_{kj}\right) - 2\Re\left(a_{kj}^*
+         \dot{\mathbf{R}} \cdot \mathbf{d}_{kj}\right).
 \end{equation}
-equation \ref{eq:tullyS2} simplifies to
+$a_{kj}$ are the off diagonals of the density matrix $a_{kj} = c_k^* c_j$ and
+$\mathbf{d}_{kj}$ is the non-adiabatic coupling vector
 
-\begin{equation} \label{eq:tullyS4}
-  i\hbar\left(c_j\dot{\mathbf{R}}\cdot\mathbf{d}_{kj}+\dot{c}_j\delta_{kj}\right)
-  = c_jV_{kj} \rightarrow i\hbar\dot{c}_k =
-  c_j\left(V_{kj}-i\hbar\dot{\mathbf{R}}\cdot\mathbf{d}_{kj}\right)
+\begin{equation} \label{eq:tullynacoupling} 
+\mathbf{d}_{kj}\mathbf(R) =
+  \left<\phi_{k}(\mathbf{r};\mathbf{R})\right|\mathbf{\nabla}_{\mathbf{R}}\left.\phi_j(\mathbf{r};\mathbf{R})\right>.
 \end{equation}
-If we multiply equation \ref{eq:tullyS4} by $i \hbar \dot{c_{k}}$ and
-subtract from that its complex conjugate multiplied by $i\hbar c_{k}$,
-we get
-\begin{equation} \label{eq:tullyDF2}
-  i\hbar\dot{a}_{kl}=a_{jl}\left(V_{kj} - i\hbar \dot{\mathbf{R}} \cdot
-    \mathbf{d}_{kj} \right) - a_{kj} \left(V_{jl} - i\hbar \dot{\mathbf{R}}
-    \cdot \mathbf{d}_{jk} \right)
-\end{equation}
-where $a_{jl}$ are the density matrix components described by $a_{jl}=c_j^*c_l$.
-Our focus in the paper will be on the diagonal elements of $a$,
-which represent the population densities, that can be convenient
-summarize as
-
-\begin{equation} \label{eq:tullya2b} \dot{a}_{kk} = \sum_{l\ne
-    k}b_{kl},
-\end{equation}
-where
-
-\begin{equation} \label{eq:tullyb2a} b_{kj} =
-  \frac{2}{\hbar}\Im\left(a_{kj}^*V_{kj}\right) - 2\Re\left(a_{kj}^*
-    \dot{\mathbf{R}} \cdot \mathbf{d}_{kj}\right)
-\end{equation}
-This should be read as the rate of change of the kth state population
-is equal to the sum of the changes from the lth state to the kth
-state.
-The nonadiabatic coupling term $\mathbf{R} \cdot \mathbf{d}_{kj}$ is calculated analytically ``on the fly''.\cite{Nelson2014}\cite{Tommasini2001}\cite{Chernyak2000}\cite{Send2010}
-As an example, lets say we have two states $1$ and $2$.
-If we choose a small enough time step, the change in population will be
-approximately the rate the rate of change, and
-
-\begin{equation} \label{eq:tullya2g} \frac{a_{11}(t=\Delta t) -
-    a_{11}(t= 0)}{a_{11}(t=\Delta t)} \approx
-  \frac{\dot{a}_{22}(t=0)\Delta t}{a_{11}(t=0)} =
-  \frac{b_{21}(t=0)\Delta t}{a_{11}(t=0)} = g_{12}
-\end{equation}
-for small $\Delta t$.  $g_{12}$ is defined as the probability of
-moving from state 1 to state 2 in the current time step.  We next
-create a random number $\zeta$ A switch from step 1 to 2 will occur if
-
-\begin{equation} \label{eq:tullyjump1} \zeta < g_{12}
-\end{equation}
-Larger jumps are possible.  Generally, a switch from state i, to k will occur if
-
-\begin{equation} \label{eq:tullyjump2} \sum_{j=1}^{k-1}g_{ij} < \zeta
-  \le \sum_{j=1}^{k}g_{ij}
-\end{equation}
+We use the Collect Oscillator Approach to calculate the non-adiabatic coupling
+terms $\mathbf{R} \cdot \mathbf{d}_{kj}$ ``on the
+fly''. cite:tommasini2001electronic,tretiak1996collective,tretiak2009representation,chernyak2000density
 
 * Computational Design
 #+caption: Swim-lane diagram describing the common timestep of the SANDER-NEXMD interface. label:scheme:nasqm 
-  [[./scripted_diagrams/nasqm_overview.png]]
-** Shown in figure [[ref:scheme:nasqm]] is a scheme describing a common timestep that occurs within the SANDER-NEXMD inferface
-** Starts from Amber
-*** Amber is a collection of programs, seemed appropriate for it to call nexmd
-*** Amber is also the one doing the actual propagation of the system
-*** NEXMD only needs the QM information
-** Amber sends the QM coordinates and thermostat to NEXMD
-*** NEXMD uses the thermostat to interpolate for the intermediary Quantum calculations
-** Calculates the energies using DFT or other semi-empirical methods such as AM1
-** Account for trivial crossings
-*** Need to do on-the-fly calculate the non-adiabatic couplings?
-**** To make many dynamics trajectories practical cite:nelson2020non 
-*** We use an analytical form of the non-adiabatic coupling derived using the Hellman-Feynman theorem. cite:tommasini2001electronic,chernyak2000density 
-  \[
-    \mathbf{d}_{ab}(\mathbf{R}) =
-  \frac{
-    \left< \Psi_a (\mathbf{r}, \mathbf{R}) \right|
-    \nabla_\mathbf{R} \hat{H}_{el} (\mathbf{r}, \mathbf{r})
-    \left| \Psi_b (\mathbf{r}, \mathbf{R}) \right>
-  }
-  {
-    E_b(\mathbf{R}) - E_a(\mathbf{R})
-  }
-  \]
-*** we check the over lap of the overlap of the density functions in the previous state 
-** Calculate QM Forces
-*** Forces are calculated using a analytical solutions FIXME: Show work here?
-** Finish Force Calculations
-*** Explain QM/MM
-** Propogate nuclear velocities
-*** Amber does both MM and QM velocities for 1 time step
-** Fewest Switches
-*** Describe Fewest Switches Here
-** With the new state chosen, AMBER now uses the average velocities to propagate the nuclear coordinates.
-** New random numbers are generated for the thermostats when appropriate
+  [[./scripted_diagrams/nasqm_overview.png]] 
+
+The swim-lane chart in figure ref:scheme:nasqm describes a common time-step that occurs within the SANDER-NEXMD interface.
+First users initiate the program through SANDER, a program found in AMBERTOOLS. 
+SANDER uses NEXMD to calculate the energies and forces of the QM atoms, check for trivial crossings, and propagate the quantum coefficients.
+With these results, SANDER performs the QM/MM procedures to derive the accelerations and velocities for the classical time step. 
+NEXMD then decides whether to perform a state transitions, adjusting the velocities as needed. 
+Finally SANDER propagates the nuclear coordinates and the cycle continues for the rest of the dynamics.
+
+SANDER calls NEXMD providing the function calls with the QM coordinates, MM charges, and Langevin thermostat parameters. 
+NEXMD calculates the energies of the QM atoms with electrostatic interactions from the MM point charges using CIS, TDHF, or TDDFT. 
+A variety of Hamiltonians are available; however, AM1 has been shown to provide very reasonable computational cost to accuracy for our systems of interest.cite:silva2010benchmark
+
+After calculating energies, NEXMD performs a check for non-avoided trivial crossings.
+Computational feasibility of this step requires the calculations of the non-adiabatic .cite:nelson2020non We use an analytical form of the non-adiabatic coupling derived using the Hellman-Feynman theorem. cite:tommasini2001electronic,chernyak2000density 
+
+\[
+ \mathbf{d}_{ab}(\mathbf{R})
+= \frac{ \left< \Psi_a (\mathbf{r}, \mathbf{R}) \right| \nabla_\mathbf{R}
+\hat{H}_{el} (\mathbf{r}, \mathbf{r}) \left| \Psi_b (\mathbf{r}, \mathbf{R})
+\right> } { E_b(\mathbf{R}) - E_a(\mathbf{R}) } 
+\] 
+
+NEXMD then compares the overlap of the density functions of the current step to those in the previous state. 
+If a non-avoided trivial crossings is suspected, addition energy calculations are performed along the interpolation of the classical step, and overlap matrices are compared.
+Trivial crossing will result in a change in state number but will continue to propagate along the most recent potential energy surface. 
+
+NEXMD then propagates the quantum coefficients.
+Generally, this propagation requires a smaller time-step than whats needed for nuclear coordinate propagation, as such, three or four quantum steps are performed for every classical step. 
+These intermediary quantum calculations are performed using nuclear coordinates determined through an interpolation of the classical time step.
+Inclusion of the thermostat parameters allow for fined tuned precision in these interpolations.
+
+Forces are then determined using the analytical solution to the gradient of the energies.
+For the ground state,
+\begin{align*}
+  \vec{\nabla} E_0 = \frac{1}{2}\mathbf{Tr} \left[ \left( \mathbf{t}^{\vec{R}} + \mathbf{F}^{\vec{R}} \right) \mathbf{\rho}_{00} \right]
+\end{align*},
+and for the excitation energy
+\begin{align*}
+  \vec{\nabla}\Omega = \mathbf{Tr} \left[ \mathbf{F}^{\vec{R}} (\mathbf{\rho}_{\alpha\alpha} - \mathbf{\rho}_{00})\right]
+  + \mathbf{Tr} \left[\mathbf{V}^{\vec{R}}\mathbf{\rho}_{0\alpha}^\dagger \mathbf{\rho}_{0\alpha} \right]
+\end{align*}
+where \(\mathbf{\rho}_{ij}\) represents the density or transition density matrix for states i and
+j, \( \mathbf{F} \) is the Fock matrix,  \( \mathbf{t} \) is the kinetic operator acting on
+one-electron and \( \mathbf{V} \) is the column interchange operator.
+
+The energies, forces, and electron densities are returned to SANDER where SANDER's built in QM/MM routines performs the QM/MM calculations using the excited state electron density. 
+The resulting total forces are then used to update the velocities for both MM and QM atoms for a single timestep and are passed back into NEXMD. 
+
+The aformentioned probability of hopping mentioned in theoretical methods can be expanded to 
+\[ 
+g_{\alpha \rightarrow \beta} = 
+-\frac{\Delta t}{\hbar}
+\frac{2\Re\left( c_\alpha(t)c_\beta^*(t) \dot{\vec{R}} \cdot \vec{d}_{\alpha\beta} \right)}
+{| c_\alpha(t) |^2} 
+\] 
+which NEXMD now uses to determine whether a hop between the adiabatic states should occur.
+If a hop occurs, the nuclear velocities are adjusted along the non-adiabatic coupling vector to conserve energy. 
+If a state transition occurs, the velocities of the nuclear atoms are adjusted along the non-adiabatic coupling vectors to conserve energy.
+With the new state chosen, AMBER now uses the average velocities to propagate the nuclear coordinates.
+New random numbers are generated for the thermostats when appropriate.
 
 * Computational Timings
 * Simulation Methods
@@ -251,7 +228,7 @@ Born-Oppenheimer on the molecules to be included in future QM calculations to
 allow the system to relax. The 4 ps timescale was determined using the
 information form the previous paper. The simulations were described the Langevin
 equations at a temperature set to 300 K with the Langevin friction parameter set
-to 20 ps^{-1}. The final frames of these QM trajectories were then used as the
+to 2 ps^{-1}. The final frames of these QM trajectories were then used as the
 initial conditions for the following pulse pump calculations.
 ** Pulse Pump Calculations
 *** Explain the pulse pump experiment
@@ -412,7 +389,6 @@ The torsion angle around the vinylene segments have been shown to be highly coup
 
 ** Wiberg Bond Analysis
 
-* Bibliography
 bibliographystyle:unsrt
 bibliography:paper2.bib
 * Papers To Read
@@ -467,17 +443,21 @@ bibliography:paper2.bib
   - To show relative diﬀerences in excited state energies as a function of ϵ,
     the PESs of each molecule were shifted by their mean ground state energies
     with ϵ = 1.
-    | Dielectric | Shift    |
-    |          1 | N.A      |
-    |         20 | 0.76 eV  |
-    |          2 | ~0.03 eV |
-    |          5 | ~0.6 eV  |
+    | Dielectric | Energy           | Shift    |
+    |          1 | 2.79 eV (444 nm) | N.A      |
+    |         20 | 2.29 eV (541 nm) | 0.76 eV  |
+    |          2 |                  | ~0.03 eV |
+    |          5 |                  | ~0.6 eV  |
   - Increasing solvent polarity stabilizes the energy levels and the degree of
     stabilization depends on donor−acceptor groups, where more polar molecules
     (i.e., {H, NO 2 } and {NH 2 , NO 2 }) are further stabilized in more polar
     solvents.
   - PPV3-NO2 has much quicker relazation times than PPV3 Should use for comparison
   - Higher Dielectric dramatically slows relaxation times
+  - NA Dynamics:
+    - 0.10 fs timestep
+    - 0.02 fs quantum timestep
+    - langevin at 2 ps$^{-1}$
 - [[~/Documents/paper2/papers/wooliu2005.pdf]]
   - Further Studies on solvent effects on PPV groups
   - Understanding how aqueous media influence the linear spectroscopy and TPA
@@ -485,30 +465,277 @@ bibliography:paper2.bib
     fluorescent tags used in two- photon fluorescence microscopy (TPM) 18 of
     biological samples,such as living cells.
   - Displays a redshift for PL spectra for higher dielectric solvents
+  - Found a solvatochromic shift of 636 nm (1.94 eV) - 526 nm (2.35 eV) = -0.31 eV shift at 10^-4 M
 - [[~/Documents/paper2/papers/nelsonfernandez2011.pdf]]
   - Tammies Thesis Chapter 4
+  - Partial Coupling (PC) and Two State (TS) are described for simplifying coupling equations
+  - Coupling simplification is no longer needed due to analytic techniques
+  - Classical Path approximation neglect electronic evolution in nuclear dynamics
+    - Excited state forces can be found analytically
+  - Time constant modeled with 
+    \begin{equation}
+    f(t) = \frac{Ae^{t/\tau}}{A+e^{t/\tau}} - \frac{A}{1+A}
+    \end{equation}
+  - friction coefficient 2.0ps$^{-1}$
+  - 1080 initial configurations
+  - Explains pulse pump simulations
+  - 0.1fs and Na = 3 is the standard to compare with previouse work, but S1 population growth is not extremely dependent on those numbers.
+  - I can get a good feel for the data using a 2.0 fs timestep. This will help a lot in testing.
+  - Higher Langevin Friction Coefficients slow population relaxation
+  - Need at least 100 ps to get adequate sampling.
+  - In general, the ground state trajectory should be lengthened for larger γ
+    val- ues to obtain complete conformational sampling for a given molecular
+    system.
+  - Our analysis indicates that for all tested parameters, for the given
+    molecule, a minimum of 360 trajectories must be computed in order to reach a
+    converged result with less than 5% standard deviation. This can be further
+    reduced to 2% if 720 trajectories are included.
 - [[~/Documents/paper2/papers/tammies_thesis_chapter3.pdf]]
   - Also gives and explanation of computations of excited states
+  - Provides formula for analytic gradients
+  - Provides formula for analytic energies
+  - Provides formula for anlayitc NACRs
+    \begin{equation}
+      \mathbf{d}_{\alpha\beta} = \frac{ \text{Tr} (F^{(R)}\rho_{\alpha\beta})}{\Omega_\alpha - \Omega_\beta},\alpha \neq \beta
+    \end{equation}
+    - Provides formula for anlayitc NACTs
+    \begin{equation}
+      \mathbf{d}_{\alpha\beta} = \frac{ \text{Tr} (F^{(t)}\rho_{\alpha\beta})}{\Omega_\alpha - \Omega_\beta},\alpha \neq \beta
+    \end{equation}
+  - Excited state energy calculations (O(N$^3$))
+  - The TDHF approximation accounts for essential electroniccorrelations
+    (electron-hole interactions plus some additional higher-order terms), 68,75
+    which is sufficient for a reasonably accurate calculation of UV-visible
+    spectra in many extended organic molecular systems. 64
+  - However, excited states with a signiﬁcant double excitation character (e.g.,
+    A g states in polyacetylene) cannot be represented accu- rately with the
+    TDHF and CIS methods.
+  - By saving groundstate density, order of magnitude speedup.
+  - Lowest excited state of PPV3 is B_u symmetric a 2.74 eV and mAg is 1.72 eV from S1 (~2.0eV)
+  - Dynamics:
+    - 540 trajectories
+  - Measures populations
+  - Measures bla
+  - Measures dihedral angles
 - [[~/Documents/paper2/papers/tammies_thesis_chapter6.pdf]]
   - Shows transfer of energy density of long chained ppv oligimors
+  - Following photoexcitation, various nonradiative intraband relaxation
+    pathways can lead to a number of complex processe
+  - Analytical techniques allow the trajectory to be propagated “on the ﬂy”
+    using the complete set of NA coupling terms and remove computational
+    bottlenecks in the evaluation of excited-state gradients and NA couplings.
+  - The statistical ensemble of trajectories used in surface hopping algorithms
+    allows quantum yields (number emitted / number absorbed) and branching ratios (# in particular decay mode/ all decay modes) to be determined
+    quantitatively.
+  - probability flux
+    \begin{equation}
+    \dot{a}_{\alpha\alpha} = \sum_{\beta \neq \alpha} b_{\alpha\beta}
+    \end{equation}
+  - Following a hop, nuclei evolve on the PES of the new state, and energy is
+    conserved by rescaling nuclear velocities along the direction of NACR
+  - If the nuclear kinetic energy is insufficient to allow a hop to higher
+    energy, then the hop is classically forbidden and is rejected.
+  - During NA dynamics, state-speciﬁc forces promote electronic and vibrational
+    energy funneling to the lowest excited state (as seen in light harvesting
+    dendrimers 44−46 ). These ﬁndings discourage any attempt to address
+    photodynamics in extended conjugated molecules using the classical-path
+    approximation (CPA), 47
+  - This simple method is based on the assumption that wavepackets traveling on
+    different surfaces should immediately separate in phase space and evolve
+    independently. The approach provides qualitative improvement in the
+    agreement between classical and quantum systems 29 at no additional
+    computational cost and should also allow the coherent nature of transfer
+    dynamics on ultrafast time scales to be captured; however this requires
+    further study
+  - Diagonal elements of TD matrices represent the net change in the electronic
+    density distribution induced on an atomic orbital when undergoing a ground
+    to excited state transition.
+  - TD analysis allows the evolution of the electronic wave function to be
+    followed providing a simpliﬁed picture of dynamics that does not rely on
+    adiabatic state populations. 28,42,55
+  - Failure to detect trivial unavoided crossings will cause adiabatic states,
+    deﬁned according to their energy ordering, to be misidentiﬁed leading to
+    artifacts in adiabatic state populations. 28,58
+  - Pump−probe spectroscopy of polyﬂuorenes revealed fascinating ultrafast (60
+    fs) relaxation of the highly excited state, S n , back to the lowest energy
+    excited state, S 1 (see Figure 2B for schematic of relevant states). Rivals
+    rhodopsin (pigment found in retinal rods)
+  - Compares sm (single photon excitation) and sn (two photon exciation (pulse pump))
+    - studied on a very long molecule
+    - pulse-pump population relaxation significantly faster
+    - I cannot use sm results to compare with sn results
+    - In particular, owing to the many NA transitions between S n and S 1
+      states, momentum is donated to torsional motion causing nuclei to gain
+      such high kinetic energy that rapid planarization occurs within 100 fs.
+  - Transition density plots show electron-hole distances
+- [[~/Documents/paper2/papers/warshellevitt1976.pdf]]
+  - Original paper on QM/MM
+    - When acid groups ionize, the atoms in it will be plarized, giving induced
+      dipoles which interact with the original electrostatic field of the the
+      net charge. This interaction always reduces the energy of the system as
+      the induced dipoles are always parallel to the electic field inducing
+      them.
+- [[~/Documents/paper2/papers/walkercrowley2007.pdf]]
+  - Implementation of QM/MM in AMBER
+  - Split Hamiltonian into three parts
+    \begin{equation}
+    H = H_{QM} + H_{MM} + H_{QM/MM}
+    \end{equation}
+  - For semiempirical Hamiltonians we follow the MOPAC programs, and use the
+    full electrostatic interactions between the QM charge density (expanded in a
+    STO-6G minimal basis set) and the point charges on the MM atoms.
+  - However, it is well under-stood that long range electrostatic interactions
+    and solvent effects play an important role in the behavior of solvated
+    systems.
+  - Dealing with covalent bonds
+    - Capping Potential (pseudo bond method)
+      - Fictitious element is used to cap each bond between the QM and MM regions
+    - Hybrid Orbital approach
+      - Hybrid or localized frozen orbitals on the QM atom of the QM-MM covalent pair
+    - Link Atom approach (SANDER's)
+      - In this approach a link atom, which is typically, but not always, a hydrogen, is placed along the bond between the QM and MM region at a suitable distance (1 Å) to satisfy valence requirements.
+      - Case 3 is the method currently implemented in Amber 9 where by the link
+        atom interacts with both QM and MM atoms and MM link pair atoms are
+        excluded from all electrostatic interactions.
+    - People running classical force ﬁeld simulations can generally expect that
+      the forces used in MD are accurately the gradients of the potential energy
+      so that a NVE simulation should yield constant total energy with respect
+      to time. However, this has of- ten not been true for QM/MM simulations
+      since the QM portion of a QM/MM calculation uses an iterative SCF
+      procedure, the forces are only sufﬁciently accurate to conserve energy if
+      the difference in energy between subsequent SCF steps is converged to the
+      order of around 1 3 10 28 to 1 3 10 29 kcal/mol.
+    - that only one value of each constant was used throughout the code and that
+      all con- stants and conversion factors are self consistent.
+- [[~/Documents/paper2/papers/tammies_thesis_chapter7.pdf]]
+  - How tammie solves the decoherence problem
+  - the quantum coefficients are evolved coherently along each independent
+    nuclear trajectory. That is, the phase factors, or quantum amplitudes, are
+    retained.
+  - We find that methods that have been used successfully for treating small
+    systems do not necessarily translate to large polyatomic systems and their
+    success depends on the particular system under study.
+  - In principle, decoherence can be included by running a swarm of trajectories
+    with the same initial conditions but with a different random number sequence
+    to determine hops between adiabatic states
+  - Further-more, if one of the divergent wavepackets passes through a region of
+    strong coupling multiple times, the wavepacket may undergo yet another
+    branching event, compounding the original decoherence problem.
+  - In general, the disagreement can be caused by classically forbidden
+    transitions or by the divergence of independent trajectories following
+    passage through a region of strong coupling.
+  - Setting coefficients to unity is justified. This method is physically
+    justified: at an avoided crossing a wavepacket will generally branch into
+    two subpackets carrying the electronic populations. The subpackets,
+    traveling on different surfaces, will separate in phase space and, since
+    they are unlikely to in- teract again, the time average of their phase
+    differences should be zero.
+  - We refer to this scheme as instantaneous decoherence (ID) since it is
+    based on the assumption that following a hop, divergent wavepackets will
+    instantaneously separate in phase space and should immediately undergo
+    independent evolution.
+  - Another method that has demonstrated its success in treating decoherence
+    29–31 while introducing little additional computational effort is the
+    energy-based decoherence correc- tion (EDC) developed by Granucci et al. 17,
+    18 in which the coefficients are rescaled at each classical time step.
+  - The NA-ESMD model combines the FSSH algorithm, as it is used in the MDQT
+    method, 1, 33 with “on the fly” cal- culation of the electronic energies,
+    gradients, and nonadiabatic coupling vectors for the excited states using a
+    Collective Electronic Oscillator (CEO) package. 34–37 The CEO code is based
+    on well-tested semiempirical models combined with the Time-Dependent
+    Hartree-Fock (TDHF) or the Configuration Interaction singles (CIS) formalism
+    to describe correlated excited states. A detailed description of the CEO
+    code and NA-ESMD implementation can be found in Refs.
+  - As the classical system continues to relax to lower energy, the quantum
+    wavepacket gets “left behind.” That is, the wavepacket remains centered at
+    higher energy with respect to the current state with only a small quantum
+    probability for the lowest energy state despite that it is the classically
+    occupied state.
+  - One can imagine that all attempted hops should also be treated as
+    decoherence events, regardless of whether the hop is allowed or forbidden
+    due to energy constraints.
+  - Excitation to S m was performed according to Eq. (10) using a laser centered
+    at λ laser = 245 nm and the excited state energies and oscillator strengths
+    from the theoretical S1 → Sn absorption spectrum. We found that for the S m
+    state, m varied from 8 to 12 due to conformational disorder.
+- [[~/Documents/paper2/papers/tully1990.pdf]]
+  - Original surface hopping method
+  - The importance of tunneling and level quantization effects depends on the
+    ratio of the atomic wavelength to the characteristic range of the potential.
+    Thus these quantum effects are diminished in systems involving large atomic
+    masses and large velocities
+  - The method must be practical
+  - Trajectories must split into branchers
+  - We could determine earch possible path and assign a weight based on its probability
+  - We however employ use monte carlo with the decision to hop given probabilities
+  - The method should obey energy conservation
+  - Thus, transitions should be allowed to occur at any place that the
+    electronic coupling is significant. This is a major limitation of the
+    conventional surface-hopping technique
+  - The probability of a final or intermediate outcome should be obtained simply
+    by summing the trajectories that achieve that outcome.
+  - The nonadiabatic coupling term is
+    \begin{equation}
+      \left< \phi_k \left. \right| \frac{\partial \phi_j}{\partial t} \right > = \dot{\mathbf{R}} \cdot \mathbf{d}(\mathbf{R})
+    \end{equation}
+  - Strongest coupling occurs then change of the wave function overlaps the most
+    with the new wave function
+  - When attempting to compare classical and quantal dynamics, it is generally
+    useful to consider the behavior of a swarm of trajectories rather than an
+    individual trajectory. With the present method, each trajectory may make a
+    sudden switch of states. But for a swarm of trajectories entering a broad
+    region of coupling, some trajectories will switch early, others later, and
+    the net result will he a gradual flow of flux from one state to the other.
+  - The quantum mechanical results show a smooth dependence on energy, whereas
+    the trajectory results show a high frequency oscillation.
+- [[~/Documents/paper2/papers/tully2012.pdf]]
+  - The adiabatic (Born-Oppenheimer 2 ) PES, E(X), is the 3N-dimensional
+    hypersurface of the elec- tronic energy of an N-atom system as a function of
+    all nu- clear positions X = {X 1 , X 2 , . . . X N }.
+  - Molecular ionization, electron-molecule scattering, and single molecule
+    electronics are also controlled by nonadiabatic transitions among electronic
+    continuum states.
+  - In fact, the exponent in Eq. (1) is often called the Massey parameter; 20
+    and serves as a rough indication of nearly adiabatic behavior if it is much
+    greater than unity—large energy splitting (2) and low velocity and
+    diabatic (completely nonadiabatic) behavior if it is much less than
+    unity—small splitting, high velocity.
+- [[~/Documents/paper2/papers/weingarcaravelli2012.pdf]]
+  - Applies nonadiabatic QM/MM to rhodopsin
+- [[~/Documents/paper2/papers/zhengfernandez2017.pdf]]
+  - Applies NEXMD to chlorphyll
+- [[~/Documents/paper2/papers/tretiaksaxena2002.pdf]]
+  - Analyzes bla and torsions effect on bla dynamics
+- [[~/Documents/paper2/papers/bjorgaardsheppard2018.pdf]]
+  - extended lagrangian applied to nexmd
+- [[~/Documents/paper2/papers/cardozoaquino2014.pdf]]
+  - Experimental paper on PPV3 with spectra
+- [[~/Documents/paper2/papers/martens2016.pdf]]
+  - Revisists Mukamels and Tretiak's work
 - [[~/Documents/paper2/papers/tammies_open_shell.pdf]]
   - Nexmd applied to openshells
 - [[~/Documents/paper2/papers/zhangtretiak_photoisomization.pdf]]
   - Shows Non-Radiative Relaxation of 4‐Styrylquinoline
+- [[~/Documents/paper2/papers/martens2020.pdf]]
+  - Applies surface hopping using selection by consensus 
+- [[~/Documents/paper2/papers/kapral2006.pdf]]
+  - Quantum-classical Liouville dynamics
 - [[~/Documents/paper2/papers/pandaplasser2020.pdf]]
   - Torsion potential vs length of ppv
-- [[~/Documents/paper2/papers/tretiaksaxena2002.pdf]]
-  - Analyzes bla and torsions effect on bla dynamics
 - [[~/Documents/paper2/papers/tretiakmukamel2002.pdf]]
   - Long article describing the CEO Method and how to analyze TDM
 - [[~/Documents/paper2/papers/tretiakmukamel2002.pdf]]
   - Very mathematically descriptive explanation of CEO applied to TDDFT
+- [[~/Documents/paper2/papers/tommasinichernyak2001.pdf]]
+  - Closed expressions for nonadiabatic couplings are derived using the
+    collective electronic oscillators (CEO) algorithm based on the
+    time‐dependent Hartree–Fock equations. Analytic derivatives allow the
+    calculation of transition density matrices and potential surfaces at
+    arbitrary nuclear geometries using a molecular dynamics trajectory that only
+    requires a CEO calculation at a single configuration. © 2001 John Wiley &
+    Sons, Inc. Int J Quantum Chem, 2001
 - [[~/Documents/paper2/papers/wongwant1998.pdf]]
   - Experiment showing ultrafast planarization of oligimors
-- [[~/Documents/paper2/papers/martens2016.pdf]]
-  - Revisists Mukamels and Tretiak's work
-- [[~/Documents/paper2/papers/martens2020.pdf]]
-  - Applies surface hopping using selection by consensus 
 - [[~/Documents/paper2/papers/akimovprzhdo2014.pdf]]
   - Reformulates surface hopping to include entanglement and correlation of trajectories
 - [[~/Documents/paper2/papers/perkinsherraez2015.pdf]]
@@ -517,9 +744,6 @@ bibliography:paper2.bib
   - Adds Time Uncertainty to surface hopping 
 - [[~/Documents/paper2/papers/jasper2002.pdf]]
   - Adds a new method for treating classically forbidden hops during fewest switches
-- [[~/Documents/paper2/papers/tully1990.pdf]]
-  - Original surface hopping method
-- [[~/Documents/paper2/papers/tully2012.pdf]]
 - ##born1954dynamical##
 - ##born1927quantentheorie##
   - Original paper on born openheimer expansion
@@ -531,14 +755,10 @@ bibliography:paper2.bib
   - Why Decoherence can't be ignored
 - [[~/Documents/paper2/papers/prezhdorossky1997.pdf]]
   - Questions whether Decoherence should be ignored
-- [[~/Documents/paper2/papers/tammies_thesis_chapter7.pdf]]
-  - How tammie solves the decoherence problem
 - [[~/Documents/paper2/papers/websterschnitker1991.pdf]]
   - Describes a decoherence approach where you project after every time step
 - [[~/Documents/paper2/papers/habershonmanolopoulos2013.pdf]]
   - Alternative approach to FSSH & Ehrenfest | Ring-Polymer Molecular Dynamics
-- [[~/Documents/paper2/papers/kapral2006.pdf]]
-  - Quantum-classical Liouville dynamics
 - [[~/Documents/paper2/papers/silvathiel2010.pdf]]
   - Benchmarks performance of AM1
 - [[~/Documents/paper2/papers/morankelley2003.pdf]]
@@ -546,14 +766,6 @@ bibliography:paper2.bib
 - [[~/Documents/paper2/papers/tavernellibasile2010.pdf]]
   - Nonadiabatic coupling vectors for excitedstates within time-dependent
     densityfunctional theory in the Tamm–Dancoffapproximation and beyond
-- [[~/Documents/paper2/papers/tommasinichernyak2001.pdf]]
-  - Closed expressions for nonadiabatic couplings are derived using the
-    collective electronic oscillators (CEO) algorithm based on the
-    time‐dependent Hartree–Fock equations. Analytic derivatives allow the
-    calculation of transition density matrices and potential surfaces at
-    arbitrary nuclear geometries using a molecular dynamics trajectory that only
-    requires a CEO calculation at a single configuration. © 2001 John Wiley &
-    Sons, Inc. Int J Quantum Chem, 2001
 - [[~/Documents/paper2/papers/oubellchambers2015.pdf]]
   - We present a complete derivation of derivative couplings between excited
     states in the frame-work of adiabatic time-dependent density functional
@@ -566,10 +778,6 @@ bibliography:paper2.bib
   - Investigation of ultra fast excited state intramolecular proton transer of 3-hydroxyflavone
 - [[~/Documents/paper2/papers/baylissmcrae1954.pdf]]
   - Early paper describing how solvents could shift spectras
-- [[~/Documents/paper2/papers/warshellevitt1976.pdf]]
-  - Original paper on QM/MM
-- [[~/Documents/paper2/papers/weingarcaravelli2012.pdf]]
-  - Applies nonadiabatic QM/MM to rhodopsin
 - [[~/Documents/paper2/papers/demoulinaltavilla2018.pdf]]
   - Applies nonadiabatic QM/MM to fine tune retinal photoinduced decay in solutions
 - [[~/Documents/paper2/papers/weingartnenov2018.pdf]]
@@ -583,8 +791,6 @@ bibliography:paper2.bib
   - Describes trajectory surface hopping
 - [[~/Documents/paper2/papers/niklassontymczak2006.pdf]]
   - Time Reversible b-o dynamics
-- [[~/Documents/paper2/papers/bjorgaardsheppard2018.pdf]]
-  - extended lagrangian applied to nexmd
 - [[~/Documents/paper2/papers/nelsonnaumov2016.pdf]]
   - Can get a speed up if you ignore high energy states in NACR calculations
 - [[~/Documents/paper2/papers/fanghammes1999.pdf]]
@@ -607,8 +813,6 @@ bibliography:paper2.bib
   - Describes how good AM1 heat of formation
 - [[~/Documents/paper2/papers/tretiaksaxena2001.pdf]]
   - AM1 with CEO fits well with experiments
-- [[~/Documents/paper2/papers/zhengfernandez2017.pdf]]
-  - Applies NEXMD to chlorphyll
 - [[~/Documents/paper2/papers/vincentmuuronen2016.pdf]]
   - Describes why na dynamics is important even in reactions with closed shell reactants and products
 - [[~/Documents/paper2/papers/katanterenziani2005.pdf]]
@@ -627,7 +831,7 @@ bibliography:paper2.bib
   - Emphasise importance of solvents on dynamics
 - [[~/Documents/paper2/papers/sohong2012.pdf]]
   - Experimental paper on PPV3 oligimors and spectras
-- [[~/Documents/paper2/papers/cardozoaquino2014.pdf]]
-  - Experimental paper on PPV3 with spectra
+- [[~/Documents/paper2/papers/sendfurche2009.pdf]]
+  - How to analytically calculate NACTs
 
-
+    

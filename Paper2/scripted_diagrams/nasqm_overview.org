@@ -4,6 +4,7 @@
 |Sync|
 start
 :QM coordinates;
+:MM charges;
 :thermostat parameters;
 |#AntiqueWhite|NEXMD|
 :calculate QM energies;
@@ -19,6 +20,8 @@ start
 :QM accelerations and velocities;
 |NEXMD|
 :choose state using fewest switches;
+|Sync|
+:velocities;
 |AMBER|
 :propogate nuclear coordinates;
 :generate thermostat parameters;

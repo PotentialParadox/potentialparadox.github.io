@@ -6,15 +6,15 @@ collect_dihedrals <- function (runtime, infile, state, location, solvent) {
   nsteps <- ncol(data)
   time_labels <- (0:(nsteps-1))*runtime/(nsteps-1)
   names(data) <- as.character(time_labels)
-  data %>% rowid_to_column("Trajectory") %>% 
-    gather(key = "Time", value = "Angle", -Trajectory) %>% 
-    group_by(Time) %>% 
-    summarise(MeanAngle = mean(Angle)) %>% 
+  data %>% rowid_to_column("Trajectory") %>%
+    gather(key = "Time", value = "Angle", -Trajectory) %>%
+    group_by(Time) %>%
+    summarise(MeanAngle = mean(Angle)) %>%
     mutate(State = state) %>%
-    mutate(Location = location) %>% 
-    mutate(Time = as.numeric(Time)) %>% 
-    mutate(SolventID = solvent) %>% 
-    mutate(Solvent = if_else(location == '', solvent, sprintf("%s-%s", solvent, location))) %>% 
+    mutate(Location = location) %>%
+    mutate(Time = as.numeric(Time)) %>%
+    mutate(SolventID = solvent) %>%
+    mutate(Solvent = if_else(location == '', solvent, sprintf("%s-%s", solvent, location))) %>%
     mutate(Description = if_else(location == '', state, sprintf("%s-%s", state, location)))
 }
 
@@ -158,17 +158,17 @@ sm_ppv3_no2_vac_far_1ps <- collect_dihedrals(runtime = 1,
                                              location = "Far")
 
 ppv3_no2_vac_dihedral_data <- bind_rows(
-  s0_ppv3_no2_vac_near,
-  s0_ppv3_no2_vac_far,
-  s1_ppv3_no2_vac_near,
-  s1_ppv3_no2_vac_far,
-  sm_ppv3_no2_vac_near,
-  sm_ppv3_no2_vac_far
-) %>% 
-  mutate(Location = as.factor(Location)) %>%
-  mutate(State = as.factor(State)) %>% 
-  mutate(Description = as.factor(Description)) %>% 
-  mutate(Solute = "PPV3-NO2")
+    s0_ppv3_no2_vac_near,
+    s0_ppv3_no2_vac_far,
+    s1_ppv3_no2_vac_near,
+    s1_ppv3_no2_vac_far,
+    sm_ppv3_no2_vac_near,
+    sm_ppv3_no2_vac_far
+) %>%
+    mutate(Location = as.factor(Location)) %>%
+    mutate(State = as.factor(State)) %>% 
+    mutate(Description = as.factor(Description)) %>% 
+    mutate(Solute = "PPV3-NO2")
 
 ###############################################
 # Plot Dihedral Angles in Vacuum
@@ -215,7 +215,7 @@ my_colors <- c(
   "#22E368"
 )
 
-plot_dihedrals(dihedral_data, 
+plot_dihedrals(dihedral_data,
                description = "Description",
                legend_breaks = legend_breaks,
                labels = legend_labels,
