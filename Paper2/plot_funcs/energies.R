@@ -13,7 +13,7 @@ data_mean <- data %>% group_by(`Time-fs`, State) %>%
 read_potential <- function (filein, system_name){
   read_csv(filein) %>% 
     group_by(`Time-fs`) %>% 
-    summarise(MeanEnergy = mean(`Potential-Ev`)) %>% 
+    summarise(MeanEnergy = mean(`Potential-Ev`), .groups='drop') %>% 
     mutate(System = system_name)
 }
 
@@ -110,6 +110,40 @@ ppv3_no2_potentials <- bind_rows(
   pot_ppv3_no2_ch3oh_s1,
   pot_ppv3_no2_ch3oh_5s
 ) %>% mutate(Solute = 'PPV3-NO2')
+
+# The decay rate of s2 is slower in vacuum than in ch3oh. We want to see if this is due to an
+# increase in the energy barrier.
+tidy_energies <- function(csv){
+  csv %>% 
+    select(Trajectory, `Time-fs`, State, `Potential-eV`) %>% 
+    group_by(`Time-fs`, State) %>% 
+    summarise(PotentialEv=mean(`Potential-eV`)) %>%
+    mutate(State=as_factor(State)) %>% 
+    rename(t=`Time-fs`)
+}
+
+find_omega21 <- function(state_data){
+  state_data %>% 
+    filter(State %in% c(1,2)) %>% 
+    pivot_wider(names_from = State, values_from=PotentialEv) %>% 
+    mutate(Omega12 = `2` - `1`) %>%
+    select(t, Omega12)
+}
+
+ppv3no2_ch3oh <- read_csv('ppv3_no2/potential-ch3oh.csv') %>% 
+  tidy_energies() %>% 
+  find_omega21() %>% 
+  mutate(Solvent = "CH3OH")
+
+
+ppv3no2_vacuum <- read_csv('ppv3_no2/potential-vacuum-new.csv') %>% 
+  tidy_energies() %>% 
+  find_omega21() %>% 
+  mutate(Solvent = "Vaccum")
+
+energy_compare <- bind_rows(ppv3no2_ch3oh, ppv3no2_vacuum)
+energy_compare %>% 
+  ggplot(aes(x=t, y=Omega12, color = Solvent)) + geom_point()
 
 #################################################
 # Plot both

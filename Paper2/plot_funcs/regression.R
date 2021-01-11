@@ -12,11 +12,6 @@ tammie_fit <- function (df) {
 )
 }
 
-logistic_fit <- fitModel(
-  measured ~ A / (1 + exp(-(t-ti)/tau)),
-  data = s1_v_time
-)
-
 fit <- tammie_fit
 
 get_statenames <- function (df) {
@@ -28,13 +23,25 @@ tidy <- function (df, solvent) {
    df %>%
     pivot_longer(-t, names_to = "State", values_to = "Measured") %>%
     mutate(Solvent = solvent) %>%
-    mutate(State = as.factor(State))
+    mutate(State = as.factor(State)) %>%
+    mutate(Measured = as.numeric(Measured)) %>%
+    mutate(t = as.numeric(t))
 }
 
 fit_s1 <- function (df) {
   s1_v_time <- df %>% filter(State == 'S1') %>% select(Solvent, t, Measured)
   f <- fit(s1_v_time)
   s1_v_time %>% mutate(Fitted = f(t)) %>% gather("Type", "Pop", 3:4)
+}
+
+import <- function (filename){
+    read_delim(filename, delim=' ', col_names = FALSE)
+}
+
+read_pops <- function(filename, name){
+    pop_raw <- as_tibble(import(filename))
+    colnames(pop_raw) <- get_statenames(pop_raw)
+    tidy(pop_raw, name)
 }
 
 ##################################
@@ -65,16 +72,6 @@ vacuum_ppv3 <- vacuum %>%
 ##################################
 # PPV3-NO2
 ##################################
-vacuum_20 <- as_tibble(import("ppv3-no2/vacuum_20/all_pops.txt"))
-colnames(vacuum_20) <- get_statenames(vacuum_20)
-vacuum_20 <- tidy(vacuum_20, 'Vacuum-20ps') %>%
-    filter(State == 'S1')
-
-ch3oh_20 <- as_tibble(import("ppv3-no2/ch3oh_20/all_pops.txt"))
-colnames(ch3oh_20) <- get_statenames(ch3oh_20)
-ch3oh_20 <- tidy(ch3oh_20, 'Methanol-20ps') %>%
-    filter(State == 'S1')
-
 vacuum <- as_tibble(import("ppv3-no2/vacuum/all_pops.txt"))
 colnames(vacuum) <- get_statenames(vacuum)
 vacuum <- tidy(vacuum, 'Vacuum')
@@ -83,26 +80,48 @@ ch3oh <- as_tibble(import("ppv3-no2/ch3oh/all_pops.txt"))
 colnames(ch3oh) <- get_statenames(ch3oh)
 ch3oh <- tidy(ch3oh, 'Methanol')
 
-ch3oh_5s <- as_tibble(import("ppv3-no2/ch3oh_5s/all_pops.txt"))
-colnames(ch3oh_5s) <- get_statenames(ch3oh_5s)
-ch3oh_5s <- tidy(ch3oh_5s, 'Methanol-5s')
+ch3oh_10s <- as_tibble(import("ppv3-no2/ch3oh_10s/all_pops.txt"))
+colnames(ch3oh_10s) <- get_statenames(ch3oh_10s)
+ch3oh_10s <- tidy(ch3oh_10s, 'Methanol-10s')
 
-s1_v_time_ppv3_no2 <- map(list(vacuum_20, vacuum, ch3oh, ch3oh_5s), fit_s1) %>%
+all_states <- bind_rows(vacuum, ch3oh, ch3oh_10s) %>%
+    filter(State %in% c('Sm', 'S9', 'S10', 'S2', 'S1')) %>%
+    mutate(Solvent=factor(Solvent, levels=c("Vacuum", "Methanol", "Methanol-10s")))
+
+# Old stuff
+vacuum <- as_tibble(import("ppv3-no2/vacuum/pop_vac_all.txt"))
+colnames(vacuum) <- get_statenames(vacuum)
+vacuum <- tidy(vacuum, 'Vacuum')
+
+ch3oh <- as_tibble(import("ppv3-no2/ch3oh_5s/all_pops.txt"))
+colnames(ch3oh) <- get_statenames(ch3oh)
+ch3oh <- tidy(ch3oh, 'Methanol')
+
+all_states <- bind_rows(vacuum, ch3oh) %>%
+    filter(t<=500) %>%
+    filter(State %in% c('Sm', 'S2', 'S1')) %>%
+    mutate(Solvent=factor(Solvent, levels=c("Vacuum", "Methanol")))
+# End Old Stuff
+
+all_states %>%
+    ggplot(aes(x=t,y=Measured,color=State)) +
+    facet_wrap(~Solvent) +
+    geom_line() +
+    labs(x="Time (fs)", y="Population")+
+    theme_bw() +
+    theme(legend.position = "top") +
+    theme(plot.margin=grid::unit(c(0,0,0,0), "mm"))
+ggsave("correct_populations.png", width=10, height=5)
+
+s1_v_time_ppv3_no2 <- map(list(vacuum, ch3oh), fit_s1) %>%
   bind_rows() %>% mutate(Solute = 'PPV3-NO2')
 
-vacuum_ppv3_no2 <- vacuum %>%
-  mutate(Solute = 'PPV3-NO2')
-
-s1_20 <- bind_rows(vacuum_20, ch3oh_20)
-s1_20 %>% ggplot(aes(x=t, y = Measured, color=Solvent)) +
-  geom_line()
 
 ##################################
 # Plot S1
 ##################################
 
 s1_v_time <- bind_rows(
-  s1_v_time_ppv3,
   s1_v_time_ppv3_no2
 )
 
@@ -173,4 +192,13 @@ svacuum %>% ggplot(aes(x = t, y = Fitted, color = State)) +
         legend.text = element_text(size = 15)
   )
 
+###################################
+# Plot test cases
+###################################
+vacuum_ppv3_test <- read_pops("ppv3-no2/tests/ppv3_vac_pops.txt", "vac_test")
 
+vac_test_s1 <- vacuum_ppv3_test %>%
+    filter(State == 'S1')
+
+vac_test_s1 %>%
+    ggplot(aes(x = t, y = Measured)) + geom_point()

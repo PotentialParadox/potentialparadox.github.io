@@ -1,82 +1,74 @@
 #+TITLE: Paper 2
-#+SETUPFILE: ~/Templates/org-html-themes/setup/theme-readtheorg.setup
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
 #+OPTIONS: num:nil todo:nil stat:nil
 #+TODO: TODO(t) PROJECT(p) NEXT(n) ONGOING(o) WAITING(w@) SOMEDAY(s!) | DONE CANCELLED(c) UNFINISHED(u)
 #+TAGS: EMAIL(e) BUG(b) METHOD(m) URGENT(u) IMPORTANT(i) SHORT(s)
 #+COLUMNS: %7TODO(To Do) %32ITEM(Task) %6CLOCKSUM(Clock) %8EFFORT(Estimate){:}
 #+PROPERTY: Effort_ALL 0:05 0:10 0:15 0:30 0:45 1:00 1:30 2:00
+#+BIBLIOGRAPHY: paper2
 * Introduction
-When strong couplings between the vibrational electronic states of freedom
-exist, the Born-Oppenheimer approximation breaks. This assumption that nuclear
-coordinate motion is negligible to electronic motion fails to be accurate and
-molecular dynamics must consider non-adiabatic behaviors in order to
-produce reasonably accurate simulations.
-
-This type of research we have a ground thing above the ground state dim sleep
-populated manifold of excited States state board often swapping energy in other
-words the energy of one state at will be higher than another state at one point
-then at a later time the energy of that first date could be visited the energy
-of the other ones so we must all think you track of the order of the states. As
-a general rule we also need to be solving the structure ecrater the creation on
-the Fly for each electronic level . Calculating the potential energy surfaces
-for all these dates is quite complex and requires solutions to the shrinker
-equation the backend methods used to calculate these put the Chinese Services
-can range to externally complicated density functional Theory methods to others
-much more simplified to me empirical methods effort must be made to balance
-accuracy to efficiency in this regards.
-
-PPV_3-NO_2's high energy barrier between its ground state and
-first excited-state matches up with Kasha’s rule.
-
-The characteristics of this electronic manifold overtime to be very useful to a
-multiple of different you scenarios such as the residence in which we care
-deeply about the molecules lowest level excited state or in light harvesting
-Light-harvesting applications and where the molecule excitation energy is being
-transferred to charge separation. The study of photosynthesis can also be how to
-buy this type of research that focuses on the non-radiative crossings The ground
-state.
-
-Ton of research has gone in the study and he's not on a team that is molecular
-Dynamics methodologies methodologies range from the extremely complicated
-inexpensive approaches such as I can figure is time-dependent Arkansas cabin air
-show for methods and Quantum movies The are quite similar ones such as ehrenfest
-Theory but the ones that this paper focuses on is specifically the toy surface
-hopping methodology used with a package, the not adiabatic said America the
-Dynamics package developed at Los Alamos.
-
-Anon idiopathic excited state Dynamics program has until recently been used only
-in implicit solvents or an explicit song fence without any type of Nadia body
-Dynamics only in the excited first excited States. in this paper we propose a
-method to extend the capabilities of the non adiabatic cold using the Amber
-package and its ability to do q m m m Dynamics and boxes.
-
-Are focuses on organic conjugated molecule specifically ppv 3 and PPP 2 as shown
-in the diagram.
+** Introduction to non-adiabatic dynamics
+*** Described 1 situation where adiabatic dynamics fails
+*** Describe a 2nd situation where adiabatic dynamics fails
+*** Why they failed
+*** List of different NA methods
+*** Discribe a situtation where QM/MM would be useful for NA-dynamics
+** Description of NEXMD
+*** What it does
+*** Who designed it.
+*** How it works (Non-Mathematical)?
+*** Who has used it?
+** Description of AMBER
+*** What it does?
+**** Classical dynamics for large systems
+**** Capable of perform QM/MM using the SANDER packag
+*** Who designed it.
+*** How it works (Non-Mathematical)?
+*** Who has used it?
+** Combining QM w/ NA-ESMD
+*** Who has already done this
+*** What has it been used for
+*** Describe what my implementation would be useful for.
+** Describe the layout of the paper
+*** Theoretical Methodology
+*** Computation Design
+*** Simulation Method
+*** Analysis
 * Theoretical Methodology
-** Adiabatic Motion
-To find the excited state energies during dynamics, we calculate the Liouville
-eigenvalue equation
+Adiatic motion is managed by SANDER using the NEXMD software package to calculate the semiemprical QM energies and forces.
+NEXMD uses a modified version of the  SQM package from AMBERTOOlS  for these calcuations which SANDER links to by default.
+As such, the ground state energies and forces from SANDER paired with NEXMD vs SANDER in its default configuration are identical. 
+This modified version howerver also provides the excited state energies and forces. Previous work have shown methods for linking
+these two packages to provide excited state adiabatic QM/MM simulations . *Personal Citation.* 
+
+To find the excited state energies during dynamics, NEXMD employs the collective electronic oscillator (CEO) method developed by Mec... etc.
+This method is similar to the random phase approximation and is compatible with Kohn-Sham DFT or Hartee-Fock.
+
+A quick overview of this methodology is as follows. We start with the Liouville eigenvalue equation.
 
 \begin{align*}
   \hat{\mathbf{\mathcal{L}}}\mathbf{\rho}_{0\alpha} = \Omega\mathbf{\rho}_{0\alpha}
 \end{align*}
 
+
 with \(\mathbf{\mathcal{L}}\) being the two-particle Louiville operator and
 \(\Omega\) the energy difference between the \(\alpha\) state and the ground
-state, where the Liouville operator can be found analytically by
+state. \(\rho_{0\alpha}\) is the single- electron density matrix
+
+\begin{align*}
+  (\mathbf{\rho}_{0\alpha})_{nm} =  \left< \psi_{\alpha} \right| c_m^\dagger c_n \left| \psi_0 \right>.
+\end{align*}
+where \(\psi_{g}\) and \(\psi_{\alpha}\) are the single-electron wavefunctions for the groundstate and singly excited state \(\alpha\), and
+\(c_m^\dagger\) and \(c_n\) are the creation and annihilation operator respectively. The coefficients for the atomic orbital basit sets are derived prior using the QM/MM methodology from the SQM package.\cite{walker2008implementation} The Liouville operator can be found analytically using 
 
 \begin{align*}
   \hat{\mathbf{\mathcal{L}}}\mathbf{\rho}_{0\alpha} = \left[ \mathbf{F}^{\vec{R}}(\mathbf{\rho}_{00}), \mathbf{\rho}_{0\alpha} \right]
   + \left[ \mathbf{V}^{\vec{R}}(\mathbf{\rho}_{0\alpha}), \mathbf{\rho}_{00} \right]
 \end{align*}
 
-and the single electron density matrix for each state of the system is described by
+where \(\textbf{F}^{\vec{R}}\) is the Fock operator and \(\textbf{V}^{\vec{R}}\) is the column interchange operator.
 
-\begin{align*}
-  (\mathbf{\rho}_{0\alpha})_{nm} =  \left< \psi_{alpha} \right| c_m^\dagger c_n \left| \psi_0 \right>.
-\end{align*}
-
-The forces are then calculated analytically by the gradient of the ground state
+The forces are also calculated analytically using the gradient of the ground state
 energy and the excited state energy.
 
 \begin{align*}
@@ -88,8 +80,9 @@ With the gradient of the ground state being calculated by
 \begin{align*}
   \vec{\nabla} E_0 = \frac{1}{2}\mathbf{Tr} \left[ \left( \mathbf{t}^{\vec{R}} + \mathbf{F}^{\vec{R}} \right) \mathbf{\rho}_{00} \right]
 \end{align*}
+where \(\textbf{t}\) is the single-electron kinetic operator.
 
-and the gradient of the excited state being
+The gradient of the excited state can derived using
 
 \begin{align*}
   \vec{\nabla}\Omega_{\alpha} = \mathbf{Tr} \left[ \mathbf{F}^{\vec{R}} (\mathbf{\rho}_{\alpha\alpha} - \mathbf{\rho}_{00})\right]
@@ -97,22 +90,27 @@ and the gradient of the excited state being
 \end{align*}
 
 where \(\mathbf{\rho}_{ij}\) represents the density or transition density matrix for states i and
-j, \( \mathbf{F} \) is the Fock matrix,  \( \mathbf{t} \) is the kinetic operator acting on
-one-electron and \( \mathbf{V} \) is the column interchange operator.
-** Non-Adiabatic
+j, \( \mathbf{F} \) is the Fock matrix and \( \mathbf{V} \) is the column interchange operator.
+
 As each trajectory moves along its potential energy surface, Tully's
 Fewest Switches Surface Hopping algorithm (FSSH) determines when a state
 transitions occurs.cite:tully2012perspective,tully1990molecular  
 
 We define the Hamiltonian be defined as
-\begin{equation} \label{eq:tullyHamiltonian} \mathbf{H} = \mathbf{T}_{R} +
-  \mathbf{H}_{0}(\mathbf{r},\mathbf{R})
+
+\begin{equation} \label{eq:tullyHamiltonian} \mathbf{H} = \mathbf{T}(\mathbf{R}) +
+  \mathbf{H}_{el}(\mathbf{r},\mathbf{R})
 \end{equation}
-where the matrix elements of the electron Hamiltonian are
+
+where \(\mathbf{T}(\mathbf{R}) \) is the nuclear kinetic energy operator, and \(\textbf{H}_{el}\) is the electronic Hamiltonian.
+The matrix elements of this electron Hamiltonian are
 
 \begin{equation} \label{eq:tullyVelements}
   V_{ij}(\mathbf(R))=\left<\phi_i(\mathbf{r};\mathbf{R})\right|\mathbf{H}_{0}\left.(\mathbf{r};\mathbf{R})\phi_j(\mathbf{r};\mathbf{R})\right>
 \end{equation}
+
+The time-dependent Shrodinger equation can then be written as
+
 
 At each step we perform a montecarlo like decision
 
@@ -147,23 +145,50 @@ We use the Collect Oscillator Approach to calculate the non-adiabatic coupling
 terms $\mathbf{R} \cdot \mathbf{d}_{kj}$ ``on the
 fly''. cite:tommasini2001electronic,tretiak1996collective,tretiak2009representation,chernyak2000density
 
+Inconsistencies arise from solely using the Tully surface hopping approach.
+Trajectories transfer between  the various adiabatic potential energy surfaces instantaneously based off the QM state coefficients.
+These coefficients are determined using the integral of the TDSE on multiple trajectories.
+Each trajectory if unmodified will keep in phase even after spatial separation.
+Furthermore, if dealing with a system with a dense electronic state structure, its likely that the ordering of these states will switch during general dynamics.
+We apply a dechohence correction as well as a trivial crossing accounting system as performed in previous research.
 * Computational Design
 #+caption: Swim-lane diagram describing the common timestep of the SANDER-NEXMD interface. label:scheme:nasqm 
   [[./scripted_diagrams/nasqm_overview.png]] 
 
-The swim-lane chart in figure ref:scheme:nasqm describes a common time-step that occurs within the SANDER-NEXMD interface.
-First users initiate the program through SANDER, a program found in AMBERTOOLS. 
-SANDER uses NEXMD to calculate the energies and forces of the QM atoms, check for trivial crossings, and propagate the quantum coefficients.
-With these results, SANDER performs the QM/MM procedures to derive the accelerations and velocities for the classical time step. 
-NEXMD then decides whether to perform a state transitions, adjusting the velocities as needed. 
-Finally SANDER propagates the nuclear coordinates and the cycle continues for the rest of the dynamics.
+The swim-lane chart in figure ref:scheme:nasqm describes a common time-step that
+occurs within the SANDER-NEXMD interface. First users initiate the program
+through SANDER, a program found in AMBERTOOLS. SANDER uses NEXMD to calculate
+the energies and forces of the QM atoms, check for trivial crossings, and
+propagate the quantum coefficients. With these results, SANDER performs the
+QM/MM procedures to derive the accelerations and velocities for the classical
+time step. NEXMD then decides whether to perform a state transitions, adjusting
+the velocities as needed. Finally SANDER propagates the nuclear coordinates and
+the cycle continues for the rest of the dynamics.
 
-SANDER calls NEXMD providing the function calls with the QM coordinates, MM charges, and Langevin thermostat parameters. 
-NEXMD calculates the energies of the QM atoms with electrostatic interactions from the MM point charges using CIS, TDHF, or TDDFT. 
-A variety of Hamiltonians are available; however, AM1 has been shown to provide very reasonable computational cost to accuracy for our systems of interest.cite:silva2010benchmark
+When users initiate SANDER, they're provide the usual SANDER inputs of a
+coordinate, parameter, and sander control files. In addition they will include a file specific to
+NEXMD which describes the QM and Non-adiabatic behavior.
 
-After calculating energies, NEXMD performs a check for non-avoided trivial crossings.
-Computational feasibility of this step requires the calculations of the non-adiabatic .cite:nelson2020non We use an analytical form of the non-adiabatic coupling derived using the Hellman-Feynman theorem. cite:tommasini2001electronic,chernyak2000density 
+This interface, incorporates SANDER's implementation of QM/MM as described in
+previous literature to generate a solvent inclusive ground state density matrix utilized by NEXMD's excited
+state calculations.
+
+Sander controls the interactions between the QM and MM regions.
+
+
+SANDER calls NEXMD providing the function calls with the QM coordinates, MM
+charges, and Langevin thermostat parameters. NEXMD calculates the energies of
+the QM atoms with electrostatic interactions from the MM point charges using
+CIS, TDHF, or TDDFT. A variety of Hamiltonians are available; however, AM1 has
+been shown to provide very reasonable computational cost to accuracy for our
+systems of interest.cite:silva2010benchmark. An analysis of parameter choices
+can be found in previous literature.cite:nelson2012nonadiabatic
+
+After calculating energies, NEXMD performs a check for non-avoided trivial
+crossings. Computational feasibility of this step requires the calculations of
+the non-adiabatic coupling.cite:nelson2020non We use an analytical form of the
+non-adiabatic coupling derived using the Hellman-Feynman theorem.
+cite:tommasini2001electronic,chernyak2000density
 
 \[
  \mathbf{d}_{ab}(\mathbf{R})
@@ -172,9 +197,12 @@ Computational feasibility of this step requires the calculations of the non-adia
 \right> } { E_b(\mathbf{R}) - E_a(\mathbf{R}) } 
 \] 
 
-NEXMD then compares the overlap of the density functions of the current step to those in the previous state. 
-If a non-avoided trivial crossings is suspected, addition energy calculations are performed along the interpolation of the classical step, and overlap matrices are compared.
-Trivial crossing will result in a change in state number but will continue to propagate along the most recent potential energy surface. 
+NEXMD then compares the overlap of the density functions of the current step to
+those in the previous state. If a non-avoided trivial crossings is suspected,
+addition energy calculations are performed along the interpolation of the
+classical step, and overlap matrices are compared. Trivial crossing will result
+in a change in state number but will continue to propagate along the most recent
+potential energy surface.
 
 NEXMD then propagates the quantum coefficients.
 Generally, this propagation requires a smaller time-step than whats needed for nuclear coordinate propagation, as such, three or four quantum steps are performed for every classical step. 
@@ -211,7 +239,6 @@ If a state transition occurs, the velocities of the nuclear atoms are adjusted a
 With the new state chosen, AMBER now uses the average velocities to propagate the nuclear coordinates.
 New random numbers are generated for the thermostats when appropriate.
 
-* Computational Timings
 * Simulation Methods
 [[./scripted_diagrams/simulations-1.png]]
 ** Ground State Sampling
@@ -231,11 +258,10 @@ equations at a temperature set to 300 K with the Langevin friction parameter set
 to 2 ps^{-1}. The final frames of these QM trajectories were then used as the
 initial conditions for the following pulse pump calculations.
 ** Pulse Pump Calculations
-*** Explain the pulse pump experiment
-Pump-Probe Spectroscopy is and experimental technique commonly performed in the
+Pump-Probe Spectroscopy is an experimental technique commonly performed in the
 study of ultrafast electonic statte dynamics. In the case of conjugated polymers
-in can be used to study the localized excictronic tranisions that are
-accessible through and excitation of the S1 state but not the ground state S0.
+in can be used to study the localized excictronic transitions that are
+accessible through an excitation from the S1 state but not the ground state S0.
 To simulate this behavior, we take the final snapshot of the QM ground state
 calculations and perform a single point calculation at the S1 state to find the
 next state with the highest oscillator strength.
@@ -332,7 +358,7 @@ initial S_{m} states.
 [[./Images/potential_energies/relaxation.png]]
 
 ** Bond Length Adjustment
-In figure [[ref:fig:bla-vacuum]], the BLA for both PPV_3 and PPV_{3}-NO_{2} in
+The BLA for both PPV_3 and PPV_{3}-NO_{2} in
 vacuum the ground state varies very little the two. We use shades of red the
 display the ground-state and shades of green to represent states that start in
 S_m and shades of blue the describe a first excited state trajectores. The
@@ -359,11 +385,10 @@ amount double bond characteristics causing the molecule to Stiffen.
 #+CAPTION: Bond Length Adjustments for various states for PPV_3 and PPV_{3}-NO_{2} in vacuum. label:fig:bla-vacuum 
 [[./Images/bla/vacuum.png]]
 
-** Dihedral Angles
+** Dihedral Angles 1
 
 #+CAPTION: Dihedral angles for various states for PPV_3 and PPV_{3}-NO_{2} in vacuum. label:fig:dihedral-vacuum 
-[[./Images/dihedral/vacuum.png]]
-
+[[./Images/dihedral/vacuum.pn
 *** Why do we want to do dihedral angels?
 The torsion angle around the vinylene segments have been shown to be highly coupled to the excited state. cite:nelson2011nonadiabatic,panda2013electronically  
 *** Description of the plot
@@ -391,6 +416,7 @@ The torsion angle around the vinylene segments have been shown to be highly coup
 
 bibliographystyle:unsrt
 bibliography:paper2.bib
+
 * Papers To Read
 - [[~/Documents/paper2/papers/tammies_review.pdf]]
   - Major review article
@@ -702,8 +728,24 @@ bibliography:paper2.bib
     unity—small splitting, high velocity.
 - [[~/Documents/paper2/papers/weingarcaravelli2012.pdf]]
   - Applies nonadiabatic QM/MM to rhodopsin
+  - rhodopsin is the photo-absorbtive molecule in the eye responsible for dim-light vision
+  - Use amber
+  - Uses CASSCF Complete Active Space Multiconfiguration SCF which has an error
+    between excited states of roughly 0.1-0.2eV for small-medium sized molecular
+    systems
+  - Extensive previous studies have already adopted AM1 and similar
+    semiempirical models to investigate excited state properties of
+    porphyrin-based molecules.
 - [[~/Documents/paper2/papers/zhengfernandez2017.pdf]]
   - Applies NEXMD to chlorphyll
+  - Acting as the main antenna in green plants, LHCII is the
+  - most abundant LHC in nature.
+  - Chla and Chlb
+  molecules 13,14 has been studied with the nonadiabatic excited-
+  state molecular dynamics (NA-ESMD). 21,22 The ratio of
+  simulated relaxation constants in Chla and Chlb monomers
+  agreed well with that from ultrafast transient absorption
+  spectroscopy.
 - [[~/Documents/paper2/papers/tretiaksaxena2002.pdf]]
   - Analyzes bla and torsions effect on bla dynamics
 - [[~/Documents/paper2/papers/bjorgaardsheppard2018.pdf]]
@@ -807,6 +849,8 @@ bibliography:paper2.bib
   - Natural transition orbitals
 - [[~/Documents/paper2/papers/hernandeznelson2016.pdf]]
   - Describes how to extract energy flow using NEXMD on mulitchromophoric molecules
+- [[~/Documents/paper2/papers/nelson2013.pdf]]
+  - Tammies paper on Decoherences
 - [[~/Documents/paper2/papers/mukameltretiak1997.pdf]]
   - Other original paper on the CEO Approach
 - [[~/Documents/paper2/papers/stewart2003.pdf]]
