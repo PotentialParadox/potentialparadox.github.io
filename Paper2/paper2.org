@@ -6,12 +6,18 @@
 #+COLUMNS: %7TODO(To Do) %32ITEM(Task) %6CLOCKSUM(Clock) %8EFFORT(Estimate){:}
 #+PROPERTY: Effort_ALL 0:05 0:10 0:15 0:30 0:45 1:00 1:30 2:00
 #+BIBLIOGRAPHY: paper2
-* Introduction
+* Introduction (621 needed)
 ** Introduction to non-adiabatic dynamics
+*** Thesis statement
+During ultra-fast photovolatic processes, the Born-Openheimer appoximation breaks, and accounting for non-adiabatic behavior become necessary. 
 *** Described 1 situation where adiabatic dynamics fails
+These situations occur frequently within processes of interest to photochemistry and photophysics. 
 *** Describe a 2nd situation where adiabatic dynamics fails
-*** Why they failed
+For example, the excitation to a non-equlibrium  state followed by a relaxation through internal conversion is a process common to processes such as photosynthesis, solar-cell photo-absoprtion, optical detectors, and the excitation of the visual nerve.
 *** List of different NA methods
+Multiple methods to have been proposed and used to simulate these non-adiabatic processes.
+These methods include treating the nuclear coordinates quantum mechanically or simiclassically, or by using a hybrid quantum mechanical, classical treatment to account for the non-adiabaticity.
+One of the more popular version of the latter, and the one which we use in this work,  is Molecular Dynamics with Quantum Transitions (MDQT), were the system propogates classically along adiabatic potential energy surfaces, but a quantum evalutation is made at each time step to determine whether to transition to another state. 
 *** Discribe a situtation where QM/MM would be useful for NA-dynamics
 ** Description of NEXMD
 *** What it does
