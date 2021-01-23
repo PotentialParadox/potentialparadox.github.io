@@ -1,22 +1,82 @@
 library(tidyverse)
 
-setwd('~/Documents/paper2/energies/')
+setwd('~/Documents/paper2/energies/ppv3_no2')
 data <- read_csv('ppv3/energies.csv')
 
 data_mean <- data %>% group_by(`Time-fs`, State) %>% 
   summarise(MeanEnergy = mean(`Energy-eV`)) %>% 
   mutate(State = as.factor(State))
 
-#
-# Reading Potential Energies
-#
-read_potential <- function (filein, system_name){
-  read_csv(filein) %>% 
-    group_by(`Time-fs`) %>% 
-    summarise(MeanEnergy = mean(`Potential-Ev`), .groups='drop') %>% 
-    mutate(System = system_name)
+
+#################################################
+# Collect Potentials
+#################################################
+## The goal will be to plot the average potential energies
+## In order to this I'm going to have to pair the energy files
+## with the coefficient file with the form
+## | Trajectory | Time-fs | State
+
+## The energies between different solvents will not be directly
+## comparable to one another. However will can plot the differences
+## from the initial s0 state, which can get from t=0, s=0.
+
+collect_energy_deltas <- function(filename){
+    read_csv(filename) %>%
+        group_by(Trajectory) %>%
+        mutate(Energy = PotentialeV - first(PotentialeV)) %>%
+        rename(Timefs = Timefs) %>%
+        mutate(Trajectory = as.numeric(Trajectory)) %>%
+        select(Trajectory, Timefs, State, Energy)
 }
 
+get_current_state_deltas <- function(state_potential_filename, states_filename){
+    all_deltas <- collect_energy_deltas(state_potential_filename)
+    states <- read_csv(states_filename)
+
+    states %>%
+        left_join(vacuum_all_deltas, by = c("Trajectory", "Timefs", "State")) %>%
+        filter(!is.na(Energy)) %>%
+        group_by(Timefs) %>%
+        summarize(MeanEnergyeV = mean(Energy), .groups = 'drop')
+}
+
+vacuum_energies <- get_current_state_deltas('state-potentials-vacuum.csv', 'states-vacuum.csv') %>%
+    mutate(Solvent = "Vacuum")
+
+ch3oh_energies <- get_current_state_deltas('state-potentials-ch3oh.csv', 'states-ch3oh.csv') %>%
+    mutate(Solvent = "0")
+
+ch3oh_5s_energies <- get_current_state_deltas('state-potentials-ch3oh-5s.csv', 'states-ch3oh-5s.csv') %>%
+    mutate(Solvent = "5")
+
+energies <- bind_rows(
+    vacuum_energies,
+    ch3oh_energies,
+    ch3oh_5s_energies
+)
+
+energies %>%
+    ggplot(aes(x = Timefs, y = MeanEnergyeV, color = Solvent)) +
+    geom_line(size=1.5) +
+    theme_bw() +
+    labs(color = "Number QM Solvents",
+         x = "Time (fs)",
+         y = "Energy (eV)"
+         ) +
+    theme(axis.text=element_text(size=20),
+          axis.title=element_text(size=20),
+          legend.text = element_text(size = 18),
+          legend.title = element_text(size=20),
+          legend.text.align = 0,
+          legend.position = c(0.8, 0.7)
+    )
+
+ggsave("~/potentialparadox.github.io/Paper2/Images/potential_energies/solvent_comparison.png", width = 10, height = 10)
+
+
+#################################################
+# Plot S1 Relaxations
+#################################################
 plot_potentials <- function (potentials, legend_breaks, legend_labels){
   potentials %>% 
     ggplot(aes(x = `Time-fs`, y = MeanEnergy, color = System)) +
@@ -29,136 +89,16 @@ plot_potentials <- function (potentials, legend_breaks, legend_labels){
           axis.title=element_text(size=20),
           legend.title = element_blank(),
           legend.text = element_text(size = 15),
-          legend.text.align = 0
+          legend.text.align = 0,
+          legend.position = c(0.8, 0.7)
     )
 }
 
-#################################################
-# PPV3
-#################################################
-pot_ppv3_no_trivial <- read_potential('ppv3/potential-no-trivial.csv', 'Vacuum (No Trivial)')
-pot_ppv3_vacuum <- read_potential('ppv3/potential-vacuum.csv','Vacuum')
-pot_ppv3_ch3oh <- read_potential('ppv3/potential-ch3oh.csv', 'Methanol')
-pot_ppv3_ch3oh_5s <- read_potential('ppv3/potential-ch3oh-5s.csv', 'Methanol-5s')
-pot_ppv3_vacuum_s0 <- read_csv('ppv3/potential-s0-vacuum.csv') %>% 
-  filter(State == 0) %>% 
-  group_by(`Time-fs`) %>% 
-  summarise(MeanEnergy = mean(`Potential-eV`)) %>% 
-  filter(`Time-fs` >= 19500) %>% mutate(`Time-fs` = `Time-fs` - 19500) %>% 
-  mutate(System = 'S0 Vacuum')
-pot_ppv3_vacuum_s1 <- read_csv('ppv3/potential-s1-vacuum.csv') %>% 
-  filter(State == 1) %>% 
-  group_by(`Time-fs`) %>% 
-  summarise(MeanEnergy = mean(`Potential-eV`)) %>% 
-  filter(`Time-fs` >= 500) %>% mutate(`Time-fs` = `Time-fs` - 500) %>% 
-  mutate(System = 'S1 Vacuum')
-  
-# This energy is significanly lower because of the additional ch3oh atoms in the
-# qm calculation. For comparison, we are going to adjust the values mean energy
-# values by the initial value of the solute in mm
-adjust_factor <- pot_ppv3_ch3oh_5s[[1,2]] - pot_ppv3_ch3oh[[1,2]]
-pot_ppv3_ch3oh_5s <- pot_ppv3_ch3oh_5s %>% mutate(MeanEnergy = MeanEnergy - adjust_factor)
-
-ppv3_potentials <- bind_rows(
-  pot_ppv3_no_trivial,
-  pot_ppv3_vacuum,
-  pot_ppv3_vacuum_s0,
-  pot_ppv3_vacuum_s1,
-  pot_ppv3_ch3oh,
-  pot_ppv3_ch3oh_5s
-) %>% mutate(Solute = 'PPV3')
-
-
-
-#################################################
-# PPV3-NO2
-#################################################
-pot_ppv3_no2_vacuum <- read_potential('ppv3_no2/potential-vacuum.csv','Vacuum')
-pot_ppv3_no2_ch3oh <- read_potential('ppv3_no2/potential-ch3oh.csv', 'Methanol')
-pot_ppv3_no2_ch3oh_5s <- read_potential('ppv3_no2/potential-ch3oh-5s.csv', 'Methanol-5s')
-# The following are taken from 
-pot_ppv3_no2_vacuum_s0 <- read_csv('ppv3_no2/potential-s0-vacuum.csv') %>% 
-  filter(State == 0) %>% 
-  group_by(`Time-fs`) %>% 
-  summarise(MeanEnergy = mean(`Potential-eV`)) %>% 
-  filter(`Time-fs` >= 9500) %>% mutate(`Time-fs` = `Time-fs` - 9500) %>% 
-  mutate(System = 'S0 Vacuum')
-pot_ppv3_no2_vacuum_s1 <- read_csv('ppv3_no2/potential-s1-vacuum.csv') %>% 
-  filter(State == 1) %>% 
-  group_by(`Time-fs`) %>% 
-  summarise(MeanEnergy = mean(`Potential-eV`)) %>% 
-  filter(`Time-fs` >= 9500) %>% mutate(`Time-fs` = `Time-fs` - 9500) %>% 
-  mutate(System = 'S1 Vacuum')
-pot_ppv3_no2_ch3oh_s1 <- read_csv('ppv3_no2/potential-s1-methanol.csv') %>% 
-  filter(State == 1) %>% 
-  group_by(`Time-fs`) %>% 
-  summarise(MeanEnergy = mean(`Potential-eV`)) %>% 
-  filter(`Time-fs` >= 9500) %>% mutate(`Time-fs` = `Time-fs` - 9500) %>% 
-  mutate(System = 'S1 Methanol')
-
-# This energy is significanly lower because of the additional ch3oh atoms in the
-# qm calculation. For comparison, we are going to adjust the values mean energy
-# values by the initial value of the solute in mm
-adjust_factor <- pot_ppv3_no2_ch3oh_5s[[1,2]] - pot_ppv3_no2_ch3oh[[1,2]]
-pot_ppv3_no2_ch3oh_5s <- pot_ppv3_no2_ch3oh_5s %>% mutate(MeanEnergy = MeanEnergy - adjust_factor)
-
-ppv3_no2_potentials <- bind_rows(
-  pot_ppv3_no2_vacuum,
-  pot_ppv3_no2_vacuum_s0,
-  pot_ppv3_no2_vacuum_s1,
-  pot_ppv3_no2_ch3oh,
-  pot_ppv3_no2_ch3oh_s1,
-  pot_ppv3_no2_ch3oh_5s
-) %>% mutate(Solute = 'PPV3-NO2')
-
-# The decay rate of s2 is slower in vacuum than in ch3oh. We want to see if this is due to an
-# increase in the energy barrier.
-tidy_energies <- function(csv){
-  csv %>% 
-    select(Trajectory, `Time-fs`, State, `Potential-eV`) %>% 
-    group_by(`Time-fs`, State) %>% 
-    summarise(PotentialEv=mean(`Potential-eV`)) %>%
-    mutate(State=as_factor(State)) %>% 
-    rename(t=`Time-fs`)
-}
-
-find_omega21 <- function(state_data){
-  state_data %>% 
-    filter(State %in% c(1,2)) %>% 
-    pivot_wider(names_from = State, values_from=PotentialEv) %>% 
-    mutate(Omega12 = `2` - `1`) %>%
-    select(t, Omega12)
-}
-
-ppv3no2_ch3oh <- read_csv('ppv3_no2/potential-ch3oh.csv') %>% 
-  tidy_energies() %>% 
-  find_omega21() %>% 
-  mutate(Solvent = "CH3OH")
-
-
-ppv3no2_vacuum <- read_csv('ppv3_no2/potential-vacuum-new.csv') %>% 
-  tidy_energies() %>% 
-  find_omega21() %>% 
-  mutate(Solvent = "Vaccum")
-
-energy_compare <- bind_rows(ppv3no2_ch3oh, ppv3no2_vacuum)
-energy_compare %>% 
-  ggplot(aes(x=t, y=Omega12, color = Solvent)) + geom_point()
-
-#################################################
-# Plot both
-#################################################
-potentials <- bind_rows(ppv3_potentials, ppv3_no2_potentials)
-
-legend_breaks <- c("Vacuum (No Trivial)",
-                   "Vacuum",
-                   "S0 Vacuum",
+legend_breaks <- c("S0 Vacuum",
                    "S1 Vacuum",
-                   "Methanol",
-                   "Methanol-5s")
-legend_labels <- c(expression(paste(S[m], "Vacuum NT")),
-                   expression(paste(S[m], "Vacuum")),
-                   expression(paste(S[0], " Vacuum")),
+                   "S1 Methanol"
+                   )
+legend_labels <- c(expression(paste(S[0], " Vacuum")),
                    expression(paste(S[1], " Vacuum")),
                    expression(paste(S[m], " Methanol")),
                    expression(paste(S[m], " Methanol-5s")))

@@ -48,7 +48,7 @@ connection/.style={thick, dotted},
   \includegraphics[width=\textwidth]{Images/com}
   \column{0.45\textwidth}
   \begin{itemize}
-    \item They tend to be very good at energy transfer
+    \item They tend to be very good at energy transfer.
     \item 2 $\rightarrow$ 3 $\rightarrow$ 4
     \item Excited state dynamics can speed or slow this transition.
   \end{itemize}
@@ -61,21 +61,22 @@ connection/.style={thick, dotted},
 \begin{frame}
   \frametitle{Possible Solutions}
 \begin{itemize}
-  \item Run Classical Ground State Dynamics then perform Excited Sated Energy Calculations on snapshots
+  \item Run Classical Ground State Dynamics then perform Excited State Energy
+    Calculations on the snapshots.
   \begin{itemize}
     \item Excited State dynamics could be different.
     \item In the molecules I studied for example, the excited state had a
-      much more planer dynamics than ground state
+      much more planer dynamics than ground state.
   \end{itemize}
-  \item Run dynamics using the average forces of all the relevant excited states (Ehrenfest)
+  \item Run dynamics using the average forces of all the relevant excited states (Ehrenfest).
   \begin{itemize}
-    \item Often the average force is not a very good approximation of either. 
+    \item Often the average force of two states is not a very good approximation of either. 
   \end{itemize}
   \item Run a swarm of trajectories that are allowed to switch between different
-    states (FSSH)
+    states (FSSH).
   \begin{itemize}
     \item The proportion of the population that are on a certain state represent the probability of the state.
-    \item Can be very computationally expensive
+    \item This process can be very computationally expensive.
   \end{itemize}
 \end{itemize}
 \end{frame}
@@ -86,13 +87,13 @@ connection/.style={thick, dotted},
   \includegraphics[width=0.7\textwidth]{Images/simulations}
 \begin{block}{Example Times}
 \begin{itemize}
-    \item Perform a long MM trajectory
-    \item Take snapshot every 1 PS, run QM Ground State for relaxation
-    \item Excite the System
-    \item Allow each of these trajectories relax independently
+    \item Perform a long MM trajectory.
+    \item Take snapshot every 1 PS, run QM Ground State for relaxation.
+    \item Excite the System.
+    \item Allow each of these trajectories relax independently.
     \begin{itemize}
-      \item Sum the population in each state to get state probabilities over time
-      \item Analyze absorption and emission properties by looking at frequencies and oscillator strengths
+      \item Sum the population in each state to get state probabilities over time.
+      \item Analyze absorption and emission properties by looking at frequencies and oscillator strengths.
     \end{itemize}
 \end{itemize}
 
@@ -103,7 +104,7 @@ connection/.style={thick, dotted},
   \frametitle{Long MM Trajectory}
 \begin{block}{Sampling}
     The goal of our analysis is to derive the probability of states of a solute in solution.
-    Their are of possible conformations for a molecule. If you
+    There are many possible conformations for a molecule. If you
     then include a solvent, the number of snapshots needed to accurately sample
     the phase space increased even more. A long run is necessary for decent sampling.
 \end{block}
@@ -127,9 +128,9 @@ connection/.style={thick, dotted},
   \column{0.45\textwidth}
   \begin{block}{}
     \begin{itemize}
-      \item The Algorithm used to decide whether to jump is very sensitive to energies.
-      \item QM/MM energies are not going to be the same as MM
-      \item Some time is needed to properly relax
+      \item The algorithm used to decide whether to jump is very sensitive to energies.
+      \item QM/MM energies are not going to be the same as MM and some time is
+        needed to properly relax.
     \end{itemize}
   \end{block}
 \end{columns}
@@ -143,10 +144,10 @@ connection/.style={thick, dotted},
   \column{0.45\textwidth}
   \begin{block}{}
     \begin{itemize}
-    \item We use laser excitations with a wave shape similar to that done in experiment
-    \item Due to quantum uncertainty these states are also chosen based on the Franck-Condon principle
-    \item Energy is not conserved (We're shooting a laser at it.)
-    \item Velocities and Coordinates are maintained in this step
+    \item We use laser excitations with a wave shape similar to that done in experiments.
+    \item Due to quantum uncertainty these states are also chosen based on the Franck-Condon principle.
+    \item Energy is not conserved. (We're shooting a laser at it.)
+    \item Velocities and coordinates are maintained in this step
     \end{itemize}
   \end{block}
 \end{columns}
@@ -160,10 +161,11 @@ connection/.style={thick, dotted},
   \column{0.45\textwidth}
   \begin{block}{}
     \begin{itemize}
-    \item The molecule will start at a very high excited state
-    \item When near a crossing of the energies, we have a very strong coupling, the state can shift
-    \item When there's a switch the velocities of the atoms are adjusted to conserve energy
-    \item Phosphorescence is not allowed
+    \item The molecule will start at a very high excited state.
+    \item When near a crossing of the energies, we have a very strong coupling,
+      the molecule can then hop between the states.
+    \item When there's a switch the velocities of the atoms are adjusted to conserve energy.
+    \item Phosphorescence is not allowed.
     \end{itemize}
   \end{block}
 \end{columns}
@@ -200,7 +202,7 @@ probabilities can be repurposed to follow the physical movement of the excited e
   NEXMD can perform the above calculations already
 \begin{block}{However}
   \begin{itemize}
-    \item The choice to switch states is sensitive to energies
+    \item The choice to switch states is sensitive to energies.
     \item (Solvatochromic) Shifts in emission and absorption energies are known to
     occur in solvents.
     \item Applications such as sensors, fluorescent tags, L.E.D's, etc, will include solvent.
@@ -237,9 +239,9 @@ probabilities can be repurposed to follow the physical movement of the excited e
 \end{columns}
 \begin{block}{}
   \begin{itemize}
-    \item These systems are small
-    \item These systems are well studied
-    \item The Hamiltonian is known to provide reasonable results
+    \item These systems are small.
+    \item These systems are well studied.
+    \item The Hamiltonian is known to provide reasonable results.
   \end{itemize}
 \end{block}
 \end{frame}
@@ -252,11 +254,11 @@ probabilities can be repurposed to follow the physical movement of the excited e
 \begin{block}{}
     \begin{table}[]
     \begin{tabular}{lll}
-    Solvent & Viscosity &  Dielectric (debye) \\
+    Solvent &  Dielectric (debye) \\
       \hline
-      CCL$_4$ & 0.91 & 2.24  \\
-      CH$_3$OH & 0.56 &  32.7 \\
-      CHCl$_3$ & 0.53 & 4.81 
+      CCL$_4$ & 2.24  \\
+      CH$_3$OH & 32.7 \\
+      CHCl$_3$ & 4.81 
     \end{tabular}
     \end{table}
 
