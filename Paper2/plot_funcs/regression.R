@@ -44,38 +44,20 @@ ch3oh_comparison %>%
 ggsave("~/potentialparadox.github.io/Paper2/Images/populations/solvent_comparison.png", width = 16, height = 6)
 
 
-###################################
-# Plot fitted tenua data
-###################################
-vacuum <- as_tibble(read_table("ppv3/vacuum/ppv3_fitted_sm.txt", col_names = FALSE))
-state_names <- c('t', 'Sm Fitted', 'S1 Fitted', 'S2 Fitted', 'SL Fitted', 'S7 Fitted', 'S8 Fitted', 'Sm', 'S1', 'S2', 'SL', 'S7', 'S8')
-colnames(vacuum) <-state_names
-vac <- vacuum %>% pivot_longer(-t, names_to = "Name", values_to = "Value") %>% 
-  mutate(State = str_sub(Name, 1,2)) %>% 
-  mutate(Type = ifelse(str_detect(Name, "Fitted"), "Fitted", "Measured")) %>% 
-  select(t, State, Type, Value)
+##################################################
+## Fitting Tammie's Equations
+##################################################
 
-svacuum <- vac %>% spread(Type, Value)
+tammies_fit_func <- function(A, tau, t){
+    (A * exp(t / tau)) / (A + exp(t / tau)) - A / (1 + A)
+}
 
 
-svacuum %>% ggplot(aes(x = t, y = Fitted, color = State)) +
-  geom_line() +
-  geom_line(mapping = aes(y = Measured), size = 1) +
-  labs(x="Time (fs)", y="Population")+
-  theme_bw() +
-  theme(axis.text=element_text(size=20),
-        axis.title=element_text(size=20),
-        legend.title = element_text(size = 15),
-        legend.text = element_text(size = 15)
-  )
+vacuum_fit <- purrr::partial(tammies_fit_func, A = 1.62, tau = 100)
+vacuum %>%
+    filter(State == "S1") %>%
+    ggplot(aes(x = t, y = value)) +
+    geom_line(color = "blue") +
+    stat_function(fun = vacuum_fit) + xlim(-1000,1000)
 
-###################################
-# Plot test cases
-###################################
-vacuum_ppv3_test <- read_pops("ppv3-no2/tests/ppv3_vac_pops.txt", "vac_test")
-
-vac_test_s1 <- vacuum_ppv3_test %>%
-    filter(State == 'S1')
-
-vac_test_s1 %>%
-    ggplot(aes(x = t, y = Measured)) + geom_point()
+    

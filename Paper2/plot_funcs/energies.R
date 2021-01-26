@@ -1,12 +1,6 @@
 library(tidyverse)
 
 setwd('~/Documents/paper2/energies/ppv3_no2')
-data <- read_csv('ppv3/energies.csv')
-
-data_mean <- data %>% group_by(`Time-fs`, State) %>% 
-  summarise(MeanEnergy = mean(`Energy-eV`)) %>% 
-  mutate(State = as.factor(State))
-
 
 #################################################
 # Collect Potentials
@@ -34,7 +28,7 @@ get_current_state_deltas <- function(state_potential_filename, states_filename){
     states <- read_csv(states_filename)
 
     states %>%
-        left_join(vacuum_all_deltas, by = c("Trajectory", "Timefs", "State")) %>%
+        left_join(all_deltas, by = c("Trajectory", "Timefs", "State")) %>%
         filter(!is.na(Energy)) %>%
         group_by(Timefs) %>%
         summarize(MeanEnergyeV = mean(Energy), .groups = 'drop')
@@ -49,11 +43,21 @@ ch3oh_energies <- get_current_state_deltas('state-potentials-ch3oh.csv', 'states
 ch3oh_5s_energies <- get_current_state_deltas('state-potentials-ch3oh-5s.csv', 'states-ch3oh-5s.csv') %>%
     mutate(Solvent = "5")
 
+ch3oh_10s_energies <- get_current_state_deltas('state-potentials-ch3oh-10s.csv', 'states-ch3oh-10s.csv') %>%
+    mutate(Solvent = "10")
+
 energies <- bind_rows(
     vacuum_energies,
     ch3oh_energies,
-    ch3oh_5s_energies
+    ch3oh_5s_energies,
+    ch3oh_10s_energies
 )
+
+
+energies %>%
+    filter(Trajectory == 1) %>%
+    ggplot(aes(x= Timefs, y = Energy, color = Solvent)) +
+    geom_line()
 
 energies %>%
     ggplot(aes(x = Timefs, y = MeanEnergyeV, color = Solvent)) +
@@ -68,9 +72,8 @@ energies %>%
           legend.text = element_text(size = 18),
           legend.title = element_text(size=20),
           legend.text.align = 0,
-          legend.position = c(0.8, 0.7)
+          legend.position = c(0.80, 0.9)
     )
-
 ggsave("~/potentialparadox.github.io/Paper2/Images/potential_energies/solvent_comparison.png", width = 10, height = 10)
 
 
