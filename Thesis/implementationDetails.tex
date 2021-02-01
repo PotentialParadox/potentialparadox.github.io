@@ -1,0 +1,18 @@
+\chapter{Implementation Details} \label{implementationDetails}
+
+\section{Introduction to AMBER and NEXMD}
+
+NEXMD, currently being developed by the Tretiak lab in los Alamos, has a proven track record of performance on the stimulation of ultra-fast non-adiabatic behaviors.
+It’s ability to solve state coupling equations on-the-fly has found great utility for systems with hundreds of atoms.
+Numerous studies have implemented the method for research into topics including the study of chlorophyll organic conjugated molecules, and pi conjugated macrocycles. \cite{zheng2017photoinduced, nelson2014nonadiabatic, alfonso2016interference} 
+Such studies with NEXMD have been limited to implicit solvents.
+No method to provide NEXMD with QM/MM capabilities have yet to be implemented.
+
+Amber is primarily known as a classical force-field molecular dynamics package.
+It’s a massive project maintained by people across the globe that's been designed to work with very large systems ranging in the tens of thousands of atoms. \cite{case2020a}
+Amber is capable of a huge range of simulations from replica exchange to QM/MM umbrella sampling using nudge elastic bands. \cite{cruzeiro2020exploring, ghoreishi2019fast}
+Most importantly for this research, it has a proven track record of doing QM/MM solvent-solute simulations using periodic boundary conditions.
+
+\section{Schematics}
+
+\section{Benchmarks}
