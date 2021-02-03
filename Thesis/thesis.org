@@ -78,6 +78,7 @@
   \include{implementationDetails}% Modified from old template.
   \include{adiabatic}% Modified from old template.
   \include{nonadiabatic}% Modified from old template.
+  \include{conclusion}% Modified from old template.
 
   % \begin{algorithm}% Example showing the weird "algorithm" environment works...
   %     \captionof{algorithm}{Test Caption}
@@ -132,7 +133,7 @@ We outline the flowchart connecting them in order to optimize their exchange all
 To validate functionality, we analyze the dynamics of a polyphenylene vinylene oligomer (PPV3-NO2) in vacuum and various explicit solvents.
 We highlight the system's ability to generate optical spectrum, view state-dependent conformational changes, and view quantum bond orderings. 
   #+end_src
-* ONE Introduction [1/3]
+* TWO Introduction [5/5]
   :PROPERTIES:
   :header-args: :eval never-export
   :header-args:latex: :exports code :tangle introduction.tex
@@ -140,7 +141,7 @@ We highlight the system's ability to generate optical spectrum, view state-depen
   #+begin_src latex
   \chapter{Introduction} \label{introduction}
   #+end_src
-** ONE Prologue [1/2]
+** TWO Prologue [2/2]
    #+begin_src latex
    \section{Prologue}
    #+end_src
@@ -153,16 +154,34 @@ We highlight the system's ability to generate optical spectrum, view state-depen
     - In the lates 1700s Priestly experiments shinned some light on the understanding of oxidations, and sparked a curiosity into the further expermentations on photosynthesis and photochemistry in general.
     - Since then, researcher have further advanced our knowledge of these effects and our ability to harness the power of light has improved as well.
     :END:
-*** ONE Why the study of light is important
-** ONE Qualitaive Overview of Non-Adiabatic Dynamics [2/3]
+*** TWO Why the study of light is important
+    :LOGBOOK:
+    - Note taken on [2021-02-01 Mon 08:38] \\
+      - Organic Photosynthesis \cite{zhengfernandez2017,caycedo2010light}
+      - Synthetic organic photosynthesis. \cite{balzani2008photochemical,engel2007evidence}
+      - LEDs
+      - rhodopsin \cite{weingart2012modelling}
+      - Optical Sensors
+      - Broad academic interest \cite{tavernelli2015nonadiabatic,nelson2020non}
+    :END:
+** TWO Qualitaive Overview of Non-Adiabatic Dynamics [3/3]
    #+begin_src latex
    \section{Qualitative Overview of Non-Adiabatic Dynamics}
    #+end_src
-*** ONE Qualitative explanation of what we are trying to model with Non-Adiabatic Dynamics [2/4] :ignore:
+*** TWO Qualitative explanation of what we are trying to model with Non-Adiabatic Dynamics [4/4] :ignore:
     #+begin_src latex
 \subsection{Energy Transfer}
     #+end_src
-**** ONE Jablonski diagram
+**** THREE Jablonski diagram
+     #+begin_src latex
+	  \noindent
+	  \begin{multiFigure} 
+	    \addFigure{0.45}{../Oral/Images/photoexcitation.png}
+	    \addFigure{0.45}{../Oral/Images/pes_chart_zoomed.png}
+	    \captionof{figure}{Diagrams describing the behavior of a molecule throughout an photo-excitation event.}
+	    \label{fig:}
+	  \end{multiFigure}
+     #+end_src
 **** TWO Overview of excited dynamics.
      :LOGBOOK:
      - Note taken on [2021-01-30 Sat 08:01] \\
@@ -196,7 +215,7 @@ We highlight the system's ability to generate optical spectrum, view state-depen
      - While using classical dynamics for the nuclear coordinates, this transition dipole is determined using the electronic wavefunctions only.
      - Because of the dependence on the tranistion dipole moment, transitions between similar symmmetries are unlikely.
      :END:
-**** ONE Explanation of decay [1/3]
+**** TWO Explanation of decay [3/3]
 ***** TWO Must go beyon the Born-Oppenheimer
      :LOGBOOK:
      - Note taken on [2021-01-30 Sat 08:29] \\
@@ -207,13 +226,39 @@ We highlight the system's ability to generate optical spectrum, view state-depen
      - While using clasisical dynamics, the molecule is free to move continuously along any one of these surfaces.
      - To simulate a hop we must go beyond the born-oppenheimer approximation.
      :END:
-***** ONE Mean-Field vs MDQT [0/4]
-****** ONE Diagram showing mean-field and surface hopping
-****** ONE Explanation of the Mean-Field vs Surface Hopping 
-****** ONE Diagram of a trajectory swarm
-****** ONE Explanation of the trajectory swam diagram
-***** ONE Explanation of Non-Adiabatic Transition [1/2]
-****** ONE Figure Showing a Slow Approach and Fast Approach for crossing
+***** TWO Mean-Field vs MDQT [2/2]
+****** TWO Diagram showing mean-field and surface hopping
+       #+begin_src latex
+       \noindent
+       \begin{multiFigure} 
+	 \addFigure{0.45}{Images/probabilities.png}
+	 \addFigure{0.45}{Images/ehrenfestVsTully.png}
+	 \captionof{figure}[Surface Hopping vs Mean-Field]{A visual description describing the difference between surface hopping and mean-field. A) The probabilities states S1 and S2. B) The potential energies of trajectories over time. Dashed lines represent represent the potential engergies of S1, S2, and the probability weighted average during the Ehrenfest trajectory. Solid lines represent two sepearte surface hopping trajectories.}
+	 \label{fig:surfaceHoppingVsMeanField}
+       \end{multiFigure}
+       #+end_src
+****** TWO Explanation of the Mean-Field vs Surface Hopping 
+       :LOGBOOK:
+       - Note taken on [2021-02-01 Mon 12:00] \\
+	 - figure shows erhenfest mean average energies
+	 - Ehrenfest shows S1 and S2 in regards to the geometry along the mean field
+	 - Will always be in a mixed state, even in areas with low couplings.
+	 - Average energy could be significanly different than any pure state.
+	 - The average path of a mean trajectory could be significantly different than the most probable trajectory.
+	 - Lose the distribution. Everything is replaced by single scalar.
+	 - The average potential of the two tully PE will not equal the potential energy of ehrenfest
+       :END:
+***** TWO Explanation of Non-Adiabatic Transition [2/2]
+****** TWO Figure Showing a Slow Approach and Fast Approach for crossing
+       #+begin_src latex
+       \noindent
+       \begin{minipage}[c]{\textwidth}
+	 \centering
+	 \includegraphics[width=\textwidth]{./Images/naCrossings.png}
+	 \captionof{figure}[Regions of Non-Adiabatic Couplings]{Periods of trajectories where there is in general weak and strong state couplings between states S1 and S2 and well as region where the energies of S1 and S2 cross.}
+	 \label{fig:naCrossings}
+       \end{minipage}\bigskip
+       #+end_src
 ****** TWO Explanation of the crossing
        :LOGBOOK:
        - Note taken on [2021-01-30 Sat 09:24] \\
@@ -308,7 +353,7 @@ to transition to another state.
      - In chapter 5 we apply the non-adiabatic methodoly to analyze the effects included QM/MM solvents have the non-adiabatic relaxation of PPV3NO2
    :END:
    
-* ONE Theoretial Methods [5/6]
+* ONE Theoretial Methods [5/7]
   :PROPERTIES:
   :header-args: :eval never-export
   :header-args:latex: :exports code :tangle theoreticalMethods.tex
@@ -317,6 +362,7 @@ to transition to another state.
   \chapter{Theoretical Methods} \label{theoreticalMethods}
   #+end_src
 *** THREE Secular Determinants                                      :ignore:
+    - [ ] Add section about using guassians instead of slater-type orbitals
     #+begin_src latex
     \section{Secular Determinants}\label{secular}
 
@@ -423,6 +469,7 @@ to transition to another state.
     whose characteristics are determined by the coefficients in the
     corresponding eigenvector.\cite{engel2012quantum}
     #+end_src
+    
 *** THREE Hartree Fock                                              :ignore:
     #+begin_src latex
     \section{Hartree Fock}
@@ -512,61 +559,6 @@ to transition to another state.
 	We then solve the Roothan-Hall equation, save the lowest eigenvalue energy and use the corresponding coefficient vector to create a density function for another iteration.
 	We compare the energy differences between iterations until it's less than a chosen value.
     #+end_src
-*** THREE QM/MM on Hartree Fock                                     :ignore:
-    #+begin_src latex
-    \section{QM/MM}
-	In this work, we will be focused on the behavior of a molecule after an electron absorbs the energy of a photon.
-	In the previous sections we have discussed how quantum mechanics can be used for chemical calculations;
-	however, in many applications, the accuracy of QM is not needed and more computationally cheaper method would be more appropriate.
-	For these situations many computational chemist use classical electrical force field dynamics, treating atoms as point charges.
-	QM/MM was developed to manage computational costs by separating a calculation into a quantum mechanical (QM) region and a classical mechanical (MM) region.\cite{Karplus2014}
-	This allows the user to have the accuracy where needed while not wasting resources on unwanted calculations such as the dynamics of water molecules far from the protein of interest.
-	For the vast majority of our calculations, we will have a QM solute and a few nearby QM solvents surrounded by MM solvents.
-	The Hamiltonian for this system is 
-	\begin{equation}
-	 \mathbf{H}_{eff}=\mathbf{H}_{QM}+\mathbf{H}_{MM}+\mathbf{H}_{QM/MM} 
-	\end{equation}
-	with
-	\begin{align}\label{eq:qmmm}
-	  \mathbf{H}_{QM/MM}=-\sum_{e}\sum_mq_m\mathbf{h}_{electron}(\bar{r}_e,\bar{r}_m)\\
-	  +\sum_q\sum_mz_qq_m\bar{\mathbf{h}}_{core}(\bar{r}_q,\bar{r}_m)\\
-	  +\sum_m\sum_q\left( \frac{A_{qm}}{r_{qm}^{12}}-\frac{B_{qm}}{r_{qm}^6} \right)
-	\end{align}
-	where $e$, $m$, and $q$, are the electron, MM atom, and QM core indices respectively;
-	$q_m$ is the charge on the MM atom $m$, $z_q$ is the charge on the QM atom q, $\bar{r}$ is the coordinate vector, $r_{mq}$ is the distance between atoms $m$ and $q$ and $A$ and $B$ are the Leonard-Jones interaction parameters.\cite{Walker2008}
-
-	\begin{multiFigure} 
-	\addFigure{0.4}{../Oral/Images/qm_mm.png}
-	\addFigure{0.4}{../Oral/Images/qm_mm_pme.png}
-	\captionof{figure}[QM/MM Diagram]{a) single cell. b) representation of the periodic nature of the system.}
-	\label{fig:QMMMDiagram}
-	\end{multiFigure}
-
-	Figure \ref{fig:QMMMDiagram} gives and example of a QM/MM systems.
-	The atoms of the drawn out molecule will be described at the QM level of theory.
-	The MM atoms in the volume immediately surrounding the molecular, label QMCut, will be the MM atoms included in equation \ref{eq:qmmm}.
-	To simulate a solute in solvent, we treat the provided box as a cell, that is repeated infinitely many times.
-	Particle Mesh Ewald calculations are then used to calculate the long distance interactions of the periodic boxes.
-	This is performed by treating the charge and potential in the long range, inter box distances, as sums in Fourier space.\cite{Darden1993}
-	Note that the QM region must be treated as single point charges for this calculations.
-	The Mulliken charges of the current state are used for these calculations.
-	Once the sums are complete, a fast Fourier transform is performed to obtain energy and forces.
-	Charges from the MM region outside QMCut, will be used to provide a Particle Mesh Ewald correction to the new Fock Matrix.\cite{Walker2008}
-
-	Long range interaction, from those outside the cutoff, considered vital for the understanding of solvent effects, are treated using SQM’s implementation of Particle Mesh Ewald.
-	Trajectories use periodic boundary conditions to simulate an explicit solution, treating the system box as cells repeated infinitely many times in all directions.
-	Particle Mesh Ewald calculations then determine the long-distance interactions of these periodic boxes, treating the charges and potentials in the long-range inter-box distances as sums in Fourier space treating atoms in the QM region of these calculations as Mulliken point charges.
-	Once the sums are complete, SQM performs a fast Fourier transformation to obtain the long-range corrections to the energy and forces.  
-
-	A general timestep would be as follow: 
-
-	Calculate the MM ewald potentials using the classical charges from the MM atoms Construct the Hamiltonian matrix as if the QM region was in vacuum.
-	Add the one electron terms for the interaction between QM atoms and the MM atoms within the cutoff to the Hamiltonian.
-	Within the SCF routine, copy the Hamiltonian to the fock matrix, and add the two-electron integrals.
-	Calculate the QM ewald potential using the iteration’s Mulliken charges, then add the ewald potentials for both QM and MM atoms to the Fock Matrix.
-	The SCF procedure continues until convergence resulting in a density matrix that incorporates the presence of solvents. 
-
-    #+end_src
 *** TWO Configuration Interaction
     :LOGBOOK:
     - Note taken on [2021-01-31 Sun 16:37] \\
@@ -637,6 +629,85 @@ to transition to another state.
 
 
 
+
+    #+end_src
+*** ONE Semi-Emprical Methods [0/2]
+**** ONE Overview
+     :LOGBOOK:
+     - Note taken on [2021-02-02 Tue 19:13] \\
+       - Solving the Hartree Fock equations, and  Configuration Interaction require the integrations of many two-electon integrals.
+       - Use the most logical basis set, the slater-type orbitals becomes inpractical.
+       - It is common to approximate these orbitals with gaussians.
+       - For dynamics of larger molecules with higher states, further approximations are needed.
+       - Show Roothan hall equation
+       - A common approximation is to replace the overlap matrix S with the uni matrix and only treat the valence electrons quantum mechanically. \cite{christensen2016semiempirical}
+       - This is called the zero-differential overlap approximation .
+       - Reduces the cost order of the integrations from \(O(N_{\text{electrons}})^4\) to \(O(N_{\text{valence electrons}})^2\)
+       - The cost can be further reduced by approximating the remaining (ii|jj) integrals by parameterizing the integrals to experimental data as done in the comple negelect of differential overlap methods.
+       - A common correction is to reintroduce parameterized integral approximations for (ij|kl) where ij are electrons on one atom, and kl another. \cite{41}
+       - This is called the neglect of diatomic differential overlap, the foundation for most the semiempirical methods. 
+     :END:
+**** ONE AM1
+    :LOGBOOK:
+    - Note taken on [2021-02-02 Tue 18:43] \\
+      - The Austin Model 1 (AM1) is the hamiltonian that we used throughout this paper.
+      - It is a modified neglect of differential diatomic overlap
+      - AM1 has been used succesfully for organic conjugated polymers. \cite{ozaki2019molecular,silva2010benchmark,moran2003excited}
+      - Used in the study of rhodopsin \cite{weingart2012modelling}
+    :END:
+*** THREE QM/MM on Hartree Fock                                     :ignore:
+    #+begin_src latex
+    \section{QM/MM}
+	In this work, we will be focused on the behavior of a molecule after an electron absorbs the energy of a photon.
+	In the previous sections we have discussed how quantum mechanics can be used for chemical calculations;
+	however, in many applications, the accuracy of QM is not needed and more computationally cheaper method would be more appropriate.
+	For these situations many computational chemist use classical electrical force field dynamics, treating atoms as point charges.
+	QM/MM was developed to manage computational costs by separating a calculation into a quantum mechanical (QM) region and a classical mechanical (MM) region.\cite{Karplus2014}
+	This allows the user to have the accuracy where needed while not wasting resources on unwanted calculations such as the dynamics of water molecules far from the protein of interest.
+	For the vast majority of our calculations, we will have a QM solute and a few nearby QM solvents surrounded by MM solvents.
+	The Hamiltonian for this system is 
+	\begin{equation}
+	 \mathbf{H}_{eff}=\mathbf{H}_{QM}+\mathbf{H}_{MM}+\mathbf{H}_{QM/MM} 
+	\end{equation}
+	with
+	\begin{align}\label{eq:qmmm}
+	  \mathbf{H}_{QM/MM}=-\sum_{e}\sum_mq_m\mathbf{h}_{electron}(\bar{r}_e,\bar{r}_m)\\
+	  +\sum_q\sum_mz_qq_m\bar{\mathbf{h}}_{core}(\bar{r}_q,\bar{r}_m)\\
+	  +\sum_m\sum_q\left( \frac{A_{qm}}{r_{qm}^{12}}-\frac{B_{qm}}{r_{qm}^6} \right)
+	\end{align}
+	where $e$, $m$, and $q$, are the electron, MM atom, and QM core indices respectively;
+	$q_m$ is the charge on the MM atom $m$, $z_q$ is the charge on the QM atom q, $\bar{r}$ is the coordinate vector, $r_{mq}$ is the distance between atoms $m$ and $q$ and $A$ and $B$ are the Leonard-Jones interaction parameters.\cite{Walker2008}
+
+	\begin{multiFigure} 
+	\addFigure{0.4}{../Oral/Images/qm_mm.png}
+	\addFigure{0.4}{../Oral/Images/qm_mm_pme.png}
+	\captionof{figure}[QM/MM Diagram]{a) single cell. b) representation of the periodic nature of the system.}
+	\label{fig:QMMMDiagram}
+	\end{multiFigure}
+
+	Figure \ref{fig:QMMMDiagram} gives and example of a QM/MM systems.
+	The atoms of the drawn out molecule will be described at the QM level of theory.
+	The MM atoms in the volume immediately surrounding the molecular, label QMCut, will be the MM atoms included in equation \ref{eq:qmmm}.
+	To simulate a solute in solvent, we treat the provided box as a cell, that is repeated infinitely many times.
+	Particle Mesh Ewald calculations are then used to calculate the long distance interactions of the periodic boxes.
+	This is performed by treating the charge and potential in the long range, inter box distances, as sums in Fourier space.\cite{Darden1993}
+	Note that the QM region must be treated as single point charges for this calculations.
+	The Mulliken charges of the current state are used for these calculations.
+	Once the sums are complete, a fast Fourier transform is performed to obtain energy and forces.
+	Charges from the MM region outside QMCut, will be used to provide a Particle Mesh Ewald correction to the new Fock Matrix.\cite{Walker2008}
+
+	Long range interaction, from those outside the cutoff, considered vital for the understanding of solvent effects, are treated using SQM’s implementation of Particle Mesh Ewald.
+	Trajectories use periodic boundary conditions to simulate an explicit solution, treating the system box as cells repeated infinitely many times in all directions.
+	Particle Mesh Ewald calculations then determine the long-distance interactions of these periodic boxes, treating the charges and potentials in the long-range inter-box distances as sums in Fourier space treating atoms in the QM region of these calculations as Mulliken point charges.
+	Once the sums are complete, SQM performs a fast Fourier transformation to obtain the long-range corrections to the energy and forces.  
+
+	A general timestep would be as follow: 
+
+	Calculate the MM ewald potentials using the classical charges from the MM atoms Construct the Hamiltonian matrix as if the QM region was in vacuum.
+	Add the one electron terms for the interaction between QM atoms and the MM atoms within the cutoff to the Hamiltonian.
+	Within the SCF routine, copy the Hamiltonian to the fock matrix, and add the two-electron integrals.
+	Calculate the QM ewald potential using the iteration’s Mulliken charges, then add the ewald potentials for both QM and MM atoms to the Fock Matrix.
+	The SCF procedure continues until convergence resulting in a density matrix that incorporates the presence of solvents. 
 
     #+end_src
 *** THREE Adiabatic Calculations                                    :ignore:
@@ -788,7 +859,12 @@ We use the Collect Oscillator Approach to calculate the non-adiabatic coupling t
 fly''. \cite{tommasini2001electronic, tretiak1996collective, tretiak2009representation, chernyak2000density}
      #+end_src
 **** THREE Adaptations for Surface Hopping                          :ignore:
-     #+begin_src latex
+     #+begin_src #+BEGIN_EXPORT latex
+\begin{equation}
+
+\end{equation}
+#+END_EXPORT
+
  Inconsistencies arise from solely using the Tully surface hopping approach.
  Trajectories transfer between  the various adiabatic potential energy surfaces instantaneously based off the QM state coefficients.
  These coefficients are determined using the integral of the TDSE on multiple trajectories.
@@ -933,6 +1009,114 @@ fly''. \cite{tommasini2001electronic, tretiak1996collective, tretiak2009represen
    #+begin_src latex
 \section{Results}
    #+end_src
+*** THREE Spectra
+    #+begin_src latex
+    \subsection{Spectra}
+
+    \noindent
+    \begin{multiFigure} 
+      \addFigure{0.4}{../Paper1/Images/nquant_abs_comparison.png}
+      \addFigure{0.4}{../Paper1/Images/nquant_flu_comparison.png}
+      \addFigure{0.4}{../Paper1/Images/spectra_abs_compared.png}
+      \addFigure{0.4}{../Paper1/Images/spectra_flu_compared.png}
+      \captionof{figure}[Fluorescence and Absorption Spectra]{PPV\(_3\)-NO\(_2\) absorption and fluorescence spectra A-B) in CCL\(_4\) with varying number of QM solvents. C-D in various solvents with 20 included in QM region.}
+      \label{fig:}
+    \end{multiFigure}\bigskip
+
+
+	Energies, coordinates, and dipole information are acquired every ten steps.
+	Equilibration times from either MM to QM state or from the S0 to S1 state range from 2-4 ps.
+	We exclude the first four ps of each trajectory in the calculation of the spectra in data analysis for the absorption and emission analysis. 
+
+	Previous studies have analyzed solvatochromic shifts in conjugated substituted PPV3-NO2 molecules with the NEXMD program in implicit solvents.
+	Results with NEXMD by TD-AM1 were redshifted from the experimental results, while single-point calculations using TD-CAM-B3LYP provided by G09 in the same implicit solvent were blue shifted.
+	Other NEXMD computations have shown comparable redshifts in spectra of similar molecules in implicit solvents compared to experiment. \cite{Bjorgaard2015}
+	We performed similar calculations in this paper; however, in explicit solvent.
+	We compare the results to those presented in implicit solvent.
+
+	We collect the vertical excitation dipoles and oscillator strengths between the ground state S0 and S1 every five fs during the steady-state of each trajectory to produce the absorption/emission spectra of PPV3-NO2.
+	We sum over excitation states averaged over the geometries and broaden the spectra using a Gaussian bin function with FWHM=0.16 eV corresponding to a 100 fs FWHM laser excitation.
+	We normalized it such that the maximum absorption is 1. 
+
+	Figure ? presents the absorption spectra for PPV3-NO2 in select solvents and vacuum.
+	The shown absorption has contributions from the nine lowest energy excited states, though the S1 state is the primary contributor to the spectra.
+	We found the number of solvent molecules included in the QM region caused only minor deviations in the spectra, with the largest variance (0.02~eV) occurring between the 20QM and MM CCL4 systems, as such, in figure 12, we only present results from trajectories with 20 QM solvents.
+	All solvent results are redshifted from those in vacuum matching findings in previous works.
+	The absorbance within methanol and chloroform were very similar, with a peak shift from vacuum of -0.04 eV.
+	Within carbon tetrachloride, this shift increases slightly more to-0.06 eV. 
+
+	Aligning with previously reported results, the fluorescence calculations found in figure 13 show an overall more intense redshift from vacuum, along with a more significant dispersion among the solvents. \cite{Park2013}
+	The smallest shift, at -0.06 eV, occurs in carbon tetrachloride, while the largest, at -0.12 eV, occurs in methanol.
+	Previous works have demonstrated that the energy levels of PPV3-NO2 are further stabilized by more polar solvents, a feature clearly seen by our results. 
+    #+end_src
+    
+*** THREE Energy Relaxation
+    - [ ] Is it possible to show all the solvents with 20QM?
+    #+begin_src latex
+    \subsection{Potential Energy Relaxation}
+
+    \noindent
+    \begin{minipage}[c]{\textwidth}
+      \centering
+      \includegraphics[width=5in]{../Paper1/Images/energies.png}
+      \captionof{figure}[Potential Energy Relaation During Adiabatic Dynamics]{Potential energy difference from ground state for PPV\(_3\)NO\(_2\) in CCl\(_4\) with 5 QM solvent molecules.}
+      \label{fig:energiesAdiabatic}
+    \end{minipage}\bigskip
+
+     The absorption and the fluorescence properties are judged primarily through the difference between the ground state (S0) and the first excited state (S1) energies.
+     The system starts at the S0, where it remains near the bottom of the energy well.
+     Figure \ref{fig:energiesAdiabatic} shows the energies for states S0 and S1 averaged over 128 trajectories for PPV3-NO2 in CCL4 with five solvent molecules included in the QM calculations.
+     During the first six ps, the system runs on the ground-state S0, and the S0 energies stay near the minimum with small oscillations caused by temperature.
+     At the time 0 ps, the system instantaneously hops to the S1 potential energy surface.
+     The average energy difference at t=0 between S0 and S1 is 2.93 eV, and it corresponds reasonably well with the peak of the absorption spectrum.
+     When the system relaxes on the new surface, the S1 and S0 energies decrease and increase respectively, until the difference between the two is 2.50 eV agreeing with the peak found in the fluorescence spectra.
+     Table ? presents the fitted decay of S1 energies using   
+
+    \begin{equation}
+    E = E_d \text{e}^{-t/\tau} + c
+    \end{equation}
+    where \(E_d\) is the relaxation energy drop, \(\tau\) the time constant, and c the steady state energy at S1. 
+    #+end_src
+
+*** THREE Torsion Angles                                            :ignore:
+    - [ ] Update the chart to be from all 20QM solvents 
+    #+begin_src latex
+    \subsection{Torsional Angles}
+
+    \noindent
+    \begin{minipage}[c]{\textwidth}
+      \centering
+      \includegraphics[width=4in]{../Paper1/Images/dihedrals.png}
+      \captionof{figure}[Tortional Angles during Adiabatic Dynamics]{Tortional angle around d1-d3, near, and d4-d6, far, in S1 within CCl\(_4\)-5QM}
+      \label{dihedralAdiabatic}
+    \end{minipage}\bigskip
+
+    \begin{table}[H]
+      \caption[]{}
+      % \begin{center}
+      \begin{tabularx}{\textwidth}{XXXXX}\hline
+	Molecule    & S0 Near  & S1 Near & S0 Far & S0 Far\\\hline
+	Vacuum      & 28.0 \(\pm\) 1.0\(^\circ\) & 12.5 \(\pm\) 0.5\(^\circ\) & 28.5 \(\pm\) 0.9\(^\circ\) & 17.4 \(\pm\) 0.8\(^\circ\)\\
+	CHCl\(_4\)  & 25.3 \(\pm\) 1.2\(^\circ\)  & 12.3 \(\pm\) 0.6\(^\circ\) & 25.1 \(\pm\) 1.3\(^\circ\) & 14.7 \(\pm\) 0.8\(^\circ\)\\
+	CH\(_3\)OH  & 26.6 \(\pm\) 0.9\(^\circ\)  & 11.5 \(\pm\) 0.5\(^\circ\) & 28.2 \(\pm\) 0.9\(^\circ\) & 16.2 \(\pm\) 0.8\(^\circ\)\\
+	CHCl\(_3\)  & 26.8 \(\pm\) 1.1\(^\circ\)  & 11.8 \(\pm\) 0.5\(^\circ\) & 27.8 \(\pm\) 1.2\(^\circ\) & 16.0 \(\pm\) 0.7\(^\circ\)\\\hline
+      \end{tabularx}
+    \end{table}
+
+	We use the torsion angle around the vinylene segments as the slow nuclear coordinates of PPV3-NO2-molecules following precendent. \cite{Clark2012}
+	In PPV3-NO2 systems, the excitation to S1 leads to relaxation towards a nearly planar structure Torsion angle around d1,d3 and d4,d6 are averaged over 128 trajectories to produce the near and far torsion angle data respectively. 
+
+	For our CCl4-5QM example, the dihedral angle around the near set d1 to d2 equilibrates around 23° and 12° in the S0 and S1 states, respectively.
+	For the near set, d4 to d6, these values are 23° and 15°.
+	Once again, only a noticeable difference in S1.
+	The time constants for the S1 dihedral relaxations are around 0.8 ps.
+	Relaxation of the dihedral angles occurs by four ps. 
+
+	Table 5 shows a summary of the torsion angles analysis of all tested solvents after five ps of relaxation after the jump to the first excited state.
+	The trajectories include 20 solvent molecules within the QM calculations.
+	A noticeable shift towards a planar geometry occurs in all solvents.
+	This shift is greatest near the nitro group. 
+    #+end_src
 *** THREE BLA                                                       :ignore:
     #+begin_src latex
 	\subsection{Bond Length Alternation}
@@ -1029,114 +1213,6 @@ fly''. \cite{tommasini2001electronic, tretiak1996collective, tretiak2009represen
 	The larger shifts in the near set correspond to the information found in the BLA analysis.
 	The interior bonds, d1 and d4, have lower bond indexes than their exterior counterparts, d3 and d6.
     #+end_src
-*** THREE Torsion Angles                                            :ignore:
-    - [ ] Update the chart to be from all 20QM solvents 
-    #+begin_src latex
-    \subsection{Torsional Angles}
-
-    \noindent
-    \begin{minipage}[c]{\textwidth}
-      \centering
-      \includegraphics[width=4in]{../Paper1/Images/dihedrals.png}
-      \captionof{figure}[Tortional Angles during Adiabatic Dynamics]{Tortional angle around d1-d3, near, and d4-d6, far, in S1 within CCl\(_4\)-5QM}
-      \label{dihedralAdiabatic}
-    \end{minipage}\bigskip
-
-    \begin{table}[H]
-      \caption[]{}
-      % \begin{center}
-      \begin{tabularx}{\textwidth}{XXXXX}\hline
-	Molecule    & S0 Near  & S1 Near & S0 Far & S0 Far\\\hline
-	Vacuum      & 28.0 \(\pm\) 1.0\(^\circ\) & 12.5 \(\pm\) 0.5\(^\circ\) & 28.5 \(\pm\) 0.9\(^\circ\) & 17.4 \(\pm\) 0.8\(^\circ\)\\
-	CHCl\(_4\)  & 25.3 \(\pm\) 1.2\(^\circ\)  & 12.3 \(\pm\) 0.6\(^\circ\) & 25.1 \(\pm\) 1.3\(^\circ\) & 14.7 \(\pm\) 0.8\(^\circ\)\\
-	CH\(_3\)OH  & 26.6 \(\pm\) 0.9\(^\circ\)  & 11.5 \(\pm\) 0.5\(^\circ\) & 28.2 \(\pm\) 0.9\(^\circ\) & 16.2 \(\pm\) 0.8\(^\circ\)\\
-	CHCl\(_3\)  & 26.8 \(\pm\) 1.1\(^\circ\)  & 11.8 \(\pm\) 0.5\(^\circ\) & 27.8 \(\pm\) 1.2\(^\circ\) & 16.0 \(\pm\) 0.7\(^\circ\)\\\hline
-      \end{tabularx}
-    \end{table}
-
-	We use the torsion angle around the vinylene segments as the slow nuclear coordinates of PPV3-NO2-molecules following precendent. \cite{Clark2012}
-	In PPV3-NO2 systems, the excitation to S1 leads to relaxation towards a nearly planar structure Torsion angle around d1,d3 and d4,d6 are averaged over 128 trajectories to produce the near and far torsion angle data respectively. 
-
-	For our CCl4-5QM example, the dihedral angle around the near set d1 to d2 equilibrates around 23° and 12° in the S0 and S1 states, respectively.
-	For the near set, d4 to d6, these values are 23° and 15°.
-	Once again, only a noticeable difference in S1.
-	The time constants for the S1 dihedral relaxations are around 0.8 ps.
-	Relaxation of the dihedral angles occurs by four ps. 
-
-	Table 5 shows a summary of the torsion angles analysis of all tested solvents after five ps of relaxation after the jump to the first excited state.
-	The trajectories include 20 solvent molecules within the QM calculations.
-	A noticeable shift towards a planar geometry occurs in all solvents.
-	This shift is greatest near the nitro group. 
-    #+end_src
-*** THREE Energy Relaxation
-    - [ ] Is it possible to show all the solvents with 20QM?
-    #+begin_src latex
-    \subsection{Potential Energy Relaxation}
-
-    \noindent
-    \begin{minipage}[c]{\textwidth}
-      \centering
-      \includegraphics[width=5in]{../Paper1/Images/energies.png}
-      \captionof{figure}[Potential Energy Relaation During Adiabatic Dynamics]{Potential energy difference from ground state for PPV\(_3\)NO\(_2\) in CCl\(_4\) with 5 QM solvent molecules.}
-      \label{fig:energiesAdiabatic}
-    \end{minipage}\bigskip
-
-     The absorption and the fluorescence properties are judged primarily through the difference between the ground state (S0) and the first excited state (S1) energies.
-     The system starts at the S0, where it remains near the bottom of the energy well.
-     Figure \ref{fig:energiesAdiabatic} shows the energies for states S0 and S1 averaged over 128 trajectories for PPV3-NO2 in CCL4 with five solvent molecules included in the QM calculations.
-     During the first six ps, the system runs on the ground-state S0, and the S0 energies stay near the minimum with small oscillations caused by temperature.
-     At the time 0 ps, the system instantaneously hops to the S1 potential energy surface.
-     The average energy difference at t=0 between S0 and S1 is 2.93 eV, and it corresponds reasonably well with the peak of the absorption spectrum.
-     When the system relaxes on the new surface, the S1 and S0 energies decrease and increase respectively, until the difference between the two is 2.50 eV agreeing with the peak found in the fluorescence spectra.
-     Table ? presents the fitted decay of S1 energies using   
-
-    \begin{equation}
-    E = E_d \text{e}^{-t/\tau} + c
-    \end{equation}
-    where \(E_d\) is the relaxation energy drop, \(\tau\) the time constant, and c the steady state energy at S1. 
-    #+end_src
-
-*** THREE Spectra
-    #+begin_src latex
-    \subsection{Spectra}
-
-    \noindent
-    \begin{multiFigure} 
-      \addFigure{0.4}{../Paper1/Images/nquant_abs_comparison.png}
-      \addFigure{0.4}{../Paper1/Images/nquant_flu_comparison.png}
-      \addFigure{0.4}{../Paper1/Images/spectra_abs_compared.png}
-      \addFigure{0.4}{../Paper1/Images/spectra_flu_compared.png}
-      \captionof{figure}[Fluorescence and Absorption Spectra]{PPV\(_3\)-NO\(_2\) absorption and fluorescence spectra A-B) in CCL\(_4\) with varying number of QM solvents. C-D in various solvents with 20 included in QM region.}
-      \label{fig:}
-    \end{multiFigure}\bigskip
-
-
-	Energies, coordinates, and dipole information are acquired every ten steps.
-	Equilibration times from either MM to QM state or from the S0 to S1 state range from 2-4 ps.
-	We exclude the first four ps of each trajectory in the calculation of the spectra in data analysis for the absorption and emission analysis. 
-
-	Previous studies have analyzed solvatochromic shifts in conjugated substituted PPV3-NO2 molecules with the NEXMD program in implicit solvents.
-	Results with NEXMD by TD-AM1 were redshifted from the experimental results, while single-point calculations using TD-CAM-B3LYP provided by G09 in the same implicit solvent were blue shifted.
-	Other NEXMD computations have shown comparable redshifts in spectra of similar molecules in implicit solvents compared to experiment. \cite{Bjorgaard2015}
-	We performed similar calculations in this paper; however, in explicit solvent.
-	We compare the results to those presented in implicit solvent.
-
-	We collect the vertical excitation dipoles and oscillator strengths between the ground state S0 and S1 every five fs during the steady-state of each trajectory to produce the absorption/emission spectra of PPV3-NO2.
-	We sum over excitation states averaged over the geometries and broaden the spectra using a Gaussian bin function with FWHM=0.16 eV corresponding to a 100 fs FWHM laser excitation.
-	We normalized it such that the maximum absorption is 1. 
-
-	Figure ? presents the absorption spectra for PPV3-NO2 in select solvents and vacuum.
-	The shown absorption has contributions from the nine lowest energy excited states, though the S1 state is the primary contributor to the spectra.
-	We found the number of solvent molecules included in the QM region caused only minor deviations in the spectra, with the largest variance (0.02~eV) occurring between the 20QM and MM CCL4 systems, as such, in figure 12, we only present results from trajectories with 20 QM solvents.
-	All solvent results are redshifted from those in vacuum matching findings in previous works.
-	The absorbance within methanol and chloroform were very similar, with a peak shift from vacuum of -0.04 eV.
-	Within carbon tetrachloride, this shift increases slightly more to-0.06 eV. 
-
-	Aligning with previously reported results, the fluorescence calculations found in figure 13 show an overall more intense redshift from vacuum, along with a more significant dispersion among the solvents. \cite{Park2013}
-	The smallest shift, at -0.06 eV, occurs in carbon tetrachloride, while the largest, at -0.12 eV, occurs in methanol.
-	Previous works have demonstrated that the energy levels of PPV3-NO2 are further stabilized by more polar solvents, a feature clearly seen by our results. 
-    #+end_src
-    
 *** THREE Conclusion
     #+begin_src latex
     The Non-adiabatic Excited State Molecular Dynamics package (NEXMD) that SANDER is linked to for the excited state calculations done in this paper is designed to perform molecular dynamics simulations outside the Born-Oppenheimer approximations using the FSSH in implicit solvents.
@@ -1357,28 +1433,6 @@ fly''. \cite{tommasini2001electronic, tretiak1996collective, tretiak2009represen
  \end{minipage}\bigskip
  #+end_src
 **** ONE Explain the Relaxation Figure                               :ignore:
-*** TODO Bond Length Alternation [0/2]
-    :LOGBOOK:
-    - Note taken on [2021-01-26 Tue 08:28] \\
-    It looks like I might have made a mistake with the BLA's
-    
-    My plots show the following:
-    :END:
-    #+begin_src latex
-\subsection{Bond Length Alternation}
-    #+end_src
-**** ONE Bond Length Adjustment Figure                               :ignore:
-     :LOGBOOK:
-     - State "WAITING"    from "TODO"       [2021-01-25 Mon 06:29] \\
-     waiting for updated data for ch3oh and vacuum
-     - Note taken on [2021-01-23 Sat 08:12] \\
-     Because I don't have solvents included in the trajectory files, I'll need to have a stripped version of the input_coordinate file and the prmtop.
-     To do this, I'm creating an executable called strip_init_and_prmtop.sh, which will create a stripped prmtop called, stripped.prmtop, and rename the
-     snap_for_qmexcited_t{traj}_r0.rst to stripped.rst. I'll then update libbla.py to handle this.
-     :END:
- #+CAPTION: Bond Length Adjustments for various states for PPV_3 and PPV_{3}-NO_{2} in vacuum. label:fig:bla-vacuum 
- [[../Images/bla/solvent_comparison.png]]
-**** ONE Explain the BLA Figure                                      :ignore:
 *** ONE Dihedral Angles
     #+begin_src latex
 \subsection{Torsional Angle Relaxation}
@@ -1403,6 +1457,28 @@ fly''. \cite{tommasini2001electronic, tretiak1996collective, tretiak2009represen
      \end{minipage}\bigskip
      #+end_src
 **** ONE Description of the plot                                     :ignore:[0/0]
+*** TODO Bond Length Alternation [0/2]
+    :LOGBOOK:
+    - Note taken on [2021-01-26 Tue 08:28] \\
+    It looks like I might have made a mistake with the BLA's
+    
+    My plots show the following:
+    :END:
+    #+begin_src latex
+\subsection{Bond Length Alternation}
+    #+end_src
+**** ONE Bond Length Adjustment Figure                               :ignore:
+     :LOGBOOK:
+     - State "WAITING"    from "TODO"       [2021-01-25 Mon 06:29] \\
+     waiting for updated data for ch3oh and vacuum
+     - Note taken on [2021-01-23 Sat 08:12] \\
+     Because I don't have solvents included in the trajectory files, I'll need to have a stripped version of the input_coordinate file and the prmtop.
+     To do this, I'm creating an executable called strip_init_and_prmtop.sh, which will create a stripped prmtop called, stripped.prmtop, and rename the
+     snap_for_qmexcited_t{traj}_r0.rst to stripped.rst. I'll then update libbla.py to handle this.
+     :END:
+ #+CAPTION: Bond Length Adjustments for various states for PPV_3 and PPV_{3}-NO_{2} in vacuum. label:fig:bla-vacuum 
+ [[../Images/bla/solvent_comparison.png]]
+**** ONE Explain the BLA Figure                                      :ignore:
 *** TODO Wiberg Bond Analysis [1/2]
     #+begin_src latex
 \subsection{Widberg Bond Relaxation}
@@ -1440,3 +1516,13 @@ fly''. \cite{tommasini2001electronic, tretiak1996collective, tretiak2009represen
   :header-args:latex: :exports code :tangle nonadiabatic.tex
   :END:
 * ONE Conclusion
+  :PROPERTIES:
+  :header-args: :eval never-export
+  :header-args:latex: :exports code :tangle conclusion.tex
+  :END:
+  #+begin_src latex
+  \chapter{Conclusion}
+  #+end_src
+** ONE Summary
+** ONE Future Works
+* ONE Appendix on Start Scripts
