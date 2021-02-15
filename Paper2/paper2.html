@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-01-23 Sat 07:34 -->
+<!-- 2021-01-26 Tue 11:04 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Paper 2</title>
@@ -251,29 +251,25 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9fcea52">Introduction</a></li>
-<li><a href="#org7324289">Theoretical Methodology </a></li>
-<li><a href="#org0e58915">Computational Design </a></li>
-<li><a href="#org2c3f0ca">Simulation Methods </a></li>
-<li><a href="#org508dfe7">Simulation Results </a>
+<li><a href="#org4b57800">Introduction</a></li>
+<li><a href="#org4cc2144">Theoretical Methodology </a></li>
+<li><a href="#org13f68b8">Computational Design </a></li>
+<li><a href="#orgab11b95">Simulation Methods </a></li>
+<li><a href="#orgf4583b1">Simulation Results </a>
 <ul>
-<li><a href="#org5cebcbf">State Populations</a>
-<ul>
-<li><a href="#org0b551c0">Explanation of the population figure</a></li>
-</ul>
-</li>
-<li><a href="#org0040036">Potential Energies </a></li>
-<li><a href="#orgfeb8d1d">Bond Length Adjustment</a></li>
-<li><a href="#orgc1e075f">Dihedral Angles</a></li>
-<li><a href="#org8423ec6">Wiberg Bond Analysis</a></li>
+<li><a href="#org2ffd83e">State Popultations</a></li>
+<li><a href="#orgf477197">Potential Energies </a></li>
+<li><a href="#orgbacd03f">Bond Length Adjustment</a></li>
+<li><a href="#org613e65e">Dihedral Angles</a></li>
+<li><a href="#orge84bfeb">Wiberg Bond Analysis</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org9fcea52" class="outline-2">
-<h2 id="org9fcea52">Introduction</h2>
-<div class="outline-text-2" id="text-org9fcea52">
+<div id="outline-container-org4b57800" class="outline-2">
+<h2 id="org4b57800">Introduction</h2>
+<div class="outline-text-2" id="text-org4b57800">
 <p>
 During ultra-fast photovolatic processes, the Born-Openheimer
 appoximation breaks, and accounting for non-adiabatic behavior become
@@ -345,9 +341,9 @@ adjustements, dihedral angles, and Widberg Bond orders.<br />
 </div>
 </div>
 
-<div id="outline-container-org7324289" class="outline-2">
-<h2 id="org7324289">Theoretical Methodology </h2>
-<div class="outline-text-2" id="text-org7324289">
+<div id="outline-container-org4cc2144" class="outline-2">
+<h2 id="org4cc2144">Theoretical Methodology </h2>
+<div class="outline-text-2" id="text-org4cc2144">
 <p>
 Adiatic motion is managed by SANDER using the NEXMD software package to calculate the semiemprical QM energies and forces.
 NEXMD uses a modified version of the  SQM package from AMBERTOOlS  for these calcuations which SANDER links to by default.
@@ -515,11 +511,11 @@ We apply a dechohence correction as well as a trivial crossing accounting system
 </p>
 </div>
 </div>
-<div id="outline-container-org0e58915" class="outline-2">
-<h2 id="org0e58915">Computational Design </h2>
-<div class="outline-text-2" id="text-org0e58915">
+<div id="outline-container-org13f68b8" class="outline-2">
+<h2 id="org13f68b8">Computational Design </h2>
+<div class="outline-text-2" id="text-org13f68b8">
 
-<div id="org502fc07" class="figure">
+<div id="orgd3ff9c3" class="figure">
 <p><img src="./scripted_diagrams/nasqm_overview.png" alt="nasqm_overview.png" /> 
 </p>
 <p><span class="figure-number">Figure 1: </span>Swim-lane diagram describing the common timestep of the SANDER-NEXMD interface. <div id="scheme:nasqm"></div></p>
@@ -636,11 +632,11 @@ New random numbers are generated for the thermostats when appropriate.
 </div>
 </div>
 
-<div id="outline-container-org2c3f0ca" class="outline-2">
-<h2 id="org2c3f0ca">Simulation Methods </h2>
-<div class="outline-text-2" id="text-org2c3f0ca">
+<div id="outline-container-orgab11b95" class="outline-2">
+<h2 id="orgab11b95">Simulation Methods </h2>
+<div class="outline-text-2" id="text-orgab11b95">
 
-<div id="orgfbdea2b" class="figure">
+<div id="org6601e19" class="figure">
 <p><img src="./scripted_diagrams/simulations-1.png" alt="simulations-1.png" />
 </p>
 </div>
@@ -670,29 +666,27 @@ To simulate this behavior, we take the final snapshot of the QM ground state
 calculations and perform a single point calculation at the S1 state to find the
 next state with the highest oscillator strength.
 </p>
-</div>
-</div>
-<div id="outline-container-org508dfe7" class="outline-2">
-<h2 id="org508dfe7">Simulation Results </h2>
-<div class="outline-text-2" id="text-org508dfe7">
-</div>
-<div id="outline-container-org5cebcbf" class="outline-3">
-<h3 id="org5cebcbf">State Populations</h3>
-<div class="outline-text-3" id="text-org5cebcbf">
 
-<div id="orge6e104a" class="figure">
+<div id="org2c57e3a" class="figure">
+<p><img src="./Images/pulse_pump/spectra.png" alt="spectra.png" />
+</p>
+<p><span class="figure-number">Figure 3: </span>The calculated S<sub>1</sub> state absoprtion spectrum from the ground state geometries.</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf4583b1" class="outline-2">
+<h2 id="orgf4583b1">Simulation Results </h2>
+<div class="outline-text-2" id="text-orgf4583b1">
+</div>
+<div id="outline-container-org2ffd83e" class="outline-3">
+<h3 id="org2ffd83e">State Popultations</h3>
+<div class="outline-text-3" id="text-org2ffd83e">
+
+<div id="org22fa3f8" class="figure">
 <p><img src="file:///home/dustin/potentialparadox.github.io/Paper2/Images/populations/solvent_comparison.png" alt="solvent_comparison.png" />
 </p>
-<p><span class="figure-number">Figure 3: </span>Comparison of the population decays or rises of states S<sub>1</sub>, S<sub>2</sub>, and the initial state S<sub>m</sub> between simulations with varying number of solvents included in the QM region.</p>
+<p><span class="figure-number">Figure 4: </span>Comparison of the population decays or rises of states S<sub>1</sub>, S<sub>2</sub>, and the initial state S<sub>m</sub> between simulations with varying number of solvents included in the QM region.</p>
 </div>
-</div>
-<div id="outline-container-org0b551c0" class="outline-4">
-<h4 id="org0b551c0">Explanation of the population figure</h4>
-<div class="outline-text-4" id="text-org0b551c0">
-</div>
-</div>
-
-<div class="outline-text-3" id="text-org5cebcbf">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 <caption class="t-above"><span class="table-number">Table 1:</span> Fitting Parameters for the model of the rise of the S<sub>1</sub> population. <div id="table:s1"></div></caption>
 
@@ -703,41 +697,39 @@ next state with the highest oscillator strength.
 
 <col  class="org-right" />
 </colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Solvent</th>
+<th scope="col" class="org-right">\(\tau\) (fs)</th>
+<th scope="col" class="org-right">A</th>
+</tr>
+</thead>
 <tbody>
 <tr>
-<td class="org-left">Solvent</td>
-<td class="org-right">\(\tau\) (fs)</td>
-<td class="org-right">A</td>
-</tr>
-
-<tr>
 <td class="org-left">Vacuum</td>
-<td class="org-right">671</td>
-<td class="org-right">1.16</td>
+<td class="org-right">89.9</td>
+<td class="org-right">1.61</td>
 </tr>
 
 <tr>
 <td class="org-left">CH<sub>3</sub>OH</td>
-<td class="org-right">693</td>
-<td class="org-right">1.06</td>
+<td class="org-right">97.8</td>
+<td class="org-right">1.53</td>
 </tr>
 
 <tr>
 <td class="org-left">CH<sub>3</sub>OH with 5QM</td>
-<td class="org-right">550</td>
-<td class="org-right">1.10</td>
+<td class="org-right">119.5</td>
+<td class="org-right">1.53</td>
 </tr>
 
 <tr>
 <td class="org-left">CH<sub>3</sub>OH with 10QM</td>
-<td class="org-right">93.8</td>
-<td class="org-right">1.61</td>
+<td class="org-right">122.0</td>
+<td class="org-right">1.54</td>
 </tr>
 </tbody>
 </table>
-</div>
-
-<div class="outline-text-3" id="text-org5cebcbf">
 <p>
 Figure <a href="#fig:all-populations">fig:all-populations</a> shows the population of each state calculated as
 the number of trajectories at the state's potential energy surface over the
@@ -768,87 +760,57 @@ S<sub>m</sub> energy gap) than in the thin film (0.8eV). Previous research using
 NAESMD framework have shown a time constant of 394 fs, but this was without the
 test for trivial non-avoided crossings.
 </p>
-
-
-
-<div id="orgc0247f0" class="figure">
-<p><img src="./Images/population_fit_tabulation/s1.png" alt="s1.png" />
-</p>
-<p><span class="figure-number">Figure 4: </span>Population of the first excited state (S<sub>1</sub>) of PPV<sub>3</sub> and PPV<sub>3</sub>-NO<sub>2</sub> in various solvents obtained from the fraction of trajectories in each state. <div id="fig:s1-populations"></div></p>
 </div>
 </div>
-</div>
+<div id="outline-container-orgf477197" class="outline-3">
+<h3 id="orgf477197">Potential Energies </h3>
+<div class="outline-text-3" id="text-orgf477197">
 
-<div id="outline-container-org0040036" class="outline-3">
-<h3 id="org0040036">Potential Energies </h3>
-<div class="outline-text-3" id="text-org0040036">
-
-<div id="orge5ef115" class="figure">
+<div id="orgb57a075" class="figure">
 <p><img src="./Images/potential_energies/solvent_comparison.png" alt="solvent_comparison.png" />
 </p>
-<p><span class="figure-number">Figure 5: </span>Potential energy during dynamics averaged over trajectories.</p>
+<p><span class="figure-number">Figure 5: </span>Potential energy difference from the intial ground state during dynamics averaged over trajectories.</p>
 </div>
 </div>
 </div>
+<div id="outline-container-orgbacd03f" class="outline-3">
+<h3 id="orgbacd03f">Bond Length Adjustment</h3>
+<div class="outline-text-3" id="text-orgbacd03f">
 
-<div id="outline-container-orgfeb8d1d" class="outline-3">
-<h3 id="orgfeb8d1d">Bond Length Adjustment</h3>
-<div class="outline-text-3" id="text-orgfeb8d1d">
-
-<div id="org380b4b4" class="figure">
-<p><img src="./Images/bla/vacuum.png" alt="vacuum.png" />
+<div id="org17cd6e1" class="figure">
+<p><img src="./Images/bla/solvent_comparison.png" alt="solvent_comparison.png" />
 </p>
 <p><span class="figure-number">Figure 6: </span>Bond Length Adjustments for various states for PPV<sub>3</sub> and PPV<sub>3</sub>-NO<sub>2</sub> in vacuum. <div id="fig:bla-vacuum"></div></p>
 </div>
-<p>
-The BLA for both PPV<sub>3</sub> and PPV<sub>3</sub>-NO<sub>2</sub> in
-vacuum the ground state varies very little the two. We use shades of red the
-display the ground-state and shades of green to represent states that start in
-S<sub>m</sub> and shades of blue the describe a first excited state trajectores. The
-ground state has very little variation. The first excited state splits in PPV<sub>3</sub>-NO<sub>2</sub>,
-with the Far Side being described as being the furthest from the Nitro goup.  
-States SM and state S1 the atom group further from the Nitro group had a more
-distinct variation than the bla with the groups nearest the Nitro group The
-variation is most distinct and the first excited States the difference between
-the them on the S<sub>m</sub> closed group is very much smaller and similar to what we found in
-the The potential Energies The Barley the Judgment relaxation, and ppb 3 ml to
-is significantly faster than that time of PPP. The ground-state energy that we
-found matches values performed from the previous research by Tammie as does the
-S5 started to take pla Big billy for the states for the trajectories that
-started in the initial M States showed a slider longer time for relaxation than
-that found and Tammy's research. FIXME I need to add Tammy's ballet data to the
-Bone length adjustment. The very quick relaxation of the bla in the states
-suggest that very quickly after the initial excitation, PPV<sub>3</sub>-NO<sub>2</sub> quickly
-stabilizes and flattens within first 500 fs. Later we will compare this
-to the dihedral angle to see if this matches our expectations. Previous research
-has shown that after this acceptation an actual Bond indices at the Scribe by
-the Wydber index shrinks well showing that the single bonds gain a significant
-amount double bond characteristics causing the molecule to Stiffen.
-</p>
 </div>
 </div>
-
-<div id="outline-container-orgc1e075f" class="outline-3">
-<h3 id="orgc1e075f">Dihedral Angles</h3>
-<div class="outline-text-3" id="text-orgc1e075f">
+<div id="outline-container-org613e65e" class="outline-3">
+<h3 id="org613e65e">Dihedral Angles</h3>
+<div class="outline-text-3" id="text-org613e65e">
 <p>
 The torsion angle around the vinylene segments have been shown to be highly coupled to the excited state. <a class='org-ref-reference' href="#nelson2011nonadiabatic">nelson2011nonadiabatic</a>,<a class='org-ref-reference' href="#panda2013electronically">panda2013electronically</a>  
 </p>
 
-<div id="org85916d0" class="figure">
-<p><img src="./Images/dihedral/vacuum.png" alt="vacuum.png" />
+<div id="org9692d1e" class="figure">
+<p><img src="./Images/dihedral/solvent_comparison.png" alt="solvent_comparison.png" />
 </p>
 <p><span class="figure-number">Figure 7: </span>Dihedral angles for various states for PPV<sub>3</sub> and PPV<sub>3</sub>-NO<sub>2</sub> in vacuum. <div id="fig:dihedral-vacuum"></div></p>
 </div>
 </div>
 </div>
-<div id="outline-container-org8423ec6" class="outline-3">
-<h3 id="org8423ec6">Wiberg Bond Analysis</h3>
-<div class="outline-text-3" id="text-org8423ec6">
+<div id="outline-container-orge84bfeb" class="outline-3">
+<h3 id="orge84bfeb">Wiberg Bond Analysis</h3>
+<div class="outline-text-3" id="text-orge84bfeb">
+
+<div id="org2b901e4" class="figure">
+<p><img src="./Images/bond_order/solvent_comparison.png" alt="solvent_comparison.png" />
+</p>
+<p><span class="figure-number">Figure 8: </span>The Wiberg Bond Orders averaged over the ensemble of trajectories for select bonds for PPV<sub>3</sub>\<sub>NO</sub><sub>2</sub> with various number of solvents included in the QM region.</p>
+</div>
 </div>
 </div>
 
-<div class="outline-text-2" id="text-org508dfe7">
+<div class="outline-text-2" id="text-orgf4583b1">
 <p>
 
 <h1 class='org-ref-bib-h1'>Bibliography</h1>
@@ -887,7 +849,7 @@ The torsion angle around the vinylene segments have been shown to be highly coup
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Dustin Tracy</p>
-<p class="date">Created: 2021-01-23 Sat 07:34</p>
+<p class="date">Created: 2021-01-26 Tue 11:04</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

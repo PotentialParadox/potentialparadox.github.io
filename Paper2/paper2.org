@@ -395,19 +395,26 @@ To simulate this behavior, we take the final snapshot of the QM ground state
 calculations and perform a single point calculation at the S1 state to find the
 next state with the highest oscillator strength.
 *** TODO Excited State Density Chart from S1                         :ignore:
-*** TODO Choose energy using the figure using FWHM 100 and excitation enegy from ground state of 4.3 eV :ignore:
-* TODO Simulation Results [0/5]
-** TODO State Populations
+*** DONE Spectra from S1                                             :ignore:
+    :LOGBOOK:
+    - Note taken on [2021-01-23 Sat 11:07] \\
+    I was worried that I didn't use the correct spectra for ch3oh, but it looks like I did use the one generated from the old pulse_pump calculations before the davidson fix, which is perfectly fine.
+    :END:
+     #+CAPTION: The calculated S_1 state absoprtion spectrum from the ground state geometries.
+     [[./Images/pulse_pump/spectra.png]]
+*** TODO Choose energy using the figure using FWHM 100 and excitation energy from ground state of 4.3 eV :ignore:
+* TODO Simulation Results [0/6]
+** TODO State Popultations
 *** DONE Figure for Population Decay for PPV3NO2, All-pops vacuum vs methanol :ignore:
 #+CAPTION: Comparison of the population decays or rises of states S_1, S_2, and the initial state S_m between simulations with varying number of solvents included in the QM region.
     [[~/potentialparadox.github.io/Paper2/Images/populations/solvent_comparison.png]]
-*** TODO Explanation of the population figure
+*** TODO Explanation of the population figure                        :ignore:
     :LOGBOOK:
     - Note taken on [2021-01-22 Fri 15:25] \\
       - 512 trajectories with 2000 data points a piece.
     :END:
 
-*** TODO Fitting Parameters using Tenua  :ignore:
+*** DONE Fitting Parameters using Tenua                              :ignore:
     :LOGBOOK:
     - Note taken on [2021-01-22 Fri 17:34] \\
       I might just use Tammie's fitting function Aexp(t/tau) / (A + exp(t/tau)) - A / (1 + A)
@@ -426,10 +433,11 @@ next state with the highest oscillator strength.
     :END:
  #+CAPTION: Fitting Parameters for the model of the rise of the S_{1} population. label:table:s1 
  | Solvent            | $\tau$ (fs) |    A |
- | Vacuum             |         671 | 1.16 |
- | CH_{3}OH           |         693 | 1.06 |
- | CH_{3}OH with 5QM  |         550 | 1.10 |
- | CH_{3}OH with 10QM |        93.8 | 1.61 |
+ |--------------------+-------------+------|
+ | Vacuum             |        89.9 | 1.61 |
+ | CH_{3}OH           |        97.8 | 1.53 |
+ | CH_{3}OH with 5QM  |       119.5 | 1.53 |
+ | CH_{3}OH with 10QM |       122.0 | 1.54 |
 
 *** DONE Explain How the fitting parameters were generated           :ignore:
  Figure ref:fig:all-populations shows the population of each state calculated as
@@ -458,40 +466,62 @@ next state with the highest oscillator strength.
  S_m energy gap) than in the thin film (0.8eV). Previous research using the
  NAESMD framework have shown a time constant of 394 fs, but this was without the
  test for trivial non-avoided crossings.
-
-
-  #+CAPTION: Population of the first excited state (S_1) of PPV_3 and PPV_{3}-NO_{2} in various solvents obtained from the fraction of trajectories in each state. label:fig:s1-populations
-  [[./Images/population_fit_tabulation/s1.png]]
-
-** TODO Potential Energies [0/2]
-*** TODO Potential Relaxation Figure                                 :ignore:
+** TODO Potential Energies [1/2]
+*** DONE Potential Relaxation Figure                                 :ignore:
     :LOGBOOK:
     - Note taken on [2021-01-23 Sat 07:00] \\
       I need to remember to ask adrian about the similarities betwee the each trajectory toward the end of the simulations. The variations not longer seem random.
     :END:
-#+CAPTION: Potential energy during dynamics averaged over trajectories.
+#+CAPTION: Potential energy difference from the intial ground state during dynamics averaged over trajectories.
 [[./Images/potential_energies/solvent_comparison.png]]
 *** TODO Explain the Relaxation Figure                               :ignore:
 ** TODO Bond Length Adjustment
-*** TODO Bond Length Adjustment Figure                               :ignore:
+   :LOGBOOK:
+   - Note taken on [2021-01-26 Tue 08:28] \\
+     It looks like I might have made a mistake with the BLA's
+     
+     My plots show the following:
+   :END:
+*** WAITING Bond Length Adjustment Figure                            :ignore:
+    :LOGBOOK:
+    - State "WAITING"    from "TODO"       [2021-01-25 Mon 06:29] \\
+      waiting for updated data for ch3oh and vacuum
+    - Note taken on [2021-01-23 Sat 08:12] \\
+      Because I don't have solvents included in the trajectory files, I'll need to have a stripped version of the input_coordinate file and the prmtop.
+      To do this, I'm creating an executable called strip_init_and_prmtop.sh, which will create a stripped prmtop called, stripped.prmtop, and rename the
+      snap_for_qmexcited_t{traj}_r0.rst to stripped.rst. I'll then update libbla.py to handle this.
+    :END:
 #+CAPTION: Bond Length Adjustments for various states for PPV_3 and PPV_{3}-NO_{2} in vacuum. label:fig:bla-vacuum 
-[[./Images/bla/vacuum.png]]
-*** DONE Explain the BLA Figure                                      :ignore:
-
+[[./Images/bla/solvent_comparison.png]]
+*** TODO Explain the BLA Figure                                      :ignore:
 ** TODO Dihedral Angles
-*** DONE Why do we want to do dihedral angels?                       :ignore:
-The torsion angle around the vinylene segments have been shown to be highly coupled to the excited state. cite:nelson2011nonadiabatic,panda2013electronically  
-*** TODO Dihedral Angle Figure Showing both Vaccum and 10QM          :ignore:
+*** TODO Why do we want to do dihedral angles?                       :ignore:
+    The torsion angle around the vinylene segments have been shown to be highly coupled to the excited state. cite:nelson2011nonadiabatic,panda2013electronically  
+*** WAITING Dihedral Angle Figure                                    :ignore:
+    :LOGBOOK:
+    - State "WAITING"    from "TODO"       [2021-01-25 Mon 07:44] \\
+      for ch3oh and vacuum on hypergator to finish with enough datapoints
+    :END:
     #+CAPTION: Dihedral angles for various states for PPV_3 and PPV_{3}-NO_{2} in vacuum. label:fig:dihedral-vacuum 
-    [[./Images/dihedral/vacuum.png]]
+    [[./Images/dihedral/solvent_comparison.png]]
 *** TODO Description of the plot                                     :ignore:
 ** TODO Wiberg Bond Analysis
 *** TODO Widberg Bond Analysis Figure                                :ignore:
 :LOGBOOK:
+- Note taken on [2021-01-25 Mon 11:11] \\
+  For the plots I had to look up the relation between the atom ID and the bond notation that I use in the paper the relations are as follows:
+  
+  6-7 -> d1
+  7-8 -> d2
+  8-9 -> d3
+  17-16 -> d4
+  16-15 -> d5
+  15-14 -> d6
 - Note taken on [2021-01-12 Tue 11:40] \\
-  I can now write notes!
 Look to paper1, for inspiration on how to design this
 :END:
+#+CAPTION: The Wiberg Bond Orders averaged over the ensemble of trajectories for select bonds for PPV_3\_NO_2 with various number of solvents included in the QM region.
+[[./Images/bond_order/solvent_comparison.png]]
 
 ** Bibliograph                                                       :ignore:
 bibliographystyle:unsrt

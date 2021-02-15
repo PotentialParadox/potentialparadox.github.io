@@ -38,7 +38,7 @@ bondorders = bind_rows(
 
 img_df = data.frame("t" = c(500), "y" = c(1.2), "Bond" = c("d2"), "Image" = "ppvno2.png", "NSolvent" = c("Vacuum"))
 ggplot() +
-    geom_line(data = bondorders, aes(x = Timefs, y = MeanBondOrder, color = NSolvent)) +
+    geom_line(data = bondorders, aes(x = Timefs, y = MeanBondOrder, color = NSolvent), size=1.5) +
     geom_image(data=img_df, aes(x=t, y = y, image = Image), size = 1) +
     facet_wrap(~ Bond) +
     labs(x = "Time (fs)", y = "Bond Order", 

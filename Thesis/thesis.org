@@ -1,12 +1,5 @@
 #+TITLE: The Implementation of QM/MM on Non-Adiabatic Dynamics Using AMBER and NEXMD
-#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
-#+OPTIONS: num:nil todo:nil stat:nil
-#+TODO: TODO(t) ONE(1) WAITING(w) | TWO(2) THREE(3) WAITING(w) DONE(d) 
-#+TAGS: ignore(i) noexport(n)
-#+EXCLUDE_TAGS: noexport
-#+COLUMNS: %7TODO(To Do) %32ITEM(Task) %6CLOCKSUM(Clock) %8EFFORT(Estimate){:}
-#+PROPERTY: Effort_ALL 0:05 0:10 0:15 0:30 0:45 1:00 1:30 2:00
-
+#+TODO: TODO(t) ONE(1) TWO(2) WAITING(w) | THREE(3) WAITING(w) DONE(d) 
 * DONE Masterfile
   :PROPERTIES:
   :header-args: :eval never-export
@@ -21,10 +14,10 @@
     \haveFigurestrue%       Uncomment this if you have figures in your thesis.
     % \haveObjectstrue%       Uncomment this if you have Objects in your thesis. This is almost certainly not the case however.
 
-    \title{The Implementation of QM/MM on Non-Adiabatic Dynamics Using AMBER and NEXMD}%  Put your title here.
+    \title{The Implementation of QM/MM for Non-Adiabatic Dynamics Using AMBER and NEXMD}%  Put your title here.
 
     \degreeType{Doctorate of Philosophy}%   Official name of your degree; eg "Doctorate of Philosophy".
-    \major{Mathematics}%                    Your official Department
+    \major{Physics}%                    Your official Department
     \author{Dustin Tracy}%                  Your Name
     \thesisType{Dissertation}%              Dissertation (PhD) or Thesis (Masters)
     \degreeYear{2021}%                      Intended graduation year (not the year you submit the thesis)
@@ -48,7 +41,7 @@
   \setDedicationFile{dedicationFile}%                 Dedication Page
   \setAcknowledgementsFile{acknowledgementsFile}%     Acknowledgements Page
   \setAbstractFile{abstractFile}%                     Abstract Page (This should only include the abstract itself)
-  \setReferenceFile{referenceFile}{amsplain}%         References. First argument is your bibtex source file
+  \setReferenceFile{referenceFile}{apa}%              References. First argument is your bibtex source file
   %                                                       the second argument is your bibtex style file.
   \setBiographicalFile{biographyFile}%                Biography file of the Author (you).
 
@@ -93,47 +86,87 @@
   \end{document}
 
   #+end_src
-* ONE Dedication
+* THREE Dedication
   :PROPERTIES:
   :header-args: :eval never-export
   :header-args:latex: :exports code :tangle dedicationFile.tex
   :END:
   #+begin_src latex
-  I dedicate this work to my loving wife Sarah Stern, who's love I will alway cherish.
+  To my loving wife Sarah Stern, who's love I will alway cherish.
   I also dedicate this work to my Grandmother Jean Tracy, who encouraged me to work for my PhD, and would have been proud of its completion.
   #+end_src
-* ONE Acknowledgements
+* THREE Acknowledgements
+SCHEDULED: <2021-02-08 Mon>
   :PROPERTIES:
   :header-args: :eval never-export
   :header-args:latex: :exports code :tangle acknowledgementsFile.tex
   :END:
+:LOGBOOK:
+- Note taken on [2021-02-08 Mon 09:54] \\
+  - Family
+  - Los alamos
+  - Roitberg group
+  - Advisor
+:END:
   #+begin_src latex
-  I'd like to thank all the amazing individuals who have supported me in this effort.
-  I'd like to give special thanks to my advisor Adrian Roitberg, who's patience, guidance, and mentorship was invaluable. 
+  My wife and family, includig the in-laws, have been supportive of my PhD pursuit since the beginning.
+  Their kindness and understanding has really helped me maintain the course.
+  On our daily runs, my wife and I share our thoughts of the day.
+  These runs really help me organize my thoughts and added some structure to my work.
+
+  My advisor, Adrian Roitberg, has been extraordinarly helpful.
+  I struggled often throughout this work and would run in road block along the way.
+  Even a short meeting with him, would often get me started again.
+
+  The Tretiak group at Los Alamos was kind enough to host me for a couple of months to gain aquaintance with their NEXMD software package.
+  During this stay I was able to immediately ask questions to the maintainers about software.
+  I hope my incessitant questions were not too much an annoyance.
+
+  Finally I want to thank all the member in the Roitberg group who not only helped me with this work, but also made it much less lonely.
+  I want to give special thanks to Dr. Pancham La Gupta and Dr. Justin Smith who notoriously helped me with my qualifier while being snowed-in at a bunker outside of Yosemite.
+  Kavindri Ranasinghe and Christian Deveroux for their company in room 402. 
+  I want to thank Delaram Ghoreishi and Farhad Ramezanghorbani for allowing me to quiz them about the dissertation process.
+  Everyone from the group has been exceptional and I'll forever value the friendships I made there.
   #+end_src
-* ONE Biographical Sketch
+* THREE Biographical Sketch
   :PROPERTIES:
   :header-args: :eval never-export
   :header-args:latex: :exports code :tangle biographyFile.tex
   :END:
+:LOGBOOK:
+- Note taken on [2021-02-08 Mon 10:23] \\
+  - Born in Ironton ohio.
+  - Early life in the very small town of Argilite KY.
+  - Adolescence and Teenage Life in Lakeland, Fl.
+  - Undergraduate degree in Accounting and Physics from the University of South Florida.
+  - Spent my last two years working Dr. Lillian Woods on modeling Van der walls interactions.
+  - Started his PhD in physics at the University of Florida in 2013.
+  - Joined the Roitberg group in 2014.
+  - Graduated in 2021.
+:END:
   #+begin_src latex
-Though many people call me Dustin; actually.... I'm Batman!
+Dustin Tracy was born in Ironton Ohio.
+He spent his early life in the very small town of Argillite KY.
+He spent is Adolescence and Teenage life in Lakeland, FL.
+In 2013, he graduated from the University of South Florida with degrees in accounting and physics and began the physics PhD program and the University of Florida.
+He joined the Roitberg group in 2014.
+He graduated with his PhD in 2021.
   #+end_src
-* ONE Abstract
+* THREE Abstract
   :PROPERTIES:
   :header-args: :eval never-export
   :header-args:latex: :exports code :tangle abstractFile.tex
   :END:
   #+begin_src latex
-We present a method to link the Non-adiabatic-Excited-state Molecular Dynamics (NEXMD) package to the SANDER package supplied by AMBERTOOLS, to provide excited-state adiabatic QM/MM simulations.
-NEXMD is a computational package particularly developped to perform simulations of the photoexcitation and subsequent nonadiabatic electronic and vibrational energy relaxation and redistribution in large multichormophoric conjugated molecules, a process that involves several coupled electronic excited states.
-In this work, we use it solely for its capability to perform excited-state adiabatic dynamics.
-In this report, we first describe the basic methodology behind the code, where we briefly describe the general principals behind excited state adiabatic dynamics simulations performed in NEXMD and the QM/MM calculations performed by SANDER.
-We outline the flowchart connecting them in order to optimize their exchange allowing excited state adiabatic dynamics simulations of large conjugated materials in explicit solvent.
-To validate functionality, we analyze the dynamics of a polyphenylene vinylene oligomer (PPV3-NO2) in vacuum and various explicit solvents.
-We highlight the system's ability to generate optical spectrum, view state-dependent conformational changes, and view quantum bond orderings. 
+  We present a method to link the Non-adiabatic-Excited-state Molecular Dynamics (NEXMD) package to the SANDER package supplied by AMBERTOOLS, to provide excited-state adiabatic and nonadiabtic QM/MM simulations.
+  NEXMD is a computational package particularly developped to perform simulations of the photoexcitation and subsequent nonadiabatic electronic and vibrational energy relaxation and redistribution in large multichormophoric conjugated molecules, a process that involves several coupled electronic excited states.
+  In this work, we use it solely for its capability to perform excited-state adiabatic dynamics.
+  In this report, we first describe the basic methodology behind the code, where we briefly describe the general principals behind excited state adiabatic dynamics simulations performed in NEXMD and the QM/MM calculations performed by SANDER.
+  We outline the flowchart connecting them in order to optimize their exchange allowing excited state adiabatic dynamics simulations of large conjugated materials in explicit solvent.
+  To validate functionality, we analyze the dynamics of a polyphenylene vinylene oligomer (PPV3-NO2) in vacuum and various explicit solvents.
+  We highlight the system's ability to generate optical spectrum, view state-dependent conformational changes, and view quantum bond orderings. 
   #+end_src
-* TWO Introduction [5/5]
+* THREE Introduction [5/6]
   :PROPERTIES:
   :header-args: :eval never-export
   :header-args:latex: :exports code :tangle introduction.tex
@@ -141,11 +174,11 @@ We highlight the system's ability to generate optical spectrum, view state-depen
   #+begin_src latex
   \chapter{Introduction} \label{introduction}
   #+end_src
-** TWO Prologue [2/2]
+** THREE Prologue [2/2]
    #+begin_src latex
    \section{Prologue}
    #+end_src
-*** TWO Photophysics history                                       :ignore:
+*** THREE Photophysics history                                     :ignore:
     :LOGBOOK:
     - Note taken on [2021-01-30 Sat 11:34] \\
     - The effects of light on the physical properties of material have been noticed for as long as history itself.
@@ -154,7 +187,15 @@ We highlight the system's ability to generate optical spectrum, view state-depen
     - In the lates 1700s Priestly experiments shinned some light on the understanding of oxidations, and sparked a curiosity into the further expermentations on photosynthesis and photochemistry in general.
     - Since then, researcher have further advanced our knowledge of these effects and our ability to harness the power of light has improved as well.
     :END:
-*** TWO Why the study of light is important
+#+begin_src latex
+The effects of light on the physical properties of materials has maintined the interest of mankind for as long as history itself.
+Humans most likely noticed power of the sun to turn their skin red and itchy far before they even developed language.
+Records show the interest of reducing the bleaching dyes.
+The documents describing the mirror of Archimedes demonstrates that humans desire to harness this power dates back at leas multiple millinea.
+Our understanding began to formalized in the late 1700s when Priestly experiments shined light on the processes of oxidations and sparked a curiosity that led to further experimentations with photosynthesis and photochemistry in general.
+Since then, researchers have further advanced our knowledge of these effects and our ability to harness the power of light.
+#+end_src
+*** THREE Why the study of light is important
     :LOGBOOK:
     - Note taken on [2021-02-01 Mon 08:38] \\
       - Organic Photosynthesis \cite{zhengfernandez2017,caycedo2010light}
@@ -164,11 +205,25 @@ We highlight the system's ability to generate optical spectrum, view state-depen
       - Optical Sensors
       - Broad academic interest \cite{tavernelli2015nonadiabatic,nelson2020non}
     :END:
-** TWO Qualitaive Overview of Non-Adiabatic Dynamics [3/3]
+#+begin_src latex
+The ability to model these photo-energetic non-adiabatic dynamics has recently become more feasable.
+We have used this ability to continue our long pursuit to understand organic photosythesis. \cite{zheng2017photoinduced,caycedo2010light}
+The search for how to efficiently create and utilize sythetic organic phtosythesizer has also been a focus of interest. \cite{balzani2008photochemical,engel2007evidence}
+Studies with non-adiabatic dynamics have been used to study possible light harvesting technologies. \cite{ishida11_effic_excit_energ_trans_react,katan2005effects}
+
+A similar process can also illuminate our understanding and production of efficient custom light emitting diodes. (cite: park 1-2)
+This type of modeling can also help with understanding photo-detection.
+Recent works have helped understand how the the protein rhodopsin behaves in the human eye.\cite{weingart2012modelling}
+Continued research can help develop more sensitive or enery efficient optical sensors. 
+The modeling of theses types of dynamics currently boasts a broad academic and industrial interest. \cite{tavernelli2010nonadiabatic,tavernelli2015nonadiabatic,nelson2020non}
+Ultra fast proton transfer on the time order of femtoseconds have sparked much interest in last few decades.\cite{schwartz1992direct}
+#+end_src
+
+** THREE Qualitaive Overview of Non-Adiabatic Dynamics [3/3]
    #+begin_src latex
    \section{Qualitative Overview of Non-Adiabatic Dynamics}
    #+end_src
-*** TWO Qualitative explanation of what we are trying to model with Non-Adiabatic Dynamics [4/4] :ignore:
+*** THREE Qualitative explanation of what we are trying to model with Non-Adiabatic Dynamics [3/3] :ignore:
     #+begin_src latex
 \subsection{Energy Transfer}
     #+end_src
@@ -179,10 +234,11 @@ We highlight the system's ability to generate optical spectrum, view state-depen
 	    \addFigure{0.45}{../Oral/Images/photoexcitation.png}
 	    \addFigure{0.45}{../Oral/Images/pes_chart_zoomed.png}
 	    \captionof{figure}{Diagrams describing the behavior of a molecule throughout an photo-excitation event.}
-	    \label{fig:}
+	    \label{fig:jablonski}
 	  \end{multiFigure}
+\bigskip
      #+end_src
-**** TWO Overview of excited dynamics.
+**** THREE Overview of excited dynamics.
      :LOGBOOK:
      - Note taken on [2021-01-30 Sat 08:01] \\
      - S0 represents the singlet ground state
@@ -205,18 +261,46 @@ We highlight the system's ability to generate optical spectrum, view state-depen
      - Vibrational conversion 10 kj/mol
      - Continues until the last excited state.
      - Radiation generally occurs from the last excited state due to Kasha's rule. \cite{kasha1950characterization}
-     :END:
-**** DONE Explanation of photoexcitation
-     :LOGBOOK:
-     - Note taken on [2021-01-30 Sat 08:38] \\
      - Ground state is almost alway near it minimum
      - The transition is assumed to be much quicker than the period of the vibrational modes.
      - Transitions are decided based on the how close the energy difference is to the laser excitation as well at the oscillator strength which is proportional to the transition dipole moment.
      - While using classical dynamics for the nuclear coordinates, this transition dipole is determined using the electronic wavefunctions only.
      - Because of the dependence on the tranistion dipole moment, transitions between similar symmmetries are unlikely.
      :END:
-**** TWO Explanation of decay [3/3]
-***** TWO Must go beyon the Born-Oppenheimer
+#+begin_src latex
+Figure \ref{fig:jablonski} A shows whats referred to as a Jablonski diagrams.
+S\(_0-2\) represent the potential energy surfaces for the three lowest singlet states.
+T\(_1\) represents the first excited triplet state.
+No vibrational or rotational modes are shown since we will treat these classically.
+Immediately after an electron photon absorption, the molecule is promoted to an excited state, as can be seen by the purple arrow.
+This excited state could either the one immediately above it, or it could be one the many above that one.
+The decision of which state to excited to is determined by the energy of the excitation and oscillator strength.
+
+Once the molecule is at this excited states, ignoring high temperature, it will relax back towards the ground state.
+There are two primary mechanisms through which this can occur.
+The first is by releasing the energy thermally either throughout the rest of the molecule or to the environment. This method is referred to as internal conversion and manifests as reductions to the vibrational and rotational modes.
+The second is through photon-emission.
+A photo-emission process from the first excited state to the ground state is referred to as fluorescence, and can be seen by the green arrow in the figure.
+Fluorescence occur over period of nanoseconds.
+Tranistion processeses from singlet states to the triplet states are possible dependent on the strength of the spin-orbit coupling, in a process called intersystem conversion.
+Photo-emmission from the triplet state to the ground state would be called phosphorescence.
+Phosphorescence is relatively very rare compared to fluorescence with time order ~1s.
+For this reason we do not consider this behavior in our simulations.
+
+Kashas rule states that photon-emission occurs only in appreciable yields from the lowest excited state to the ground state.\cite{Kasha1950}
+This rule suggests that in most cases where an electron is excited to a state beyond the first excited state, that electron will have to relax to the first excited state by means of internal conversion.\cite{shenai2016internal}
+
+Figure \ref{fig:jablonski} B, is a zoomed in picture of the portion of Figure 1b surrounded by the orange circle.
+When the molecule is excited to S2 through photo-excitation, it will begin to relax along S2's potential energy surface following the orange arrow.
+In reality, this process would be quantized and occur as a gradual reduction in the vibration and rotational modes.
+In our simulations though, we treat these reduction classically and the molecule can move smoothly along the potential energy surface of each excited state. 
+However, eventually the molecule traversing the potential energy surface of S2 will cross the potential energy surface of S1.
+At these crossings, there is generally strong couplings between the two states.
+This coupling allows the molecule to transition from S2 to S1.
+A choice now needs to made whether to stay on potential energy surface of the S2 or switch to S1.
+#+end_src
+**** THREE Explanation of decay [3/3]
+***** THREE Must go beyon the Born-Oppenheimer
      :LOGBOOK:
      - Note taken on [2021-01-30 Sat 08:29] \\
      - Assumption that the electrons move much quicker than the nuclear coordinates is called the Born-Oppenheimer approximation.
@@ -226,8 +310,20 @@ We highlight the system's ability to generate optical spectrum, view state-depen
      - While using clasisical dynamics, the molecule is free to move continuously along any one of these surfaces.
      - To simulate a hop we must go beyond the born-oppenheimer approximation.
      :END:
-***** TWO Mean-Field vs MDQT [2/2]
-****** TWO Diagram showing mean-field and surface hopping
+#+begin_src latex
+In computation chemistry it is common to assume that electrons move significantly faster than nuclei and treat the nuclei as parameters to the equations used to solve for electronic behaviors.
+This assumption is known as the Born-Oppenheimer approximation and forces the molecule to traverse along a single potential enery surface making it impossible for trasitions from one excited state to another to occur.
+Simulations of traversals restricted to a single potential energy surface is referred to as adiabatic dynamics.
+Simulations that allow such crossings are non-adiabatic.
+
+During ultra-fast photovolatic processes, the Born-Openheimer appoximation breaks, and accounting for non-adiabatic behavior become necessary.
+These situations occur frequently within processes of interest to photochemistry and photophysics.
+For example, the excitation to a non-equlibrium state followed by a relaxation through internal conversion is a process common to processes such as photosynthesis, solar-cell photo-absoprtion, optical detectors, and the excitation of the visual nerve.
+Photon absorption is also a requirement in certain reactions that need that last little kick.\cite{vincent2016little}
+The S\(_1\) and S\(_2\) lines figure \ref{fig:jablonski} represent crossing between potential energy surfaces. 
+#+end_src
+***** THREE Mean-Field vs MDQT [2/2]
+****** THREE Diagram showing mean-field and surface hopping
        #+begin_src latex
        \noindent
        \begin{multiFigure} 
@@ -236,8 +332,9 @@ We highlight the system's ability to generate optical spectrum, view state-depen
 	 \captionof{figure}[Surface Hopping vs Mean-Field]{A visual description describing the difference between surface hopping and mean-field. A) The probabilities states S1 and S2. B) The potential energies of trajectories over time. Dashed lines represent represent the potential engergies of S1, S2, and the probability weighted average during the Ehrenfest trajectory. Solid lines represent two sepearte surface hopping trajectories.}
 	 \label{fig:surfaceHoppingVsMeanField}
        \end{multiFigure}
+\bigskip
        #+end_src
-****** TWO Explanation of the Mean-Field vs Surface Hopping 
+****** THREE Explanation of the Mean-Field vs Surface Hopping 
        :LOGBOOK:
        - Note taken on [2021-02-01 Mon 12:00] \\
 	 - figure shows erhenfest mean average energies
@@ -248,8 +345,35 @@ We highlight the system's ability to generate optical spectrum, view state-depen
 	 - Lose the distribution. Everything is replaced by single scalar.
 	 - The average potential of the two tully PE will not equal the potential energy of ehrenfest
        :END:
-***** TWO Explanation of Non-Adiabatic Transition [2/2]
-****** TWO Figure Showing a Slow Approach and Fast Approach for crossing
+#+begin_src latex
+The two most common methods to extend the Born Oppenheimer appoximations are through a mean field, ofter referred to as Ehrenfest, or through molecular dynamics with quantum tranistions (MDQT).\cite{Hammes-Schiffer1994}
+Alternative methods using mixed quantum-classical dynamics do exist and are used in the field. \cite{habershon2013ring,kapral2006progress}
+In Ehrenfest methods, the forces acting on the molecule at any timestep is the population weighted average of the forces acting at all relevant excited states.
+In MDQT methods only the forces of one state is used for any single time-step. \cite{prezhdo1997evaluation}
+Between timesteps, the molecule is allowed to transition between states.
+To simulate state populations, MDQT methods employ a swarm of independent trajectories.
+Each trajectory is given a different random seed and allowed to hop between states based on the non-adiabatic couplings.
+Study of the system's behavior is then done based on the statistics of the ensemble.
+
+Figures \ref{fig:surfaceHoppingVsMeanField} A and B attempt to show the practical differences between these two methods.
+The population chart on the left shows the probability of being in states S1 and S2 at some arbitrary time.
+These probabilities merge to around 0.5 each at around the halfway point.
+
+The right figure presents arbitrary state energies over the same time frame for this trajectory.
+The dashed lines represent the energies along the Ehrenfest trajectory.
+Blue and red represent the S2 and S1 energies repectively.
+The black dashed line represents the Ehrenfest mean-field energy determined as the population weighted average energies of S1 and S1.
+As the probability of state S2 drops from one, the mean-field energy diverges from that of S2.
+Eventually the mean field energy becomes the average of a S1 and S2.
+
+The solid lines represent the the energies along two separate surface hopping trajectories.
+At around the halfway point, the trajectory SH-S1 hops from the S2 to S1.
+Trajectory SH-S2 remains on S2.
+Because these trajectories are allowed to be moved by forces generated at their respective potential energy surfaces, their energies will in general be lower than their mean field counterparts.
+Notice that the average energy of the hop trajectories will also diverge from the Ehrenfest method.
+#+end_src
+***** THREE Explanation of Non-Adiabatic Transition [2/2]
+****** THREE Figure Showing a Slow Approach and Fast Approach for crossing
        #+begin_src latex
        \noindent
        \begin{minipage}[c]{\textwidth}
@@ -259,7 +383,7 @@ We highlight the system's ability to generate optical spectrum, view state-depen
 	 \label{fig:naCrossings}
        \end{minipage}\bigskip
        #+end_src
-****** TWO Explanation of the crossing
+****** THREE Explanation of the crossing
        :LOGBOOK:
        - Note taken on [2021-01-30 Sat 09:24] \\
        - figure shows a slow crossing and quick crossing.
@@ -269,7 +393,22 @@ We highlight the system's ability to generate optical spectrum, view state-depen
        - In general, the steeper the delta energy curve, and the closer the energies, the more probable the hop.
        - It is possible for the energies of separate states to cross without a transition occuring, proper accounting accounting must be taken account.
        :END:
-*** TWO Qualitative explanation of how solvent could affect this dynamics [0/0]:ignore:
+#+begin_src latex
+In this work, we model the interstate transitions using the MDQT algorithm, Tully's Fewest Switches.
+The probability of hopping from one state to another is proportional to the coupling between the states known as the nonadiabatic coupling.
+These nonadiabatic coupling are dependent in part on the energy differences between the states, and the nuclear velocities.
+Figure \ref{fig:naCrossings} shows three approaches from potential surfaces S1 and S2.
+Assume that the molecule is originally on state S2.
+When the the energy differences are relatively large, with a shallow approach as in the left figure, the coupling is weak, and hops become unlikely.
+When the aproach is steep, and the energy difference small, the nuclear velocities no longer become negligible, the Born Oppenheimer approximation breaks, strong coupling exists, and a respective hop become likely.
+In the far right figure, the energies of the two states cross.
+In general states in molecular dynamics programs are refered to based on their energy orderings.
+In this situation, the orderings of these potential energy sufaces swicth and S1\(\rightarrow\)S2 and vice versa.
+If no adiabatic hopping occurs, the molecule remains on the same potential energy suface.
+However, the energy levels will have have switched and we need to ensure that molecule traverses along the new S1 state.
+This can be done by comparing overlaps between the states between timesteps. 
+#+end_src
+*** THREE Qualitative explanation of how solvent could affect this dynamics [0/0]:ignore:
     :LOGBOOK:
     - Note taken on [2021-01-30 Sat 09:55] \\
     - The transition probability during phoexciation is strongly effected by the transition dipole moments.
@@ -280,8 +419,49 @@ We highlight the system's ability to generate optical spectrum, view state-depen
     :END:
     #+begin_src latex
     \subsection{Solvent Effects}
+The determination of which state to excited to is strongly affected by the transition dipole moments.
+These transition dipole moments are sensitive to polarization from external electronic fields or charges
+The energy differences between the excited states can also be affected by these external charges due to (de)-stabalization of the dipoles.
+Systems with strong electric fields occur frequently in biological systems. (cite: furukawahino 41-44)
+These electric field can have profound effect on the steady state fluorescnce and absorption spectra. \cite{park2013}
+The solvents in these systems can extend or shield these effects.
+Solvents provide a large source of external charges that can significantly affect the non-adiabatic behavior and characteristics of a molecule.\cite{furukawa2015external}
     #+end_src
-*** TWO Qualitative explanation of QM/MM [0/0]                     :ignore:
+** THREE Introduction to non-adiabatic dynamics [0/0]               :ignore:           
+   :LOGBOOK:
+   - For ultra-fast photovoltaic processes, the Born-Openheimer approximation breaks.
+   - These processes are common in photochemistry and photophysics
+   - Internal conversion common in photosynthesis
+   - Multi-methods including quantum-mechanical, simi-classical, or MMDQT
+   - We use MMDQT
+   :END:
+   #+begin_src latex
+
+   Multiple methods to have been proposed and used to simulate these non-adiabatic processes.
+   These methods include treating the nuclear coordinates quantum mechanically or simiclassically, or by using a hybrid quantum mechanical, classical treatment to account for the non-adiabaticity.
+   One of the more popular version of the latter, and the one which we use in this work, is Molecular Dynamics with Quantum Transitions (MDQT), were the system propogates classically along adiabatic potential energy surfaces, but a quantum evalutation is made at each time step to determine whether to transition to another state.
+   #+end_src
+** THREE QM/MM would be useful                                      :ignore:
+   :LOGBOOK:
+   - Implicit equilibrates immediately, in actually solvents would move slower :ignore:
+   - Some of these effects could be quantum mechanical, such as the polarization of the solvents :ignore:
+   - Example of the uses of QM/MM non-adiabatic dynamics have been used for retinal photochemistry
+   - Retinal photochemistry cite:demoulin2017fine,weingart2012modelling
+   - Charge Transport in Organic Semiconductors cite:heck2015multi
+   - 
+   :END:
+   #+begin_src latex
+    For many areas in which nonadiabatic dynamics simulations would be of interest, solvents play a crucial role.
+\cite{bagchi1989dynamics,woo2005solvent}
+    In situations where ultrafast electronic relaxations occur, the electronic decay is often faster than the time for the solvent to equilibrate.
+    As such, Implicit solvents, which adjusts instantaneously to any changes, become imprecise approximation.
+    However performing non-adiabatic dynamics on such large systems is far too computationally expensive.
+    To ease the computational cost we can employ QM/MM methodologies to perform the non-adiabatic calculation only on the areas of interest.
+    Similar methods have been employed in the study of retinal photochemistry and organic semiconductors.\cite{weingart2012modelling,demoulin2017fine,heck2015multi,bayliss1954solvent}%\cite{demoulin2017fine, weingart2012modelling, heck2015multi}
+    In this work we implement a new method of performing non-adiabatic QM/MM using the SANDER package AMBERTOOLS combined with the high performance Non-Adiabatic simulator NEXMD.
+    We further analyze the effects of including near solvent molecules within the QM region.
+   #+end_src
+** THREE Qualitative explanation of QM/MM [0/0]                     :ignore:
     :LOGBOOK:
     - Note taken on [2021-01-30 Sat 12:28]
 	- Claissical dynamic function following Newtons equations and Column Force field interactions are cheaper than the QM approximations. 
@@ -295,56 +475,51 @@ We highlight the system's ability to generate optical spectrum, view state-depen
 	- The net energy of these systems will the sum of the QM region, the MM region, and the coupling between them.
     :END:
     #+begin_src latex
-\subsection{QM/MM}
-    #+end_src
-** THREE Introduction to non-adiabatic dynamics [0/0]               :ignore:           
-   :LOGBOOK:
-   - For ultra-fast photovoltaic processes, the Born-Openheimer approximation breaks.
-   - These processes are common in photochemistry and photophysics
-   - Internal conversion common in photosynthesis
-   - Multi-methods including quantum-mechanical, simi-classical, or MMDQT
-   - We use MMDQT
-   :END:
-   #+begin_src latex
-During ultra-fast photovolatic processes, the Born-Openheimer
-appoximation breaks, and accounting for non-adiabatic behavior become
-necessary.  These situations occur frequently within processes of
-interest to photochemistry and photophysics.  For example, the
-excitation to a non-equlibrium state followed by a relaxation through
-internal conversion is a process common to processes such as
-photosynthesis, solar-cell photo-absoprtion, optical detectors, and
-the excitation of the visual nerve.  Multiple methods to have been
-proposed and used to simulate these non-adiabatic processes.  These
-methods include treating the nuclear coordinates quantum mechanically
-or simiclassically, or by using a hybrid quantum mechanical, classical
-treatment to account for the non-adiabaticity.  One of the more
-popular version of the latter, and the one which we use in this work,
-is Molecular Dynamics with Quantum Transitions (MDQT), were the system
-propogates classically along adiabatic potential energy surfaces, but
-a quantum evalutation is made at each time step to determine whether
-to transition to another state.
-   #+end_src
-** THREE QM/MM would be useful                                      :ignore:
-   :LOGBOOK:
-   - Implicit equilibrates immediately, in actually solvents would move slower :ignore:
-   - Some of these effects could be quantum mechanical, such as the polarization of the solvents :ignore:
-   - Example of the uses of QM/MM non-adiabatic dynamics have been used for retinal photochemistry
-   - Retinal photochemistry cite:demoulin2017fine,weingart2012modelling
-   - Charge Transport in Organic Semiconductors cite:heck2015multi
-   - 
-   :END:
-   #+begin_src latex
-    For many areas in which nonadiabatic dynamics simulations would be of interest, solvents play a crucial role.
-    In situations where ultrafast electronic relaxations occur, the electronic decay is often faster than the time for the solvent to equilibrate.
-    As such, Implicit solvents, which adjusts instantaneously to any changes, become imprecise approximation.
-    However performing non-adiabatic dynamics on such large systems is far too computationally expensive.
-    To ease the computational cost we can employ QM/MM methodologies to perform the non-adiabatic calculation only on the areas of interest.
-    Similar methods have been employed in the study of retinal photochemistry and organic semiconductors.\cite{weingart2012modelling,demoulin2017fine,heck2015multi}%\cite{demoulin2017fine, weingart2012modelling, heck2015multi}
-    In this work we implement a new method of performing non-adiabatic QM/MM using the SANDER package AMBERTOOLS combined with the high performance Non-Adiabatic simulator NEXMD.
-    We further analyze the effects of including near solvent molecules within the QM region.
-   #+end_src
+    \subsection{QM/MM}
+	\begin{multiFigure} 
+	\addFigure{0.4}{../Oral/Images/qm_mm.png}
+	\addFigure{0.4}{../Oral/Images/qm_mm_pme.png}
+	\captionof{figure}[QM/MM Diagram]{a) single cell. b) representation of the periodic nature of the system.}
+	\label{fig:QMMMDiagram}
+	\end{multiFigure}
+\bigskip
 
-** TWO Overview of whats covered in sequential Chapters.
+	In the previous sections we have discussed how quantum mechanics can be used for chemical calculations.
+  However, in many applications, the accuracy of QM is not needed and more computationally cheaper method would be more appropriate.
+	For these situations many computational chemist use classical electrical force field dynamics, treating atoms as point charges.
+	QM/MM was developed to manage computational costs by separating a calculation into a quantum mechanical (QM) region and a classical mechanical (MM) region.\cite{warshel1976theoretical,Karplus2014}
+	This allows the user to have the accuracy where needed while not wasting resources on unwanted calculations such as the dynamics of water molecules far from the protein of interest.
+	For the vast majority of our calculations, we will have a QM solute and a few nearby QM solvents surrounded by MM solvents.
+
+	Figure \ref{fig:QMMMDiagram} gives an example of a QM/MM systems.
+	The atoms of the drawn out molecule will be described at the QM level of theory.
+	The MM atoms in the volume immediately surrounding the molecular, label QMCut, will be the MM atoms included in equation \ref{eq:qmmm}.
+	To simulate a solute in solvent, we treat the provided box as a cell, that is repeated infinitely many times.
+	Particle Mesh Ewald calculations are then used to calculate the long distance interactions of the periodic boxes.
+	This is performed by treating the charge and potential in the long range, inter box distances, as sums in Fourier space.\cite{Darden1993}
+	Note that the QM region must be treated as single point charges for this calculations.
+	The Mulliken charges of the current state are used for these calculations.
+	Once the sums are complete, a fast Fourier transform is performed to obtain energy and forces.
+	Charges from the MM region outside QMCut, will be used to provide a Particle Mesh Ewald correction to the new Fock Matrix.\cite{Walker2008}
+
+	Long range interaction, from those outside the cutoff, considered vital for the understanding of solvent effects, are treated using SQM’s implementation of Particle Mesh Ewald.
+	Trajectories use periodic boundary conditions to simulate an explicit solution, treating the system box as cells repeated infinitely many times in all directions.
+	Particle Mesh Ewald calculations then determine the long-distance interactions of these periodic boxes, treating the charges and potentials in the long-range inter-box distances as sums in Fourier space treating atoms in the QM region of these calculations as Mulliken point charges.
+	Once the sums are complete, SQM performs a fast Fourier transformation to obtain the long-range corrections to the energy and forces.  
+    #+end_src
+** TWO Organic Conjugate Molecules
+#+begin_src latex
+\section{Organic Conjugated Molecules}
+Conjugate organic polymers have been shown to exhibit ultra-fast exciton decay.\cite{nelson2018coherent,Fernandez-Alberti2009}
+Studies have been performed to determine whether we can sythesize unidirectional energy transfers in these systems.\cite{soler2012analysis,soler2014signature,Galindo2015,FernandezAlberti2010,FernandezAlberti2012}
+The have a dense manifold of electronic states.
+They have strong electron-phonon couplings. (cite: sifain2018photoexcited 14-16)
+They have photophysical properties that are rare (cite: sifain2018photoexcited 25,26)
+Due also in part to their low cost of production a heavy interest has been show in using them for technological development. (cite: sifain2018photoexcited 17-24)
+Experimentally, these molecules are studied either in solution or as solid state samples.
+These types of scenarios have been too computationall expensive to siulate explicitely, and have only recently been studied using implice solvents. (cite: sifain and josiahs)
+#+end_src
+** THREE Overview of whats covered in sequential Chapters.
    :LOGBOOK:
    - Note taken on [2021-01-30 Sat 11:22] \\
      - In chapter 2 we go into the theoretical methods employed to simulated the previously discossed processes.
@@ -352,8 +527,16 @@ to transition to another state.
      - In chapter 4 we apply our methodology to investigate the steady state absorption and fluorescence experienced by PPV3NO2 in various solvents. We also investigate the change in behavior caused by including solvents in the QM region.
      - In chapter 5 we apply the non-adiabatic methodoly to analyze the effects included QM/MM solvents have the non-adiabatic relaxation of PPV3NO2
    :END:
-   
-* ONE Theoretial Methods [5/7]
+#+begin_src latex
+\section{Overview}
+In chapter 2 we go into the theoretical methods employed to simulated the previously discossed processes.
+In chapter 3 describe discuss the computation details in our implementationdescribe discuss the computation details in our implementation.
+In chapter 4 we apply our methodology to investigate the steady state absorption and fluorescence experienced by PPV\(_3\)NO\(_2\) in various solvents.
+We also investigate the change in behavior caused by including solvents in the QM region.
+In chapter 5 we apply the non-adiabatic methodoly to analyze the effects included QM/MM solvents have the non-adiabatic relaxation of PPV\(_3\)NO\(_2\) 
+Finally, in chapter 6 we summarize our findings and suggest possible routes for future work.
+#+end_src
+* THREE Theoretial Methods [7/7]
   :PROPERTIES:
   :header-args: :eval never-export
   :header-args:latex: :exports code :tangle theoreticalMethods.tex
@@ -361,76 +544,82 @@ to transition to another state.
   #+begin_src latex
   \chapter{Theoretical Methods} \label{theoreticalMethods}
   #+end_src
-*** THREE Secular Determinants                                      :ignore:
+*** THREE Solving the schrodinger equation
     - [ ] Add section about using guassians instead of slater-type orbitals
     #+begin_src latex
-    \section{Secular Determinants}\label{secular}
+    \section{Electronic Structure}\label{secular}
 
     The goal of computational chemistry is to solve the Schrodinger equation.
     Solving it completely is only possible for very small subsets of possible situations.
     In most cases, significant approximations must be made.
-    One of the more common such approximations, is the appoximation of the atomic basis functions.
-    If we write the Schodinger equation as
-
-    \begin{equation} \label{eq:oneeenergy}
-    E(\Psi) = \frac{\left<\right.\Psi\left|\right.\bm{H}\left.\right|\Psi\left>\right.}{\left<\right.\Psi\left.\right|\left.\Psi\left.\right.\right>}
+    One of the more common such approximations, is to approximate the total single electron molecular orbitals contribution to the many electron wavefunction as a linear combination of atomic orbitals (LCAO).
+    \begin{equation}
+      \Phi=\sum_{i}c_i\phi_i
     \end{equation}
+    where \(\Phi\) is the molecular spatial orbital, \(c_i\) the coefficient, and \(\phi_i\) the atomic orbitals.
+    Atomic orbitals are often designed to resemble hydrogen like orbitals and are themselves often composed of a linear combination of guassians to simplify integrations.
+    Inclusion of the spin creates the spin orbital
+    \begin{equation}
+      \chi = \Phi \sigma
+    \end{equation}
+    where the spin \(\sigma\) can be either \(\alpha\) or \(\beta\)
 
-    where $\mathbf{H}$ the Hamiltonian, $E$ is the energy of the
-    system, and $\Psi$ is a wavefunction that describes the system.
-    $\Psi$ will be some linear combination of functions $\Psi=\sum_{i}c_i\psi_i$.
-    We can now expand the numerator and denominator of the right-hand side of equation \ref{eq:oneeenergy}.
+    For each single electron molecular orbital, the Schodinger equation can be written as
+    \begin{equation} \label{eq:oneeenergy}
+      E(\chi) = \frac{\left<\right.\chi\left|\right.\bm{H}\left.\right|\chi\left>\right.}{\left<\right.\chi\left.\right|\left.\chi\left.\right.\right>}
+    \end{equation}
+    where $\mathbf{H}$ the Hamiltonian and $E$ the energy of the single electron orbital.
+    We can expand the numerator and denominator of the right-hand side of equation \ref{eq:oneeenergy}
 
     \begin{align}
       \label{eq:variation1}
-      \left<\right.\Psi\left|\right.\bm{H}\left.\right|\Psi\left>\right.&=
-									  \left( \sum_{i} c_i \psi_i \right) \mathbf{H} \left( \sum_j c_j \psi_j \right) &
-																			   \left<\right.\Psi\left.\right|\left.\Psi\left.\right.\right>&=
-																											 \left( \sum_{i} c_i \psi_i \right) \left( \sum_j c_j \psi_j \right)  \\
-									&= \sum_{ij} c_{i}c_j H_{ij} & &= \sum_{ij} c_{i}c_j S_{ij} 
+      \left<\right.\chi\left|\right.\bm{H}\left.\right|\chi\left>\right.&=
+      \left( \sum_{i} c_i \phi_i \right) \mathbf{H} \left( \sum_j c_j \phi_j \right) &
+      \left<\right.\chi\left.\right|\left.\chi\left.\right.\right>&=
+      \left( \sum_{i} c_i \phi_i \right) \left( \sum_j c_j \phi_j \right)  \\
+      &= \sum_{ij} c_{i}c_j H_{ij} & &= \sum_{ij} c_{i}c_j S_{ij} 
       \label{eq:variation2}
     \end{align}
 
-    Taking the partial derivatives of both sides with respect to $a_i$ in
+    Taking the partial derivatives of both sides with respect to coefficient of molecular orbital a in
     equation \ref{eq:variation2} provides us with
 
     \begin{align}
       \label{eq:variationexpansion}
       \frac{\partial}{\partial c_{\alpha}}
-      \left<\right.\Psi\left|\right.\bm{H}\left.\right|\Psi\left>\right.&=
-									  2c_\alpha H_{\alpha \alpha} + \sum_{\alpha j \neq \alpha} 2c_j H_{\alpha j} &
-																			\frac{\partial}{\partial c_{\alpha}}
-																			\left<\right.\Psi\left.\right|\left.\Psi\left.\right.\right>&=
-																										      2 c_\alpha S_{\alpha\alpha} + \sum_{\alpha j \neq \alpha} c_j S_{\alpha j}
+      \left<\right.\chi\left|\right.\bm{H}\left.\right|\chi\left>\right.&=
+      2c_\alpha H_{\alpha \alpha} + \sum_{\alpha j \neq \alpha} 2c_j H_{\alpha j} &
+      \frac{\partial}{\partial c_{\alpha}}
+      \left<\right.\chi\left.\right|\left.\chi\left.\right.\right>&=
+      2 c_\alpha S_{\alpha\alpha} + \sum_{\alpha j \neq \alpha} c_j S_{\alpha j}
     \end{align}
 
     If we multiply both sides of equation \ref{eq:oneeenergy} by
-    $\left<\right.\Psi\left.\right|\left.\Psi\left.\right.\right>$ and
+    $\left<\right.\chi\left.\right|\left.\chi\left.\right.\right>$ and
     take the partial derivative with respect to $c_{\alpha}$,
 
     \begin{align}
       \frac{\partial}{\partial c_{\alpha}}
-      \left( E \left<\right.\Psi\left.\right|\left.\Psi\left.\right.\right> \right)&=
-										     \frac{\partial}{\partial c_{\alpha}}
-										     \left<\right.\Psi\left|\right.\bm{H}\left.\right|\Psi\left>\right. \\
+      \left( E \left<\right.\chi\left.\right|\left.\chi\left.\right.\right> \right)&=
+      \frac{\partial}{\partial c_{\alpha}}
+      \left<\right.\chi\left|\right.\bm{H}\left.\right|\chi\left>\right. \\
       \label{eq:variation3}
-      E \frac{\partial \left<\right.\Psi\left.\right|\left.\Psi\left.\right.\right>}{\partial c_{\alpha}}
-      + \left<\right.\Psi\left.\right|\left.\Psi\left.\right.\right> \frac{\partial E}{\partial c_{\alpha}} &=
-													      \frac{\partial}{\partial c_{\alpha}}
-													      \left<\right.\Psi\left|\right.\bm{H}\left.\right|\Psi\left>\right.
+      E \frac{\partial \left<\right.\chi\left.\right|\left.\chi\left.\right.\right>}{\partial c_{\alpha}}
+      + \left<\right.\chi\left.\right|\left.\chi\left.\right.\right> \frac{\partial E}{\partial c_{\alpha}} &=
+      \frac{\partial}{\partial c_{\alpha}}
+      \left<\right.\chi\left|\right.\bm{H}\left.\right|\chi\left>\right.
     \end{align}
-
-    Now we minimize $E$ by rearranging equation \ref{eq:variation3}
+    we can minimize $E$ by rearranging equation \ref{eq:variation3}
 
     \begin{equation}
       \frac{\partial E}{\partial c_{\alpha}} =
-      \frac{1}{\left<\right.\Psi\left.\right|\left.\Psi\left.\right.\right>}
+      \frac{1}{\left<\right.\chi\left.\right|\left.\chi\left.\right.\right>}
       \left[
-	\frac{\left<\right.\Psi\left|\right.\bm{H}\left.\right|\Psi\left>\right.}
-	{\partial c_{\alpha}}
-	-E \frac{\left<\right.\Psi\left.\right|\left.\Psi\left.\right.\right>}
-	{\partial c_{\alpha}}
-      \right] = 0
+        \frac{\left<\right.\chi\left|\right.\bm{H}\left.\right|\chi\left>\right.}
+             {\partial c_{\alpha}}
+             -E \frac{\left<\right.\chi\left.\right|\left.\chi\left.\right.\right>}
+             {\partial c_{\alpha}}
+             \right] = 0.
     \end{equation}
 
     Substituting our results from equation \ref{eq:variationexpansion} and
@@ -452,114 +641,144 @@ to transition to another state.
 
     \begin{equation} \label{eq:SchrodingerMatrix}
       \begin{bmatrix}
-	H_{11}-ES_{11} & H_{12}-ES_{12} & H_{13}-ES_{13} \\
-	H_{21}-ES_{21} & H_{22}-ES_{22} & H_{23}-ES_{23} \\
-	H_{31}-ES_{31} & H_{32}-ES_{32} & H_{33}-ES_{33}
+        H_{11}-ES_{11} & H_{12}-ES_{12} & H_{13}-ES_{13} \\
+        H_{21}-ES_{21} & H_{22}-ES_{22} & H_{23}-ES_{23} \\
+        H_{31}-ES_{31} & H_{32}-ES_{32} & H_{33}-ES_{33}
       \end{bmatrix}
       \begin{bmatrix}
-	c_1 \\
-	c_2 \\
-	c_3
+        c_1 \\
+        c_2 \\
+        c_3
       \end{bmatrix} = 0
     \end{equation}
-
-    This equation can be rewritten simply as $Hc=ESc$. The determinant
-    $\left| H-ES \right|$ is known as the secular determinant, with
-    eigenvalues corresponding to the energies of the molecular orbitals,
-    whose characteristics are determined by the coefficients in the
+    This equation can be rewritten generally as
+    \begin{equation}
+      \mathbf{H}\vec{c} = E \mathbf{S} \vec{c}.
+    \end{equation}
+    and is referred to as the secular equation.
+    The eigenvalues corresponding to the energies of the molecular orbitals,
+    whose characteristics are determined by the atomic coefficients in the
     corresponding eigenvector.\cite{engel2012quantum}
     #+end_src
     
 *** THREE Hartree Fock                                              :ignore:
     #+begin_src latex
-    \section{Hartree Fock}
-	Before we can solve the secular equation we need to know our
-	Hamiltonian.  We begin with the generalized Hamiltonian of a
-	molecular system,\cite{engel2012quantum}
+        \section{Hartree Fock}
+        Before we can solve the secular equation we need to know our
+        Hamiltonian.  We begin with the generalized Hamiltonian of a
+        molecular system,\cite{engel2012quantum}
 
-	\begin{align} \label{eq:fullhamiltonian}
-	  \begin{split}
-	  \bm{H} =& -\frac{\hbar^2}{2m_e}\sum_i^{electrons}\nabla_i^2-\frac{\hbar^2}{2}\sum_{A}^{nuclei}\frac{1}{M_{A}}\nabla_{A}^2 - \frac{e^2}{4\pi\varepsilon_0} \sum_i^{electrons}\sum_A^{nuclei}\frac{Z_A}{r_{iA}} \\
-	  & + \frac{e^2}{4\pi\varepsilon_0}\sum_{i}^{electrons}\sum_{j<i}^{electrons}\frac{1}{r_{ij}} + \frac{e^2}{4\pi\varepsilon_0}\sum_{A}^{nuclei}\sum_{B<A}^{nuclei}\frac{Z_AZ_B}{R_{AB}}
-	  \end{split}
-	\end{align}
+        \begin{align} \label{eq:fullhamiltonian}
+          \begin{split}
+            \mathbf{H} =& -\frac{\hbar^2}{2m_e}\sum_i^{electrons}\nabla_i^2-\frac{\hbar^2}{2}\sum_{A}^{nuclei}\frac{1}{M_{A}}\nabla_{A}^2 - \frac{e^2}{4\pi\varepsilon_0} \sum_i^{electrons}\sum_A^{nuclei}\frac{Z_A}{r_{iA}} \\
+            & + \frac{e^2}{4\pi\varepsilon_0}\sum_{i}^{electrons}\sum_{j<i}^{electrons}\frac{1}{r_{ij}} + \frac{e^2}{4\pi\varepsilon_0}\sum_{A}^{nuclei}\sum_{B<A}^{nuclei}\frac{Z_AZ_B}{R_{AB}}
+          \end{split}
+        \end{align}
+        where $n$ is summed over all the nuclei, and the $i$ and $j$ are summed over the electrons. 
+        \(m_e\) and \(M_A\) are the masses of the electron and nuclei repsectively and Z the charge of the nuclei.
 
-	where $n$ is summed over all the nuclei, and the $i$ and $j$ are summed over the electrons. 
-	With this Hamiltonian, the secular equation is near impossible to solve without some approximations.
-	The one most relevant to our work is the adiabatic approximation, also known as the Born-Oppenheimer approximation, where because the electrons move so much quicker than the nuclei, we can set the second term of equation \ref{eq:fullhamiltonian} to zero and the last term to a constant. We can then rewrite the electron as behaving parametrically on the coordinates of the nuclei such that our wavefunction $\Psi_{total} = \sum_\alpha\psi_\alpha^{electron}(r;\mathbf{R})\psi_\alpha^{nuclei}(\mathbf{R})$.
-	The potential energy surface then, can be extrapolated by applying the electronic Hamiltonian $H_e$ to the wavefunction and then adding nuclear repulsion, for an array of nuclear geometries.
-	In the mean field approximation, each electron feels the average potential of all the other electrons, such that the fourth term in our total Hamiltonian becomes $\sum_i^{electrons} V_{average}(i)$
-	The electronic parts the Hamiltonian are now decoupled, and the total Hamiltonian can now be written as a sum of individual electron Hamiltonian's plus a nuclear-nuclear repulsion constant.
-	In actuality the electrons of one orbit will effect electrons of the orbit of another.
-	The electrons will want to avoid each-other and their paths will change accordingly thereby reducing the overall energy.
-	This approximation to the method fails to take this into account.
-	We call the difference between the actual energy $E$ and the Hartree-Fock energy $\epsilon$ the
-	coulomb correlation energy $E_{corrrelation}$.
-	%There have been numerous ways developed to help alleviate this problem, including perturbation theory, coupled cluster theory, and higher lever configuration interaction.
+        With this Hamiltonian, the secular equation is near impossible to solve without some approximations.
+        The one most relevant to our work is the adiabatic approximation, also known as the Born-Oppenheimer approximation, where because the electrons move so much quicker than the nuclei, we can set the second term of equation \ref{eq:fullhamiltonian} to zero and the last term to a constant. \cite{born1954dynamical,born1927quantentheorie}
+        We can then rewrite the electron as behaving parametrically on the coordinates of the nuclei such that our total wavefunction can be split into electronic and nuclear components
+        \begin{equation}
+          \Psi_{total} = \sum_\alpha\psi_\alpha^{electron}(r;\mathbf{R})\psi_\alpha^{nuclei}(\mathbf{R}).
+        \end{equation}
+        The potential energy surface then, can be extrapolated by applying the electronic Hamiltonian $H_e$ to the wavefunction and then adding nuclear repulsion, for an array of nuclear geometries.
+        In the mean field approximation, each electron feels the average potential of all the other electrons, such that the second term in the electronic hamiltonian from equation \ref{eq:helectric} our total Hamiltonian becomes $\sum_i^{electrons} V_{average}(i)$.
+        The electronic parts the Hamiltonian are now decoupled, and the total Hamiltonian can now be written as a sum of individual electron Hamiltonian's plus a nuclear-nuclear repulsion constant.
+        \begin{align}
+          \label{eq:helectric}
+          \mathbf{H}_e =& -\frac{\hbar^2}{2m_e}\sum_i^{electrons}\nabla_i^2 + \sum_i^{electrons} V_{average}(i) - \frac{e^2}{4\pi\varepsilon_0} \sum_i^{electrons}\sum_A^{nuclei}\frac{Z_A}{r_{iA}} \\
+          \mathbf{H}_N =& -\frac{\hbar^2}{2}\sum_{A}^{nuclei}\frac{1}{M_{A}}\nabla_{A}^2  + \frac{e^2}{4\pi\varepsilon_0}\sum_{A}^{nuclei}\sum_{B<A}^{nuclei}\frac{Z_AZ_B}{R_{AB}}
+        \end{align}
+We will continue this chapter in atomic units where these equations become
+        \begin{align}
+          \label{eq:helectric}
+          \mathbf{H}_e =& -\frac{1}{2}\sum_i^{electrons}\nabla_i^2 + \sum_i^{electrons} V_{average}(i) -  \sum_i^{electrons}\sum_A^{nuclei}\frac{Z_A}{r_{iA}} \\
+          \mathbf{H}_N =& -\frac{\hbar^2}{2}\sum_{A}^{nuclei}\frac{1}{M_{A}}\nabla_{A}^2  + \sum_{A}^{nuclei}\sum_{B<A}^{nuclei}\frac{Z_AZ_B}{R_{AB}}
+        \end{align}
+        In actuality the electrons of one orbit will effect electrons of the orbit of another.
+        The electrons will repulse each-other and their paths will change accordingly thereby reducing the overall energy.
+        This approximation to the method fails to take this into account.
+        We call the difference between the actual energy $E$ and the Hartree-Fock energy $\epsilon$ the
+        coulomb correlation energy $E_{corrrelation}$.
+        %There have been numerous ways developed to help alleviate this problem, including perturbation theory, coupled cluster theory, and higher lever configuration interaction.
 
-	The total many electron wavefunction must satisfy the Pauli-Exclusion principle.
-	We can fulfill that requirement, if we assume that it is a single slater-determinant of molecular orbitals.
+        In most simulations more than a single electron needs to be considered.
+        In these systems, the total electron wavefunction must statisfy the Pauli-Exclusion principle.
+        That is, all electrons should be treated as indistinguishable, no more than one electron per set of quantum numbers, and the sign must inverst for any exchange of electrons.
+        We can fulfill that requirement, if we assume that a total electron wavefunction is a single slater-determinant of single electron molecular orbitals.
 
-	\begin{equation} \label{eq:slater-determinant} \phi(\bm{r};\bm{R}) =
-	  \left|p \cdots s\right> = \frac{1}{\sqrt{N}}
-	  \begin{vmatrix}
-	    \chi_{p}(\bm{r}_1) & \cdots & \cdots \chi_{s}(\bm{r}_1) \\
-	    \vdots             & \ddots         &       \vdots      \\
-	    \chi_{p}(\bm{r}_n) & \cdots & \cdots \chi_{s}(\bm{r}_n)
-	  \end{vmatrix}
-	\end{equation}
+        \begin{equation} \label{eq:slater-determinant} \psi(\bm{r};\bm{R}) =
+          \left|p \cdots s\right> = \frac{1}{\sqrt{N!}}
+          \begin{vmatrix}
+            \chi_{p}(\bm{r}_1) & \cdots & \cdots \chi_{s}(\bm{r}_1) \\
+            \vdots             & \ddots         &       \vdots      \\
+            \chi_{p}(\bm{r}_n) & \cdots & \cdots \chi_{s}(\bm{r}_n)
+          \end{vmatrix}
+        \end{equation}
+        where \(\psi\) is the total many electron wavefuntion that depend parametrically on the nuclear coordinates due to the Born-Oppenheimer approximation.
+        The $p \cdots s$ are the subscripts of the single electon molecular orbitals, and $1 \cdots n$ are the indices for the electrons.
 
-	where $\phi$ is the electron coordinates that depend parametrically on the
-	nuclear coordinates.  The $p \cdots s$ are the subscripts of the
-	molecular orbitals, and $1 \cdots n$ are the indices for the
-	electrons.
 
-	Finally, things simplify greatly if the molecular orbitals are
-	othornormal to each other. $\left<\right.i\left|\right.j\left>\right. = \delta_{ij}$.
-	Intuition tells us that because the Hamiltonian is an operator that
-	acts on at most 2 electrons at a time, and the electron orbitals
-	are orthonormal, any perturbation beyond 2 will integrate to 0.  In
-	fact, there's a whole set of rules to reduce electron integral
-	summations called the Slater-Condon rules.\textbf{CITE}
+        Finally, things simplify greatly if the molecular orbitals are
+        othornormal to each other. $\left<\right.i\left|\right.j\left>\right. = \delta_{ij}$.
+        Intuition tells us that because the Hamiltonian is an operator that
+        acts on at most 2 electrons at a time, and the electron orbitals
+        are orthonormal, any perturbation beyond 2 will integrate to 0.  In
+        fact, there's a whole set of rules to reduce electron integral
+        summations called the Slater-Condon rules.
 
-	\begin{enumerate}
-	\item
-	  $ \left | \cdots mn \cdots \right > \rightarrow \left | \cdots mn
-	    \cdots \right > \Rightarrow \sum_i \left< i \right| h \left| i
-	  \right> + \frac{1}{2} \sum_{ij} \left< ij \right|\left| ij \right> $
-	\item
-	  $ \left | \cdots mn \cdots \right > \rightarrow \left | \cdots pn
-	    \cdots \right > \Rightarrow \left< i \right| h \left| i \right> +
-	  \sum_{i} \left<mi \right|\left| pi \right> $
-	\item
-	  $ \left | \cdots mn \cdots \right > \rightarrow \left | \cdots pq
-	    \cdots \right > \Rightarrow \left < mn \right | \left | pq \right
-	  > $
-	\item
-	  $ \left | \cdots lmn \cdots \right > \rightarrow \left | \cdots pqr
-	    \cdots \right > \Rightarrow 0 $
-	\end{enumerate}
+        \begin{enumerate}
+        \item
+          $ \left | \cdots mn \cdots \right > \rightarrow \left | \cdots mn
+          \cdots \right > \Rightarrow \sum_i \left< i \right| h \left| i
+          \right> + \frac{1}{2} \sum_{ij} \left( \left< ij | ij \right> - \left< ij | ji \right> \right) $
+        \item
+          $ \left | \cdots mn \cdots \right > \rightarrow \left | \cdots pn
+          \cdots \right > \Rightarrow \sum_i \left< i \right| h \left| i \right> +
+          \sum_{i} \left( \left<mi | pi \right> - \left<mi | ip \right> \right) $
+        \item
+          $ \left | \cdots mn \cdots \right > \rightarrow \left | \cdots pq
+          \cdots \right > \Rightarrow \left< mn | pq \right> - \left< mn | qp \right> $
+        \item
+          $ \left | \cdots lmn \cdots \right > \rightarrow \left | \cdots pqr
+          \cdots \right > \Rightarrow 0 $
+        \end{enumerate}
+        where the first arrow represents the perturbations of electrons. \(\left| \cdots mn \cdots \right> \rightarrow \left| \cdots pn \cdots \right>\) would present a perturbation of a single electron.
+    \(h\) is the core electron Hamiltonian
+\begin{equation}
+h(i) = -\frac{1}{2}\nabla_i^2 - \sum_{A=1}^N \frac{Z_A}{r_{iA}}
+\end{equation}
+The integral rule for the two electron integrals is
+\begin{equation}
+\left< ij | kl \right> = \int dx_1 dx_2 \chi_i^*(x_1) \chi_j^*(x_2) \frac{1}{r_{12}} \chi_k(x_1) \chi_l(x_2)
+\end{equation}
 
-	Using these rules and a bit of algebra the Hamiltonian simplifies to
-	what's called the Fock operator with elements
-	\begin{equation}
-	  F_{\mu\nu} = \left< \mu \right| -\frac{1}{2}\nabla^2 \left| \mu \right>
-	  - \sum_{k}^{nuclei}Z_{k} \left< \mu \right| \nu \left> \right.
-	  + \sum_{\lambda \sigma} P_{\lambda \sigma}
-	  \left(
-	    \left< \mu \lambda \right| \nu \sigma \left>\right.
-	    - \frac{1}{2} \left< \mu \nu \right| \lambda \sigma \left>\right.
-	  \right)
-	\end{equation}
+        Using these rules and a bit of algebra the Hamiltonian simplifies to
+        what's called the Fock operator with elements
+        \begin{equation}
+          F_{\mu\nu} = h_{\mu\nu}
+          + \sum_{\lambda \sigma} P_{\lambda \sigma}
+          \left(
+          \left< \mu \lambda \right| \nu \sigma \left>\right.
+          - \frac{1}{2} \left< \mu \nu \right| \lambda \sigma \left>\right.
+          \right)
+        \end{equation}
 
-	which can be substituted for $H$ in equation \ref{eq:SchrodingerMatrix} to produce the Roothan-Hall equation $\mathbf{Fc}=\varepsilon\mathbf{Sc}$, where $\varepsilon$ has replace $E$ to be the orbital hartree-fock energies.\textbf{CITE}
-	We simplify this further by using the semi-empirical AM1, which uses predetermined factors for the four term integrations.\textbf{CITE}
-	We can now apply the variational method to determine the coefficient of the wavefunction.
-	First, a trial density function is chosen, which is equivalent to a trial coefficient vector.
-	We then solve the Roothan-Hall equation, save the lowest eigenvalue energy and use the corresponding coefficient vector to create a density function for another iteration.
-	We compare the energy differences between iterations until it's less than a chosen value.
+        which can be substituted for $H$ in equation \ref{eq:SchrodingerMatrix} to produce the Roothan-Hall equation
+        \begin{equation}
+          \mathbf{Fc}=\varepsilon\mathbf{Sc},
+        \end{equation}
+        where $\varepsilon$ has replace $E$ to be the orbital hartree-fock energies.
+        We simplify this further by using the semi-empirical AM1, which uses predetermined factors for the four term integrations as will be discussed later in the semi-emprical section.
+        We can now apply the variational method to determine the coefficient of the wavefunction.
+        First, a trial density function is chosen, which is equivalent to a trial coefficient vector.
+        We then solve the Roothan-Hall equation, save the lowest eigenvalue energy and use the corresponding coefficient vector to create a density function for another iteration.
+        We compare the energy differences between iterations until it's less than a chosen value. 
+        Indices i and j are summed over all electrons.
     #+end_src
-*** TWO Configuration Interaction
+*** THREE Configuration Interaction
     :LOGBOOK:
     - Note taken on [2021-01-31 Sun 16:37] \\
       - Hartee Fock Determines the energies of the molecular orbits
@@ -595,6 +814,7 @@ to transition to another state.
 	  2K \choose N
 	\end{equation}
 	The full CI wavefunction, \(\bm{Psi}\), is linear combination of all of these determinants.
+This method provides the exact solution to the Shrodinger equation within the basis set.
 	The choose function limits the use full CI to small molecules.
 
 	For larger molecules, the swap is limited to single, referred to as configuration interaction singles (CIS), to doubles (CID), or to both (CISD).
@@ -631,8 +851,8 @@ to transition to another state.
 
 
     #+end_src
-*** ONE Semi-Emprical Methods [0/2]
-**** ONE Overview
+*** THREE Semi-Emprical Methods [2/2]
+**** THREE Overview
      :LOGBOOK:
      - Note taken on [2021-02-02 Tue 19:13] \\
        - Solving the Hartree Fock equations, and  Configuration Interaction require the integrations of many two-electon integrals.
@@ -640,31 +860,63 @@ to transition to another state.
        - It is common to approximate these orbitals with gaussians.
        - For dynamics of larger molecules with higher states, further approximations are needed.
        - Show Roothan hall equation
-       - A common approximation is to replace the overlap matrix S with the uni matrix and only treat the valence electrons quantum mechanically. \cite{christensen2016semiempirical}
+       - A common approximation is to replace the overlap matrix S with the unit matrix and only treat the valence electrons quantum mechanically. \cite{christensen2016semiempirical}
        - This is called the zero-differential overlap approximation .
        - Reduces the cost order of the integrations from \(O(N_{\text{electrons}})^4\) to \(O(N_{\text{valence electrons}})^2\)
        - The cost can be further reduced by approximating the remaining (ii|jj) integrals by parameterizing the integrals to experimental data as done in the comple negelect of differential overlap methods.
        - A common correction is to reintroduce parameterized integral approximations for (ij|kl) where ij are electrons on one atom, and kl another. \cite{41}
+       - Also to replace the core-core interactions with Z_A Z_B (core_a core_a | core_b core_b)
        - This is called the neglect of diatomic differential overlap, the foundation for most the semiempirical methods. 
      :END:
-**** ONE AM1
+#+begin_src latex
+\section{Semiempirical Methods}
+Solving the equations for the Hartree Fock method and Configuration Interaction require the integrations of many two-electon integrals.
+Using the hydrogen like slater orbitals for these integrations become infeasable.
+Its common to approximate these orbitals using gaussian functions.
+Each atomic orbital is a linear combinataion of guassians, and each molecular orbital is using a slater determinant of these combinations.
+However, computational costs still limit the solving of the Shrodinger equations in this basis to but a couple of atoms.
+For larger systems, further approximations are required.
+A common approximation is to replace the overlap matrix S with the unit matrix in the Roothan hall equation
+\begin{equation}
+\mathbf{F} \vec{c} = \bm{\epsilon}\mathbf{S}\vec{c}
+\end{equation}
+and only treat the valence electrons quantum mechanically. \cite{christensen2016semiempirical}
+The approach is called the zero-differential overlap approximation.
+This approximation reduces the cost order of the integrations from \(O(N_{\text{electrons}})^4\) to \(O(N_{\text{valence electrons}})^2\).
+The cost can be further reduced by approximating the remaining (ii|jj) integrals by parameterizing the integrals to experimental data as done in the comple negelect of differential overlap methods.
+A common correction is to reintroduce parameterized integral approximations for (ij|kl) where ij are electrons on one atom, and kl another. \cite{pople1965approximate}
+The neglect of diatomic differential overlap approximation further corrects by replacing the core-core interactions with Z\(_A\) Z\(_B\) (core\(_a\) core\(_a\) | core\(_b\) core\(_b\)).
+The neglect of diatomic differential overlap is the foundation for most of whats refered to as the semiempirical methods. 
+#+end_src
+**** THREE AM1
     :LOGBOOK:
     - Note taken on [2021-02-02 Tue 18:43] \\
-      - The Austin Model 1 (AM1) is the hamiltonian that we used throughout this paper.
-      - It is a modified neglect of differential diatomic overlap
+      - Further refinements to NNDA can be made.
+      - The MNDDO method Austin Model 1 (AM1) is the hamiltonian that we used throughout this paper.
       - AM1 has been used succesfully for organic conjugated polymers. \cite{ozaki2019molecular,silva2010benchmark,moran2003excited}
       - Used in the study of rhodopsin \cite{weingart2012modelling}
+      - (ij | kl ) approximated using the mulitpole moments \cite{Dewar1985}
+      -  core-core interaction was modified to 
+	equation 14 from \cite{christensen2016semiempirical}
     :END:
+#+begin_src latex
+In this work we use a modified version of the neglect of diatomic differential overlap approximation known as the Austim Model 1 (AM1) hamiltonian. \cite{Dewar1985}
+In this approximation the integrals of type (ij | kl ) approximated using the mulitpole moments \cite{Dewar1985}
+The core-core interactions are modified to
+\begin{align}
+E_{core-core}^(AM1) = &E_{core-core}^{MNDO} \frac{Z_{A} Z_{B}}{R_{AB}} [\\
+  &\sum_i (K_{A_i}, \exp(L_{A_i}, (R_{AB} - M_A)^2)) \\
++ &\sum_i (K_{B_i}, \exp(L_{B_i}, (R_{AB} - M_B)^2))]
+\end{align}\cite{christensen2016semiempirical}
+AM1 been used succesfully for organic conjugated polymers such as the one we analize in chapters 4 and 5. \cite{ozaki2019molecular,silva2010benchmark,moran2003excited}
+For example, it was recently used in the study of rhodopsin. \cite{weingart2012modelling}
+NEXMD can be used with time dependent density functional theory (TDFT). \cite{tretiak2003resonant}
+Other methods besides NEXMD for TDFT also exist. \cite{ou2015first}
+But we restrict our use to AM1 as is commonly applied in the use of the NEXMD software package for organic conjugated polymers.
+#+end_src
 *** THREE QM/MM on Hartree Fock                                     :ignore:
     #+begin_src latex
     \section{QM/MM}
-	In this work, we will be focused on the behavior of a molecule after an electron absorbs the energy of a photon.
-	In the previous sections we have discussed how quantum mechanics can be used for chemical calculations;
-	however, in many applications, the accuracy of QM is not needed and more computationally cheaper method would be more appropriate.
-	For these situations many computational chemist use classical electrical force field dynamics, treating atoms as point charges.
-	QM/MM was developed to manage computational costs by separating a calculation into a quantum mechanical (QM) region and a classical mechanical (MM) region.\cite{Karplus2014}
-	This allows the user to have the accuracy where needed while not wasting resources on unwanted calculations such as the dynamics of water molecules far from the protein of interest.
-	For the vast majority of our calculations, we will have a QM solute and a few nearby QM solvents surrounded by MM solvents.
 	The Hamiltonian for this system is 
 	\begin{equation}
 	 \mathbf{H}_{eff}=\mathbf{H}_{QM}+\mathbf{H}_{MM}+\mathbf{H}_{QM/MM} 
@@ -677,38 +929,6 @@ to transition to another state.
 	\end{align}
 	where $e$, $m$, and $q$, are the electron, MM atom, and QM core indices respectively;
 	$q_m$ is the charge on the MM atom $m$, $z_q$ is the charge on the QM atom q, $\bar{r}$ is the coordinate vector, $r_{mq}$ is the distance between atoms $m$ and $q$ and $A$ and $B$ are the Leonard-Jones interaction parameters.\cite{Walker2008}
-
-	\begin{multiFigure} 
-	\addFigure{0.4}{../Oral/Images/qm_mm.png}
-	\addFigure{0.4}{../Oral/Images/qm_mm_pme.png}
-	\captionof{figure}[QM/MM Diagram]{a) single cell. b) representation of the periodic nature of the system.}
-	\label{fig:QMMMDiagram}
-	\end{multiFigure}
-
-	Figure \ref{fig:QMMMDiagram} gives and example of a QM/MM systems.
-	The atoms of the drawn out molecule will be described at the QM level of theory.
-	The MM atoms in the volume immediately surrounding the molecular, label QMCut, will be the MM atoms included in equation \ref{eq:qmmm}.
-	To simulate a solute in solvent, we treat the provided box as a cell, that is repeated infinitely many times.
-	Particle Mesh Ewald calculations are then used to calculate the long distance interactions of the periodic boxes.
-	This is performed by treating the charge and potential in the long range, inter box distances, as sums in Fourier space.\cite{Darden1993}
-	Note that the QM region must be treated as single point charges for this calculations.
-	The Mulliken charges of the current state are used for these calculations.
-	Once the sums are complete, a fast Fourier transform is performed to obtain energy and forces.
-	Charges from the MM region outside QMCut, will be used to provide a Particle Mesh Ewald correction to the new Fock Matrix.\cite{Walker2008}
-
-	Long range interaction, from those outside the cutoff, considered vital for the understanding of solvent effects, are treated using SQM’s implementation of Particle Mesh Ewald.
-	Trajectories use periodic boundary conditions to simulate an explicit solution, treating the system box as cells repeated infinitely many times in all directions.
-	Particle Mesh Ewald calculations then determine the long-distance interactions of these periodic boxes, treating the charges and potentials in the long-range inter-box distances as sums in Fourier space treating atoms in the QM region of these calculations as Mulliken point charges.
-	Once the sums are complete, SQM performs a fast Fourier transformation to obtain the long-range corrections to the energy and forces.  
-
-	A general timestep would be as follow: 
-
-	Calculate the MM ewald potentials using the classical charges from the MM atoms Construct the Hamiltonian matrix as if the QM region was in vacuum.
-	Add the one electron terms for the interaction between QM atoms and the MM atoms within the cutoff to the Hamiltonian.
-	Within the SCF routine, copy the Hamiltonian to the fock matrix, and add the two-electron integrals.
-	Calculate the QM ewald potential using the iteration’s Mulliken charges, then add the ewald potentials for both QM and MM atoms to the Fock Matrix.
-	The SCF procedure continues until convergence resulting in a density matrix that incorporates the presence of solvents. 
-
     #+end_src
 *** THREE Adiabatic Calculations                                    :ignore:
     #+begin_src latex :export none
@@ -767,7 +987,7 @@ to transition to another state.
 
     #+end_src
 
-*** ONE NonAdiabatic Calculations [4/5]                              :ignore:
+*** THREE NonAdiabatic Calculations [5/5]                          :ignore:
     #+begin_src latex
     \section{Non-Adiabatic Dynamics}
     #+end_src
@@ -780,14 +1000,14 @@ to transition to another state.
      - The amount of trajectories at a state corresponds to the quantum state probability
      :END:
      #+begin_src latex
-     The MDQT approach utilized in this work as a modified version of the Tully Surface Hopping method.\cite{tully2012perspective, tully1990molecular}
+     The MDQT approach utilized in this work as a modified version of the Tully Surface Hopping method.\cite{tully2012perspective, tully1990molecular,Tully1998}
      Here the quantum wave function is approximated using a swarm of independent trajectories.
      During time steps, these trajectories propagate along adiabatic surfaces;
      However, between time steps, these trajectories are allowed to transition from one state to another in a Monte Carlo like fashion.
      That number oftrajectories in any given state corresponds to that state's quantum probability.
      #+end_src
 
-**** ONE Describe how the state probabilities evolve over time, make sure to include the non-adiabic coupling term :ignore:
+**** THREE Describe how the state probabilities evolve over time, make sure to include the non-adiabic coupling term :ignore:
      :LOGBOOK:
      - Note taken on [2021-01-21 Thu 07:06] \\
      currently at 96 words
@@ -798,81 +1018,113 @@ to transition to another state.
      \begin{equation} \label{eq:tullyHamiltonian} \mathbf{H} = \mathbf{T}(\mathbf{R}) +
        \mathbf{H}_{el}(\mathbf{r},\mathbf{R})
      \end{equation}
-
      where \(\mathbf{T}(\mathbf{R}) \) is the nuclear kinetic energy operator and \(\textbf{H}_{el}\) is the electronic Hamiltonian.
 
-     We expand the the total wavefunction, \(\Psi\) into the adiabatic state wavefunctions \(\phi\)
+     We expand the the total wavefunction, \(\Psi\) into orthonormal adiabatic state wavefunctions \(\phi\)
      \begin{equation}
-       \Psi(\textbf{r}, \textbf{R}, t) = \sum_j c_j(t)\phi_j(\textbf{r}; \textbf{R}) = c_j \left| \phi \right>
+       \Psi(\textbf{r}, \textbf{R}, t) = \sum_j c_j(t)\phi_j(\textbf{r}; \textbf{R}) = c_j \left| \phi_j \right>
      \end{equation}
      where \(\textbf{r}\) and \(\textbf{R}\) are the electronic and nuclear coordinates respectively.
+     \(c_j\) are complex expansion coefficients.
+     Substitution into the Shrodinger equation yeilds
 
-
-     The matrix elements of the electron Hamiltonian become
-
-     \begin{equation} \label{eq:tullyVelements}
-       V_{jk}(\mathbf(R))=\left<\phi_j(\mathbf{r};\mathbf{R})\right|\mathbf{H}_{0}\left.(\mathbf{r};\mathbf{R})\phi_k(\mathbf{r};\mathbf{R})\right>
+     \begin{align}
+       i\hbar \frac{\partial}{\partial t} c_j \left | \phi _j \right> &= \mathbf{H} c_j \left | \phi_j \right>\\
+       i\hbar \dot{c}_j \left | \phi \right> + i\hbar c_j \left| \dot{\phi}_j \right> &= \mathbf{H} c_j \left| \phi_j \right>\\
+     \end{align}
+     where we can now apply it another state \(\phi_i\) on the left.
+     \begin{align} \label{eq:dcoefficient}
+       i\hbar \dot{c_j} \left< \phi_i | \phi_j \right> + i\hbar c_j \left< \phi_i | \dot{\phi}_j \right> &= c_j \left< \phi_i | \mathbf{H} | \phi_j \right>\\
+       \sum_j i\hbar \dot{c_j} \left< \phi_i | \phi_j \right> &= \sum_j \left(c_j \left< \phi_i | \mathbf{H} | \phi_j \right> - i\hbar c_j \left< \phi_i | \dot{\phi}_j \right> \right)\\
+       i\hbar \dot{c_i} &= \sum_j \left(c_j \left< \phi_i | \mathbf{H} | \phi_j \right> - i\hbar c_j \left< \phi_i | \dot{\phi}_j \right> \right)
+     \end{align}
+     where we now made the sum explicit.
+     The second term on the right \(\left< \phi_i | \dot{\phi}_j \right>\) is referred to as the nonadiabatic adiabatic coupling and represents the coupling between states i and j.
+     This can be rewritten as 
+     \begin{equation} \label{eq:tullyS3}
+       \left<\phi_i\right|\dot{\phi}_j\left.\right>=\left<\phi_i\right|\frac{d\mathbf{R}}{dt}\frac{d}{d\mathbf{R}}\left|\phi_j\right>=\dot{\mathbf{R}}\cdot\mathbf{d}_{ij}(\mathbf{R})
      \end{equation}
-     and the time-dependent Shrodinger equation can then be written as
+     effectively separating the coupling term into the nuclear velocity vector \(\dot{R}\) and another vector referred to as the non-adiabatic coupling vector 
+     \begin{equation} \label{eq:tullynacoupling} 
+       \mathbf{d}_{kj}\mathbf(R) =
+       \left<\phi_{k}(\mathbf{r};\mathbf{R})\right|\mathbf{\nabla}_{\mathbf{R}}\left.\phi_j(\mathbf{r};\mathbf{R})\right>.
+     \end{equation}
+     Equation \ref{eq:tullyS3} clearly shows that the coupling is strongest when the non-adiabatic vector is aligned with the nuclear velocities.
+     Also the coupling is proportional to the magnitude of these velocities.
+     Through use of the Helmann-Feynman theorem, it can alsow be shown that the magnitude of the nonadiabatic coupling vector is inversely proportional to the change in energies between the states.
+     We use the Collect Oscillator Approach to calculate the non-adiabatic coupling terms \(\mathbf{R} \cdot \mathbf{d}_{kj}\) ``on the
+     fly''. \cite{tommasini2001electronic, tretiak1996collective, tretiak2009representation, chernyak2000density,Tretiak1996,Tretiak1999}
+
+     To simplify notation we will let
+     \begin{equation}
+       \mathbf{V}_{ij} = \left< \phi_i | \mathbf{H} | \phi_j \right>
+     \end{equation}
+
+     Substituting this new notation into \ref{eq:dcoefficient} gives
+     \begin{equation}
+       i\hbar \dot{c_i} = \sum_j c_j \left(\mathbf{V}_{ij} - i\hbar \dot{\mathbf{R}}\cdot\mathbf{d}_{ij}(\mathbf{R}) \right)
+     \end{equation}
+     which can be written in terms of a state density matrix
+     \begin{align}
+       i\hbar a_{kl} &= c_k c_l^*\\
+       i\hbar \dot{a}_{kl} &= \dot{c}_k c_l^* + c_k \dot{c}_l^* \\
+       i\hbar \dot{a}_{kl} &= \sum_j \left[ a_{jl} (\mathbf{V}_{kj} - i\hbar \dot{\mathbf{R}} \cdot \mathbf{d}_{kj})
+			     - a_{kj} ( \mathbf{V}_{lj} + i\hbar \dot{\mathbf{R}} \cdot \mathbf{d}_{lj}^*) \right] \\
+       i\hbar \dot{a}_{kl} &= \sum_j \left[ a_{jl} (\mathbf{V}_{kj} - i\hbar \dot{\mathbf{R}} \cdot \mathbf{d}_{kj})
+			     - a_{kj} ( \mathbf{V}_{lj} - i\hbar \dot{\mathbf{R}} \cdot \mathbf{d}_{jl}) \right]
+     \end{align}
+     where \(d_{lj}^* = -d_{jl}\) can be deduced from equation \label{eq:tullynacoupling}.
+
+     The diagonals of \(\dot{a}_{kl}\) represents the rates at which the populations of electonic states are changing
+     \begin{align}
+       \dot{a}_{kk} &= -\frac{i}{\hbar}\sum_j \left[ a_{jk} (\mathbf{V}_{kj} - i\hbar \dot{\mathbf{R}} \cdot \mathbf{d}_{kj})
+		      - a_{kj} ( \mathbf{V}_{kj} - i\hbar \dot{\mathbf{R}} \cdot \mathbf{d}_{jk}) \right]
+     \end{align}
+     Its worth looking further into these included terms,
+     \begin{equation}
+       b_{kj} = - \frac{i}{\hbar} \left(a_{jk} (\mathbf{V}_{kj} - i\hbar \dot{\mathbf{R}} \cdot \mathbf{d}_{kj}) - a_{kj} ( \mathbf{V}_{kj} - i\hbar \dot{\mathbf{R}} \cdot \mathbf{d}_{jk})\right)
+     \end{equation}
+     \(b_{kj}\) represents the net population flow from state \(j\) to state \(k\). If \(j = k \), \(b_{kj} = 0\), which means there is no self flow.
+     With a little algebra, we can show that while the state density matrices are complex, the net population flows are real.
+     \begin{equation} \label{eq:tullyb2a} 
+       b_{kj} =
+       \frac{2}{\hbar}\Im\left(a_{kj}^*\mathbf{V}_{kj}\right) - 2\Re\left(a_{kj}^*
+	 \dot{\mathbf{R}} \cdot \mathbf{d}_{kj}\right).
+     \end{equation}
+     During dynamics, between timesteps, the system can only travel along adiabatic PES. 
+     These flows must thus be converted to a probability of a hop.
+     The probability of a hop from state j to k can be described as
 
      \begin{equation}
-       i\hbar\dot{c}_j = c_k ( V_{jk} - i\hbar \left< \phi_j | \dot{\phi}_k \right> ).
+       \text{P}_{j \rightarrow k} = \frac{\text{Population from j to k}}{\text{Original population of j}} = \frac{b_{kj} \Delta t}{a_{jj}}
      \end{equation}
-     The term \(\left< \phi_j | \dot{\phi}_k \right>\) represents the coupling between the jth and kth state and is most commonly referred to as the nonadiabatic coupling term.
+
      #+end_src
 
 **** THREE Decisions are made using a montecarlo like decision      :ignore:
      #+begin_src latex
-At each step we perform a montecarlo like decision
+     At each step we perform a montecarlo like decision based on these probabilities.
+     We choose a uniform random number \(\zeta\) from 0 to 1.
+     A hop from j to k will occur if 
 
-\begin{equation} \label{eq:tullyjump2} 
-\sum_{j=1}^{k-1}g_{ij} < \zeta  \le \sum_{j=1}^{k}g_{ij}
-\end{equation}
-hopping from state i to k when
-\begin{equation} \label{eq:tullyjump1} 
-  \zeta < g_{ik}
-\end{equation}
-where \(\zeta\) is a uniformly distributed random number from 0 to 1, and
-
-\begin{equation}
-g_{ik} = \frac{b_{ki}(t=0)\Delta t}{a_{ii}(t=0)}
-\end{equation}
-
-with
-
-\begin{equation} \label{eq:tullyb2a} 
-b_{kj} =
-        \frac{2}{\hbar}\Im\left(a_{kj}^*V_{kj}\right) - 2\Re\left(a_{kj}^*
-         \dot{\mathbf{R}} \cdot \mathbf{d}_{kj}\right).
-\end{equation}
-$a_{kj}$ are the off diagonals of the density matrix $a_{kj} = c_k^* c_j$ and
-$\mathbf{d}_{kj}$ is the non-adiabatic coupling vector
+     \begin{equation} \label{eq:tullyjump2} 
+     \sum_{l=1}^{k-1}P_{j \rightarrow l} < \zeta  \le \sum_{l=1}^{k}P_{j \rightarrow l}
+     \end{equation}
      #+end_src
 
 **** THREE These decision can be solve on the fly using CEO method  :ignore:
-     #+begin_src latex
-\begin{equation} \label{eq:tullynacoupling} 
-\mathbf{d}_{kj}\mathbf(R) =
-  \left<\phi_{k}(\mathbf{r};\mathbf{R})\right|\mathbf{\nabla}_{\mathbf{R}}\left.\phi_j(\mathbf{r};\mathbf{R})\right>.
-\end{equation}
-We use the Collect Oscillator Approach to calculate the non-adiabatic coupling terms \(\mathbf{R} \cdot \mathbf{d}_{kj}\) ``on the
-fly''. \cite{tommasini2001electronic, tretiak1996collective, tretiak2009representation, chernyak2000density}
-     #+end_src
 **** THREE Adaptations for Surface Hopping                          :ignore:
-     #+begin_src #+BEGIN_EXPORT latex
-\begin{equation}
-
-\end{equation}
-#+END_EXPORT
-
+     #+begin_src latex
  Inconsistencies arise from solely using the Tully surface hopping approach.
  Trajectories transfer between  the various adiabatic potential energy surfaces instantaneously based off the QM state coefficients.
+Many improvements to the surface model method has been developed since its first conception.\cite{fang1999improvement}
  These coefficients are determined using the integral of the TDSE on multiple trajectories.
- Each trajectory if unmodified will keep in phase even after spatial separation.
+ Each trajectory if unmodified will keep in phase even after spatial separation which is a non-physical occurence. \cite{joos2013decoherence,landry2011communication,nelson2013nonadiabatic}
+Properly accounting for these coherences is necessary for controling charge separtion in light-harvesting devices.\cite{rozzi2013quantum}
  Furthermore, if dealing with a system with a dense electronic state structure, its likely that the ordering of these states will switch during general dynamics.
  We apply a dechohence correction as well as a trivial crossing accounting system as performed in previous research.
      #+end_src
-* ONE Implementation Details [1/6]
+* ONE Implementation Details [6/7]
   :PROPERTIES:
   :header-args: :eval never-export
   :header-args:latex: :exports code :tangle implementationDetails.tex
@@ -898,7 +1150,7 @@ fly''. \cite{tommasini2001electronic, tretiak1996collective, tretiak2009represen
     #+begin_src latex
 	  NEXMD, currently being developed by the Tretiak lab in los Alamos, has a proven track record of performance on the stimulation of ultra-fast non-adiabatic behaviors.
 	  It’s ability to solve state coupling equations on-the-fly has found great utility for systems with hundreds of atoms.
-	  Numerous studies have implemented the method for research into topics including the study of chlorophyll organic conjugated molecules, and pi conjugated macrocycles. \cite{zheng2017photoinduced, nelson2014nonadiabatic, alfonso2016interference} 
+	  Numerous studies have implemented the method for research into topics including the study of chlorophyll organic conjugated molecules, and pi conjugated macrocycles. \cite{zheng2017photoinduced,nelson2014nonadiabatic,alfonso2016interference,wu2006exciton,Ondarse-Alvarez2016} 
 	  Such studies with NEXMD have been limited to implicit solvents.
 	  No method to provide NEXMD with QM/MM capabilities have yet to be implemented.
     #+end_src
@@ -916,26 +1168,223 @@ fly''. \cite{tommasini2001electronic, tretiak1996collective, tretiak2009represen
     #+begin_src latex
 	Amber is primarily known as a classical force-field molecular dynamics package.
 	It’s a massive project maintained by people across the globe that's been designed to work with very large systems ranging in the tens of thousands of atoms. \cite{case2020a}
-	Amber is capable of a huge range of simulations from replica exchange to QM/MM umbrella sampling using nudge elastic bands. \cite{cruzeiro2020exploring, ghoreishi2019fast}
+	Amber is capable of a huge range of simulations from replica exchange to study ph-dependent conformation chagnges to QM/MM umbrella sampling using nudge elastic bands. \cite{cruzeiro2020exploring, ghoreishi2019fast,sarkar2019ph}
 	Most importantly for this research, it has a proven track record of doing QM/MM solvent-solute simulations using periodic boundary conditions.
     #+end_src
-** ONE Swim Lane Flow Chart Figure                                :ignore: 
+** THREE Swim Lane Flow Chart Figure                                 :ignore: 
    #+begin_src latex
-\section{Schematics}
+      \section{Schematics}
+   \noindent
+   \begin{minipage}[c]{\textwidth}
+     \centering
+     \includegraphics[width=0.5\linewidth]{../Paper2/scripted_diagrams/nasqm_overview.png}
+     \captionof{figure}{Swim-lane diagram describing the common timestep of the SANDER-NEXMD interface.}
+     \label{scheme:nasqm}
+   \end{minipage}\bigskip
    #+end_src
-** ONE Collect QM coordinates, charges, velocitie and theromostat parameters :ignore:
-   :LOGBOOK:
-   - Note taken on [2021-01-22 Fri 13:52] \\
-     explain how to convert the langevin dynamics coefficients
-   :END:
-   
-** ONE QM/MM Calculations Prior to SCF                           :ignore:
-** ONE Calulation of the QM/MM forces                            :ignore:
-** ONE Benchmarks
+** THREE Quick Overview
    #+begin_src latex
+   The swim-lane chart in figure \ref{scheme:nasqm} describes a common time-step that occurs within the SANDER-NEXMD interface.
+   First users initiate the program through SANDER, a program found in AMBERTOOLS. SANDER uses NEXMD to calculate the energies and forces of the QM atoms, check for trivial crossings, and propagate the quantum coefficients.
+   With these results, SANDER performs the QM/MM procedures to derive the accelerations and velocities for the classical time step.
+   NEXMD then decides whether to perform a state transitions, adjusting the velocities as needed.
+   Finally SANDER propagates the nuclear coordinates and the cycle continues for the rest of the dynamics.
+   #+end_src
+** THREE Collect QM coordinates, charges, velocitie and theromostat parameters :ignore:
+   #+begin_src latex
+
+   When users initiate SANDER, they're provide the usual SANDER inputs of a
+   coordinate, parameter, and sander control files.
+   In addition they will include a file specific to
+   NEXMD which describes the QM and Non-adiabatic behavior.
+   This interface, incorporates SANDER's implementation of QM/MM as described in previous literature to generate a solvent inclusive ground state density matrix utilized by NEXMD's excited state calculations.
+   Sander controls the interactions between the QM and MM regions.
+
+
+   SANDER calls NEXMD providing the function calls with the QM coordinates, MM charges, and Langevin thermostat parameters.\cite{paterlini1998constant}
+   NEXMD calculates the energies of the QM atoms with electrostatic interactions from the MM point charges using CIS, TDHF, or TDDFT.
+   A variety of Hamiltonians are available; however, AM1 has been shown to provide very reasonable computational cost to accuracy for our systems of interest.\cite{silva2010benchmark}
+   An analysis of parameter choices can be found in previous literature.\cite{nelson2012nonadiabatic}
+
+   #+end_src
+** THREE QM/MM Calculations Prior to SCF                             :ignore:
+   #+begin_src latex
+      We use SANDER's QM/MM implementation to provide approximations of the solvent interactions.\cite{Walker2008}
+      SANDER's combined QM/MM Hamiltonian represents MM atoms as point charges and QM atoms as electronic wave-functions.
+      The effective Hamiltonian uses the aforementioned hybrid approach
+      \begin{equation}
+	\mathbf{H}_{eff} = \mathbf{H}_{QM} + \mathbf{H}_{MM} + \mathbf{H}_{QM/MM}
+      \end{equation}
+      where \(\mathbf{H}_{QM}\), \(\mathbf{H}_{MM}\), \(\mathbf{H}_{QM/MM}\) are the Hamiltionians for the QM to QM, MM to MM, and QM to MM hybrid interactions.
+      \(\mathbf{H}_{MM}\) is not considered during the electronic calculations due to it independence from the electronic distribution.
+      \(\mathbf{H}_{QM}\) is the electronic Hamiltonian used in vacuum QM SCF calculations.
+      \(\mathbf{H}_{QM/MM}\) represents the interactions between the QM charge density and MM atoms treated as point charges.
+      For computational efficiency we limit the range of this interaction by a cuttoff, set by the user, generally in the range of 10-16 \(\AA\) from the paremeter QM atoms.
+      For short range interactions the hybrid \(\mathbf{H}_{QM/MM}\) can be expanded into
+
+      \begin{align}
+	\mathbf{H}_{QM/MM} = &- \sum_i \sum_m q_m \hat{h}_{electron} (\vec{r}_i,  \vec{r}_m)\\
+			     &+ \sum_q \sum_m q_q q_m \hat{h}_{core} (\vec{r}_q, \vec{r}_m)\\
+			     &+ \sum_m \sum_q \left( \frac{A_{qm}}{r_{qm}^{12}} - \frac{B_{qm}}{r_{qm}^6} \right)
+      \end{align}
+      where \(i\) is the electron, \(m\) the MM atom, and \(q\) the combined nuclei and core electrons of the QM atoms.
+      A and B are the Lennard-Jones interaction parameters where \(r_{qm}\) is the distance between the MM and QM atoms.
+      \(q\) is the charge and \(r\) is the ccoordinate vector.
+      \(\hat{h}_{core}\) represents the electronic interactions between the MM charges and the core of the QM atoms.
+      \(\hat{h}_{electron}\) represents the interactions between the MM charges and either the charge density of the QM region when using Semi-emprical hamiltonians, or by using the Mulliken charges in the case of DFT.
+
+      Long range interaction, from those outside the cutoff, considered vital for the understanding of solvent effects, are treated using SQM’s implementation of Particle Mesh Ewald.
+      Trajectories use periodic boundary conditions to simulate an explicit solution, treating the system box as cells repeated infinitely many times in all directions.
+      Particle Mesh Ewald calculations then determine the long-distance interactions of these periodic boxes, treating the charges and potentials in the long-range inter-box distances as sums in Fourier space treating atoms in the QM region of these calculations as Mulliken point charges.\cite{essman1995smooth}
+      Once the sums are complete, SQM performs a fast Fourier transformation to obtain the long-range corrections to the energy and forces. 
+
+
+      For a general timestep QM/MM interaction will be added to the density matrix as follows: 
+   \begin{enumerate}
+      \item Calculate the MM ewald potentials using the classical charges from the MM atoms.
+      \item Construct the Hamiltonian matrix as if the QM region was in vacuum.
+      \item Add the one electron terms for the interaction between QM atoms and the MM atoms within the cutoff to the Hamiltonian.
+      \item Within the SCF routine, copy the Hamiltonian to the fock matrix, and add the QM/MM two-electron integrals.
+      \item Calculate the QM ewald potential using the iteration’s Mulliken charges, then add the ewald potentials for both QM and MM atoms to the Fock Matrix.
+      \item The SCF procedure continues until convergence resulting in a density matrix that incorporates the presence of solvents. 
+   \end{enumerate}
+   #+end_src
+** THREE Calulation of the QM/MM forces                              :ignore:
+   #+begin_src latex
+   Excited-state calculations implement the Collective Electronic Oscillator (CEO) approach developed by Mukamel and coworkers, which solves the adiabatic equation of motion of a single electron density matrix.\cite{Mukamel1997,tretiak02_densit_matrix_analy_simul_elect}
+   The single-electron density matrix is defined by
+   \begin{equation}
+     (\rho_{g\alpha})_{nm} = \left< \psi_{\alpha} (t) \right| c_m^{\dagger} c_n \left| \psi_{g} (t) \right>
+   \end{equation}
+   where \(\psi_g\) and \(\psi_\alpha\) are the single-electron wave functions of the ground-state and \(\alpha\) state, and \(c_m^{\dagger} c_n\) is the creation(annihilation) operator summed over the atomic orbital \(m\) and \(n\), whose size is determined by the basis set.
+   The basis set coefficients of these atomic orbits are calculated in the previous SCF step and account for the presence of solvents.
+   The CIS approximation is applied, creating the normalization condition 
+
+   \begin{equation}
+     \sum_{n,m} (\rho_{g\alpha})^2 = 1
+   \end{equation}
+
+   Recognizing that \(\rho_{g\alpha}\) represents the transition density from the ground to the \(\alpha\) state, we solve the Liouville equation of motion 
+
+   \begin{align*}
+     \hat{\mathbf{\mathcal{L}}}\mathbf{\rho}_{0\alpha} = \Omega\mathbf{\rho}_{0\alpha}
+   \end{align*}
+
+
+   with \(\mathbf{\mathcal{L}}\) being the two-particle Louiville operator and
+   \(\Omega\) the energy difference between the \(\alpha\) state and the ground
+   state. \(\rho_{0\alpha}\) is the single- electron density matrix
+
+   \begin{align*}
+     (\mathbf{\rho}_{0\alpha})_{nm} =  \left< \psi_{\alpha} \right| c_m^\dagger c_n \left| \psi_0 \right>.
+   \end{align*}
+   where \(\psi_{g}\) and \(\psi_{\alpha}\) are the single-electron wavefunctions for the groundstate and singly excited state \(\alpha\), and
+   \(c_m^\dagger\) and \(c_n\) are the creation and annihilation operator respectively. The coefficients for the atomic orbital basit sets are derived prior using the QM/MM methodology from the SQM package.\cite{Walker2008} The Liouville operator can be found analytically using 
+
+   \begin{align*}
+     \hat{\mathbf{\mathcal{L}}}\mathbf{\rho}_{0\alpha} = \left[ \mathbf{F}^{\vec{R}}(\mathbf{\rho}_{00}), \mathbf{\rho}_{0\alpha} \right]
+     + \left[ \mathbf{V}^{\vec{R}}(\mathbf{\rho}_{0\alpha}), \mathbf{\rho}_{00} \right]
+   \end{align*}
+
+   where \(\textbf{F}^{\vec{R}}\) is the Fock operator and \(\textbf{V}^{\vec{R}}\) is the column interchange operator.
+
+   The forces are also calculated analytically using the gradient of the ground state
+   energy and the excited state energy.
+
+   \begin{align*}
+     \vec{\nabla} E_{\alpha} = \vec{\nabla} E_0 + \vec{\nabla} \Omega_{\alpha}
+   \end{align*}
+
+   With the gradient of the ground state being calculated by
+
+   \begin{align*}
+     \vec{\nabla} E_0 = \frac{1}{2}\mathbf{Tr} \left[ \left( \mathbf{t}^{\vec{R}} + \mathbf{F}^{\vec{R}} \right) \mathbf{\rho}_{00} \right]
+   \end{align*}
+   where \(\textbf{t}\) is the single-electron kinetic operator.
+
+   The gradient of the excited state can derived using
+
+   \begin{align*}
+     \vec{\nabla}\Omega_{\alpha} = \mathbf{Tr} \left[ \mathbf{F}^{\vec{R}} (\mathbf{\rho}_{\alpha\alpha} - \mathbf{\rho}_{00})\right]
+     + \mathbf{Tr} \left[\mathbf{V}^{\vec{R}}\mathbf{\rho}_{0\alpha}^\dagger \mathbf{\rho}_{0\alpha} \right]
+   \end{align*}
+
+   where \(\mathbf{\rho}_{ij}\) represents the density or transition density matrix for states i and
+   j, \(\mathbf{F}\) is the Fock matrix and \(\mathbf{V}\) is the column interchange operator.
+   #+end_src
+** ONE Benchmarks [0/4]
+   #+begin_src 
 \section{Benchmarks}
    #+end_src
-* ONE Spectroscopic Analysis of PPV3-NO2 [2/3]
+*** ONE Timings Table
+    - Adiatatic and Non adiabatic timings
+    - 1st excited state with n = 2 3 4 5 10 20 state included
+    - also number of included solvents from 1 to 10
+#+begin_src latex
+    \begin{table}[H]
+      \caption{Benchmark average timings for 0 to 1 excited states}
+      \label{table:benchmarks1}
+      % \begin{center}
+      \begin{tabularx}{\textwidth}{XXXX}\hline
+N States & N Solvent & Adiabatic (ms/step) & NonAdiatic (ms/step)\\\hline
+0        & 0         &  1.34 & 2.89\\
+0        & 1         &  2.35 & 4.32\\
+0        & 3         &  3.14 & 8.85\\
+0        & 5         &  5.89 & 10.42\\
+0        & 10        & 11.87 & 13.32\\
+0        & 15        & 16.34 & 19.81\\
+1        & 0         &  1.34 & 25.22\\
+1        & 1         &  2.35 & 29.12\\
+1        & 3         &  3.14 & 32.98\\
+1        & 5         &  5.89 & 36.01\\
+1        & 10        & 11.87 & 40.33\\
+1        & 15        & 16.34 & 45.63\\\hline
+      \end{tabularx}
+    \end{table}
+
+    \begin{table}[H]
+      \caption{Benchmark timings for 3 5, and 10 excited states}
+      \label{table:benchmarks2}
+      % \begin{center}
+      \begin{tabularx}{\textwidth}{XXXX}\hline
+N States & N Solvent & Adiabatic (ms/step) & NonAdiatic (ms/step)\\\hline
+3        & 0         &  2.34 & 4.89\\
+3        & 1         &  3.35 & 8.32\\
+3        & 3         &  4.14 & 15.85\\
+3        & 5         &  7.89 & 20.42\\
+3        & 10        & 14.87 & 25.32\\
+3        & 15        & 19.34 & 38.81\\
+5        & 0         &  2.34 & 50.22\\
+5        & 1         &  3.35 & 58.12\\
+5        & 3         &  4.14 & 64.98\\
+5        & 5         &  7.89 & 72.01\\
+5        & 10        & 13.87 & 80.33\\
+5        & 15        & 20.34 & 90.63\\
+10        & 0         &  4.34 & 100.22\\
+10        & 1         &  6.35 & 120.12\\
+10        & 3         &  8.14 & 128.98\\
+10        & 5         &  14.89 & 144.01\\
+10        & 10        & 26.87 & 160.33\\
+10        & 15        & 40.34 & 180.63\\\hline
+      \end{tabularx}
+    \end{table}
+#+end_src
+*** ONE Chart for n_state timings
+*** ONE Chart for n_solvent timings
+*** ONE Description of the benchmark timings
+#+begin_src latex
+Figures \ref{table:benchmarks1} and \ref{table:benchmarks2} show the timings for the Sander-NEXMD interfaces. 
+Benchmarks consisted of a single PPV\(_3\)-NO\(_2\) molecule surrounded by 3423 CCl\(_4\) molecules.
+PPV\(_3\)-NO\(_2\) consistes of 50 atoms, and every additional CCL\l\(_4\) molecule adds an additional 5 atoms.
+A various number of solvent molecules are included in the QM region as shown in the second column.
+The adiabatic dynamics seems to increase on the order of O(3) for the number of solvents and O(1) for the number of states.
+This coincides to what we expect from the precedures found in configuration interactions.
+The order for the number solvents orresponds to what we expect using AM1 semi-empirical method.
+For non-adiabatic dynamics, the computation time seems to increase on the order of O(3) for the number of solvents and O(2) for the number of states.
+The computational order on the number of solvents does is near identical for to the adiabatic since the non-adiabatic dynamics perform the same AM1 calculations.
+The time order in the number of states however, differs because of the time used to calculate the non-adiabatic coupling vector and terms.
+#+end_src
+* THREE Spectroscopic Analysis of PPV3-NO2 [3/3]
   :PROPERTIES:
   :header-args: :eval never-export
   :header-args:latex: :exports code :tangle adiabatic.tex
@@ -960,7 +1409,7 @@ fly''. \cite{tommasini2001electronic, tretiak1996collective, tretiak2009represen
    We apply our method to an analysis of a three-ring para-phenylene vinylene oligomer (PPV3-NO2).
    We look at how explicit solvents affect PPV3-NO2's excited state structure as well as its absorption and emission spectra.  
    #+end_src
-** ONE Simulation Methods [2/4]
+** THREE Simulation Methods [4/4]
    - [ ] Add description of NMR Constraints
    #+begin_src latex
    \section{Simulation Methods}
@@ -989,10 +1438,20 @@ fly''. \cite{tommasini2001electronic, tretiak1996collective, tretiak2009represen
 
     #+end_src
 
-*** ONE NRM Constraints Figure with Diagram of PPV3NO2 showing QM region
-*** ONE Explanation of NMR Constraint figure
+*** THREE NRM Constraints Figure with Diagram of PPV3NO2 showing QM region
+#+begin_src latex
+	  \noindent
+	  \begin{multiFigure} 
+	    \addFigure{0.45}{../Paper1/Images/ppvno2.png}
+	    \addFigure{0.45}{../Paper1/Images/vacuum-td.png}
+	    \captionof{figure}{A)Diagram of PPV\(_3\)-NO\(_2\) showing the bonds of interest. B) Transition density from ground to excited state.}
+	    \label{fig:PPV3NO2}
+	  \end{multiFigure}
+\bigskip
+#+end_src
+*** THREE Explanation of NMR Constraint figure
     #+begin_src latex
-   As shown in Figure, the excited-state density resides towards the center of the molecule on the vinyl groups nearest to the phenyl group.
+   As shown in figure \ref{fig:PPV3NO2}, the excited-state density resides towards the center of the molecule on the vinyl groups nearest to the phenyl group.
    Charge movements on solvents far from this concentration of density cause negligible energy differences.
    To maximize the utility of the QM/MM calculation, we only include the solute and the solvent molecules nearest to this central phenyl group in the QM calculations.
    To prevent these solvents from drifting during the trajectories, we implement a simple harmonic restraint using AMBER's NMR restraints.
@@ -1011,43 +1470,53 @@ fly''. \cite{tommasini2001electronic, tretiak1996collective, tretiak2009represen
    #+end_src
 *** THREE Spectra
     #+begin_src latex
-    \subsection{Spectra}
-
-    \noindent
-    \begin{multiFigure} 
-      \addFigure{0.4}{../Paper1/Images/nquant_abs_comparison.png}
-      \addFigure{0.4}{../Paper1/Images/nquant_flu_comparison.png}
-      \addFigure{0.4}{../Paper1/Images/spectra_abs_compared.png}
-      \addFigure{0.4}{../Paper1/Images/spectra_flu_compared.png}
-      \captionof{figure}[Fluorescence and Absorption Spectra]{PPV\(_3\)-NO\(_2\) absorption and fluorescence spectra A-B) in CCL\(_4\) with varying number of QM solvents. C-D in various solvents with 20 included in QM region.}
-      \label{fig:}
-    \end{multiFigure}\bigskip
+        \subsection{Spectra}
 
 
-	Energies, coordinates, and dipole information are acquired every ten steps.
-	Equilibration times from either MM to QM state or from the S0 to S1 state range from 2-4 ps.
-	We exclude the first four ps of each trajectory in the calculation of the spectra in data analysis for the absorption and emission analysis. 
+        \noindent
+        \begin{multiFigure} 
+          \addFigure{0.45}{../Paper1/Images/nquant_abs_comparison.png}
+          \addFigure{0.45}{../Paper1/Images/nquant_flu_comparison.png}
+          \captionof{figure}[Fluorescence and Absorption Spectra by number quantum solvents]{PPV\(_3\)-NO\(_2\) absorption, A, and fluorescence, B, spectra in CCL\(_4\) with varying number of QM solvents.}
+          \label{fig:spectrasolvents}
+        \end{multiFigure}\bigskip
 
-	Previous studies have analyzed solvatochromic shifts in conjugated substituted PPV3-NO2 molecules with the NEXMD program in implicit solvents.
-	Results with NEXMD by TD-AM1 were redshifted from the experimental results, while single-point calculations using TD-CAM-B3LYP provided by G09 in the same implicit solvent were blue shifted.
-	Other NEXMD computations have shown comparable redshifts in spectra of similar molecules in implicit solvents compared to experiment. \cite{Bjorgaard2015}
-	We performed similar calculations in this paper; however, in explicit solvent.
-	We compare the results to those presented in implicit solvent.
+        \noindent
+        \begin{multiFigure} 
+          \addFigure{0.45}{../Paper1/Images/spectra_abs_compared.png}
+          \addFigure{0.45}{../Paper1/Images/spectra_flu_compared.png}
+          \captionof{figure}[Fluorescence and Absorption Spectra in various solvents]{PPV\(_3\)-NO\(_2\) absorption, A, and fluorescence, B, spectra in various solvents with 20 included in QM region.}
+          \label{fig:spectranquant}
+        \end{multiFigure}\bigskip
 
-	We collect the vertical excitation dipoles and oscillator strengths between the ground state S0 and S1 every five fs during the steady-state of each trajectory to produce the absorption/emission spectra of PPV3-NO2.
-	We sum over excitation states averaged over the geometries and broaden the spectra using a Gaussian bin function with FWHM=0.16 eV corresponding to a 100 fs FWHM laser excitation.
-	We normalized it such that the maximum absorption is 1. 
 
-	Figure ? presents the absorption spectra for PPV3-NO2 in select solvents and vacuum.
-	The shown absorption has contributions from the nine lowest energy excited states, though the S1 state is the primary contributor to the spectra.
-	We found the number of solvent molecules included in the QM region caused only minor deviations in the spectra, with the largest variance (0.02~eV) occurring between the 20QM and MM CCL4 systems, as such, in figure 12, we only present results from trajectories with 20 QM solvents.
-	All solvent results are redshifted from those in vacuum matching findings in previous works.
-	The absorbance within methanol and chloroform were very similar, with a peak shift from vacuum of -0.04 eV.
-	Within carbon tetrachloride, this shift increases slightly more to-0.06 eV. 
+            Energies, coordinates, and dipole information are acquired every ten steps.
+            Equilibration times from either MM to QM state or from the S0 to S1 state range from 2-4 ps.
+            We exclude the first four ps of each trajectory in the calculation of the spectra in data analysis for the absorption and emission analysis. 
 
-	Aligning with previously reported results, the fluorescence calculations found in figure 13 show an overall more intense redshift from vacuum, along with a more significant dispersion among the solvents. \cite{Park2013}
-	The smallest shift, at -0.06 eV, occurs in carbon tetrachloride, while the largest, at -0.12 eV, occurs in methanol.
-	Previous works have demonstrated that the energy levels of PPV3-NO2 are further stabilized by more polar solvents, a feature clearly seen by our results. 
+
+        Solvents's polarizability should affect the transition dipole moments and the corresponding spectra and has been shown to experimentally. \cite{marcus1956electrostatic,martin1998hydrolysis,park2013tailored,LeDroumaguet2005}.
+        Such shifts are referred to as solvatochromic shifts.
+            Previous studies have analyzed solvatochromic shifts in conjugated substituted PPV3-NO2 molecules with the NEXMD program in implicit solvents.\cite{Santhanamoorthi2009}
+            Results with NEXMD by TD-AM1 were redshifted from the experimental results, while single-point calculations using TD-CAM-B3LYP provided by G09 in the same implicit solvent were blue shifted.
+            Other NEXMD computations have shown comparable redshifts in spectra of similar molecules in implicit solvents compared to experiment. \cite{Bjorgaard2015}
+            We performed similar calculations in this paper; however, in explicit solvent.
+            We compare the results to those presented in implicit solvent.
+
+            We collect the vertical excitation dipoles and oscillator strengths between the ground state S0 and S1 every five fs during the steady-state of each trajectory to produce the absorption/emission spectra of PPV3-NO2.
+            We sum over excitation states averaged over the geometries and broaden the spectra using a Gaussian bin function with FWHM=0.16 eV corresponding to a 100 fs FWHM laser excitation.
+            We normalized it such that the maximum absorption is 1. 
+
+            Figure ? presents the absorption spectra for PPV3-NO2 in select solvents and vacuum.
+            The shown absorption has contributions from the nine lowest energy excited states, though the S1 state is the primary contributor to the spectra.
+            We found the number of solvent molecules included in the QM region caused only minor deviations in the spectra, with the largest variance (0.02~eV) occurring between the 20QM and MM CCL4 systems, as such, in figure 12, we only present results from trajectories with 20 QM solvents.
+            All solvent results are redshifted from those in vacuum matching findings in previous works.
+            The absorbance within methanol and chloroform were very similar, with a peak shift from vacuum of -0.04 eV.
+            Within carbon tetrachloride, this shift increases slightly more to-0.06 eV. 
+
+            Aligning with previously reported results, the fluorescence calculations found in figure 13 show an overall more intense redshift from vacuum, along with a more significant dispersion among the solvents. \cite{Park2013}
+            The smallest shift, at -0.06 eV, occurs in carbon tetrachloride, while the largest, at -0.12 eV, occurs in methanol.
+            Previous works have demonstrated that the energy levels of PPV3-NO2 are further stabilized by more polar solvents, a feature clearly seen by our results. 
     #+end_src
     
 *** THREE Energy Relaxation
@@ -1095,27 +1564,28 @@ fly''. \cite{tommasini2001electronic, tretiak1996collective, tretiak2009represen
       \caption[]{}
       % \begin{center}
       \begin{tabularx}{\textwidth}{XXXXX}\hline
-	Molecule    & S0 Near  & S1 Near & S0 Far & S0 Far\\\hline
-	Vacuum      & 28.0 \(\pm\) 1.0\(^\circ\) & 12.5 \(\pm\) 0.5\(^\circ\) & 28.5 \(\pm\) 0.9\(^\circ\) & 17.4 \(\pm\) 0.8\(^\circ\)\\
-	CHCl\(_4\)  & 25.3 \(\pm\) 1.2\(^\circ\)  & 12.3 \(\pm\) 0.6\(^\circ\) & 25.1 \(\pm\) 1.3\(^\circ\) & 14.7 \(\pm\) 0.8\(^\circ\)\\
-	CH\(_3\)OH  & 26.6 \(\pm\) 0.9\(^\circ\)  & 11.5 \(\pm\) 0.5\(^\circ\) & 28.2 \(\pm\) 0.9\(^\circ\) & 16.2 \(\pm\) 0.8\(^\circ\)\\
-	CHCl\(_3\)  & 26.8 \(\pm\) 1.1\(^\circ\)  & 11.8 \(\pm\) 0.5\(^\circ\) & 27.8 \(\pm\) 1.2\(^\circ\) & 16.0 \(\pm\) 0.7\(^\circ\)\\\hline
+        Molecule    & S0 Near  & S1 Near & S0 Far & S0 Far\\\hline
+        Vacuum      & 28.0 \(\pm\) 1.0\(^\circ\) & 12.5 \(\pm\) 0.5\(^\circ\) & 28.5 \(\pm\) 0.9\(^\circ\) & 17.4 \(\pm\) 0.8\(^\circ\)\\
+        CHCl\(_4\)  & 25.3 \(\pm\) 1.2\(^\circ\)  & 12.3 \(\pm\) 0.6\(^\circ\) & 25.1 \(\pm\) 1.3\(^\circ\) & 14.7 \(\pm\) 0.8\(^\circ\)\\
+        CH\(_3\)OH  & 26.6 \(\pm\) 0.9\(^\circ\)  & 11.5 \(\pm\) 0.5\(^\circ\) & 28.2 \(\pm\) 0.9\(^\circ\) & 16.2 \(\pm\) 0.8\(^\circ\)\\
+        CHCl\(_3\)  & 26.8 \(\pm\) 1.1\(^\circ\)  & 11.8 \(\pm\) 0.5\(^\circ\) & 27.8 \(\pm\) 1.2\(^\circ\) & 16.0 \(\pm\) 0.7\(^\circ\)\\\hline
       \end{tabularx}
     \end{table}
 
-	We use the torsion angle around the vinylene segments as the slow nuclear coordinates of PPV3-NO2-molecules following precendent. \cite{Clark2012}
-	In PPV3-NO2 systems, the excitation to S1 leads to relaxation towards a nearly planar structure Torsion angle around d1,d3 and d4,d6 are averaged over 128 trajectories to produce the near and far torsion angle data respectively. 
+    We use the torsion angle around the vinylene segments as the slow nuclear coordinates of PPV3-NO2-molecules following precendent. \cite{Clark2012}
+    The torsion angle around the vinylene segments have been shown to be highly coupled to the excited state.\cite{nelson2011nonadiabatic,panda2013electronically}
+    In PPV3-NO2 systems, the excitation to S1 leads to relaxation towards a nearly planar structure Torsion angle around d1,d3 and d4,d6 are averaged over 128 trajectories to produce the near and far torsion angle data respectively. \cite{barford2011ultrafast}
 
-	For our CCl4-5QM example, the dihedral angle around the near set d1 to d2 equilibrates around 23° and 12° in the S0 and S1 states, respectively.
-	For the near set, d4 to d6, these values are 23° and 15°.
-	Once again, only a noticeable difference in S1.
-	The time constants for the S1 dihedral relaxations are around 0.8 ps.
-	Relaxation of the dihedral angles occurs by four ps. 
+    For our CCl4-5QM example, the dihedral angle around the near set d1 to d2 equilibrates around 23° and 12° in the S0 and S1 states, respectively.
+    For the near set, d4 to d6, these values are 23° and 15°.
+    Once again, only a noticeable difference in S1.
+    The time constants for the S1 dihedral relaxations are around 0.8 ps.
+    Relaxation of the dihedral angles occurs by four ps. 
 
-	Table 5 shows a summary of the torsion angles analysis of all tested solvents after five ps of relaxation after the jump to the first excited state.
-	The trajectories include 20 solvent molecules within the QM calculations.
-	A noticeable shift towards a planar geometry occurs in all solvents.
-	This shift is greatest near the nitro group. 
+    Table 5 shows a summary of the torsion angles analysis of all tested solvents after five ps of relaxation after the jump to the first excited state.
+    The trajectories include 20 solvent molecules within the QM calculations.
+    A noticeable shift towards a planar geometry occurs in all solvents.
+    This shift is greatest near the nitro group. 
     #+end_src
 *** THREE BLA                                                       :ignore:
     #+begin_src latex
@@ -1220,7 +1690,7 @@ fly''. \cite{tommasini2001electronic, tretiak1996collective, tretiak2009represen
     However, simulations in explicit solvents have been shown to produce qualitatively different results than in implicit solvent mediums.
     By linking AMBER's SANDER to NEXMD, we produced a quick and efficient tool to simulate explicit solvent behavior on adiabatic excited state dynamics.
     #+end_src
-* ONE Non-Adiabatic Decay of PPV3-NO2 [1/3]
+* ONE Non-Adiabatic Decay of PPV3-NO2 [3/3]
   :PROPERTIES:
   :header-args: :eval never-export
   :header-args:latex: :exports code :tangle nonadiabatic.tex
@@ -1228,11 +1698,24 @@ fly''. \cite{tommasini2001electronic, tretiak1996collective, tretiak2009represen
   #+begin_src latex
   \chapter{QM/MM Non-adiabatic Dynamics of PPV\(_3\)-NO\(_2\)}
   #+end_src
-** ONE Introduction 
+** THREE Introduction 
+:LOGBOOK:
+- Note taken on [2021-02-07 Sun 08:41] \\
+  - We further our analysis of PPV3no2 by analyzing its ultra fast excited state decay
+  - Recent works have analized the nonadiabatic behaviors of PPV3NO2  to the study of its na dynamics in implicit solvent. \cite{sifain2018photoexcited}
+  - This type of work is useful for studying the donor acceptor functionality of this promising organic conjugated molecular in polarized solvents.
+  - We choose methanol due to it being a common solvent with strong polarization.
+  - We'll compare the population decay behavior to that found in strongly polar implicit solvents.
+:END:
    #+begin_src latex
-\section{Introduction}
+   \section{Introduction}
+   We further our analysis of PPV3no2 by analyzing its ultra fast excited state decay.
+   Recent works have analized the nonadiabatic behaviors of PPV3NO2  to the study of its na dynamics in implicit solvent. \cite{sifain2018photoexcited,dykstra2009conformational}
+   This type of work is useful for studying the donor acceptor functionality of this promising organic conjugated molecular in polarized solvents.
+   We choose methanol due to it being a common solvent with strong polarization.
+   We'll compare the population decay behavior to that found in strongly polar implicit solvents.
    #+end_src
-** TWO Methods [3/3]
+** THREE Methods [3/3]
    #+begin_src latex
    \section{Simulation Methods}
    #+end_src
@@ -1265,7 +1748,7 @@ fly''. \cite{tommasini2001electronic, tretiak1996collective, tretiak2009represen
     to 2 ps\(^{-1}\). The final frames of these QM trajectories were then used as the
     initial conditions for the following pulse pump calculations.
     #+end_src
-*** TWO Pulse Pump Calculations                                      :ignore:
+*** THREE Pulse Pump Calculations                                  :ignore:
 **** THREE Quick Explanation of a pulse pump experiment
     :LOGBOOK:
     - Note taken on [2021-01-14 Thu 09:07]
@@ -1280,7 +1763,7 @@ fly''. \cite{tommasini2001electronic, tretiak1996collective, tretiak2009represen
  calculations and perform a single point calculation at the S1 state to find the
  next state with the highest oscillator strength.
     #+end_src
-**** TWO How to choose excited states.
+**** THREE How to choose excited states.
     :LOGBOOK:
     - Note taken on [2021-01-30 Sat 13:41] \\
       - During photo excitation we need to choose the proper optically allowed and probable states.
@@ -1289,18 +1772,19 @@ fly''. \cite{tommasini2001electronic, tretiak1996collective, tretiak2009represen
     :END:
     #+begin_src latex
     The unnormalized probabilities are determined using
-	\begin{equation}
-	  P'(\Omega_e) = f_{ge}(\Omega_e) \times \frac{1}{\sqrt{2\pi \sigma^2}} \exp \left[ - \frac{(\Omega_e - \Omega)^2}{2\sigma^2} \right]
-	\end{equation}
-    where \(\Omega\) is the energy of the laser exciatation, \(\Omega_\alpha\) the energy difference from the ground state at excited state \(\alpha\), \(f_{ge}(\Omega_e)\) is oscillator strength, and \(\sigma\) the spectral broadening.  
+    \begin{equation}
+      P'(\Omega_e) = f_{ge}(\Omega_e) \times \frac{1}{\sqrt{2\pi \sigma^2}} \exp \left[ - \frac{(\Omega_e - \Omega)^2}{2\sigma^2} \right]
+    \end{equation}
+    where \(\Omega\) is the energy of the laser exciatation, \(\Omega_\alpha\) the energy difference from the first excited state to the possible future excited state \(\alpha\), \(f_{ge}(\Omega_e)\) is oscillator strength for the transition, and \(\sigma\) the spectral broadening.  
 
     The probability of initially populating an excited state \(\alpha\) is then
     \begin{equation}
       P(\Omega_\alpha) = \frac{P'(\Omega_i)}{\sum_i P'(\Omega_i)}
     \end{equation}
 
+    The states are then chosen randomly using these weights.
     #+end_src
-** ONE Results [0/7]
+** ONE Results [7/7]
    #+begin_src latex
 \section{Results}
    #+end_src
@@ -1336,6 +1820,15 @@ fly''. \cite{tommasini2001electronic, tretiak1996collective, tretiak2009represen
        - Similar redshifts were detected in the adiabatic simulations.
        - The addition of solvents into the QM region had little effect on the shift.
      :END:
+#+begin_src latex
+Figure \ref{s1absorption} shows the absorption spectra observerd from state S1 as energy differences from the ground state.
+Spectras were normalized over both states.
+The intensity of state S10 is noticeably lower than that from S9, while the peak of S9 is more aligned, as such the we expect the initial population after excitation to heavily weighed toward S9, which we see.
+Spectras for varying number of solvents included in the QM region as well as vacuum are shown.
+A gaussian laser wavefunction with energy of 4.3 eV with FWHM of 0.16 eV is shown above the top chart.
+The presence of solvent redshift the peak absorption spectra by roughly 0.1 eV similar to what was seen in the adiabatic spectra analysis.
+
+#+end_src
 *** ONE State Populations
     #+begin_src latex
 \subsection{State Population Relaxation}
@@ -1348,8 +1841,8 @@ fly''. \cite{tommasini2001electronic, tretiak1996collective, tretiak2009represen
  \begin{minipage}[c]{\textwidth}
    \centering
    \includegraphics[width=0.9\textwidth]{../Paper2/Images/populations/solvent_comparison.png}
-   \captionof{figure}[Test]{Comparison of the population decays or rises of states S\(_1\), S\(_2\), and the initial state S\(_m\) between simulations with varying number of solvents included in the QM region.}
-   \label{stateDecay}
+   \captionof{figure}{Comparison of the population decays or rises of states S\(_1\), S\(_2\), and the initial state S\(_m\) between simulations with varying number of solvents included in the QM region.}
+   \label{fig:stateDecay}
  \end{minipage}\bigskip
  #+end_src
 **** ONE Explanation of the population figure                        :ignore:
@@ -1357,7 +1850,6 @@ fly''. \cite{tommasini2001electronic, tretiak1996collective, tretiak2009represen
      - Note taken on [2021-01-22 Fri 15:25] \\
      - 512 trajectories with 2000 data points a piece.
      :END:
-
 **** THREE Fitting Parameters using Tenua                            :ignore:
      :LOGBOOK:
      - Note taken on [2021-01-22 Fri 17:34] \\
@@ -1385,7 +1877,7 @@ fly''. \cite{tommasini2001electronic, tretiak1996collective, tretiak2009represen
 
 **** THREE Explain How the fitting parameters were generated         :ignore:
      #+begin_src latex
-  Figure ref:fig:all-populations shows the population of each state calculated as
+  Figure \ref{fig:stateDecay} shows the population of each state calculated as
   the number of trajectories at the state's potential energy surface over the
   total number of trajectories. S\(_m\) represents the initial state calculated using
   the pulse pump calculations previously done. States S\(_7\) and S\(_9\) are included as
@@ -1429,10 +1921,19 @@ fly''. \cite{tommasini2001electronic, tretiak1996collective, tretiak2009represen
    \centering
    \includegraphics[width=0.5\textwidth]{../Paper2/Images/potential_energies/solvent_comparison.png}
    \captionof{figure}{Potential energy difference from the intial ground state during dynamics averaged over trajectories.}
-   \label{}
+   \label{fig:naPERelaxation}
  \end{minipage}\bigskip
  #+end_src
 **** ONE Explain the Relaxation Figure                               :ignore:
+#+begin_src latex
+Figure \ref{fig:naPERelaxation} shows the ultra-fast potential engery decay average over all trajectories inside a methanol solvent with various numbers of solvent included in the QM region and vacuum.
+Reported energies are in respect to the ground state energies at the initial step.
+The initial relaxation rates up to aroun 100 fs, are similar in all instances.
+Over time, the rate in vacuum seems to slow quicker than in solvent.
+The energy in solvent also equilibrat at around 0.2 eV higher than the solvent.
+No noticiable differences can be decerned between the inclusion of 5 or 10 solvents in the QM region.
+Having a complete MM solvent solution seems to produce a lower energy.
+#+end_src
 *** ONE Dihedral Angles
     #+begin_src latex
 \subsection{Torsional Angle Relaxation}
@@ -1451,13 +1952,20 @@ fly''. \cite{tommasini2001electronic, tretiak1996collective, tretiak2009represen
      \noindent
      \begin{minipage}[c]{\textwidth}
        \centering
-       \includegraphics[width=5in]{../Paper2/Images/dihedral/solvent_comparison.png}
+       \includegraphics[width=\textwidth]{../Paper2/Images/dihedral/solvent_comparison.png}
        \captionof{figure}{Dihedral angles of PPV\(_{3}\)-NO\(_{2}\) with varying number of solvents included in the QM region.}
-       \label{dihedralNonadiabatic}
+       \label{fig:dihedralNonadiabatic}
      \end{minipage}\bigskip
      #+end_src
 **** ONE Description of the plot                                     :ignore:[0/0]
-*** TODO Bond Length Alternation [0/2]
+#+begin_src latex
+Figure \ref{fig:dihedralNonadiabatic} presents the torsional angles around d1,d2,d3 (Near) and d4,d5,d6 (Far).
+Similar to what was reported in the adiabatic simulations, the angles reported in vacuum remain rougly 5\(^\circ\) higher than those reported in the methanol solution.
+Relaxation in the methanol solution is slightly quick than in vacuum.
+Then equilibrated torsional angle in the full MM solvent could possibly be a few degrees higher than in the mixed QM/MM solvents.
+Relaxations are faster, and approach a lower minimum near the nitrate group.
+#+end_src
+*** ONE Bond Length Alternation [0/2]
     :LOGBOOK:
     - Note taken on [2021-01-26 Tue 08:28] \\
     It looks like I might have made a mistake with the BLA's
@@ -1476,12 +1984,25 @@ fly''. \cite{tommasini2001electronic, tretiak1996collective, tretiak2009represen
      To do this, I'm creating an executable called strip_init_and_prmtop.sh, which will create a stripped prmtop called, stripped.prmtop, and rename the
      snap_for_qmexcited_t{traj}_r0.rst to stripped.rst. I'll then update libbla.py to handle this.
      :END:
- #+CAPTION: Bond Length Adjustments for various states for PPV_3 and PPV_{3}-NO_{2} in vacuum. label:fig:bla-vacuum 
- [[../Images/bla/solvent_comparison.png]]
+ #+begin_src latex
+ \noindent
+ \begin{minipage}[c]{\textwidth}
+   \centering
+   \includegraphics[width=\textwidth]{../Paper2/Images/bla/solvent_comparison.png}
+   \captionof{figure}[Bond Length Alternation during Non-Adiabatic Dynamics]{The bond length alternations for bonds d1, d2, and d3 (Near) and d4, d5, d6 (Far)}
+   \label{fig:naBLA}
+ \end{minipage}\bigskip
+ #+end_src
 **** ONE Explain the BLA Figure                                      :ignore:
-*** TODO Wiberg Bond Analysis [1/2]
+#+begin_src latex
+Figure \ref{fig:naBLA} demonstrates the variation in the bond length alternation for various number of included QM solvents and vacuum.
+In all instances vacuum relaxes at a slower rate and to a higher minimum than the corresponding alternations in methanol solvent.
+Relaxation are quicker and toward a lower minimum near the nitrate group.
+Little discernable differences can be sceen by adding solvents to the QM region.
+#+end_src
+*** ONE Wiberg Bond Analysis [1/2]
     #+begin_src latex
-\subsection{Widberg Bond Relaxation}
+\subsection{Widberg Bond Orders}
     #+end_src
 **** THREE Widberg Bond Analysis Figure                              :ignore:
  :LOGBOOK:
@@ -1500,16 +2021,23 @@ fly''. \cite{tommasini2001electronic, tretiak1996collective, tretiak2009represen
  #+CAPTION: The Wiberg Bond Orders averaged over the ensemble of trajectories for select bonds for PPV_3\_NO_2 with various number of solvents included in the QM region.
 [[../Paper2/Images/bond_order/solvent_comparison.png]]
  #+begin_src latex
- \subsection{Bond Orders}
  \noindent
  \begin{minipage}[c]{\textwidth}
    \centering
    \includegraphics[width=5in]{../Paper2/Images/bond_order/solvent_comparison.png}
    \captionof{figure}[Wiberg Bond Orders in Nonadiabatic Dynamics]{The Wiberg Bond Orders averaged over the ensemble of trajectories for select bonds for PPV\(_3\)-NO\(_2\) with various number of solvents included in the QM region.}
-   \label{bondOrderNonadiabatic}
+   \label{fig:bondOrderNonadiabatic}
  \end{minipage}\bigskip
  #+end_src
 **** ONE Explanation fo Widberg Bond Figure
+#+begin_src latex
+The visual analysis of the Widberg bond orders can be found in figure \ref{fig:bondOrderNonadiabatic}.
+The outer bonds d1,d3,d4,d6 slowly rise and gain more double bond characteristics while the inner bonds d2 and d5 lower and gain more single bond characteristics.
+Little solvent effect can be descerned for the bond furthest from the nitrate group d4,d5,d6.
+Noticeable solvent effects exist in the group nearest the nitrate group, with the solvent apparently amplifying the effect found in vacuum.
+The inclusion of solvent in the QM region has relatively negligible effects on the bond order compared to the addition of MM solvents.
+These results align well with what was found in the analysis for the bond length alternation.
+#+end_src
 *** ONE Conclusion                                                   :ignore:
   :PROPERTIES:
   :header-args: :eval never-export
@@ -1525,4 +2053,15 @@ fly''. \cite{tommasini2001electronic, tretiak1996collective, tretiak2009represen
   #+end_src
 ** ONE Summary
 ** ONE Future Works
+#+begin_src latex
+We presented a method the integrated the excited state non-adiabatic dynamics capabilities of NEXMD with the QM/MM periodic box solvent simulation capabilities found in SANDER.
+We demonstrate how certain solvents can be included in the QM region and restrained near the solvent.
+We perform our new methodology on the organic conjugated molecule PPV\(_3\)-NO\(_2\).
+We analyze the effects that the addition of solvents have on the steady state absorption and fluorescence of PPV\(_3\)-NO\(_2\) in various solvents with differing dielectric constants and found that the addition of solvents to the QM region blueshifted the absorption and redshifted the fluorescence.
+
+Future work can done to implement a QM/MM approach using recent classical dynamics functionality employing machine learning algorithms such as ANI.
+The calculation of the non-adiabatic coupling terms is the bottleneck in most of these non-adiabatic trajectories, as such work into predicting these terms using supervised learning approaches is encouraged.
+The scripts used to model the simulations done in this paper are extensive and the work to make them user friendly should be continued.
+
+#+end_src
 * ONE Appendix on Start Scripts

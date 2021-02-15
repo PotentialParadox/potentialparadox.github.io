@@ -92,16 +92,16 @@ dihedral_data %>%
     ggplot(aes(x = Time, y = MeanAngle, color = SolventID)) +
     geom_line(size = 1.5) +
     theme_bw() +
+    scale_x_continuous(breaks = seq(0, 1, by = 0.2)) +
     labs(x = "Time (ps)",
          y = expression(paste('Angle ', theta, ' (Degrees)')),
          color = "Number QM Solvents") +
     theme(axis.text=element_text(size=15),
+          strip.text = element_text(size=12),
           axis.title=element_text(size=20),
-          strip.text.x=element_text(size=20),
-          legend.title = element_text(size=20),
-          legend.text = element_text(size = 18),
+          legend.title = element_blank(),
+          legend.text = element_text(size = 15),
           legend.text.align = 0,
-          legend.position = c(0.85, 0.90)
-    ) +
+          legend.position = "top") +
     facet_wrap(~ Location)
-ggsave("~/potentialparadox.github.io/Paper2/Images/dihedral/solvent_comparison.png", width = 13, height = 10)
+ggsave("~/potentialparadox.github.io/Paper2/Images/dihedral/solvent_comparison.png", width = 7.5, height = 5)

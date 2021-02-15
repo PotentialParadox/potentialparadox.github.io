@@ -55,11 +55,6 @@ energies <- bind_rows(
 
 
 energies %>%
-    filter(Trajectory == 1) %>%
-    ggplot(aes(x= Timefs, y = Energy, color = Solvent)) +
-    geom_line()
-
-energies %>%
     ggplot(aes(x = Timefs, y = MeanEnergyeV, color = Solvent)) +
     geom_line(size=1.5) +
     theme_bw() +
@@ -72,7 +67,7 @@ energies %>%
           legend.text = element_text(size = 18),
           legend.title = element_text(size=20),
           legend.text.align = 0,
-          legend.position = c(0.80, 0.9)
+          legend.position = "top"
     )
 ggsave("~/potentialparadox.github.io/Paper2/Images/potential_energies/solvent_comparison.png", width = 10, height = 10)
 

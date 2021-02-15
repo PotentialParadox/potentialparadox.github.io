@@ -1,72 +1,78 @@
 \chapter{Theoretical Methods} \label{theoreticalMethods}
 
-\section{Secular Determinants}\label{secular}
+\section{Electronic Structure}\label{secular}
 
 The goal of computational chemistry is to solve the Schrodinger equation.
 Solving it completely is only possible for very small subsets of possible situations.
 In most cases, significant approximations must be made.
-One of the more common such approximations, is the appoximation of the atomic basis functions.
-If we write the Schodinger equation as
-
-\begin{equation} \label{eq:oneeenergy}
-E(\Psi) = \frac{\left<\right.\Psi\left|\right.\bm{H}\left.\right|\Psi\left>\right.}{\left<\right.\Psi\left.\right|\left.\Psi\left.\right.\right>}
+One of the more common such approximations, is to approximate the total single electron molecular orbitals contribution to the many electron wavefunction as a linear combination of atomic orbitals (LCAO).
+\begin{equation}
+  \Phi=\sum_{i}c_i\phi_i
 \end{equation}
+where \(\Phi\) is the molecular spatial orbital, \(c_i\) the coefficient, and \(\phi_i\) the atomic orbitals.
+Atomic orbitals are often designed to resemble hydrogen like orbitals and are themselves often composed of a linear combination of guassians to simplify integrations.
+Inclusion of the spin creates the spin orbital
+\begin{equation}
+  \chi = \Phi \sigma
+\end{equation}
+where the spin \(\sigma\) can be either \(\alpha\) or \(\beta\)
 
-where $\mathbf{H}$ the Hamiltonian, $E$ is the energy of the
-system, and $\Psi$ is a wavefunction that describes the system.
-$\Psi$ will be some linear combination of functions $\Psi=\sum_{i}c_i\psi_i$.
-We can now expand the numerator and denominator of the right-hand side of equation \ref{eq:oneeenergy}.
+For each single electron molecular orbital, the Schodinger equation can be written as
+\begin{equation} \label{eq:oneeenergy}
+  E(\chi) = \frac{\left<\right.\chi\left|\right.\bm{H}\left.\right|\chi\left>\right.}{\left<\right.\chi\left.\right|\left.\chi\left.\right.\right>}
+\end{equation}
+where $\mathbf{H}$ the Hamiltonian and $E$ the energy of the single electron orbital.
+We can expand the numerator and denominator of the right-hand side of equation \ref{eq:oneeenergy}
 
 \begin{align}
   \label{eq:variation1}
-  \left<\right.\Psi\left|\right.\bm{H}\left.\right|\Psi\left>\right.&=
-								      \left( \sum_{i} c_i \psi_i \right) \mathbf{H} \left( \sum_j c_j \psi_j \right) &
-																		       \left<\right.\Psi\left.\right|\left.\Psi\left.\right.\right>&=
-																										     \left( \sum_{i} c_i \psi_i \right) \left( \sum_j c_j \psi_j \right)  \\
-								    &= \sum_{ij} c_{i}c_j H_{ij} & &= \sum_{ij} c_{i}c_j S_{ij} 
+  \left<\right.\chi\left|\right.\bm{H}\left.\right|\chi\left>\right.&=
+  \left( \sum_{i} c_i \phi_i \right) \mathbf{H} \left( \sum_j c_j \phi_j \right) &
+  \left<\right.\chi\left.\right|\left.\chi\left.\right.\right>&=
+  \left( \sum_{i} c_i \phi_i \right) \left( \sum_j c_j \phi_j \right)  \\
+  &= \sum_{ij} c_{i}c_j H_{ij} & &= \sum_{ij} c_{i}c_j S_{ij} 
   \label{eq:variation2}
 \end{align}
 
-Taking the partial derivatives of both sides with respect to $a_i$ in
+Taking the partial derivatives of both sides with respect to coefficient of molecular orbital a in
 equation \ref{eq:variation2} provides us with
 
 \begin{align}
   \label{eq:variationexpansion}
   \frac{\partial}{\partial c_{\alpha}}
-  \left<\right.\Psi\left|\right.\bm{H}\left.\right|\Psi\left>\right.&=
-								      2c_\alpha H_{\alpha \alpha} + \sum_{\alpha j \neq \alpha} 2c_j H_{\alpha j} &
-																		    \frac{\partial}{\partial c_{\alpha}}
-																		    \left<\right.\Psi\left.\right|\left.\Psi\left.\right.\right>&=
-																										  2 c_\alpha S_{\alpha\alpha} + \sum_{\alpha j \neq \alpha} c_j S_{\alpha j}
+  \left<\right.\chi\left|\right.\bm{H}\left.\right|\chi\left>\right.&=
+  2c_\alpha H_{\alpha \alpha} + \sum_{\alpha j \neq \alpha} 2c_j H_{\alpha j} &
+  \frac{\partial}{\partial c_{\alpha}}
+  \left<\right.\chi\left.\right|\left.\chi\left.\right.\right>&=
+  2 c_\alpha S_{\alpha\alpha} + \sum_{\alpha j \neq \alpha} c_j S_{\alpha j}
 \end{align}
 
 If we multiply both sides of equation \ref{eq:oneeenergy} by
-$\left<\right.\Psi\left.\right|\left.\Psi\left.\right.\right>$ and
+$\left<\right.\chi\left.\right|\left.\chi\left.\right.\right>$ and
 take the partial derivative with respect to $c_{\alpha}$,
 
 \begin{align}
   \frac{\partial}{\partial c_{\alpha}}
-  \left( E \left<\right.\Psi\left.\right|\left.\Psi\left.\right.\right> \right)&=
-										 \frac{\partial}{\partial c_{\alpha}}
-										 \left<\right.\Psi\left|\right.\bm{H}\left.\right|\Psi\left>\right. \\
+  \left( E \left<\right.\chi\left.\right|\left.\chi\left.\right.\right> \right)&=
+  \frac{\partial}{\partial c_{\alpha}}
+  \left<\right.\chi\left|\right.\bm{H}\left.\right|\chi\left>\right. \\
   \label{eq:variation3}
-  E \frac{\partial \left<\right.\Psi\left.\right|\left.\Psi\left.\right.\right>}{\partial c_{\alpha}}
-  + \left<\right.\Psi\left.\right|\left.\Psi\left.\right.\right> \frac{\partial E}{\partial c_{\alpha}} &=
-													  \frac{\partial}{\partial c_{\alpha}}
-													  \left<\right.\Psi\left|\right.\bm{H}\left.\right|\Psi\left>\right.
+  E \frac{\partial \left<\right.\chi\left.\right|\left.\chi\left.\right.\right>}{\partial c_{\alpha}}
+  + \left<\right.\chi\left.\right|\left.\chi\left.\right.\right> \frac{\partial E}{\partial c_{\alpha}} &=
+  \frac{\partial}{\partial c_{\alpha}}
+  \left<\right.\chi\left|\right.\bm{H}\left.\right|\chi\left>\right.
 \end{align}
-
-Now we minimize $E$ by rearranging equation \ref{eq:variation3}
+we can minimize $E$ by rearranging equation \ref{eq:variation3}
 
 \begin{equation}
   \frac{\partial E}{\partial c_{\alpha}} =
-  \frac{1}{\left<\right.\Psi\left.\right|\left.\Psi\left.\right.\right>}
+  \frac{1}{\left<\right.\chi\left.\right|\left.\chi\left.\right.\right>}
   \left[
-    \frac{\left<\right.\Psi\left|\right.\bm{H}\left.\right|\Psi\left>\right.}
-    {\partial c_{\alpha}}
-    -E \frac{\left<\right.\Psi\left.\right|\left.\Psi\left.\right.\right>}
-    {\partial c_{\alpha}}
-  \right] = 0
+    \frac{\left<\right.\chi\left|\right.\bm{H}\left.\right|\chi\left>\right.}
+         {\partial c_{\alpha}}
+         -E \frac{\left<\right.\chi\left.\right|\left.\chi\left.\right.\right>}
+         {\partial c_{\alpha}}
+         \right] = 0.
 \end{equation}
 
 Substituting our results from equation \ref{eq:variationexpansion} and
@@ -98,108 +104,219 @@ if we expand out for $\alpha=1-3$.
     c_3
   \end{bmatrix} = 0
 \end{equation}
-
-This equation can be rewritten simply as $Hc=ESc$. The determinant
-$\left| H-ES \right|$ is known as the secular determinant, with
-eigenvalues corresponding to the energies of the molecular orbitals,
-whose characteristics are determined by the coefficients in the
+This equation can be rewritten generally as
+\begin{equation}
+  \mathbf{H}\vec{c} = E \mathbf{S} \vec{c}.
+\end{equation}
+and is referred to as the secular equation.
+The eigenvalues corresponding to the energies of the molecular orbitals,
+whose characteristics are determined by the atomic coefficients in the
 corresponding eigenvector.\cite{engel2012quantum}
 
 \section{Hartree Fock}
-    Before we can solve the secular equation we need to know our
-    Hamiltonian.  We begin with the generalized Hamiltonian of a
-    molecular system,\cite{engel2012quantum}
+        Before we can solve the secular equation we need to know our
+        Hamiltonian.  We begin with the generalized Hamiltonian of a
+        molecular system,\cite{engel2012quantum}
 
-    \begin{align} \label{eq:fullhamiltonian}
-      \begin{split}
-      \bm{H} =& -\frac{\hbar^2}{2m_e}\sum_i^{electrons}\nabla_i^2-\frac{\hbar^2}{2}\sum_{A}^{nuclei}\frac{1}{M_{A}}\nabla_{A}^2 - \frac{e^2}{4\pi\varepsilon_0} \sum_i^{electrons}\sum_A^{nuclei}\frac{Z_A}{r_{iA}} \\
-      & + \frac{e^2}{4\pi\varepsilon_0}\sum_{i}^{electrons}\sum_{j<i}^{electrons}\frac{1}{r_{ij}} + \frac{e^2}{4\pi\varepsilon_0}\sum_{A}^{nuclei}\sum_{B<A}^{nuclei}\frac{Z_AZ_B}{R_{AB}}
-      \end{split}
-    \end{align}
+        \begin{align} \label{eq:fullhamiltonian}
+          \begin{split}
+            \mathbf{H} =& -\frac{\hbar^2}{2m_e}\sum_i^{electrons}\nabla_i^2-\frac{\hbar^2}{2}\sum_{A}^{nuclei}\frac{1}{M_{A}}\nabla_{A}^2 - \frac{e^2}{4\pi\varepsilon_0} \sum_i^{electrons}\sum_A^{nuclei}\frac{Z_A}{r_{iA}} \\
+            & + \frac{e^2}{4\pi\varepsilon_0}\sum_{i}^{electrons}\sum_{j<i}^{electrons}\frac{1}{r_{ij}} + \frac{e^2}{4\pi\varepsilon_0}\sum_{A}^{nuclei}\sum_{B<A}^{nuclei}\frac{Z_AZ_B}{R_{AB}}
+          \end{split}
+        \end{align}
+        where $n$ is summed over all the nuclei, and the $i$ and $j$ are summed over the electrons. 
+        \(m_e\) and \(M_A\) are the masses of the electron and nuclei repsectively and Z the charge of the nuclei.
 
-    where $n$ is summed over all the nuclei, and the $i$ and $j$ are summed over the electrons. 
-    With this Hamiltonian, the secular equation is near impossible to solve without some approximations.
-    The one most relevant to our work is the adiabatic approximation, also known as the Born-Oppenheimer approximation, where because the electrons move so much quicker than the nuclei, we can set the second term of equation \ref{eq:fullhamiltonian} to zero and the last term to a constant. We can then rewrite the electron as behaving parametrically on the coordinates of the nuclei such that our wavefunction $\Psi_{total} = \sum_\alpha\psi_\alpha^{electron}(r;\mathbf{R})\psi_\alpha^{nuclei}(\mathbf{R})$.
-    The potential energy surface then, can be extrapolated by applying the electronic Hamiltonian $H_e$ to the wavefunction and then adding nuclear repulsion, for an array of nuclear geometries.
-    In the mean field approximation, each electron feels the average potential of all the other electrons, such that the fourth term in our total Hamiltonian becomes $\sum_i^{electrons} V_{average}(i)$
-    The electronic parts the Hamiltonian are now decoupled, and the total Hamiltonian can now be written as a sum of individual electron Hamiltonian's plus a nuclear-nuclear repulsion constant.
-    In actuality the electrons of one orbit will effect electrons of the orbit of another.
-    The electrons will want to avoid each-other and their paths will change accordingly thereby reducing the overall energy.
-    This approximation to the method fails to take this into account.
-    We call the difference between the actual energy $E$ and the Hartree-Fock energy $\epsilon$ the
-    coulomb correlation energy $E_{corrrelation}$.
-    %There have been numerous ways developed to help alleviate this problem, including perturbation theory, coupled cluster theory, and higher lever configuration interaction.
+        With this Hamiltonian, the secular equation is near impossible to solve without some approximations.
+        The one most relevant to our work is the adiabatic approximation, also known as the Born-Oppenheimer approximation, where because the electrons move so much quicker than the nuclei, we can set the second term of equation \ref{eq:fullhamiltonian} to zero and the last term to a constant. \cite{born1954dynamical,born1927quantentheorie}
+        We can then rewrite the electron as behaving parametrically on the coordinates of the nuclei such that our total wavefunction can be split into electronic and nuclear components
+        \begin{equation}
+          \Psi_{total} = \sum_\alpha\psi_\alpha^{electron}(r;\mathbf{R})\psi_\alpha^{nuclei}(\mathbf{R}).
+        \end{equation}
+        The potential energy surface then, can be extrapolated by applying the electronic Hamiltonian $H_e$ to the wavefunction and then adding nuclear repulsion, for an array of nuclear geometries.
+        In the mean field approximation, each electron feels the average potential of all the other electrons, such that the second term in the electronic hamiltonian from equation \ref{eq:helectric} our total Hamiltonian becomes $\sum_i^{electrons} V_{average}(i)$.
+        The electronic parts the Hamiltonian are now decoupled, and the total Hamiltonian can now be written as a sum of individual electron Hamiltonian's plus a nuclear-nuclear repulsion constant.
+        \begin{align}
+          \label{eq:helectric}
+          \mathbf{H}_e =& -\frac{\hbar^2}{2m_e}\sum_i^{electrons}\nabla_i^2 + \sum_i^{electrons} V_{average}(i) - \frac{e^2}{4\pi\varepsilon_0} \sum_i^{electrons}\sum_A^{nuclei}\frac{Z_A}{r_{iA}} \\
+          \mathbf{H}_N =& -\frac{\hbar^2}{2}\sum_{A}^{nuclei}\frac{1}{M_{A}}\nabla_{A}^2  + \frac{e^2}{4\pi\varepsilon_0}\sum_{A}^{nuclei}\sum_{B<A}^{nuclei}\frac{Z_AZ_B}{R_{AB}}
+        \end{align}
+We will continue this chapter in atomic units where these equations become
+        \begin{align}
+          \label{eq:helectric}
+          \mathbf{H}_e =& -\frac{1}{2}\sum_i^{electrons}\nabla_i^2 + \sum_i^{electrons} V_{average}(i) -  \sum_i^{electrons}\sum_A^{nuclei}\frac{Z_A}{r_{iA}} \\
+          \mathbf{H}_N =& -\frac{\hbar^2}{2}\sum_{A}^{nuclei}\frac{1}{M_{A}}\nabla_{A}^2  + \sum_{A}^{nuclei}\sum_{B<A}^{nuclei}\frac{Z_AZ_B}{R_{AB}}
+        \end{align}
+        In actuality the electrons of one orbit will effect electrons of the orbit of another.
+        The electrons will repulse each-other and their paths will change accordingly thereby reducing the overall energy.
+        This approximation to the method fails to take this into account.
+        We call the difference between the actual energy $E$ and the Hartree-Fock energy $\epsilon$ the
+        coulomb correlation energy $E_{corrrelation}$.
+        %There have been numerous ways developed to help alleviate this problem, including perturbation theory, coupled cluster theory, and higher lever configuration interaction.
 
-    The total many electron wavefunction must satisfy the Pauli-Exclusion principle.
-    We can fulfill that requirement, if we assume that it is a single slater-determinant of molecular orbitals.
+        In most simulations more than a single electron needs to be considered.
+        In these systems, the total electron wavefunction must statisfy the Pauli-Exclusion principle.
+        That is, all electrons should be treated as indistinguishable, no more than one electron per set of quantum numbers, and the sign must inverst for any exchange of electrons.
+        We can fulfill that requirement, if we assume that a total electron wavefunction is a single slater-determinant of single electron molecular orbitals.
 
-    \begin{equation} \label{eq:slater-determinant} \phi(\bm{r};\bm{R}) =
-      \left|p \cdots s\right> = \frac{1}{\sqrt{N}}
-      \begin{vmatrix}
-	\chi_{p}(\bm{r}_1) & \cdots & \cdots \chi_{s}(\bm{r}_1) \\
-	\vdots             & \ddots         &       \vdots      \\
-	\chi_{p}(\bm{r}_n) & \cdots & \cdots \chi_{s}(\bm{r}_n)
-      \end{vmatrix}
-    \end{equation}
+        \begin{equation} \label{eq:slater-determinant} \psi(\bm{r};\bm{R}) =
+          \left|p \cdots s\right> = \frac{1}{\sqrt{N!}}
+          \begin{vmatrix}
+            \chi_{p}(\bm{r}_1) & \cdots & \cdots \chi_{s}(\bm{r}_1) \\
+            \vdots             & \ddots         &       \vdots      \\
+            \chi_{p}(\bm{r}_n) & \cdots & \cdots \chi_{s}(\bm{r}_n)
+          \end{vmatrix}
+        \end{equation}
+        where \(\psi\) is the total many electron wavefuntion that depend parametrically on the nuclear coordinates due to the Born-Oppenheimer approximation.
+        The $p \cdots s$ are the subscripts of the single electon molecular orbitals, and $1 \cdots n$ are the indices for the electrons.
 
-    where $\phi$ is the electron coordinates that depend parametrically on the
-    nuclear coordinates.  The $p \cdots s$ are the subscripts of the
-    molecular orbitals, and $1 \cdots n$ are the indices for the
-    electrons.
 
-    Finally, things simplify greatly if the molecular orbitals are
-    othornormal to each other. $\left<\right.i\left|\right.j\left>\right. = \delta_{ij}$.
-    Intuition tells us that because the Hamiltonian is an operator that
-    acts on at most 2 electrons at a time, and the electron orbitals
-    are orthonormal, any perturbation beyond 2 will integrate to 0.  In
-    fact, there's a whole set of rules to reduce electron integral
-    summations called the Slater-Condon rules.\textbf{CITE}
+        Finally, things simplify greatly if the molecular orbitals are
+        othornormal to each other. $\left<\right.i\left|\right.j\left>\right. = \delta_{ij}$.
+        Intuition tells us that because the Hamiltonian is an operator that
+        acts on at most 2 electrons at a time, and the electron orbitals
+        are orthonormal, any perturbation beyond 2 will integrate to 0.  In
+        fact, there's a whole set of rules to reduce electron integral
+        summations called the Slater-Condon rules.
 
-    \begin{enumerate}
-    \item
-      $ \left | \cdots mn \cdots \right > \rightarrow \left | \cdots mn
-	\cdots \right > \Rightarrow \sum_i \left< i \right| h \left| i
-      \right> + \frac{1}{2} \sum_{ij} \left< ij \right|\left| ij \right> $
-    \item
-      $ \left | \cdots mn \cdots \right > \rightarrow \left | \cdots pn
-	\cdots \right > \Rightarrow \left< i \right| h \left| i \right> +
-      \sum_{i} \left<mi \right|\left| pi \right> $
-    \item
-      $ \left | \cdots mn \cdots \right > \rightarrow \left | \cdots pq
-	\cdots \right > \Rightarrow \left < mn \right | \left | pq \right
-      > $
-    \item
-      $ \left | \cdots lmn \cdots \right > \rightarrow \left | \cdots pqr
-	\cdots \right > \Rightarrow 0 $
-    \end{enumerate}
+        \begin{enumerate}
+        \item
+          $ \left | \cdots mn \cdots \right > \rightarrow \left | \cdots mn
+          \cdots \right > \Rightarrow \sum_i \left< i \right| h \left| i
+          \right> + \frac{1}{2} \sum_{ij} \left( \left< ij | ij \right> - \left< ij | ji \right> \right) $
+        \item
+          $ \left | \cdots mn \cdots \right > \rightarrow \left | \cdots pn
+          \cdots \right > \Rightarrow \sum_i \left< i \right| h \left| i \right> +
+          \sum_{i} \left( \left<mi | pi \right> - \left<mi | ip \right> \right) $
+        \item
+          $ \left | \cdots mn \cdots \right > \rightarrow \left | \cdots pq
+          \cdots \right > \Rightarrow \left< mn | pq \right> - \left< mn | qp \right> $
+        \item
+          $ \left | \cdots lmn \cdots \right > \rightarrow \left | \cdots pqr
+          \cdots \right > \Rightarrow 0 $
+        \end{enumerate}
+        where the first arrow represents the perturbations of electrons. \(\left| \cdots mn \cdots \right> \rightarrow \left| \cdots pn \cdots \right>\) would present a perturbation of a single electron.
+    \(h\) is the core electron Hamiltonian
+\begin{equation}
+h(i) = -\frac{1}{2}\nabla_i^2 - \sum_{A=1}^N \frac{Z_A}{r_{iA}}
+\end{equation}
+The integral rule for the two electron integrals is
+\begin{equation}
+\left< ij | kl \right> = \int dx_1 dx_2 \chi_i^*(x_1) \chi_j^*(x_2) \frac{1}{r_{12}} \chi_k(x_1) \chi_l(x_2)
+\end{equation}
 
-    Using these rules and a bit of algebra the Hamiltonian simplifies to
-    what's called the Fock operator with elements
-    \begin{equation}
-      F_{\mu\nu} = \left< \mu \right| -\frac{1}{2}\nabla^2 \left| \mu \right>
-      - \sum_{k}^{nuclei}Z_{k} \left< \mu \right| \nu \left> \right.
-      + \sum_{\lambda \sigma} P_{\lambda \sigma}
-      \left(
-	\left< \mu \lambda \right| \nu \sigma \left>\right.
-	- \frac{1}{2} \left< \mu \nu \right| \lambda \sigma \left>\right.
-      \right)
-    \end{equation}
+        Using these rules and a bit of algebra the Hamiltonian simplifies to
+        what's called the Fock operator with elements
+        \begin{equation}
+          F_{\mu\nu} = h_{\mu\nu}
+          + \sum_{\lambda \sigma} P_{\lambda \sigma}
+          \left(
+          \left< \mu \lambda \right| \nu \sigma \left>\right.
+          - \frac{1}{2} \left< \mu \nu \right| \lambda \sigma \left>\right.
+          \right)
+        \end{equation}
 
-    which can be substituted for $H$ in equation \ref{eq:SchrodingerMatrix} to produce the Roothan-Hall equation $\mathbf{Fc}=\varepsilon\mathbf{Sc}$, where $\varepsilon$ has replace $E$ to be the orbital hartree-fock energies.\textbf{CITE}
-    We simplify this further by using the semi-empirical AM1, which uses predetermined factors for the four term integrations.\textbf{CITE}
-    We can now apply the variational method to determine the coefficient of the wavefunction.
-    First, a trial density function is chosen, which is equivalent to a trial coefficient vector.
-    We then solve the Roothan-Hall equation, save the lowest eigenvalue energy and use the corresponding coefficient vector to create a density function for another iteration.
-    We compare the energy differences between iterations until it's less than a chosen value.
+        which can be substituted for $H$ in equation \ref{eq:SchrodingerMatrix} to produce the Roothan-Hall equation
+        \begin{equation}
+          \mathbf{Fc}=\varepsilon\mathbf{Sc},
+        \end{equation}
+        where $\varepsilon$ has replace $E$ to be the orbital hartree-fock energies.
+        We simplify this further by using the semi-empirical AM1, which uses predetermined factors for the four term integrations as will be discussed later in the semi-emprical section.
+        We can now apply the variational method to determine the coefficient of the wavefunction.
+        First, a trial density function is chosen, which is equivalent to a trial coefficient vector.
+        We then solve the Roothan-Hall equation, save the lowest eigenvalue energy and use the corresponding coefficient vector to create a density function for another iteration.
+        We compare the energy differences between iterations until it's less than a chosen value. 
+        Indices i and j are summed over all electrons.
+
+\section{Configuration Interaction}
+	The previous calculations resulted in a slater determinant filled with molecular orbitals that approximates the ground state.
+	In order to determine the excited states, further steps must be performed.
+	Steps performed after Hartree Fock, are appropriately named post Hartree Fock Methods.
+	In this work we use the configuration interaction methodology.
+
+	The Hartree fock's slater determinant, \(\Phi_0\), contains the lowest energy molecular orbitals.
+	These filled orbitals are known as the occupied orbitals which will label with letters ab....
+	The other available orbitals that weren't filled are considered virtual, labeled ij....
+
+	New determinants can be made by swapping virtual and occupied orbitals.
+
+	For example
+	\begin{equation}
+	  \bm{\Phi}_c^i
+	\end{equation}
+	would be a determinant created by swapping the occupied orbital \(c\) with the virtual orbital \(i\) and
+	\begin{equation}
+	  \bm{\Phi}_{cd}^{ij}
+	\end{equation}
+	would be a determinant created by swapping occupied orbitals \(c\) and \(d\) with orbitals \(i\) and \(j\).
+
+	For K occupied orbitals, only K swaps can be made for a single determinant.
+	For each molecular orbital, there are two spin states \(\alpha\) and \(\beta\) which means for K orbitals, and N electrons, there are
+	\begin{equation}
+	  2K \choose N
+	\end{equation}
+	The full CI wavefunction, \(\bm{Psi}\), is linear combination of all of these determinants.
+This method provides the exact solution to the Shrodinger equation within the basis set.
+	The choose function limits the use full CI to small molecules.
+
+	For larger molecules, the swap is limited to single, referred to as configuration interaction singles (CIS), to doubles (CID), or to both (CISD).
+	For CIS, the new wavefunction can be written as
+
+	\begin{equation}
+	\bm{\Psi}_{CIS} = c_0\bm{\Phi}_0 + c_a^i\sum_i^N\sum_a^{K-N}\bm{\Phi}_a^i
+	\end{equation}
+	where \(c_0\) and \(\Phi_0\) are the coefficients and determinant for the Hartree Fock ground state.
+
+	To solve for these coefficients, we use a similar method of solving an eigenvalue equation like that performed in \ref{secular}.
+
+	\begin{equation}
+	  \bm{H}\vec{c} = \bm{e} \bm{S} \vec{c}
+	\end{equation}
+	where
+	\begin{align}
+	  H_{ji} &= \left<\bm{\Phi}_b^j \right| \bm{H} \left| \bm{\Phi}_a^i \right>
+	  S_{ji} &= \left<\bm{\Phi}_b^j | \bm{\Phi}_a^i \right>
+	\end{align}
+	are the Hamiltonian \(\bm{H}\) and overlap \(\bm{S}\) matrices.
+	When diaganolized, \(\vec{c}\) and \(\bm{e}\) are the coefficients and the energies of the CIS wave functions composed as a linear sum of the exchange determinants.
+
+	When using CIS, the addition of the single exchange determinants have no effect on the ground state.
+	Some electron correlation is accounted for excited states due to the linear combination of the mixed singly excited determinants.
+
+\section{Semiempirical Methods}
+Solving the equations for the Hartree Fock method and Configuration Interaction require the integrations of many two-electon integrals.
+Using the hydrogen like slater orbitals for these integrations become infeasable.
+Its common to approximate these orbitals using gaussian functions.
+Each atomic orbital is a linear combinataion of guassians, and each molecular orbital is using a slater determinant of these combinations.
+However, computational costs still limit the solving of the Shrodinger equations in this basis to but a couple of atoms.
+For larger systems, further approximations are required.
+A common approximation is to replace the overlap matrix S with the unit matrix in the Roothan hall equation
+\begin{equation}
+\mathbf{F} \vec{c} = \bm{\epsilon}\mathbf{S}\vec{c}
+\end{equation}
+and only treat the valence electrons quantum mechanically. \cite{christensen2016semiempirical}
+The approach is called the zero-differential overlap approximation.
+This approximation reduces the cost order of the integrations from \(O(N_{\text{electrons}})^4\) to \(O(N_{\text{valence electrons}})^2\).
+The cost can be further reduced by approximating the remaining (ii|jj) integrals by parameterizing the integrals to experimental data as done in the comple negelect of differential overlap methods.
+A common correction is to reintroduce parameterized integral approximations for (ij|kl) where ij are electrons on one atom, and kl another. \cite{pople1965approximate}
+The neglect of diatomic differential overlap approximation further corrects by replacing the core-core interactions with Z\(_A\) Z\(_B\) (core\(_a\) core\(_a\) | core\(_b\) core\(_b\)).
+The neglect of diatomic differential overlap is the foundation for most of whats refered to as the semiempirical methods.
+
+In this work we use a modified version of the neglect of diatomic differential overlap approximation known as the Austim Model 1 (AM1) hamiltonian. \cite{Dewar1985}
+In this approximation the integrals of type (ij | kl ) approximated using the mulitpole moments \cite{Dewar1985}
+The core-core interactions are modified to
+\begin{align}
+E_{core-core}^(AM1) = &E_{core-core}^{MNDO} \frac{Z_{A} Z_{B}}{R_{AB}} [\\
+  &\sum_i (K_{A_i}, \exp(L_{A_i}, (R_{AB} - M_A)^2)) \\
++ &\sum_i (K_{B_i}, \exp(L_{B_i}, (R_{AB} - M_B)^2))]
+\end{align}\cite{christensen2016semiempirical}
+AM1 been used succesfully for organic conjugated polymers such as the one we analize in chapters 4 and 5. \cite{ozaki2019molecular,silva2010benchmark,moran2003excited}
+For example, it was recently used in the study of rhodopsin. \cite{weingart2012modelling}
+NEXMD can be used with time dependent density functional theory (TDFT). \cite{tretiak2003resonant}
+Other methods besides NEXMD for TDFT also exist. \cite{ou2015first}
+But we restrict our use to AM1 as is commonly applied in the use of the NEXMD software package for organic conjugated polymers.
 
 \section{QM/MM}
-    In this work, we will be focused on the behavior of a molecule after an electron absorbs the energy of a photon.
-    In the previous sections we have discussed how quantum mechanics can be used for chemical calculations;
-    however, in many applications, the accuracy of QM is not needed and more computationally cheaper method would be more appropriate.
-    For these situations many computational chemist use classical electrical force field dynamics, treating atoms as point charges.
-    QM/MM was developed to manage computational costs by separating a calculation into a quantum mechanical (QM) region and a classical mechanical (MM) region.\cite{Karplus2014}
-    This allows the user to have the accuracy where needed while not wasting resources on unwanted calculations such as the dynamics of water molecules far from the protein of interest.
-    For the vast majority of our calculations, we will have a QM solute and a few nearby QM solvents surrounded by MM solvents.
     The Hamiltonian for this system is 
     \begin{equation}
      \mathbf{H}_{eff}=\mathbf{H}_{QM}+\mathbf{H}_{MM}+\mathbf{H}_{QM/MM} 
@@ -212,91 +329,6 @@ corresponding eigenvector.\cite{engel2012quantum}
     \end{align}
     where $e$, $m$, and $q$, are the electron, MM atom, and QM core indices respectively;
     $q_m$ is the charge on the MM atom $m$, $z_q$ is the charge on the QM atom q, $\bar{r}$ is the coordinate vector, $r_{mq}$ is the distance between atoms $m$ and $q$ and $A$ and $B$ are the Leonard-Jones interaction parameters.\cite{Walker2008}
-
-    \begin{multiFigure} 
-    \addFigure{0.4}{../Oral/Images/qm_mm.png}
-    \addFigure{0.4}{../Oral/Images/qm_mm_pme.png}
-    \captionof{figure}[QM/MM Diagram]{a) single cell. b) representation of the periodic nature of the system.}
-    \label{fig:QMMMDiagram}
-    \end{multiFigure}
-
-    Figure \ref{fig:QMMMDiagram} gives and example of a QM/MM systems.
-    The atoms of the drawn out molecule will be described at the QM level of theory.
-    The MM atoms in the volume immediately surrounding the molecular, label QMCut, will be the MM atoms included in equation \ref{eq:qmmm}.
-    To simulate a solute in solvent, we treat the provided box as a cell, that is repeated infinitely many times.
-    Particle Mesh Ewald calculations are then used to calculate the long distance interactions of the periodic boxes.
-    This is performed by treating the charge and potential in the long range, inter box distances, as sums in Fourier space.\cite{Darden1993}
-    Note that the QM region must be treated as single point charges for this calculations.
-    The Mulliken charges of the current state are used for these calculations.
-    Once the sums are complete, a fast Fourier transform is performed to obtain energy and forces.
-    Charges from the MM region outside QMCut, will be used to provide a Particle Mesh Ewald correction to the new Fock Matrix.\cite{Walker2008}
-
-    Long range interaction, from those outside the cutoff, considered vital for the understanding of solvent effects, are treated using SQM’s implementation of Particle Mesh Ewald.
-    Trajectories use periodic boundary conditions to simulate an explicit solution, treating the system box as cells repeated infinitely many times in all directions.
-    Particle Mesh Ewald calculations then determine the long-distance interactions of these periodic boxes, treating the charges and potentials in the long-range inter-box distances as sums in Fourier space treating atoms in the QM region of these calculations as Mulliken point charges.
-    Once the sums are complete, SQM performs a fast Fourier transformation to obtain the long-range corrections to the energy and forces.  
-
-    A general timestep would be as follow: 
-
-    Calculate the MM ewald potentials using the classical charges from the MM atoms Construct the Hamiltonian matrix as if the QM region was in vacuum.
-    Add the one electron terms for the interaction between QM atoms and the MM atoms within the cutoff to the Hamiltonian.
-    Within the SCF routine, copy the Hamiltonian to the fock matrix, and add the two-electron integrals.
-    Calculate the QM ewald potential using the iteration’s Mulliken charges, then add the ewald potentials for both QM and MM atoms to the Fock Matrix.
-    The SCF procedure continues until convergence resulting in a density matrix that incorporates the presence of solvents.
-
-\section{Configuration Interaction}
-    The previous calculations resulted in a slater determinant filled with molecular orbitals that approximates the ground state.
-    In order to determine the excited states, further steps must be performed.
-    Steps performed after Hartree Fock, are appropriately named post Hartree Fock Methods.
-    In this work we use the configuration interaction methodology.
-
-    The Hartree fock's slater determinant, \(\Phi_0\), contains the lowest energy molecular orbitals.
-    These filled orbitals are known as the occupied orbitals which will label with letters ab....
-    The other available orbitals that weren't filled are considered virtual, labeled ij....
-
-    New determinants can be made by swapping virtual and occupied orbitals.
-
-    For example
-    \begin{equation}
-      \bm{\Phi}_c^i
-    \end{equation}
-    would be a determinant created by swapping the occupied orbital \(c\) with the virtual orbital \(i\) and
-    \begin{equation}
-      \bm{\Phi}_{cd}^{ij}
-    \end{equation}
-    would be a determinant created by swapping occupied orbitals \(c\) and \(d\) with orbitals \(i\) and \(j\).
-
-    For K occupied orbitals, only K swaps can be made for a single determinant.
-    For each molecular orbital, there are two spin states \(\alpha\) and \(\beta\) which means for K orbitals, and N electrons, there are
-    \begin{equation}
-      2K \choose N
-    \end{equation}
-    The full CI wavefunction, \(\bm{Psi}\), is linear combination of all of these determinants.
-    The choose function limits the use full CI to small molecules.
-
-    For larger molecules, the swap is limited to single, referred to as configuration interaction singles (CIS), to doubles (CID), or to both (CISD).
-    For CIS, the new wavefunction can be written as
-
-    \begin{equation}
-    \bm{\Psi}_{CIS} = c_0\bm{\Phi}_0 + c_a^i\sum_i^N\sum_a^{K-N}\bm{\Phi}_a^i
-    \end{equation}
-    where \(c_0\) and \(\Phi_0\) are the coefficients and determinant for the Hartree Fock ground state.
-
-    To solve for these coefficients, we use a similar method of solving an eigenvalue equation like that performed in \ref{secular}.
-
-    \begin{equation}
-      \bm{H}\vec{c} = \bm{e} \bm{S} \vec{c}
-    \end{equation}
-    where
-    \begin{align}
-      H_{ji} &= \left<\bm{\Phi}_b^j \right| \bm{H} \left| \bm{\Phi}_a^i \right>
-      S_{ji} &= \left<\bm{\Phi}_b^j | \bm{\Phi}_a^i \right>
-    \end{align}
-    are the Hamiltonian \(\bm{H}\) and overlap \(\bm{S}\) matrices.
-    When diaganolized, \(\vec{c}\) and \(\bm{e}\) are the coefficients and the energies of the CIS wave functions composed as a linear sum of the exchange determinants.
-
-    When using CIS, the addition of the single exchange determinants have no effect on the ground state.
-    Some electron correlation is accounted for excited states due to the linear combination of the mixed singly excited determinants.
 
 \section{Adiabatic Dynamics}
 	Excited-state calculations implement the Collective Electronic Oscillator (CEO) approach developed by Mukamel and coworkers, which solves the adiabatic equation of motion of a single electron density matrix.
@@ -353,7 +385,7 @@ corresponding eigenvector.\cite{engel2012quantum}
 
 \section{Non-Adiabatic Dynamics}
 
-The MDQT approach utilized in this work as a modified version of the Tully Surface Hopping method.\cite{tully2012perspective, tully1990molecular}
+The MDQT approach utilized in this work as a modified version of the Tully Surface Hopping method.\cite{tully2012perspective, tully1990molecular,Tully1998}
 Here the quantum wave function is approximated using a swarm of independent trajectories.
 During time steps, these trajectories propagate along adiabatic surfaces;
 However, between time steps, these trajectories are allowed to transition from one state to another in a Monte Carlo like fashion.
@@ -364,63 +396,100 @@ We define the Hamiltonian
 \begin{equation} \label{eq:tullyHamiltonian} \mathbf{H} = \mathbf{T}(\mathbf{R}) +
   \mathbf{H}_{el}(\mathbf{r},\mathbf{R})
 \end{equation}
-
 where \(\mathbf{T}(\mathbf{R}) \) is the nuclear kinetic energy operator and \(\textbf{H}_{el}\) is the electronic Hamiltonian.
 
-We expand the the total wavefunction, \(\Psi\) into the adiabatic state wavefunctions \(\phi\)
+We expand the the total wavefunction, \(\Psi\) into orthonormal adiabatic state wavefunctions \(\phi\)
 \begin{equation}
-  \Psi(\textbf{r}, \textbf{R}, t) = \sum_j c_j(t)\phi_j(\textbf{r}; \textbf{R}) = c_j \left| \phi \right>
+  \Psi(\textbf{r}, \textbf{R}, t) = \sum_j c_j(t)\phi_j(\textbf{r}; \textbf{R}) = c_j \left| \phi_j \right>
 \end{equation}
 where \(\textbf{r}\) and \(\textbf{R}\) are the electronic and nuclear coordinates respectively.
+\(c_j\) are complex expansion coefficients.
+Substitution into the Shrodinger equation yeilds
 
-
-The matrix elements of the electron Hamiltonian become
-
-\begin{equation} \label{eq:tullyVelements}
-  V_{jk}(\mathbf(R))=\left<\phi_j(\mathbf{r};\mathbf{R})\right|\mathbf{H}_{0}\left.(\mathbf{r};\mathbf{R})\phi_k(\mathbf{r};\mathbf{R})\right>
+\begin{align}
+  i\hbar \frac{\partial}{\partial t} c_j \left | \phi _j \right> &= \mathbf{H} c_j \left | \phi_j \right>\\
+  i\hbar \dot{c}_j \left | \phi \right> + i\hbar c_j \left| \dot{\phi}_j \right> &= \mathbf{H} c_j \left| \phi_j \right>\\
+\end{align}
+where we can now apply it another state \(\phi_i\) on the left.
+\begin{align} \label{eq:dcoefficient}
+  i\hbar \dot{c_j} \left< \phi_i | \phi_j \right> + i\hbar c_j \left< \phi_i | \dot{\phi}_j \right> &= c_j \left< \phi_i | \mathbf{H} | \phi_j \right>\\
+  \sum_j i\hbar \dot{c_j} \left< \phi_i | \phi_j \right> &= \sum_j \left(c_j \left< \phi_i | \mathbf{H} | \phi_j \right> - i\hbar c_j \left< \phi_i | \dot{\phi}_j \right> \right)\\
+  i\hbar \dot{c_i} &= \sum_j \left(c_j \left< \phi_i | \mathbf{H} | \phi_j \right> - i\hbar c_j \left< \phi_i | \dot{\phi}_j \right> \right)
+\end{align}
+where we now made the sum explicit.
+The second term on the right \(\left< \phi_i | \dot{\phi}_j \right>\) is referred to as the nonadiabatic adiabatic coupling and represents the coupling between states i and j.
+This can be rewritten as 
+\begin{equation} \label{eq:tullyS3}
+  \left<\phi_i\right|\dot{\phi}_j\left.\right>=\left<\phi_i\right|\frac{d\mathbf{R}}{dt}\frac{d}{d\mathbf{R}}\left|\phi_j\right>=\dot{\mathbf{R}}\cdot\mathbf{d}_{ij}(\mathbf{R})
 \end{equation}
-and the time-dependent Shrodinger equation can then be written as
-
-\begin{equation}
-  i\hbar\dot{c}_j = c_k ( V_{jk} - i\hbar \left< \phi_j | \dot{\phi}_k \right> ).
-\end{equation}
-The term \(\left< \phi_j | \dot{\phi}_k \right>\) represents the coupling between the jth and kth state and is most commonly referred to as the nonadiabatic coupling term.
-
-At each step we perform a montecarlo like decision
-
-\begin{equation} \label{eq:tullyjump2} 
-\sum_{j=1}^{k-1}g_{ij} < \zeta  \le \sum_{j=1}^{k}g_{ij}
-\end{equation}
-hopping from state i to k when
-\begin{equation} \label{eq:tullyjump1} 
-  \zeta < g_{ik}
-\end{equation}
-where \(\zeta\) is a uniformly distributed random number from 0 to 1, and
-
-\begin{equation}
-g_{ik} = \frac{b_{ki}(t=0)\Delta t}{a_{ii}(t=0)}
-\end{equation}
-
-with
-
-\begin{equation} \label{eq:tullyb2a} 
-b_{kj} =
-        \frac{2}{\hbar}\Im\left(a_{kj}^*V_{kj}\right) - 2\Re\left(a_{kj}^*
-         \dot{\mathbf{R}} \cdot \mathbf{d}_{kj}\right).
-\end{equation}
-$a_{kj}$ are the off diagonals of the density matrix $a_{kj} = c_k^* c_j$ and
-$\mathbf{d}_{kj}$ is the non-adiabatic coupling vector
-
+effectively separating the coupling term into the nuclear velocity vector \(\dot{R}\) and another vector referred to as the non-adiabatic coupling vector 
 \begin{equation} \label{eq:tullynacoupling} 
-\mathbf{d}_{kj}\mathbf(R) =
+  \mathbf{d}_{kj}\mathbf(R) =
   \left<\phi_{k}(\mathbf{r};\mathbf{R})\right|\mathbf{\nabla}_{\mathbf{R}}\left.\phi_j(\mathbf{r};\mathbf{R})\right>.
 \end{equation}
+Equation \ref{eq:tullyS3} clearly shows that the coupling is strongest when the non-adiabatic vector is aligned with the nuclear velocities.
+Also the coupling is proportional to the magnitude of these velocities.
+Through use of the Helmann-Feynman theorem, it can alsow be shown that the magnitude of the nonadiabatic coupling vector is inversely proportional to the change in energies between the states.
 We use the Collect Oscillator Approach to calculate the non-adiabatic coupling terms \(\mathbf{R} \cdot \mathbf{d}_{kj}\) ``on the
-fly''. \cite{tommasini2001electronic, tretiak1996collective, tretiak2009representation, chernyak2000density}
+fly''. \cite{tommasini2001electronic, tretiak1996collective, tretiak2009representation, chernyak2000density,Tretiak1996,Tretiak1999}
+
+To simplify notation we will let
+\begin{equation}
+  \mathbf{V}_{ij} = \left< \phi_i | \mathbf{H} | \phi_j \right>
+\end{equation}
+
+Substituting this new notation into \ref{eq:dcoefficient} gives
+\begin{equation}
+  i\hbar \dot{c_i} = \sum_j c_j \left(\mathbf{V}_{ij} - i\hbar \dot{\mathbf{R}}\cdot\mathbf{d}_{ij}(\mathbf{R}) \right)
+\end{equation}
+which can be written in terms of a state density matrix
+\begin{align}
+  i\hbar a_{kl} &= c_k c_l^*\\
+  i\hbar \dot{a}_{kl} &= \dot{c}_k c_l^* + c_k \dot{c}_l^* \\
+  i\hbar \dot{a}_{kl} &= \sum_j \left[ a_{jl} (\mathbf{V}_{kj} - i\hbar \dot{\mathbf{R}} \cdot \mathbf{d}_{kj})
+			- a_{kj} ( \mathbf{V}_{lj} + i\hbar \dot{\mathbf{R}} \cdot \mathbf{d}_{lj}^*) \right] \\
+  i\hbar \dot{a}_{kl} &= \sum_j \left[ a_{jl} (\mathbf{V}_{kj} - i\hbar \dot{\mathbf{R}} \cdot \mathbf{d}_{kj})
+			- a_{kj} ( \mathbf{V}_{lj} - i\hbar \dot{\mathbf{R}} \cdot \mathbf{d}_{jl}) \right]
+\end{align}
+where \(d_{lj}^* = -d_{jl}\) can be deduced from equation \label{eq:tullynacoupling}.
+
+The diagonals of \(\dot{a}_{kl}\) represents the rates at which the populations of electonic states are changing
+\begin{align}
+  \dot{a}_{kk} &= -\frac{i}{\hbar}\sum_j \left[ a_{jk} (\mathbf{V}_{kj} - i\hbar \dot{\mathbf{R}} \cdot \mathbf{d}_{kj})
+		 - a_{kj} ( \mathbf{V}_{kj} - i\hbar \dot{\mathbf{R}} \cdot \mathbf{d}_{jk}) \right]
+\end{align}
+Its worth looking further into these included terms,
+\begin{equation}
+  b_{kj} = - \frac{i}{\hbar} \left(a_{jk} (\mathbf{V}_{kj} - i\hbar \dot{\mathbf{R}} \cdot \mathbf{d}_{kj}) - a_{kj} ( \mathbf{V}_{kj} - i\hbar \dot{\mathbf{R}} \cdot \mathbf{d}_{jk})\right)
+\end{equation}
+\(b_{kj}\) represents the net population flow from state \(j\) to state \(k\). If \(j = k \), \(b_{kj} = 0\), which means there is no self flow.
+With a little algebra, we can show that while the state density matrices are complex, the net population flows are real.
+\begin{equation} \label{eq:tullyb2a} 
+  b_{kj} =
+  \frac{2}{\hbar}\Im\left(a_{kj}^*\mathbf{V}_{kj}\right) - 2\Re\left(a_{kj}^*
+    \dot{\mathbf{R}} \cdot \mathbf{d}_{kj}\right).
+\end{equation}
+During dynamics, between timesteps, the system can only travel along adiabatic PES. 
+These flows must thus be converted to a probability of a hop.
+The probability of a hop from state j to k can be described as
+
+\begin{equation}
+  \text{P}_{j \rightarrow k} = \frac{\text{Population from j to k}}{\text{Original population of j}} = \frac{b_{kj} \Delta t}{a_{jj}}
+\end{equation}
+
+At each step we perform a montecarlo like decision based on these probabilities.
+We choose a uniform random number \(\zeta\) from 0 to 1.
+A hop from j to k will occur if 
+
+\begin{equation} \label{eq:tullyjump2} 
+\sum_{l=1}^{k-1}P_{j \rightarrow l} < \zeta  \le \sum_{l=1}^{k}P_{j \rightarrow l}
+\end{equation}
 
 Inconsistencies arise from solely using the Tully surface hopping approach.
-Trajectories transfer between  the various adiabatic potential energy surfaces instantaneously based off the QM state coefficients.
-These coefficients are determined using the integral of the TDSE on multiple trajectories.
-Each trajectory if unmodified will keep in phase even after spatial separation.
-Furthermore, if dealing with a system with a dense electronic state structure, its likely that the ordering of these states will switch during general dynamics.
-We apply a dechohence correction as well as a trivial crossing accounting system as performed in previous research.
+ Trajectories transfer between  the various adiabatic potential energy surfaces instantaneously based off the QM state coefficients.
+Many improvements to the surface model method has been developed since its first conception.\cite{fang1999improvement}
+ These coefficients are determined using the integral of the TDSE on multiple trajectories.
+ Each trajectory if unmodified will keep in phase even after spatial separation which is a non-physical occurence. \cite{joos2013decoherence,landry2011communication,nelson2013nonadiabatic}
+Properly accounting for these coherences is necessary for controling charge separtion in light-harvesting devices.\cite{rozzi2013quantum}
+ Furthermore, if dealing with a system with a dense electronic state structure, its likely that the ordering of these states will switch during general dynamics.
+ We apply a dechohence correction as well as a trivial crossing accounting system as performed in previous research.

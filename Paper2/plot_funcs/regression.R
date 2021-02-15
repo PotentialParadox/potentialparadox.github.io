@@ -48,16 +48,43 @@ ggsave("~/potentialparadox.github.io/Paper2/Images/populations/solvent_compariso
 ## Fitting Tammie's Equations
 ##################################################
 
-tammies_fit_func <- function(A, tau, t){
-    (A * exp(t / tau)) / (A + exp(t / tau)) - A / (1 + A)
+model_tammie <- function(params, data){
+    A = params[1]
+    tau = params[2]
+    (A * exp(data$t / tau)) / (A + exp(data$t / tau)) - A / (1 + A)
 }
 
 
-vacuum_fit <- purrr::partial(tammies_fit_func, A = 1.62, tau = 100)
-vacuum %>%
-    filter(State == "S1") %>%
+measure_distance <- function(mod_params, data) {
+    diff <- data$value - model_tammie(mod_params, data)
+    sqrt(mean(diff^2))
+}
+
+
+# Tammies
+best <- optim(c(1.62, 100), measure_distance, data = s1)
+s1_fit <- purrr::partial(model_tammie, c(1.53, 119.46))
+## fit_df <- data.frame("x" = s1$t, "value" = s1_fit(s1))
+
+# Modified Logistic
+## logistic_model <- function(params, data){
+##     tau = params[1]
+##     b = params[2]
+##     c = params[3]
+##     b / (c + exp(-data$t / tau))
+## }
+## best <- optim(c(119, 1, 1, 0.5), measure_distance, data = s1)
+## s1_fit <- purrr::partial(logistic_model, c(119, 2, 1.5))
+
+s1 <- ch3oh_10s %>%
+    filter(State == "S1")
+
+fit_df <- data.frame("x" = s1$t, "value" = s1_fit(s1))
+s1 %>%
     ggplot(aes(x = t, y = value)) +
     geom_line(color = "blue") +
-    stat_function(fun = vacuum_fit) + xlim(-1000,1000)
+    geom_line(data = fit_df, aes(x=x, y=value))
+
+ggsave("~/potentialparadox.github.io/Paper2/Images/populations/s1_fit.png", width = 8, height = 8)
 
     

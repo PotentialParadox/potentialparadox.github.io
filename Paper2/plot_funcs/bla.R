@@ -94,27 +94,30 @@ bla_far <- bind_rows(
 bla <- bind_rows(
     bla_near,
     bla_far
-)
+) %>%
+    mutate(Location = factor(Location, levels = c("Near", "Far")))
 
+######################################
 # Ploting
 ######################################
 
 bla %>%
     ggplot(aes(x = t, y = BLA, color = SolventID)) +
     geom_line(size=1.5) +
-    facet_wrap(~ Location) +
+    scale_y_continuous(limits = c(0, 0.12), breaks = seq(0, 0.10, by=0.02)) +
+    scale_x_continuous(breaks = seq(0, 1, by = 0.2)) +
     labs(x = "Time (ps)", 
          color = "Number QM Solvents") +
+    facet_wrap(~ Location) +
     theme_bw() +
     theme(axis.text=element_text(size=15),
+          strip.text = element_text(size=12),
           axis.title=element_text(size=20),
-          strip.text.x=element_text(size=20),
-          legend.title = element_text(size=20),
-          legend.text = element_text(size = 18),
+          legend.title = element_blank(),
+          legend.text = element_text(size = 15),
           legend.text.align = 0,
-          legend.position = c(0.85, 0.9)
-    )
-ggsave("~/potentialparadox.github.io/Paper2/Images/bla/solvent_comparison.png", width = 13, height = 10)
+          legend.position = "top")
+ggsave("~/potentialparadox.github.io/Paper2/Images/bla/solvent_comparison.png", width = 7.5, height = 5)
 
 
 bondorders %>%
