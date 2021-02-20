@@ -476,4 +476,54 @@
   - Newest paper on NEXMD
 - [[~/Documents/paper2/papers/christensenkubar2016.pdf]]
   - The best paper on semiemprical methods
+- [[~/Documents/paper2/papers/cornilbredas1994.pdf]]
+  - Uses AM1 to calculate the optical spectra of PPV-oligomers
+- [[~/Documents/paper2/papers/burroughesbradley.pdf]]
+  - LEDs using conjugated polymers
+    - repone of the system is nonlinear
+    - PPV used in light emitting diodes.
+- [[~/Documents/paper2/papers/klymchenkoduportail2004.pdf]]
+  - Emmission differences due to environments can be exploited for enviornment-sensity fluorescent probes in phospholipid bilayers
+- [[~/Documents/paper2/papers/callisburgess1997.pdf]]
+  - Postulates that large redshifts in solvents are due to a stark effect.
+- [[~/Documents/paper2/papers/marinilosa2010.pdf]]
+  - What i solvatochromism
+- [[~/Documents/paper2/papers/parkandrews1999.pdf]]
+  - Measure the stark effect in protiens
+- [[~/Documents/paper2/papers/krieglnienhaus.pdf]]
+  - Evidence of strong electric fields in biological systems
+- [[~/Documents/paper2/papers/massey1998effect.pdf]]
+  - Effect of cholesteryl on photophysics properties
+- [[~/Documents/paper2/papers/bondar1999preferential.pdf]]
+  - Cholesterol's effect on the fluorescents
+- [[~/Documents/paper2/papers/spano2000emission.pdf]]
+  - Cholesterol's effect on the fluorescents
+- [[~/Documents/paper2/papers/granstrom1998laminated.pdf]]
+  - Laminated Fabrication process  using PPV. 
+  - Solvent include chloroform and toluene
+- [[~/Documents/paper2/papers/cao1999improved.pdf]]
+  - singlet bound states are formed with higher probabilities in PPV3
+- [[~/Documents/paper2/papers/sirringhaus2000high.pdf]]
+  - using an inkjet to cheaply produce PPV molecules for organic transistors.
+- [[~/Documents/paper2/papers/bredas2004charge.pdf]]
+  - charge and energy transfers in pi ocnjugated oligomers and polymers using a molecular picture
+- [[~/Documents/paper2/papers/bredas2009excitons.pdf]]
+  - Describes the exciton behavior over PPV
+- [[~/Documents/paper2/papers/collini2009coherent.pdf]]
+  - Shows that coherency can occur in PPV at roughly 250fs
+- [[~/Documents/paper2/papers/chiang1977electrical.pdf]]
+  - showed high conductivity during a redox chemical experiment
+- [[~/Documents/paper2/papers/brown1992poly.pdf]]
+  - first organic conjugated polymer LED using PPV
+- [[~/Documents/paper2/papers/bredas2009molecular.pdf]]
+  - Explanation of how light havesting works in organic semiconductors acceptor donor 
+  - Frenkeltype exciton
+  - exciton binding energy is typically large ~ 0.5eV much greater than the milieV in inorganic semiconductors.
+  - absorption in inorganic semiconductors immediately lead to free electron and hole carriers.
+- [[~/Documents/paper2/papers/soos1993band.pdf]]
+  - Show that the S1 state to be two photon allowd for strong correlation and dipole allowd with weak correlations.
+  
+
+
+
 

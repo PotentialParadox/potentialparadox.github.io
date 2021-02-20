@@ -1,5 +1,5 @@
 #+TITLE: The Implementation of QM/MM on Non-Adiabatic Dynamics Using AMBER and NEXMD
-#+TODO: TODO(t) ONE(1) TWO(2) WAITING(w) | THREE(3) WAITING(w) DONE(d) 
+#+TODO: TODO(t) ONE(1) TWO(2) THREE(3) | FOUR(4) WAITING(w) DONE(d) 
 * DONE Masterfile
   :PROPERTIES:
   :header-args: :eval never-export
@@ -41,7 +41,7 @@
   \setDedicationFile{dedicationFile}%                 Dedication Page
   \setAcknowledgementsFile{acknowledgementsFile}%     Acknowledgements Page
   \setAbstractFile{abstractFile}%                     Abstract Page (This should only include the abstract itself)
-  \setReferenceFile{referenceFile}{apa}%              References. First argument is your bibtex source file
+  \setReferenceFile{referenceFile}{apalike}%              References. First argument is your bibtex source file
   %                                                       the second argument is your bibtex style file.
   \setBiographicalFile{biographyFile}%                Biography file of the Author (you).
 
@@ -211,7 +211,7 @@ We have used this ability to continue our long pursuit to understand organic pho
 The search for how to efficiently create and utilize sythetic organic phtosythesizer has also been a focus of interest. \cite{balzani2008photochemical,engel2007evidence}
 Studies with non-adiabatic dynamics have been used to study possible light harvesting technologies. \cite{ishida11_effic_excit_energ_trans_react,katan2005effects}
 
-A similar process can also illuminate our understanding and production of efficient custom light emitting diodes. (cite: park 1-2)
+A similar process can also illuminate our understanding and production of efficient custom light emitting diodes. \cite{burroughes1990light}
 This type of modeling can also help with understanding photo-detection.
 Recent works have helped understand how the the protein rhodopsin behaves in the human eye.\cite{weingart2012modelling}
 Continued research can help develop more sensitive or enery efficient optical sensors. 
@@ -289,6 +289,7 @@ For this reason we do not consider this behavior in our simulations.
 
 Kashas rule states that photon-emission occurs only in appreciable yields from the lowest excited state to the ground state.\cite{Kasha1950}
 This rule suggests that in most cases where an electron is excited to a state beyond the first excited state, that electron will have to relax to the first excited state by means of internal conversion.\cite{shenai2016internal}
+Also, for any luminescence to occur, there needs to be strong coupling between the ground and first excited state.
 
 Figure \ref{fig:jablonski} B, is a zoomed in picture of the portion of Figure 1b surrounded by the orange circle.
 When the molecule is excited to S2 through photo-excitation, it will begin to relax along S2's potential energy surface following the orange arrow.
@@ -418,14 +419,19 @@ This can be done by comparing overlaps between the states between timesteps.
     - look at furukawahino.pdf
     :END:
     #+begin_src latex
-    \subsection{Solvent Effects}
-The determination of which state to excited to is strongly affected by the transition dipole moments.
-These transition dipole moments are sensitive to polarization from external electronic fields or charges
-The energy differences between the excited states can also be affected by these external charges due to (de)-stabalization of the dipoles.
-Systems with strong electric fields occur frequently in biological systems. (cite: furukawahino 41-44)
-These electric field can have profound effect on the steady state fluorescnce and absorption spectra. \cite{park2013}
-The solvents in these systems can extend or shield these effects.
-Solvents provide a large source of external charges that can significantly affect the non-adiabatic behavior and characteristics of a molecule.\cite{furukawa2015external}
+        \subsection{Solvent Effects}
+    The determination of which state to excited to is strongly affected by the transition dipole moments.
+    These transition dipole moments are sensitive to polarization from external electronic fields or charges.
+    The energy differences between the excited states can also be affected by these external charges due to (de)-stabalization of the dipoles.
+This ability of the solvent to affect the spctra of a solute is known a solvatochromism. \cite{marini2010solvatochromism}
+    Systems with strong electric fields occur frequently in biological systems.\cite{park1999vibrational,kriegl2003ligand}
+    These electric field can have profound effect on the steady state fluorescnce and absorption spectra through the Stark effect. \cite{Park2013}
+    The solvents in these systems can extend or shield these effects.
+    In fact, solvents themselves can induce the effect.
+    The Stark effect is largely responsible for red shift in emissions of protiends that occurs in fluid solvents with high dielectric constants.\cite{callis1997tryptophan,park1999vibrational}
+    Solvents provide a large source of external charges that can significantly affect the non-adiabatic behavior and characteristics of a molecule.\cite{furukawa2015external}
+    The effects of the envioronment on the spectra can be used to develop environmental sensitive fluorescence probes. \cite{klymchenko2004bimodal}
+    For example 6-propionyl-2-dimethylaminonaph-thalene experiences a very noticable emission color shift with the addition of cholesterol.\cite{massey1998effect,bondar1999preferential}
     #+end_src
 ** THREE Introduction to non-adiabatic dynamics [0/0]               :ignore:           
    :LOGBOOK:
@@ -510,14 +516,43 @@ Solvents provide a large source of external charges that can significantly affec
 ** TWO Organic Conjugate Molecules
 #+begin_src latex
 \section{Organic Conjugated Molecules}
+Conjugated organic polymers are a class of organic semiconductors.
+They have been know to show electroluminescence since popes discovery in the 1960s. cite(brown1992poly:1).
+They have facinated scientis ever since the discory of their high conductiity after a redox chemical treatment in 1976.\cite{chiang1977electrical}
+Unlike inorganic semiconductors, the excited electrons from an organic semiconductor are bound to the hole forming an exciton.\cite{scholes2011excitons}
+These exciton from organic semicondors are capable of moving from one segment to another while keeping quantum coherence. \cite{collini2009coherent}
+They descirbe a class of molecules in which the backbone is fully composed of a continuous line of \(\pi\) orbital containing atoms, most commonly carbon atoms. 
+They exibit this semiconductor behavior due to the delocalized \(\pi\) molecular orbitals that traverse a segment of the chain when that segment is planar.\cite{bredas1999excited}
 Conjugate organic polymers have been shown to exhibit ultra-fast exciton decay.\cite{nelson2018coherent,Fernandez-Alberti2009}
+The interest in the conjugated materieals is often not as a replacement for inorganic semiconductors such as silicon but rather for their other characteristics such as their low cost, sythesis versalitiy and flexibility. \cite{Bredas1999excited}
+
 Studies have been performed to determine whether we can sythesize unidirectional energy transfers in these systems.\cite{soler2012analysis,soler2014signature,Galindo2015,FernandezAlberti2010,FernandezAlberti2012}
 The have a dense manifold of electronic states.
-They have strong electron-phonon couplings. (cite: sifain2018photoexcited 14-16)
-They have photophysical properties that are rare (cite: sifain2018photoexcited 25,26)
-Due also in part to their low cost of production a heavy interest has been show in using them for technological development. (cite: sifain2018photoexcited 17-24)
-Experimentally, these molecules are studied either in solution or as solid state samples.
-These types of scenarios have been too computationall expensive to siulate explicitely, and have only recently been studied using implice solvents. (cite: sifain and josiahs)
+They have strong electron-phonon couplings.\cite{tretiak2002conformational,nelson2011nonadiabatic,nelson2014nonadiabatic}
+They have photophysical properties that are rare. \cite{bredas1999excited,spano2000emission}
+Small changes to the chemical structure can significantly effect the photophysical properties.\cite{andre1991quantum}
+Due also in part to their low cost of production a heavy interest has been show in using them for technological development.\cite{granstrom1998laminated,cao1999improved,sirringhaus2000high,bredas2004charge,bredas2009excitons,bredas2009molecular,collini2009coherent}
+Experimentally, these molecules are studied either in solution or in a solid state samples.
+These types of scenarios have been too computationall expensive to siulate explicitely, and have only recently been studied using implice solvents.\cite{sifain2018photoexcited,sifainbjorgaard2018}
+
+A decade after the discovery of the high condictivity of organic conjugated molecules, the first polymer LED was developed using Poly(p-phenylene vinylene) (PPV).\cite{brown1992poly}
+PPV like other conjugated organic polymers possess ultra-fast exciton relaxations.
+Its bond length alternation dependence on the lowest excited state destabalized the would be lowest singlet 2A\(_g\) state that would be forbidden and cause the 1B\(_u\) state to be the lowest allowing the molecule to luminesce.\cite{soos1993band}
+PPV therefore has a sufficiently weak electron-hole binding energy to produce a much higher luminescence efficiency than the 25\% that would be expected with strong electron-hold binding. \cite{cao1999improved}
+Its nonlinear response to electronic excitations has has made it an excellent candidate to development of solid state light emmitting diodes (LEDs). \cite{burroughes1990light} (cite:cornil:11-15)
+It as been of great interest since the discovery a two-step fabrication process that made its production cheap and efficient decades ago. (cite:cornil:1-5)
+Possessing 2 chromophores connected by a conjugated bridge, PPV can be called a charge-transfer probe.
+The local and bulk photophysicial properties of charge-transfer probes are known to be very sensitive to enviromental effects.\cite{marini2010solvatochromism}
+Understanding how these effects modify electron-hole separation and mobility could significantly help the devolopment of futher light harvesting advancements.
+Can also be used as transitors, or sensors. (cite:granstrom:oneof(6-10))
+The photo-physical properties have been heavily researched both experimentally and theoretical.
+The optimized geometrie of the excited states differ significantly from the ground state.
+The excited state is more planar and there is significant alternation in the bond lengths of the vinyle groups.
+These configuration differences provide a fast analysis measure through BLA and a slow one by analyzing the changes in the torsional angles around the vinyle groups.
+The local photochemical properties of charge transfer probes with hydrogen bonding sites such as a nitro group are known to be sensitive to the hydrogen-bonding properities of solvents.  \cite{marini2010solvatochromism}
+Previous research has also shown that exciton motion coherency along PPV is heavily dependent on the solvent. \cite{collini2009coherent}
+And its been suggested that efficiencies in the exciton migration within PPV derivatives could be improved selecting solvents that would promote exented conformations.\cite{bredas2009excitons}
+For these reasons we choose for our anlysis the PPV ogilimer PPV\(_3\)-NO\(_2\) shown in figure \ref{fig:PPV3-NO2}
 #+end_src
 ** THREE Overview of whats covered in sequential Chapters.
    :LOGBOOK:
@@ -529,10 +564,23 @@ These types of scenarios have been too computationall expensive to siulate expli
    :END:
 #+begin_src latex
 \section{Overview}
-In chapter 2 we go into the theoretical methods employed to simulated the previously discossed processes.
-In chapter 3 describe discuss the computation details in our implementationdescribe discuss the computation details in our implementation.
+In chapter 2 we discuss the theoretical methods employed to simulated the previously discossed processes.
+We begin with the fundamentals theories behind computation chemistry starting with the Shrodinger equation.
+We introduce the reader to common approximation employed in solving this equation including the Born-Oppenheimer approximation, Hartree-Fock method, and Configuration Interactions.
+We then demonstrated how solvent can be included in the simulation through the use of QM/MM.
+Finally, we discuss the method on which we handle the breaking of the Born-Oppenheimer approximation using the Tully's Fewest-Switched Surface Hopping method.
+
+In chapter 3, we discuss the computation details in our implementation.
+We introduce the reader to the molecular simulation packages AMBER and NEXMD.
+We then discuss the methods in which we call NEXMD through AMBER.
+A quick overview of the available features and a simple call is demonstrated.
+
 In chapter 4 we apply our methodology to investigate the steady state absorption and fluorescence experienced by PPV\(_3\)NO\(_2\) in various solvents.
+These steady state simulations are performed through adiabatic dynamics at the ground and first excited state.
 We also investigate the change in behavior caused by including solvents in the QM region.
+We discuss the methodology of the simulation and our method for restraining the QM solvents.
+Our analysis extends to the study of the relaxation of certain geometrical relaxations as well as to the Wiberg bond orders of a select set of bonds known to experience significan change between the two states.
+
 In chapter 5 we apply the non-adiabatic methodoly to analyze the effects included QM/MM solvents have the non-adiabatic relaxation of PPV\(_3\)NO\(_2\) 
 Finally, in chapter 6 we summarize our findings and suggest possible routes for future work.
 #+end_src
@@ -736,7 +784,7 @@ We will continue this chapter in atomic units where these equations become
           \right> + \frac{1}{2} \sum_{ij} \left( \left< ij | ij \right> - \left< ij | ji \right> \right) $
         \item
           $ \left | \cdots mn \cdots \right > \rightarrow \left | \cdots pn
-          \cdots \right > \Rightarrow \sum_i \left< i \right| h \left| i \right> +
+          \cdots \right > \Rightarrow \left< m \right| h \left| p \right> +
           \sum_{i} \left( \left<mi | pi \right> - \left<mi | ip \right> \right) $
         \item
           $ \left | \cdots mn \cdots \right > \rightarrow \left | \cdots pq
@@ -908,7 +956,7 @@ E_{core-core}^(AM1) = &E_{core-core}^{MNDO} \frac{Z_{A} Z_{B}}{R_{AB}} [\\
   &\sum_i (K_{A_i}, \exp(L_{A_i}, (R_{AB} - M_A)^2)) \\
 + &\sum_i (K_{B_i}, \exp(L_{B_i}, (R_{AB} - M_B)^2))]
 \end{align}\cite{christensen2016semiempirical}
-AM1 been used succesfully for organic conjugated polymers such as the one we analize in chapters 4 and 5. \cite{ozaki2019molecular,silva2010benchmark,moran2003excited}
+AM1 been used succesfully for organic conjugated polymers such as the one we analize in chapters 4 and 5. \cite{ozaki2019molecular,silva2010benchmark,moran2003excited,cornil1994optical}
 For example, it was recently used in the study of rhodopsin. \cite{weingart2012modelling}
 NEXMD can be used with time dependent density functional theory (TDFT). \cite{tretiak2003resonant}
 Other methods besides NEXMD for TDFT also exist. \cite{ou2015first}
@@ -1470,53 +1518,54 @@ The time order in the number of states however, differs because of the time used
    #+end_src
 *** THREE Spectra
     #+begin_src latex
-        \subsection{Spectra}
+    \subsection{Spectra}
 
 
-        \noindent
-        \begin{multiFigure} 
-          \addFigure{0.45}{../Paper1/Images/nquant_abs_comparison.png}
-          \addFigure{0.45}{../Paper1/Images/nquant_flu_comparison.png}
-          \captionof{figure}[Fluorescence and Absorption Spectra by number quantum solvents]{PPV\(_3\)-NO\(_2\) absorption, A, and fluorescence, B, spectra in CCL\(_4\) with varying number of QM solvents.}
-          \label{fig:spectrasolvents}
-        \end{multiFigure}\bigskip
+    \noindent
+    \begin{multiFigure} 
+      \addFigure{0.45}{../Paper1/Images/nquant_abs_comparison.png}
+      \addFigure{0.45}{../Paper1/Images/nquant_flu_comparison.png}
+      \captionof{figure}[Fluorescence and Absorption Spectra by number quantum solvents]{PPV\(_3\)-NO\(_2\) absorption, A, and fluorescence, B, spectra in CCL\(_4\) with varying number of QM solvents.}
+      \label{fig:spectrasolvents}
+    \end{multiFigure}\bigskip
 
-        \noindent
-        \begin{multiFigure} 
-          \addFigure{0.45}{../Paper1/Images/spectra_abs_compared.png}
-          \addFigure{0.45}{../Paper1/Images/spectra_flu_compared.png}
-          \captionof{figure}[Fluorescence and Absorption Spectra in various solvents]{PPV\(_3\)-NO\(_2\) absorption, A, and fluorescence, B, spectra in various solvents with 20 included in QM region.}
-          \label{fig:spectranquant}
-        \end{multiFigure}\bigskip
-
-
-            Energies, coordinates, and dipole information are acquired every ten steps.
-            Equilibration times from either MM to QM state or from the S0 to S1 state range from 2-4 ps.
-            We exclude the first four ps of each trajectory in the calculation of the spectra in data analysis for the absorption and emission analysis. 
+    \noindent
+    \begin{multiFigure} 
+      \addFigure{0.45}{../Paper1/Images/spectra_abs_compared.png}
+      \addFigure{0.45}{../Paper1/Images/spectra_flu_compared.png}
+      \captionof{figure}[Fluorescence and Absorption Spectra in various solvents]{PPV\(_3\)-NO\(_2\) absorption, A, and fluorescence, B, spectra in various solvents with 20 included in QM region.}
+      \label{fig:spectranquant}
+    \end{multiFigure}\bigskip
 
 
-        Solvents's polarizability should affect the transition dipole moments and the corresponding spectra and has been shown to experimentally. \cite{marcus1956electrostatic,martin1998hydrolysis,park2013tailored,LeDroumaguet2005}.
-        Such shifts are referred to as solvatochromic shifts.
-            Previous studies have analyzed solvatochromic shifts in conjugated substituted PPV3-NO2 molecules with the NEXMD program in implicit solvents.\cite{Santhanamoorthi2009}
-            Results with NEXMD by TD-AM1 were redshifted from the experimental results, while single-point calculations using TD-CAM-B3LYP provided by G09 in the same implicit solvent were blue shifted.
-            Other NEXMD computations have shown comparable redshifts in spectra of similar molecules in implicit solvents compared to experiment. \cite{Bjorgaard2015}
-            We performed similar calculations in this paper; however, in explicit solvent.
-            We compare the results to those presented in implicit solvent.
+        Energies, coordinates, and dipole information are acquired every ten steps.
+        Equilibration times from either MM to QM state or from the S0 to S1 state range from 2-4 ps.
+        We exclude the first four ps of each trajectory in the calculation of the spectra in data analysis for the absorption and emission analysis. 
 
-            We collect the vertical excitation dipoles and oscillator strengths between the ground state S0 and S1 every five fs during the steady-state of each trajectory to produce the absorption/emission spectra of PPV3-NO2.
-            We sum over excitation states averaged over the geometries and broaden the spectra using a Gaussian bin function with FWHM=0.16 eV corresponding to a 100 fs FWHM laser excitation.
-            We normalized it such that the maximum absorption is 1. 
 
-            Figure ? presents the absorption spectra for PPV3-NO2 in select solvents and vacuum.
-            The shown absorption has contributions from the nine lowest energy excited states, though the S1 state is the primary contributor to the spectra.
-            We found the number of solvent molecules included in the QM region caused only minor deviations in the spectra, with the largest variance (0.02~eV) occurring between the 20QM and MM CCL4 systems, as such, in figure 12, we only present results from trajectories with 20 QM solvents.
-            All solvent results are redshifted from those in vacuum matching findings in previous works.
-            The absorbance within methanol and chloroform were very similar, with a peak shift from vacuum of -0.04 eV.
-            Within carbon tetrachloride, this shift increases slightly more to-0.06 eV. 
+    Solvents's polarizability should affect the transition dipole moments and the corresponding spectra and has been shown to experimentally. \cite{marcus1956electrostatic,martin1998hydrolysis,park2013tailored,LeDroumaguet2005}.
+    Such shifts are referred to as solvatochromic shifts.
+        Previous studies have analyzed solvatochromic shifts in conjugated substituted PPV3-NO2 molecules with the NEXMD program in implicit solvents.\cite{Santhanamoorthi2009}
+        Results with NEXMD by TD-AM1 were redshifted from the experimental results, while single-point calculations using TD-CAM-B3LYP provided by G09 in the same implicit solvent were blue shifted.
+        Other NEXMD computations have shown comparable redshifts in spectra of similar molecules in implicit solvents compared to experiment. \cite{Bjorgaard2015}
+        We performed similar calculations in this paper; however, in explicit solvent.
+        We compare the results to those presented in implicit solvent.
 
-            Aligning with previously reported results, the fluorescence calculations found in figure 13 show an overall more intense redshift from vacuum, along with a more significant dispersion among the solvents. \cite{Park2013}
-            The smallest shift, at -0.06 eV, occurs in carbon tetrachloride, while the largest, at -0.12 eV, occurs in methanol.
-            Previous works have demonstrated that the energy levels of PPV3-NO2 are further stabilized by more polar solvents, a feature clearly seen by our results. 
+        We collect the vertical excitation dipoles and oscillator strengths between the ground state S0 and S1 every five fs during the steady-state of each trajectory to produce the absorption/emission spectra of PPV3-NO2.
+        We sum over excitation states averaged over the geometries and broaden the spectra using a Gaussian bin function with FWHM=0.16 eV corresponding to a 100 fs FWHM laser excitation.
+        We normalized it such that the maximum absorption is 1. 
+
+    The broad absorption and fluorescence bands shown are a common feature of conjugated matrials due to the large geometric relaxation that occurs in the lowest excited state. \cite{bredas2009molecular}
+        Figure ? presents the absorption spectra for PPV3-NO2 in select solvents and vacuum.
+        The shown absorption has contributions from the nine lowest energy excited states, though the S1 state is the primary contributor to the spectra.
+        We found the number of solvent molecules included in the QM region caused only minor deviations in the spectra, with the largest variance (0.02~eV) occurring between the 20QM and MM CCL4 systems, as such, in figure 12, we only present results from trajectories with 20 QM solvents.
+        All solvent results are redshifted from those in vacuum matching findings in previous works.
+        The absorbance within methanol and chloroform were very similar, with a peak shift from vacuum of -0.04 eV.
+        Within carbon tetrachloride, this shift increases slightly more to-0.06 eV. 
+
+        Aligning with previously reported results, the fluorescence calculations found in figure 13 show an overall more intense redshift from vacuum, along with a more significant dispersion among the solvents. \cite{Park2013}
+        The smallest shift, at -0.06 eV, occurs in carbon tetrachloride, while the largest, at -0.12 eV, occurs in methanol.
+        Previous works have demonstrated that the energy levels of PPV3-NO2 are further stabilized by more polar solvents, a feature clearly seen by our results. 
     #+end_src
     
 *** THREE Energy Relaxation
@@ -1572,7 +1621,9 @@ The time order in the number of states however, differs because of the time used
       \end{tabularx}
     \end{table}
 
-    We use the torsion angle around the vinylene segments as the slow nuclear coordinates of PPV3-NO2-molecules following precendent. \cite{Clark2012}
+    Immediately after excitation from the ground A\(_g\) to the first excited state with B\(_u\) symmetry, the \(\pi\) bond along the vinylene segment encourages PPV\(_3\)-NO\(_2\) to a planar configuration.
+    We use the torsion angle around the vinylene segments as the slow nuclear coordinates of PPV\(_3\)-NO\(_2\)
+    following precendent. \cite{Clark2012}
     The torsion angle around the vinylene segments have been shown to be highly coupled to the excited state.\cite{nelson2011nonadiabatic,panda2013electronically}
     In PPV3-NO2 systems, the excitation to S1 leads to relaxation towards a nearly planar structure Torsion angle around d1,d3 and d4,d6 are averaged over 128 trajectories to produce the near and far torsion angle data respectively. \cite{barford2011ultrafast}
 
@@ -1585,66 +1636,69 @@ The time order in the number of states however, differs because of the time used
     Table 5 shows a summary of the torsion angles analysis of all tested solvents after five ps of relaxation after the jump to the first excited state.
     The trajectories include 20 solvent molecules within the QM calculations.
     A noticeable shift towards a planar geometry occurs in all solvents.
-    This shift is greatest near the nitro group. 
+    This shift is greatest near the nitro group.
     #+end_src
 *** THREE BLA                                                       :ignore:
     #+begin_src latex
-	\subsection{Bond Length Alternation}
-	    The structural differences between the excited-state and ground-state of PPV3-molecules are presented clearly by distortions in the C=C and C-C bonds found in the vinylene segment.\cite{tretiak02_densit_matrix_analy_simul_elect, karabunarliev2000rigorous, karabunarliev2000adiabatic, nelson2014nonadiabatic}
-	    These distortions can be measure by bond length alternation (BLA)
+            \subsection{Bond Length Alternation}
+       In \(\pi\) conjugated compounds, the electrons unevenly distribute across the carbon-carbon \(\pi\) bonds causing a dimerization or alternation of single-like carbon bonds and double-like carbon bonds.
+    When promoted from the highest occupied molecular orbital (HOMO) to the lowest occupied molecular orbital (LOMO), the bonding-antibonding pattern switches, and the electron densities correspondingly adjust.
+    As a result the single-like carbons become more double-like and vice versa. \cite{bredas1999excited}
+                This structural difference between the excited-state and ground-state of PPV3-molecules are presented clearly by distortions in the C=C and C-C bonds found in the vinylene segment.\cite{tretiak02_densit_matrix_analy_simul_elect, karabunarliev2000rigorous, karabunarliev2000adiabatic, nelson2014nonadiabatic}
+                These distortions can be measure by bond length alternation (BLA)
 
-	    \begin{equation}
-	    \frac{d_i + d_e}{2} - d_e,
-	    \end{equation}
+                \begin{equation}
+                \frac{d_i + d_e}{2} - d_e,
+                \end{equation}
 
-	    where \(d_i\) and \(d_e\) are the interior and exterior bonds, and \(d_c\) is the central bond.
-	    This value represents the differences between the double and single bonds of the vinylene sections.
-	    The BLA is a descriptor for \(\pi\) bond distributions. \cite{tretiak2002conformational}
-	    In this system, we analyze the BLAs of two separate bond sets, the bonds d1-3 (near-set) and d4-6 (far-set) seen in Scheme 2. 
+                where \(d_i\) and \(d_e\) are the interior and exterior bonds, and \(d_c\) is the central bond.
+                This value represents the differences between the double and single bonds of the vinylene sections.
+                The BLA is a descriptor for \(\pi\) bond distributions. \cite{tretiak2002conformational}
+                In this system, we analyze the BLAs of two separate bond sets, the bonds d1-3 (near-set) and d4-6 (far-set) seen in Scheme 2. 
 
-	    \noindent
-	    \begin{minipage}[c]{\textwidth} 
-	      \centering
-	      \includegraphics[width=5in]{../Paper1/Images/bla.png}
-	      \captionof{figure}[BLA of bonds during adiabatic dynamics]{BLA of bonds d1-3 (left) and d4-6 (right) during the last 4 ps of S0 dynamics and 10 ps of S1 dynamics.
-		QM energy and force calculations include the 20 solvents nearest the central ring.}
-	      \label{fig:bla_adiabatic}
-	    \end{minipage}\bigskip
-
-
-
-    \begin{table}[H]
-      \caption[Adiabatic Bond Length Alternation]{Bond Length Alternation summary for PPV\(_3\)-NO\(_2\) in various solvents with 20 solvents included in the QM region.}
-      % \begin{center}
-      \begin{tabularx}{\textwidth}{XXXXXXXXX}\hline
-	Molecule   & d\(_1\)  & d\(_2\) & d\(_3\) & BLA\(_{\textbf{near}}\) & d\(_1\)  & d\(_2\) & d\(_3\) & BLA\(_{\textbf{far}}\)\\\hline
-	Vacuum     & 1.429     & 1.375    & 1.418    & 0.049              & 1.441     & 1.365    & 1.427   & 0.069\\
-	CCl\(_4\)  & 1.427     & 1.376    & 1.417    & 0.046              & 1.441     & 1.365    & 1.426   & 0.068\\
-	CH\(_3\)OH & 1.422     & 1.382    & 1.415    & 0.037              & 1.444     & 1.362    & 1.431   & 0.076\\
-	CHCl\(_3\) & 1.423     & 1.380    & 1.415    & 0.039              & 1.443     & 1.365    & 1.429   & 0.074\\\hline
-      \end{tabularx}
-    \end{table}
+                \noindent
+                \begin{minipage}[c]{\textwidth} 
+                  \centering
+                  \includegraphics[width=5in]{../Paper1/Images/bla.png}
+                  \captionof{figure}[BLA of bonds during adiabatic dynamics]{BLA of bonds d1-3 (left) and d4-6 (right) during the last 4 ps of S0 dynamics and 10 ps of S1 dynamics.
+                    QM energy and force calculations include the 20 solvents nearest the central ring.}
+                  \label{fig:bla_adiabatic}
+                \end{minipage}\bigskip
 
 
-	    Figure \ref{fig:bla_adiabatic} show the bond length alternation of PPV3-NO2 in various solvents during the S1 trajectories where the dashed lines represent equilibrated ground state values which are near 0.110 Å for sets d1-3 and d4-6 regardless of solvent enviornment.
-	    Within the first couple hundred femtoseconds after the excitation to S1, the central bonds expand, while the interior and exterior bonds contract.
-	    For all solvent environments, this bond restructuring is amplified by close proximity to the amino group, where we see an average drop of 0.07 Å in sets d1-3 compared to a 0.04 Å drop in sets d4-6.
-	    The strength of this amplification is dependent on the solvent environment where the BLA difference between the far and near sets PP3-NO2 in methanol, 0.034 Å, surpases that found in carbon tetrachloride, 0.022 Å.
 
-	    Table 2 presents further details of the S1 BLA simulation.
-	    In all cases, the exterior bond (d1 and d4) becomes slightly longer than the interior bond (d3 and d6).
-	    The BLAs from the near and far sets therefore split.
-	    In the near set, the S0 and S1 BLA converge to 0.1091 Å and 0.00453 Å, respectively.
-	    In the far set, these numbers are 0.1103 Å and 0.0697 Å, respectively.
-	    The smaller bond length spread in the near set, along with the lower BLA, suggests more delocalization on those bonds than in the far set. 
+        \begin{table}[H]
+          \caption[Adiabatic Bond Length Alternation]{Bond Length Alternation summary for PPV\(_3\)-NO\(_2\) in various solvents with 20 solvents included in the QM region.}
+          % \begin{center}
+          \begin{tabularx}{\textwidth}{XXXXXXXXX}\hline
+            Molecule   & d\(_1\)  & d\(_2\) & d\(_3\) & BLA\(_{\textbf{near}}\) & d\(_1\)  & d\(_2\) & d\(_3\) & BLA\(_{\textbf{far}}\)\\\hline
+            Vacuum     & 1.429     & 1.375    & 1.418    & 0.049              & 1.441     & 1.365    & 1.427   & 0.069\\
+            CCl\(_4\)  & 1.427     & 1.376    & 1.417    & 0.046              & 1.441     & 1.365    & 1.426   & 0.068\\
+            CH\(_3\)OH & 1.422     & 1.382    & 1.415    & 0.037              & 1.444     & 1.362    & 1.431   & 0.076\\
+            CHCl\(_3\) & 1.423     & 1.380    & 1.415    & 0.039              & 1.443     & 1.365    & 1.429   & 0.074\\\hline
+          \end{tabularx}
+        \end{table}
 
-	    The number of solvents included in the QM calculations had little effect on the convergence of the distances or BLA.
-	    PPV3-NO2 had similar ground state BLAs of around 0.11 Å for both near and far sets matching results on similar systems regardless of the solvent. \cite{nelson2011nonadiabatic}
-	    The information presented is averaged over time after relaxation across all trajectories.
-	    The S1 BLAs varied between the solvents and with the distance away from the NO2 group.
-	    Among the selected solvents, CH3OH has the smallest near set S1 BLA and largest far set S1 BLA.
-	    CCl4 has the largest near set S1 BLA, and also the smallest far set S1 BLA and has close to vacuum-like behavior.
-	    The CH3OH solvent seems to enlarge the BLA changes from the ground to excited states.
+
+                Figure \ref{fig:bla_adiabatic} show the bond length alternation of PPV3-NO2 in various solvents during the S1 trajectories where the dashed lines represent equilibrated ground state values which are near 0.110 Å for sets d1-3 and d4-6 regardless of solvent enviornment.
+                Within the first couple hundred femtoseconds after the excitation to S1, the central bonds expand, while the interior and exterior bonds contract.
+                For all solvent environments, this bond restructuring is amplified by close proximity to the amino group, where we see an average drop of 0.07 Å in sets d1-3 compared to a 0.04 Å drop in sets d4-6.
+                The strength of this amplification is dependent on the solvent environment where the BLA difference between the far and near sets PP3-NO2 in methanol, 0.034 Å, surpases that found in carbon tetrachloride, 0.022 Å.
+
+                Table 2 presents further details of the S1 BLA simulation.
+                In all cases, the exterior bond (d1 and d4) becomes slightly longer than the interior bond (d3 and d6).
+                The BLAs from the near and far sets therefore split.
+                In the near set, the S0 and S1 BLA converge to 0.1091 Å and 0.00453 Å, respectively.
+                In the far set, these numbers are 0.1103 Å and 0.0697 Å, respectively.
+                The smaller bond length spread in the near set, along with the lower BLA, suggests more delocalization on those bonds than in the far set. 
+
+                The number of solvents included in the QM calculations had little effect on the convergence of the distances or BLA.
+                PPV3-NO2 had similar ground state BLAs of around 0.11 Å for both near and far sets matching results on similar systems regardless of the solvent. \cite{nelson2011nonadiabatic}
+                The information presented is averaged over time after relaxation across all trajectories.
+                The S1 BLAs varied between the solvents and with the distance away from the NO2 group.
+                Among the selected solvents, CH3OH has the smallest near set S1 BLA and largest far set S1 BLA.
+                CCl4 has the largest near set S1 BLA, and also the smallest far set S1 BLA and has close to vacuum-like behavior.
+                The CH3OH solvent seems to enlarge the BLA changes from the ground to excited states.
     #+end_src
 *** THREE Bond Orders                                               :ignore:
     :LOGBOOK:
