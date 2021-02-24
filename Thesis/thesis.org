@@ -68,7 +68,7 @@
 
   %% \include{introduction}% Modified from old template.
   \include{theoreticalMethods}% Modified from old template.
-  %% \include{implementationDetails}% Modified from old template.
+  \include{implementationDetails}% Modified from old template.
   %% %
   % \include{adiabatic}% Modified from old template.
   %% \include{nonadiabatic}% Modified from old template.
@@ -1060,7 +1060,7 @@ but we restrict our use to AM1 CIS as is commonly applied in the use of the NEXM
     We use the Davidson technique to diagonlize these Liouville equation of motions to reduce the computational costs from an otherwise O(6) to O(3). \cite{nelson2011nonadiabatic}
 
         The QM-QM interaction forces are then calculated using the gradient of the ground state and excited state energy QM energies. 
-        \begin{equation}
+        \begin{equation} \label{eq:NEXMDForces}
           \vec{\nabla} E_\alpha = \vec{\nabla} E_0 + \vec{\nabla}\Omega_\alpha
         \end{equation}
         These gradients are calculated analytically, allowing a significant efficiency advantage over other numerical methods.
@@ -1229,7 +1229,7 @@ but we restrict our use to AM1 CIS as is commonly applied in the use of the NEXM
      Fortunately, many improvements to the surface model method has been developed since its first conception.\cite{fang1999improvement}
      We apply a dechohence correction as well as a trivial crossing accounting system as performed in previous research.\cite{nelson2013nonadiabatic,fernandez2012identification}
      #+end_src
-* ONE Implementation Details [6/7]
+* ONE Implementation Details [0/8]
   :PROPERTIES:
   :header-args: :eval never-export
   :header-args:latex: :exports code :tangle implementationDetails.tex
@@ -1282,7 +1282,7 @@ but we restrict our use to AM1 CIS as is commonly applied in the use of the NEXM
    \noindent
    \begin{minipage}[c]{\textwidth}
      \centering
-     \includegraphics[width=0.5\linewidth]{../Paper2/scripted_diagrams/nasqm_overview.png}
+     \includegraphics[width=0.7\linewidth]{../Paper2/scripted_diagrams/nasqm_overview.png}
      \captionof{figure}{Swim-lane diagram describing the common timestep of the SANDER-NEXMD interface.}
      \label{scheme:nasqm}
    \end{minipage}\bigskip
@@ -1312,7 +1312,7 @@ but we restrict our use to AM1 CIS as is commonly applied in the use of the NEXM
    An analysis of parameter choices can be found in previous literature.\cite{nelson2012nonadiabatic}
 
    #+end_src
-** THREE QM/MM Calculations Prior to SCF                             :ignore:
+** THREE  Energy Calculations                                       :ignore:
    #+begin_src latex
 When using AM1, SANDER expands the QM charge density into the STO-6G minimal basis set and treates the MM atoms as point charges, thereby providing the full electrostatic interaction between the QM and MM atoms. \cite{walker2008}
 
@@ -1326,69 +1326,15 @@ When using AM1, SANDER expands the QM charge density into the STO-6G minimal bas
       \item The SCF procedure continues until convergence resulting in a density matrix that incorporates the presence of solvents. 
    \end{enumerate}
    #+end_src
-** THREE Calulation of the QM/MM forces                              :ignore:
+** THREE Calulation of the Forces                                   :ignore:
    #+begin_src latex
-   Excited-state calculations implement the Collective Electronic Oscillator (CEO) approach developed by Mukamel and coworkers, which solves the adiabatic equation of motion of a single electron density matrix.\cite{Mukamel1997,tretiak02_densit_matrix_analy_simul_elect}
-   The single-electron density matrix is defined by
-   \begin{equation}
-     (\rho_{g\alpha})_{nm} = \left< \psi_{\alpha} (t) \right| c_m^{\dagger} c_n \left| \psi_{g} (t) \right>
-   \end{equation}
-   where \(\psi_g\) and \(\psi_\alpha\) are the single-electron wave functions of the ground-state and \(\alpha\) state, and \(c_m^{\dagger} c_n\) is the creation(annihilation) operator summed over the atomic orbital \(m\) and \(n\), whose size is determined by the basis set.
-   The basis set coefficients of these atomic orbits are calculated in the previous SCF step and account for the presence of solvents.
-   The CIS approximation is applied, creating the normalization condition 
-
-   \begin{equation}
-     \sum_{n,m} (\rho_{g\alpha})^2 = 1
-   \end{equation}
-
-   Recognizing that \(\rho_{g\alpha}\) represents the transition density from the ground to the \(\alpha\) state, we solve the Liouville equation of motion 
-
-   \begin{align*}
-     \hat{\mathbf{\mathcal{L}}}\mathbf{\rho}_{0\alpha} = \Omega\mathbf{\rho}_{0\alpha}
-   \end{align*}
-
-
-   with \(\mathbf{\mathcal{L}}\) being the two-particle Louiville operator and
-   \(\Omega\) the energy difference between the \(\alpha\) state and the ground
-   state. \(\rho_{0\alpha}\) is the single- electron density matrix
-
-   \begin{align*}
-     (\mathbf{\rho}_{0\alpha})_{nm} =  \left< \psi_{\alpha} \right| c_m^\dagger c_n \left| \psi_0 \right>.
-   \end{align*}
-   where \(\psi_{g}\) and \(\psi_{\alpha}\) are the single-electron wavefunctions for the groundstate and singly excited state \(\alpha\), and
-   \(c_m^\dagger\) and \(c_n\) are the creation and annihilation operator respectively. The coefficients for the atomic orbital basit sets are derived prior using the QM/MM methodology from the SQM package.\cite{Walker2008} The Liouville operator can be found analytically using 
-
-   \begin{align*}
-     \hat{\mathbf{\mathcal{L}}}\mathbf{\rho}_{0\alpha} = \left[ \mathbf{F}^{\vec{R}}(\mathbf{\rho}_{00}), \mathbf{\rho}_{0\alpha} \right]
-     + \left[ \mathbf{V}^{\vec{R}}(\mathbf{\rho}_{0\alpha}), \mathbf{\rho}_{00} \right]
-   \end{align*}
-
-   where \(\textbf{F}^{\vec{R}}\) is the Fock operator and \(\textbf{V}^{\vec{R}}\) is the column interchange operator.
-
-   The forces are also calculated analytically using the gradient of the ground state
-   energy and the excited state energy.
-
-   \begin{align*}
-     \vec{\nabla} E_{\alpha} = \vec{\nabla} E_0 + \vec{\nabla} \Omega_{\alpha}
-   \end{align*}
-
-   With the gradient of the ground state being calculated by
-
-   \begin{align*}
-     \vec{\nabla} E_0 = \frac{1}{2}\mathbf{Tr} \left[ \left( \mathbf{t}^{\vec{R}} + \mathbf{F}^{\vec{R}} \right) \mathbf{\rho}_{00} \right]
-   \end{align*}
-   where \(\textbf{t}\) is the single-electron kinetic operator.
-
-   The gradient of the excited state can derived using
-
-   \begin{align*}
-     \vec{\nabla}\Omega_{\alpha} = \mathbf{Tr} \left[ \mathbf{F}^{\vec{R}} (\mathbf{\rho}_{\alpha\alpha} - \mathbf{\rho}_{00})\right]
-     + \mathbf{Tr} \left[\mathbf{V}^{\vec{R}}\mathbf{\rho}_{0\alpha}^\dagger \mathbf{\rho}_{0\alpha} \right]
-   \end{align*}
-
-   where \(\mathbf{\rho}_{ij}\) represents the density or transition density matrix for states i and
-   j, \(\mathbf{F}\) is the Fock matrix and \(\mathbf{V}\) is the column interchange operator.
+After NEXMD performs the SCF procedure and calculates the QM-QM interaction forces as shown in equations \ref{NEXMDForces}, the new interface then adds the QM-MM interactions to both the QM and MM atoms.
+The rest of the forces on the MM atoms are calculated using the standard peridodic boundary condition force field dynamics as supplied by SANDER.
    #+end_src
+** ONE Check for trivial Crossings
+#+begin_src latex
+
+#+end_src
 ** ONE Benchmarks [0/4]
    #+begin_src 
 \section{Benchmarks}
