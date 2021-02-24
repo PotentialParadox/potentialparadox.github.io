@@ -97,7 +97,7 @@
     molecule, a minimum of 360 trajectories must be computed in order to reach a
     converged result with less than 5% standard deviation. This can be further
     reduced to 2% if 720 trajectories are included.
-- [[~/Documents/paper2/papers/tammies_thesis_chapter3.pdf]]
+- [[~/Documents/paper2/papers/nelson2011nonadiabatic.pdf]]
   - Also gives and explanation of computations of excited states
   - Provides formula for analytic gradients
   - Provides formula for analytic energies
@@ -214,7 +214,7 @@
       order of around 1 3 10 28 to 1 3 10 29 kcal/mol.
     - that only one value of each constant was used throughout the code and that
       all con- stants and conversion factors are self consistent.
-- [[~/Documents/paper2/papers/tammies_thesis_chapter7.pdf]]
+- [[~/Documents/paper2/papers/nelson2013nonadiabatic.pdf]]
   - How tammie solves the decoherence problem
   - the quantum coefficients are evolved coherently along each independent
     nuclear trajectory. That is, the phase factors, or quantum amplitudes, are
@@ -522,6 +522,8 @@
   - absorption in inorganic semiconductors immediately lead to free electron and hole carriers.
 - [[~/Documents/paper2/papers/soos1993band.pdf]]
   - Show that the S1 state to be two photon allowd for strong correlation and dipole allowd with weak correlations.
+- [[~/Documents/paper2/papers/fernandez2012identification.pdf]]
+  - Paper on trivial crossings
   
 
 
