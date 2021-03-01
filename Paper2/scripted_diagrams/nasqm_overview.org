@@ -2,14 +2,9 @@
 @startuml
 |#AntiqueWhite|AMBER|
 |Sync|
-start
-:QM coordinates;
-:MM charges;
-:thermostat parameters;
 |#AntiqueWhite|NEXMD|
+start
 :calculate QM energies;
-:account for trivial crossings;
-:propogate coefficients;
 :calculate QM forces;
 |Sync|
 :QM energies, forces, and density matrix;
@@ -26,6 +21,12 @@ start
 :propogate nuclear coordinates;
 :generate thermostat parameters;
 |Sync|
+:QM coordinates;
+:MM charges;
+:thermostat parameters;
+|NEXMD|
+:account for trivial crossings;
+:propogate coefficients;
 stop
 @endum
 #+end_src

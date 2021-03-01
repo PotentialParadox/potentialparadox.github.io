@@ -6,85 +6,88 @@
   :header-args:latex: :exports code :tangle masterfile.tex
   :END:
   #+begin_src latex
-    \documentclass[editMode]{ufdissertation}\sloppy
-    \usepackage{tikz}%       tikz is used by almost everyone, but certainly by me for this.
-    \usepackage{bm}%         bm is needed in order to boldface mathematical symbols
-    %% Uncomment the relevant line below if you have tables or figures.
-    \haveTablestrue%        Uncomment this if you have tables in your thesis.
-    \haveFigurestrue%       Uncomment this if you have figures in your thesis.
-    % \haveObjectstrue%       Uncomment this if you have Objects in your thesis. This is almost certainly not the case however.
+      \documentclass[editMode]{ufdissertation}\sloppy
+      \usepackage{tikz}%       tikz is used by almost everyone, but certainly by me for this.
+      \usepackage{bm}%         bm is needed in order to boldface mathematical symbols
+      \usepackage{listings,setspace}%
+      %% Uncomment the relevant line below if you have tables or figures.
+      \haveTablestrue%        Uncomment this if you have tables in your thesis.
+      \haveFigurestrue%       Uncomment this if you have figures in your thesis.
+      % \haveObjectstrue%       Uncomment this if you have Objects in your thesis. This is almost certainly not the case however.
 
-    \title{The Implementation of QM/MM for Non-Adiabatic Dynamics Using AMBER and NEXMD}%  Put your title here.
+      \title{The Implementation of QM/MM for Non-Adiabatic Dynamics Using AMBER and NEXMD}%  Put your title here.
 
-    \degreeType{Doctorate of Philosophy}%   Official name of your degree; eg "Doctorate of Philosophy".
-    \major{Physics}%                    Your official Department
-    \author{Dustin Tracy}%                  Your Name
-    \thesisType{Dissertation}%              Dissertation (PhD) or Thesis (Masters)
-    \degreeYear{2021}%                      Intended graduation year (not the year you submit the thesis)
-    \degreeMonth{May}%                   Month of graduation should be May, August, or December.
-    \chair{Adrian Roitberg}%                   Chair and Cochair (see comment block above).
-
-
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-  %%% For each of the following, type in the name of the file that contains each section. 
-  %       They are assumed to be tex files, but if they aren't the command takes an optional argument for the extension.
-  %       So, you could load dedication.tex as your dedication file using \setDedicationFile{dedication}
-  %       You could load dedication.txt instead with \setDedicationFile[txt]{dedication}.
-  %       NOTE: For some compilers they may or may not add a .tex to the end of the file automatically.
-  %           If you get a "couldn't find dedication.tex.tex" type error, try the command with an empty optional argument,
-  %           e.g. \setDedicationFile[]{dedication}
-  %%%
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-  %%% These are REQUIRED sections; easiest to do via these commands.
-
-  %% \setDedicationFile{dedicationFile}%                 Dedication Page
-  %% \setAcknowledgementsFile{acknowledgementsFile}%     Acknowledgements Page
-  %% \setAbstractFile{abstractFile}%                     Abstract Page (This should only include the abstract itself)
-  \setReferenceFile{referenceFile}{apalike}%              References. First argument is your bibtex source file
-  %                                                       the second argument is your bibtex style file.
-  %% \setBiographicalFile{biographyFile}%                Biography file of the Author (you).
-
-  %%% These are NOT required, so only use them if you actually need/have them.
-
-  % \setAbbreviationsFile{abbreviations}%           Abbreviations Page
-  % \setAppendixFile{appendix}%                     Appendix Content; hyperlinking might be weird.
-  % \multipleAppendixtrue%                          Uncomment this if you have more than one appendix, 
-  %                                                   comment it if you have only one appendix.
+      \degreeType{Doctorate of Philosophy}%   Official name of your degree; eg "Doctorate of Philosophy".
+      \major{Physics}%                    Your official Department
+      \author{Dustin Tracy}%                  Your Name
+      \thesisType{Dissertation}%              Dissertation (PhD) or Thesis (Masters)
+      \degreeYear{2021}%                      Intended graduation year (not the year you submit the thesis)
+      \degreeMonth{May}%                   Month of graduation should be May, August, or December.
+      \chair{Adrian Roitberg}%                   Chair and Cochair (see comment block above).
 
 
-  %%%%%%%                     End of File Assignment
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+    %%% For each of the following, type in the name of the file that contains each section. 
+    %       They are assumed to be tex files, but if they aren't the command takes an optional argument for the extension.
+    %       So, you could load dedication.tex as your dedication file using \setDedicationFile{dedication}
+    %       You could load dedication.txt instead with \setDedicationFile[txt]{dedication}.
+    %       NOTE: For some compilers they may or may not add a .tex to the end of the file automatically.
+    %           If you get a "couldn't find dedication.tex.tex" type error, try the command with an empty optional argument,
+    %           e.g. \setDedicationFile[]{dedication}
+    %%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-  \begin{document}
-  %%%% Here you just need to include/input your actual work. 
-  %       The above files (dedication, acknowledgement, titlepage, etc etc) will all be added for you 
-  %       using the files you assigned above. 
-  %       If you want to input the above files manually you can comment out the \setFILE command above 
-  %       and use \input or \include here. Generally you want to use \include to get your pagebreak.
-  %       NOTE: If you input manually you will have to do some/all the formatting manually.
+    %%% These are REQUIRED sections; easiest to do via these commands.
+
+    %% \setDedicationFile{dedicationFile}%                 Dedication Page
+    %% \setAcknowledgementsFile{acknowledgementsFile}%     Acknowledgements Page
+    %% \setAbstractFile{abstractFile}%                     Abstract Page (This should only include the abstract itself)
+    \setReferenceFile{referenceFile}{apalike}%              References. First argument is your bibtex source file
+    %                                                       the second argument is your bibtex style file.
+    %% \setBiographicalFile{biographyFile}%                Biography file of the Author (you).
+
+    %%% These are NOT required, so only use them if you actually need/have them.
+
+    % \setAbbreviationsFile{abbreviations}%           Abbreviations Page
+    % \setAppendixFile{appendix}%                     Appendix Content; hyperlinking might be weird.
+    % \multipleAppendixtrue%                          Uncomment this if you have more than one appendix, 
+    %                                                   comment it if you have only one appendix.
 
 
+    %%%%%%%                     End of File Assignment
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-  %% \include{introduction}% Modified from old template.
-  \include{theoreticalMethods}% Modified from old template.
-  \include{implementationDetails}% Modified from old template.
-  %% %
-  % \include{adiabatic}% Modified from old template.
-  %% \include{nonadiabatic}% Modified from old template.
-  %% \include{conclusion}% Modified from old template.
+  \lstnewenvironment{mylisting}
+    {\singlespacing\lstset{basicstyle=\ttfamily\footnotesize,breaklines=true}}
+  {}
 
-  % \begin{algorithm}% Example showing the weird "algorithm" environment works...
-  %     \captionof{algorithm}{Test Caption}
-  % \end{algorithm}
-  % \addObject{TestStuff!}%     This is probably the command that a normal author will use to add objects.
+    \begin{document}
+    %%%% Here you just need to include/input your actual work. 
+    %       The above files (dedication, acknowledgement, titlepage, etc etc) will all be added for you 
+    %       using the files you assigned above. 
+    %       If you want to input the above files manually you can comment out the \setFILE command above 
+    %       and use \input or \include here. Generally you want to use \include to get your pagebreak.
+    %       NOTE: If you input manually you will have to do some/all the formatting manually.
 
-  % \chapter{EXAMPLES OF EDITOR/Author TOOLS, TABLES, AND IMAGES}% Notice that we can use chapter/section etc breaks in the master file if we want, and then use \input instead of \include to avoid unneccessary page breaks.
-  % \input{editorAndAuthorRemarks}%     Stuff about using editorRemark and authorRemark commands
-  % \input{includingTablesExamples}%    Stuff about using Tables.
-  % \input{includingImagesExamples}%    Stuff about using Images.
 
-  \end{document}
+    %% \include{introduction}% Modified from old template.
+    %% \include{theoreticalMethods}% Modified from old template.
+    \include{implementationDetails}% Modified from old template.
+    %% \include{adiabatic}% Modified from old template.
+    %% \include{nonadiabatic}% Modified from old template.
+    %% \include{conclusion}% Modified from old template.
+
+    % \begin{algorithm}% Example showing the weird "algorithm" environment works...
+    %     \captionof{algorithm}{Test Caption}
+    % \end{algorithm}
+    % \addObject{TestStuff!}%     This is probably the command that a normal author will use to add objects.
+
+    % \chapter{EXAMPLES OF EDITOR/Author TOOLS, TABLES, AND IMAGES}% Notice that we can use chapter/section etc breaks in the master file if we want, and then use \input instead of \include to avoid unneccessary page breaks.
+    % \input{editorAndAuthorRemarks}%     Stuff about using editorRemark and authorRemark commands
+    % \input{includingTablesExamples}%    Stuff about using Tables.
+    % \input{includingImagesExamples}%    Stuff about using Images.
+
+    \end{document}
 
   #+end_src
 * THREE Dedication
@@ -1253,11 +1256,11 @@ but we restrict our use to AM1 CIS as is commonly applied in the use of the NEXM
     - Primarily used in implicit solvents
     :END:
     #+begin_src latex
-	  NEXMD, currently being developed by the Tretiak lab in los Alamos, has a proven track record of performance on the stimulation of ultra-fast non-adiabatic behaviors.
-	  It’s ability to solve state coupling equations on-the-fly has found great utility for systems with hundreds of atoms.
-	  Numerous studies have implemented the method for research into topics including the study of chlorophyll organic conjugated molecules, and pi conjugated macrocycles. \cite{zheng2017photoinduced,nelson2014nonadiabatic,alfonso2016interference,wu2006exciton,Ondarse-Alvarez2016} 
-	  Such studies with NEXMD have been limited to implicit solvents.
-	  No method to provide NEXMD with QM/MM capabilities have yet to be implemented.
+    NEXMD, currently being developed by the Tretiak lab in los Alamos, has a proven track record of performance on the stimulation of ultra-fast non-adiabatic behaviors.
+    It’s ability to solve state coupling equations on-the-fly has found great utility for systems with hundreds of atoms.
+    Numerous studies have implemented the method for research into topics including the study of chlorophyll organic conjugated molecules, and pi conjugated macrocycles. \cite{zheng2017photoinduced,nelson2014nonadiabatic,alfonso2016interference,wu2006exciton,Ondarse-Alvarez2016} 
+    Such studies with NEXMD have been limited to implicit solvents.
+    No method to provide NEXMD with QM/MM capabilities have yet to be implemented.
     #+end_src
 *** THREE Description of AMBER                                      :ignore:
     :LOGBOOK:
@@ -1289,52 +1292,194 @@ but we restrict our use to AM1 CIS as is commonly applied in the use of the NEXM
    #+end_src
 ** THREE Quick Overview
    #+begin_src latex
-   The swim-lane chart in figure \ref{scheme:nasqm} describes a common time-step that occurs within the SANDER-NEXMD interface.
-   First users initiate the program through SANDER, a program found in AMBERTOOLS. SANDER uses NEXMD to calculate the energies and forces of the QM atoms, check for trivial crossings, and propagate the quantum coefficients.
-   With these results, SANDER performs the QM/MM procedures to derive the accelerations and velocities for the classical time step.
-   NEXMD then decides whether to perform a state transitions, adjusting the velocities as needed.
-   Finally SANDER propagates the nuclear coordinates and the cycle continues for the rest of the dynamics.
+      The swim-lane chart in figure \ref{scheme:nasqm} describes a common time-step that occurs within the SANDER-NEXMD interface.
+   With the coordinates provided by SANDER, NEXMD will calculate the energies and forces on the QM atom and return the QM energies, forces, and the excited state density to SANDER.
+      With these results, SANDER performs the final section of the QM/MM procedure as well as determins the forces due to classical force fields to derive the accelerations and velocities for the classical time step.
+      NEXMD then decides whether to perform a state transitions using the fewest switches algorithm, adjusting the velocities as needed in order to conserve energy.
+      SANDER thn propagates the nuclear coordinates and generates a new set of random thermostat perameters.
+   NEXMD then checks if any trivial crossing occur within the potential energy surfaces.
+Once proper accounting between the PESs and the energy order are determined, NEXMD then propogates the quantum coefficients.
    #+end_src
 ** THREE Collect QM coordinates, charges, velocitie and theromostat parameters :ignore:
    #+begin_src latex
 
-   When users initiate SANDER, they're provide the usual SANDER inputs of a
-   coordinate, parameter, and sander control files.
-   In addition they will include a file specific to
-   NEXMD which describes the QM and Non-adiabatic behavior.
-   This interface, incorporates SANDER's implementation of QM/MM as described in previous literature to generate a solvent inclusive ground state density matrix utilized by NEXMD's excited state calculations.
-   Sander controls the interactions between the QM and MM regions.
+     When users initiate SANDER, they're provide the usual SANDER inputs of a coordinate, parameter, and sander control files.
+     An example of a SANDER ctrl file is shown in figure \ref{fig:ctrl}.
 
+     \lstset{frame=single}
+     \begin{mylisting}
+       An example SANDER input file
+       &ctrl
+         ntx=5,
+         ntb=1,
+         ig=-1,
+         taup=2.0,
+         cut=16.0,
+         tempi=300.0,
+         temp0=300.0,
+         ntt=3,
+         gamma_ln=20.0,
+         nstlim=2000,
+         dt=0.0005,
+         ifqnt=1,
+       /
+       &qmmm
+         scfconv=1.0E-8,
+         qmmask=`:1',
+         nae=1 ! Flag that links to NEXMD
+       /
+     \end{mylisting}
+     \captionof{figure}{Example SANDER ctrl file for the SANDER-NEXMD interface}\label{fig:ctrl}
+     \bigskip
+     This file contains all the information regarding molecular dynamics excluding most the QM calculations and all of nonadiabtic parameters and is the common input input file to AMBER molecular dynamics programs.
 
-   SANDER calls NEXMD providing the function calls with the QM coordinates, MM charges, and Langevin thermostat parameters.\cite{paterlini1998constant}
-   NEXMD calculates the energies of the QM atoms with electrostatic interactions from the MM point charges using CIS, TDHF, or TDDFT.
-   A variety of Hamiltonians are available; however, AM1 has been shown to provide very reasonable computational cost to accuracy for our systems of interest.\cite{silva2010benchmark}
-   An analysis of parameter choices can be found in previous literature.\cite{nelson2012nonadiabatic}
+     To use NEXMD the user will include the flag NAE under the QMMM section of the input file. This flag indicates to SANDER to initialize the NEXMD segment of the code, thereby calling the NEXMD versions of the QMMM force calculations instead of the defaul SQM routines. With the NEXMD force routine called, NEXMD will then look for the primary input file used in the stand alone version of NEXMD, the input.ceon file. An example of this file is included below.
+#+end_src
+*** Inputceon file
+#+begin_src latex
+\lstset{frame=single}
+\begin{mylisting}
+&qmmm
+    !***** Ground-State and Output Parameters
+    qm_theory=`AM1', ! Integral type 
+    verbosity=1, ! QM/MM output verbosity
+    !***** Excited-State Parameters
+    exst_method=1, ! CIS (1) or RPA (2) [1]
+    dav_guess=1, ! Restart Davidson from (0) Scratch, (1) Previous,
+    printcharges=1, ! (1) Print Mulliken Charges [0]
+    !***** Solvent Models and External Electric Fields
+    solvent_model=0, ! (0) None,
+&endqmmm
+&moldyn
+    !***** General Parameters
+    natoms=12, ! Number of atoms
+    rnd_seed=19345, ! Seed for the random number generator bo_dynamics_flag=0, ! (0) Non-BO or (1) BO [1]
+    exc_state_init=2, ! Initial excited state (0 - ground state) [0]
+    n_exc_states_propagate=3, ! Number of excited states [0]
+    !***** Dynamics Parameters
+    n_quant_steps=4, ! Number of quantum steps for each classical step [4]
+    num_deriv_step=1.0d-3, ! Displacement for numerical derivatives, A [1.0d-3]
+    rk_tolerance=1.0d-7, ! Tolerance for the Runge-Kutta propagator [1.0d-7]
+    !***** Non-Adiabatic Parameters
+    decoher_type=2, ! (2) At successful plus frustrated hops...
+    quant_step_reduction_factor=2.5d-2, ! Quantum step reduction factor [2.5d-2]
+    !***** Thermostat Parameters
+    therm_type=1, ! (1) Langevin | IGNORED,
+    therm_temperature=300, ! Thermostat temperature, K | IGNORED
+    therm_friction=20, ! Thermostat friction coefficient, 1/ps | IGNORED
+    !***** Output & Log Parameters
+    verbosity=3, ! NEXMD output verbosity (0-minimum, 3-maximum)
+    out_data_steps=1, ! Number of steps to write data [1]
+    out_coords_steps=10, ! Number of steps to write the restart file [10]
+    out_data_cube=0, ! Write (1) or do not write (0) view files to generate cubes [0]
+    out_count_init=0, ! Initial count for view files [0]
+&endmoldyn
+&coord
+    ! IGNORED
+&endcoord
+&veloc
+    ! IGNORED
+endveloc
+&coeff
+    0.00 0.00
+    1.00 0.00
+    0.00 0.00
+&endcoeff
+\end{mylisting}
+\captionof{figure}{Example NEXMD input.ceon file for the SANDER-NEXMD interface}\label{fig:inputceon}
+\bigskip
+#+end_src
+*** Rest of the story
+#+begin_src latex
+Additional flags and their corresponding options can be found in the NEXMD and AMBER documentation.
+The input.ceon file contains the majority of the flags and preferences for the QM calculations as well as all the preferences for the nonadiabatic calculations. The namespace qmmm is shared by both the SANDER ctrl file and the NEXMD input.ceon file. In fact, this namespace is read into a struct shared by both programs, due to NEXMD using SQM as a backend, however their respective parsers will look for different flags. The SANDER parser will run first and will need the three flags shown in figure \ref{fig:ctrl} to call the NEXMD routines. The NEXMD parser for qmmm namespace will then override anything else included in both input files qmmm namespace.
+
+No modification to the input.ceon file is necessary to run with the SANDER code from the standalone NEXMD code. However, the coordinates and velocities included in the file will be ignored, since these data points are managed by SANDER and as such read through the standard SANDER parameter and coordinate files instead. Users can decide to leave these blank, or to simply include them, whatever their convinience. The preferences include for example, how many QM steps should be performed between any classical timestep, the number of excited states to include in the CIS calculation, the initial state, and the initial coefficients. Note that there is a portion of this input file in control of the cooridnate dynamics with thermostat and temperature preferences. These dynamics preferences are controlled by SANDER and will be overridden by SANDER during runtime. It's advisable that these preferences be removed from the input.ceon file to avoid any confusion.
 
    #+end_src
 ** THREE  Energy Calculations                                       :ignore:
    #+begin_src latex
-When using AM1, SANDER expands the QM charge density into the STO-6G minimal basis set and treates the MM atoms as point charges, thereby providing the full electrostatic interaction between the QM and MM atoms. \cite{walker2008}
+                          With the coordinates at t=0, NEXMD can calculate the energies in a similar method as described in the Theretical chapter ?. 
+                          NEXMD is capabale of performing these energy calculations using TDHF, TDDFT, or CIS. In this work we focus on the use of CIS. We can also perfomed these calculations using hartree-fock orany of the semi-empiical methods available in SQM, However, AM1 has been shown to provide very reasonable computational cost to accuracy for our systems of interest and is the de-factor semi-empirical hamiltonian for organic conjugated molecules such as the one we will analyze in chapters 4 and 5.\cite{silva2010benchmark}
+                          An analysis of parameter choices can be found in previous literature.\cite{nelson2012nonadiabatic}
+                          During the ground state energy and density caclulations NEXMD heavily relies and the routines already available by SQM, with slight modifications usually for referencing data later and to add implicit solvents and external electric fields.
+                          These calculations follow the same principles as descriibed the QM/MM section of the theoretical section. However, unlike that section, we do not properly account for the QM charges during the QM-ewald calculation due to it requring multiple iteration of both the ground state density function as well as the excited state energy calculations. Further details of this problem as well as a recommended solution can be found in the future works section of Chapter 6.
+                          \cite{walker2008}
+                          For a general timestep QM/MM interaction will be added to the density matrix as follows: 
+                          \begin{enumerate}
+                          \item Calculate the MM ewald potentials using the classical charges from the MM atoms.
+                          \item Construct the Hamiltonian matrix as if the QM region was in vacuum.
+                          \item Add the one electron terms for the interaction between QM atoms and the MM atoms within the cutoff to the Hamiltonian. 
+                          \item Within the SCF routine, copy the Hamiltonian to the fock matrix, and add the QM/MM two-electron integrals. When using AM1, SANDER expands the QM charge density into the STO-6G minimal basis set and treates the MM atoms as point charges, thereby providing the full electrostatic interaction between the QM and MM atoms.
+                          \item Calculate the QM ewald potential using the iteration’s Mulliken charges, then add the ewald potentials for both QM and MM atoms to the Fock Matrix.
+                          \item The SCF procedure continues until convergence resulting in a density matrix that incorporates the presence of solvents. 
+                          \end{enumerate}
+                          With the ground state density calculated, a davidson routine is called in order to calculated the excited state energies.
+                          The QM-QM forces are then determined using equation ? and ?.
+                          With the forces calculated, SANDER then propogates the velocities by a single timestep. The coordinates are not yet adjusted since these velocities could be changed by NEXMD. With the accelerations and velocities passed in by SANDER, NEXMD then chooses to hop using the Tully fewest switches surface hopping technique as described in chapter 2. If a hop is decided, the the velocities are adjusted in the direction of the nonadiabatic coupling vector in order to conserve energy. If no hop is decided then these velocities remain unchanged. The new velocities are sent back to SANDER. At no point does sander know of the adiatic state. SANDER simply propogates based on the forces and velocities sent to it. These new velocities are then used by sander to propogate the atomic coordinates. As of now, SANDER believes it has completed an entire timestep. SANDER generates a new set of thermostat parameters and forwards the new coordinates and parameters to NEXMD. NEXMD then checks to see if any potential surfaces could have performed an trivial crossing, and accounts for any switches that may have occured by looking at the overlaps of the potential energy surfaces before and after as described in previous works.\cite{nelson2012nonadiabatic} With the PES properly accounted for, NEXMD then propogates the coefficients numerically using the Runge-Kutta-Verner fifth-order and sixth-order method by describing the coefficients as
+                 \begin{align}
+                 c_\alpha &= \sigma_\alpha e^{i\theta \alpha}\\
+                 \dot{\sigma}_\alpha &= - \sum_{\beta} \sigma_{\beta} \cos(\theta_{\beta} - \theta_{\alpha}) \dot{\mathbf{R}} \cdot \mathbf{d_{\alpha\beta}}\\
+                 -\hbar \sigma_\alpha \dot{\theta}_\alpha &= \sigma_\alpha \text{E}_\alpha + \hbar \sum_\beta \sigma_\beta \sin(\theta_{\beta} - \theta_\alpha)\dot{\mathbf{R}} \cdot \mathbf{d_{\alpha\beta}}
+                 \end{align}
+                 We use code developed by Hull, Enight, and Jackson to perform this calculation.\cite{hull1996runge}
+                          These coupled equations to propogate the quantum coefficients require a smaller timestep than what is necessary for nuclear coordinate propogation and thus we seperate timesteps into smaller quantum timesteps. We use a procedure developed by Tully and Hammes-Schiffer to determine the chance of performing a hop over multiple timesteps. \cite{hammes1994proton}
+                          In their work they showed that
+              \begin{equation}
+              g_{\alpha\beta} = \frac{\sum_j^{N_q} b_{\beta\alpha}(j) \delta t}{a_\alpha\alpha}
+              \end{equation}
+              Whre the number of intermidiary quantum steps per classical propogation of the nuclear coordinates is described by \(N_q\).
+              In our work, we use 4 quantum time steps for every classical time step. Work has be done to demonstrate a reasonable number to use for these paramters. \cite{nelson2012nonadiabatic} 
+              During each of these quantum timesteps, the energies and nonadiabtic coupling terms must be calculated based on an interpolation of the nuclear coordinates between the two classical timesteps.
+      In order to perform this interpolation the coordinates, velocities, accelerations, and theromostat parameters must be passed to NEXMD.
+            However, this transfer is not very straight forward since NEXMD uses a different time step procedure than SANDER. In SANDER, time step include the following if performed using Newtonian dynamics. When SANDER begins it first calculates a single point calculation and uses the calculated forces to propogate the velocities 1/2 a time step (\(\delta\)) back. Then in its main loop it performs a energy and force calculation at time t=0, then uses those accelerations to propogate the v(t=-\(\delta\)/2) a single timestep, making it the average velocity between t=0 and t=\(\delta\). It then moves the coordinates a timestep using this average velocity. This is a very common precedure with the coupled equations shown in equations \ref{eq:SANDERNewtonian} and \ref{eq:SANDERNewtonian2}.
 
-      For a general timestep QM/MM interaction will be added to the density matrix as follows: 
-   \begin{enumerate}
-      \item Calculate the MM ewald potentials using the classical charges from the MM atoms.
-      \item Construct the Hamiltonian matrix as if the QM region was in vacuum.
-      \item Add the one electron terms for the interaction between QM atoms and the MM atoms within the cutoff to the Hamiltonian.
-      \item Within the SCF routine, copy the Hamiltonian to the fock matrix, and add the QM/MM two-electron integrals.
-      \item Calculate the QM ewald potential using the iteration’s Mulliken charges, then add the ewald potentials for both QM and MM atoms to the Fock Matrix.
-      \item The SCF procedure continues until convergence resulting in a density matrix that incorporates the presence of solvents. 
-   \end{enumerate}
-   #+end_src
-** THREE Calulation of the Forces                                   :ignore:
-   #+begin_src latex
-After NEXMD performs the SCF procedure and calculates the QM-QM interaction forces as shown in equations \ref{NEXMDForces}, the new interface then adds the QM-MM interactions to both the QM and MM atoms.
-The rest of the forces on the MM atoms are calculated using the standard peridodic boundary condition force field dynamics as supplied by SANDER.
-   #+end_src
-** ONE Check for trivial Crossings
-#+begin_src latex
+           \begin{align}
+             v(\delta/2) &= v(-\delta/2) + a(0)\delta \label{eq:SANDERNewtonian}\\
+             x(\delta) &= x(0) + v(\delta/2) \delta \label{eq:SANDERNewtonian2}
+           \end{align}
 
-#+end_src
+           NEXMD peforms and equivalent algorithm but in a slightly different way. NEXMD calculates the energies and forces at t=0, it then propagates the coordinates an entire timestep and the velocities a single timestep. It then calculates the acceleration for t=1 using the coordinates at t=1 and adjusts the velocities for the last half a timestep using these velocities.
+           \begin{align}\label{eq:NEXMDNewtonian}
+             x(\delta) &= x(0) + v(0)\delta + 1/2 a(0) \delta^2 \\
+             v(\delta/2) &= v(0) + a(0)\delta/2\\
+             v(\delta) &= v(\delta/2) + a(\delta)\delta/2
+           \end{align}
+           Using Newtonian dynamics, the only thing that needs to be controled is that the velocities between time steps are never calculated by SANDER and thus the half step velocities needed by NEXMD for the calculations of the nonadiabatic coupling vectors and for the interpolation of the QM steps needs to be the average of the old and new velocities in SANDER. When using the Langevin theromostat, the generated random variables for the thermostat generated by AMBER needs to be transferred to NEXMD for the QM interopolation.\cite{paterlini1998constant} In AMBER, langevin thermostat is accounted for in the coordinate propogation.
+
+           \begin{align}
+             x(\delta) &= x(0) + v(\delta/2) t\\
+             x(\delta) &= x(0) + \left(v(-\delta/2) c_e + (F(0) + R(0)) \frac{c_i \delta}{m} \right) \delta
+           \end{align}
+           Where \(F(0)\) is the force at t=0, m the mass of the atom, and \(R(0)\) a random perturbation generated by a gaussian distribution dependent on the temperature, atom mass, timestep and friction coefficient. 
+           The coefficients \(c_e\) and \(c_i\) are based of the 
+           \begin{align}
+             c_e &= 1 - \frac{\gamma\delta}{2}\\
+             c_e &= \frac{1}{1 + \frac{\gamma \delta}{2}}\\
+           \end{align}
+           where \(\gamma\) is the friction coefficient.
+           In NEXMD, the langevin equations are also included in the coordinate propogation but as
+           \begin{align}
+             x(\delta) = x(0) + (v'(0)\chi_v + a'(0)\chi_a + P_r)
+           \end{align}
+           where \(\chi_v\), \(\chi_a\), and \(P_r\) are the fricition, intertia, and stochastic forces repectively.
+           The prime indicates the variable is in atomic units as apposed to the units used in SANDER.
+
+           This can be expanded to 
+           \begin{align}
+             x(\delta) = x(0) + ((v'(-\frac{\delta}{2}) + \frac{1}{2}a'(0)\chi_v + V_r(-\delta))\chi_v + a'(0)\chi_a + P_r)
+           \end{align}
+           where \(V_r\) is a random perturbation to the velocities.
+           \(\chi_v\) and \(\chi_a\) are non-random variable and can be generated by NEXMD by feeding NEXMD the langevin friction coefficient \(\gamma\).
+           With a bit of algebra, the convertion from SANDER to NEXMD for the random variable can be derived to be
+           \begin{align}
+             V_r &= \frac{1}{2}(v(\delta/2) - v(-\delta/2))\nu_{an} - \frac{1}{2}a'(0)\chi_v\\
+             P_r &= v(\delta/2)) - \left( \frac{1}{2} (v(-\delta/2) + v(\delta/2))\nu_{an}\chi_v + a'(0)\chi_a \right)
+           \end{align}
+           where \(\nu_{an} \approx 9.35E-4\) is a unit convertion from SANDER to NEXMD.
+
+              Solvents are accounted for as modifications to the fock operator that leads to solvent being included in the final density function as described in section . The QM/MM forces are inconsequetion. The nonadiabatic coupling terms are calculated numerically using the transitions in the Fock Matrics that has been adjusted for the solvents. Once the quantum coefficients are propogated, the cycle continues with the calculations of the QM/MM energies.
+   #+end_src
 ** ONE Benchmarks [0/4]
    #+begin_src 
 \section{Benchmarks}

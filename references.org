@@ -524,6 +524,10 @@
   - Show that the S1 state to be two photon allowd for strong correlation and dipole allowd with weak correlations.
 - [[~/Documents/paper2/papers/fernandez2012identification.pdf]]
   - Paper on trivial crossings
+- [[~/Documents/paper2/papers/hull1996runge.pdf]]
+  - Review paper on the Runge-Kutta numerical integration
+- [[~/Documents/paper2/papers/hammes1994proton.pdf]]
+  - Paper describing how to perfrom molecular dynamics with quantum transitions
   
 
 
