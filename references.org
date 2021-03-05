@@ -524,11 +524,31 @@
   - Show that the S1 state to be two photon allowd for strong correlation and dipole allowd with weak correlations.
 - [[~/Documents/paper2/papers/fernandez2012identification.pdf]]
   - Paper on trivial crossings
+  - According to the  von Neumann-Wigner theorem,  energy  between electronic states with the same symmetry in polyatomic molecules may cross unavoidedly.
 - [[~/Documents/paper2/papers/hull1996runge.pdf]]
   - Review paper on the Runge-Kutta numerical integration
 - [[~/Documents/paper2/papers/hammes1994proton.pdf]]
   - Paper describing how to perfrom molecular dynamics with quantum transitions
-  
+- [[~/Documents/paper2/papers/bredas1994influence.pdf]]
+  - Paper describing how to substituents could change the properties of PPV
+  - Shows that the energies of the och3 derivatives have lower energies than ppv alone
+  -  The workfunctions of the LEDs are Calcium and Aluminum
+- [[~/Documents/paper2/papers/partridge1996high.pdf]]
+   - Describes how a sensor of could be created using Conjugated Organic Polymers
+- [[~/Documents/paper2/papers/friend1997electronic.pdf]]
+  - Another papers on how PPV can be used for LEDs
+- [[~/Documents/paper2/papers/history_of_photochemistry.pdf]]
+  - Paper on the history of photochemistry
+- [[~/Documents/paper2/papers/priestley1772observations.pdf]]
+  - Super old paper describing the discovery of oxidation
+- [[~/Documents/paper2/papers/pope193electroluminescence.pdf]]
+  - Paper showing electroluminescence in organic crystal
+**  Papers to read for chapter 6 from sebastian
+- [[~/Documents/paper2/papers/miller2002ultrafast.pdf]]
+- [[~/Documents/paper2/papers/lee201electronic.pdf]]
+- [[~/Documents/paper2/papers/robotham2013ultrafast.pdf]]
+- [[~/Documents/paper2/papers/philip2020directing.pdf]]
+- [[~/Documents/paper2/papers/wallin2010state.pdf]]
 
 
 
