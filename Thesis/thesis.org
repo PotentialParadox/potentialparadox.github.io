@@ -73,8 +73,8 @@
     %% \include{introduction}% Modified from old template.
     %% \include{theoreticalMethods}% Modified from old template.
     %% \include{implementationDetails}% Modified from old template.
-    \include{adiabatic}% Modified from old template.
-    %% \include{nonadiabatic}% Modified from old template.
+    %% \include{adiabatic}% Modified from old template.
+    \include{non-adiabatic}% Modified from old template.
     %% \include{conclusion}% Modified from old template.
 
     % \begin{algorithm}% Example showing the weird "algorithm" environment works...
@@ -163,7 +163,7 @@ He graduated with his PhD in 2021.
   :END:
   #+begin_src latex
   We present a method to link the Non-adiabatic-Excited-state Molecular Dynamics (NEXMD) package to the SANDER package supplied by AMBERTOOLS, to provide excited-state adiabatic and nonadiabtic QM/MM simulations.
-  NEXMD is a computational package particularly developped to perform simulations of the photoexcitation and subsequent nonadiabatic electronic and vibrational energy relaxation and redistribution in large multichormophoric conjugated molecules, a process that involves several coupled electronic excited states.
+  NEXMD is a computational package particularly developped to perform simulations of the photoexcitation and subsequent non-adiabatic electronic and vibrational energy relaxation and redistribution in large multichormophoric conjugated molecules, a process that involves several coupled electronic excited states.
   In this work, we use it solely for its capability to perform excited-state adiabatic dynamics.
   In this report, we first describe the basic methodology behind the code, where we briefly describe the general principals behind excited state adiabatic dynamics simulations performed in NEXMD and the QM/MM calculations performed by SANDER.
   We outline the flowchart connecting them in order to optimize their exchange allowing excited state adiabatic dynamics simulations of large conjugated materials in explicit solvent.
@@ -202,7 +202,7 @@ The effects of light on materials' physical properties have maintained humanity'
       - LEDs
       - rhodopsin \cite{weingart2012modelling}
       - Optical Sensors
-      - Broad academic interest \cite{tavernelli2015nonadiabatic,nelson2020non}
+      - Broad academic interest \cite{tavernelli2015non-adiabatic,nelson2020non}
     :END:
 #+begin_src latex
 The ability to model these photo-energetic non-adiabatic dynamics has recently become more feasible.
@@ -498,25 +498,27 @@ These configuration differences provide useful features to study the fast and sl
 The local photochemical properties of charge transfer probes with hydrogen bonding sites such as a nitro group are sensitive to solvents' hydrogen-bonding properties.  \cite{marini2010solvatochromism}
 Previous research has also shown that exciton motion coherency along PPV is heavily dependent on the solvent. \cite{collini2009coherent}
 Research also suggests that efficiencies in the exciton migration within PPV derivatives could be improved by selecting solvents that would promote extended conformations.\cite{bredas2009excitons}
-For these reasons, we choose for our analysis the PPV oligomer PPV\(_3\)-NO\(_2\) shown in figure \ref{fig:PPV\(_3\)-NO\(_2\)}
+For these reasons, we choose for our analysis the PPV oligomer PPV\(_3\)-NO\(_2\) shown in figure \ref{fig:PPV3NO2}
+
+PPVO oligimoner are derivatives of PPV that allow tunable emission spectra across the optical spectrum. (cite:sifain2018photoexcited:85,86)
 #+end_src
 ** THREE Overview of whats covered in sequential Chapters.
    :LOGBOOK:
    - Note taken on [2021-01-30 Sat 11:22] \\
-     - In chapter 2 we go into the theoretical methods employed to simulated the previously discossed processes.
-     - In chapter 3 describe discuss the computation details in our implementationdescribe discuss the computation details in our implementation.
+     - In Chapter 2 we go into the theoretical methods employed to simulated the previously discossed processes.
+     - In Chapter 3 describe discuss the computation details in our implementationdescribe discuss the computation details in our implementation.
      - In chapter 4 we apply our methodology to investigate the steady state absorption and fluorescence experienced by PPV3NO2 in various solvents. We also investigate the change in behavior caused by including solvents in the QM region.
      - In chapter 5 we apply the non-adiabatic methodoly to analyze the effects included QM/MM solvents have the non-adiabatic relaxation of PPV3NO2
    :END:
 #+begin_src latex
 \section{Overview}
-In chapter 2, we discuss the theoretical methods employed to simulate the previously discussed processes.
+In Chapter 2, we discuss the theoretical methods employed to simulate the previously discussed processes.
 We begin with the fundamentals theories behind computation chemistry, starting with the Shrodinger equation.
 We introduce the reader to the common approximations employed in solving this equation, including the Born-Oppenheimer approximation, Hartree-Fock method, and Configuration Interactions.
 We then demonstrated how solvent could be included in the simulation through the use of QM/MM.
 Finally, we discuss how we handle the breaking of the Born-Oppenheimer approximation using Tully's Fewest-Switched Surface Hopping method.
 
-In chapter 3, we discuss the computation details of our implementation.
+In Chapter 3, we discuss the computation details of our implementation.
 We introduce the reader to the molecular simulation packages AMBER, SANDER, and NEXMD, and discuss how we call NEXMD through SANDER.
 A quick overview of the available features and a simple call is demonstrated. Here, we discuss some of the finer details, such as timings and locations, of the NEXMD calls in SANDER.
 
@@ -1020,7 +1022,7 @@ but we restrict our use to AM1 CIS as is commonly applied in the use of the NEXM
     We then add the QM-MM interaction forces using the density matrix from current state \(\alpha\) to return the final QM forces. The reciprical of these forces are added to the MM atoms which otherwise derive their forces from classical force fields.
     #+end_src
 
-*** THREE NonAdiabatic Calculations [5/5]                          :ignore:
+*** THREE Non-Adiabatic Calculations [5/5]                          :ignore:
     #+begin_src latex
     \section{Non-Adiabatic Dynamics}
     #+end_src
@@ -1072,7 +1074,7 @@ but we restrict our use to AM1 CIS as is commonly applied in the use of the NEXM
                  i\hbar \dot{c_i} &= \sum_j \left(c_j \left< \psi_i | \mathbf{H} | \psi_j \right> - i\hbar c_j \left< \psi_i | \dot{\psi}_j \right> \right)
                \end{align}
                where we now made the sum explicit.
-               The second term on the right \(\left< \psi_i | \dot{\psi}_j \right>\) is referred to as the nonadiabatic adiabatic coupling and represents the coupling between states i and j.
+               The second term on the right \(\left< \psi_i | \dot{\psi}_j \right>\) is referred to as the non-adiabatic adiabatic coupling and represents the coupling between states i and j.
                This can be rewritten as 
                \begin{equation} \label{eq:tullyS3}
                  \left<\psi_i\right|\dot{\psi}_j\left.\right>=\left<\psi_i\right|\frac{d\mathbf{R}}{dt}\frac{d}{d\mathbf{R}}\left|\psi_j\right>=\dot{\mathbf{R}}\cdot\mathbf{d}_{ij}(\mathbf{R})
@@ -1089,12 +1091,12 @@ but we restrict our use to AM1 CIS as is commonly applied in the use of the NEXM
                  \mathbf{d}_{ij} = \frac{\text{Tr}(\vec{\nabla}\mathbf{F}(\bm{\rho}_{00})\bm{\rho}_{ij})}
                         {\Omega_i - \Omega_j}.
                \end{equation}
-          A similar method is performed to show that the nonadiabatic coupling term
+          A similar method is performed to show that the non-adiabatic coupling term
      \begin{equation}\label{eq:NACouplingTerm}
      \dot{\mathbf{R}} \cdot \mathbf{d}_{ij} = \frac{\text{Tr}(\mathbf{F}^t(\bm{\rho}_{00}) \bm{\rho}_{ij})}{\Omega_i - \Omega_j},
      \end{equation}
      where the superscript \(t\) denotes the derivative in respect to time.
-               This formulation clearly demonstrates that the magnitude of nonadiabatic coupling is inversely proportional to the change in energies between the states.
+               This formulation clearly demonstrates that the magnitude of non-adiabatic coupling is inversely proportional to the change in energies between the states.
 
                To simplify notation we will let
                \begin{equation}
@@ -1132,13 +1134,13 @@ but we restrict our use to AM1 CIS as is commonly applied in the use of the NEXM
                  \frac{2}{\hbar}\Im\left(a_{kj}^*\mathbf{V}_{kj}\right) - 2\Re\left(a_{kj}^*
                  \dot{\mathbf{R}} \cdot \mathbf{d}_{kj}\right).
                \end{equation}
-               During dynamics, between timesteps, the system can only travel along adiabatic PES. 
+               During dynamics, between time-steps, the system can only travel along adiabatic PES. 
                These flows must thus be converted to a probability of a hop.
                The probability of a hop from state j to k can be described as
                \begin{equation} \label{eq:HopProbability}
-                 \text{P}_{j \rightarrow k} = \frac{\text{Population from j to k}}{\text{Original population of j}} = \frac{b_{kj} \Delta t}{a_{jj}}
+                 \text{P}_{j \rightarrow k} = \frac{\text{Population from j to k}}{\text{Original population of j}} = \frac{b_{kj} \Delta t}{a_{jj}}.
                \end{equation}
-               As can be seen from equations \ref{eq:HopProbability} and \ref{eq:tullyb2a}, the chance to hop is linearly dependent on the nonadiabatic coupling term which we found earlier to increase with smaller energy differences or larger nuclear velocities. 
+               As can be seen from equations \ref{eq:HopProbability} and \ref{eq:tullyb2a}, the chance to hop is linearly dependent on the non-adiabatic coupling term which we found earlier to increase with smaller energy differences or larger nuclear velocities. 
                These findings are similar to that found by Zener in the 1930s where the probability of a hop between two diabatic states was given by
                \begin{align}
                  P_{j \rightarrow k} &= e ^{-2\pi \Gamma}\\
@@ -1185,24 +1187,6 @@ but we restrict our use to AM1 CIS as is commonly applied in the use of the NEXM
    #+begin_src latex
 \section{Introduction to AMBER and NEXMD}
    #+end_src
-*** THREE Description of NEXMD                                      :ignore:
-    :LOGBOOK:
-    - Note taken on [2021-01-13 Wed 10:05] \\
-    - Has been used in numerous studies
-    - Study of chorophyll cite:zheng2017photoinduced
-    - Orgaic Conjugate Molecules cite:nelson2014nonadiabatic 
-    - \(\pi\) Conjugated Macrocycles cite:alfonso2016interference 
-    - NEXMD designed to simulate ultra-fast non-adiabatic behavior
-    - Developed by the Tretiak lab in Los Alamos
-    - Primarily used in implicit solvents
-    :END:
-    #+begin_src latex
-    NEXMD, currently being developed by the Tretiak lab in los Alamos, has a proven track record of performance on the stimulation of ultra-fast non-adiabatic behaviors.
-    It’s ability to solve state coupling equations on-the-fly has found great utility for systems with hundreds of atoms.
-    Numerous studies have implemented the method for research into topics including the study of chlorophyll organic conjugated molecules, and pi conjugated macrocycles. \cite{zheng2017photoinduced,nelson2014nonadiabatic,alfonso2016interference,wu2006exciton,Ondarse-Alvarez2016} 
-    Such studies with NEXMD have been limited to implicit solvents.
-    No method to provide NEXMD with QM/MM capabilities have yet to be implemented.
-    #+end_src
 *** THREE Description of AMBER                                      :ignore:
     :LOGBOOK:
     - AMBER is primarily known for force-field classica dynamics but can do much more.
@@ -1215,10 +1199,31 @@ but we restrict our use to AM1 CIS as is commonly applied in the use of the NEXM
     - Proven record for doing QM/MM
     :END:
     #+begin_src latex
-	Amber is primarily known as a classical force-field molecular dynamics package.
-	It’s a massive project maintained by people across the globe that's been designed to work with very large systems ranging in the tens of thousands of atoms. \cite{case2020a}
-	Amber is capable of a huge range of simulations from replica exchange to study ph-dependent conformation chagnges to QM/MM umbrella sampling using nudge elastic bands. \cite{cruzeiro2020exploring, ghoreishi2019fast,sarkar2019ph}
-	Most importantly for this research, it has a proven track record of doing QM/MM solvent-solute simulations using periodic boundary conditions.
+    AMBER is primarily known as a classical force-field molecular dynamics package.
+    It's a massive project maintained by people across the globe that's been designed to work with extensive systems ranging in the tens of thousands of atoms. \cite{case2020a}
+    AMBER can use a huge range of simulations from replica-exchange to study ph-dependent conformation changes to QM/MM umbrella sampling using nudge elastic bands. \cite{cruzeiro2020exploring, ghoreishi2019fast,sarkar2019ph}
+    AMBER is a package that contains many smaller programs. One of these programs, SANDER, originally an acronym for Simulated Annealing with Nmr-Derived Energy Restraints, is one of the main engines for running molecule dynamic simulations. 
+    Most importantly for this research, it has a proven track record of doing QM/MM solvent-solute simulations using periodic boundary conditions.
+    It has been designed to perform the QM/MM calculations using various libraries specializing in QM calculations as a backend. But by default, it uses the Semi-empirical Quantum Mechanic (SQM) package. These libraries only need to find the forces and energies of the QM region. Note that these packages will still need to know the presence of MM atoms to treat them as external point charges. SANDER will perform the rest of the QM/MM interaction calculations as well as the coordinate propagation. No work has yet been done to allow excited-state dynamics to be performed with SANDER.
+    #+end_src
+*** THREE Description of NEXMD                                      :ignore:
+    :LOGBOOK:
+    - Note taken on [2021-01-13 Wed 10:05] \\
+    - Has been used in numerous studies
+    - Study of chorophyll cite:zheng2017photoinduced
+    - Orgaic Conjugate Molecules cite:nelson2014non-adiabatic 
+    - \(\pi\) Conjugated Macrocycles cite:alfonso2016interference 
+    - NEXMD designed to simulate ultra-fast non-adiabatic behavior
+    - Developed by the Tretiak lab in Los Alamos
+    - Primarily used in implicit solvents
+    :END:
+    #+begin_src latex
+    NEXMD, currently being developed by the Tretiak lab in Los Alamos, has a proven track record of performance on stimulating ultra-fast non-adiabatic behaviors.
+    Its ability to solve the state coupling equations on-the-fly has found great utility for systems with hundreds of atoms.
+    Numerous studies have implemented the research method into topics, including the study of chlorophyll organic conjugated molecules and \(\pi\) conjugated macrocycles.  \cite{zheng2017photoinduced,nelson2014nonadiabatic,alfonso2016interference,wu2006exciton,Ondarse-Alvarez2016}
+    Such studies with NEXMD have, thus far, been limited to implicit solvents.
+    No method to provide NEXMD with QM/MM capabilities have yet to be implemented.
+    The current iteration of NEXMD relies on a modified version of the same SQM library that SANDER uses as its backend. This allows NEXMD to more naturally share state with SANDER and make it a prime candidate for SANDER's gaining excited-state and non-adiabatic dynamics capabilities.
     #+end_src
 ** THREE Swim Lane Flow Chart Figure                                 :ignore: 
    #+begin_src latex
@@ -1227,7 +1232,7 @@ but we restrict our use to AM1 CIS as is commonly applied in the use of the NEXM
    \begin{minipage}[c]{\textwidth}
      \centering
      \includegraphics[width=0.7\linewidth]{../Paper2/scripted_diagrams/nasqm_overview.png}
-     \captionof{figure}{Swim-lane diagram describing the common timestep of the SANDER-NEXMD interface.}
+     \captionof{figure}{Swim-lane diagram describing the common time-step of the SANDER-NEXMD interface.}
      \label{scheme:nasqm}
    \end{minipage}\bigskip
    #+end_src
@@ -1237,17 +1242,16 @@ but we restrict our use to AM1 CIS as is commonly applied in the use of the NEXM
          common time-step that occurs within the SANDER-NEXMD
          interface. With the coordinates provided by SANDER, NEXMD will
          calculate and return to SANDER the energies and forces on the QM
-         atom and the excited state density. With these results, SANDER
+         atom and the excited-state density. With these results, SANDER
          performs the final section of the QM/MM procedure as well as
          determines the forces due to classical force fields to derive
-         the accelerations and velocities for the classical time
-         step. NEXMD then decides whether to perform a state transition
+         the accelerations and velocities for the classical time-step. NEXMD then decides whether to perform a state transition
          using the fewest switches algorithm, adjusting velocities as
          needed to conserve energy. SANDER then propagates the nuclear
          coordinates and generates a new set of random thermostat
          parameters. NEXMD then checks if any trivial crossing occurs
          within the potential energy surfaces. Once proper accounting
-         between the PESs and the energy order is determined, NEXMD then
+         between the PESs and the energy order is determined, NEXMD
          propagates the quantum coefficients.
    #+end_src
 ** THREE Collect QM coordinates, charges, velocitie and theromostat parameters :ignore:
@@ -1270,7 +1274,7 @@ parameter, and sander control files. An example of a SANDER ctrl file is shown i
        ntt=3,
        gamma_ln=20.0,
        nstlim=2000,
-       dt=0.0005,
+       dt = 0.0005,
        ifqnt=1,
      /
      &qmmm
@@ -1283,11 +1287,11 @@ parameter, and sander control files. An example of a SANDER ctrl file is shown i
    \bigskip
    \setlength\parindent{24pt}
 This file contains all the information regarding molecular dynamics, excluding most of the QM
-calculations and all of the nonadiabtic parameters and a standard input file to the AMBER
+calculations and all of the nonadiabtic parameters and is a standard input file to the AMBER
 molecular dynamics programs.
 
-To use NEXMD, the user will include the flag NAE under the QMMM section of the input
-file. This flag causes SANDER to call the NEXMD versions of the QMMM force calculations instead of the default SQM routines. With the NEXMD force routine called, NEXMD will then look for the primary input file used in the stand-alone version of NEXMD, the input.ceon file. An example of this file is included below.
+To use NEXMD, the user will include the flag NAE under the QM/MM section of the input
+file. This flag causes SANDER to call the NEXMD versions of the QM/MM force calculations instead of the default SQM routines. With the NEXMD force routine called, NEXMD will then look for the primary input file used in the stand-alone version of NEXMD, the input.ceon file. An example of this file is included below.
 #+end_src
 *** Inputceon file
 #+begin_src latex
@@ -1308,8 +1312,8 @@ file. This flag causes SANDER to call the NEXMD versions of the QMMM force calcu
     !***** General Parameters
     natoms=12, ! Number of atoms
     rnd_seed=19345, ! Seed for the random number generator bo_dynamics_flag=0, ! (0) Non-BO or (1) BO [1]
-    exc_state_init=2, ! Initial excited state (0 - ground state) [0]
-    n_exc_states_propagate=3, ! Number of excited states [0]
+    exc_state_init=2, ! Initial excited-state (0 - ground state) [0]
+    n_exc_states_propagate=3, ! Number of excited-states [0]
     !***** Dynamics Parameters
     n_quant_steps=4, ! Number of quantum steps for each classical step [4]
     num_deriv_step=1.0d-3, ! Displacement for numerical derivatives, A [1.0d-3]
@@ -1326,7 +1330,7 @@ file. This flag causes SANDER to call the NEXMD versions of the QMMM force calcu
     out_data_steps=1, ! Number of steps to write data [1]
     out_coords_steps=10, ! Number of steps to write the restart file [10]
     out_data_cube=0, ! Write (1) or do not write (0) view files to generate cubes [0]
-    out_count_init=0, ! Initial count for view files [0]
+    out_count_init = 0, ! Initial count for view files [0]
 &endmoldyn
 &coord
     ! IGNORED
@@ -1347,24 +1351,23 @@ endveloc
 #+begin_src latex
 Users can find additional flags and their corresponding options in the
 NEXMD and AMBER documentation. The input.ceon file contains the
-majority of the flags and preferences for the QM Calculation and all
-the nonadiabatic choices. The namespace QMMM exists in both the SANDER
+majority of the flags and preferences for the QM calculation and all
+the non-adiabatic choices. The namespace QMMM exists in both the SANDER
 ctrl file and the NEXMD input.ceon file. Both NEXMD and SANDER read
 this namespace is into a shared struct due to NEXMD using SQM as a
 backend; however, their respective parsers will look for different
 flags. The SANDER parser will run first and will need the three flags
 shown in \ref{fig:ctrl} to call the NEXMD routines. The NEXMD parser
 for the QMMM namespace will then override anything else included in
-both input files’ QMMM namespace.
+both input files’ QM/MM namespace.
 
-No modification to the input.ceon file is necessary to run with the
-SANDER code from the stand-alone NEXMD code. However, the coordinates
+No modification to the input.ceon file is necessary from the stand-alone NEXMD code to run with SANDER. However, the coordinates
 and velocities included in the file will be ignored, since SANDER
 manages these data points. SANDER reads the coordinates and velocities
 through the standard SANDER parameter and coordinates files
 instead. Users can decide to leave these sections blank or to include
-them, whatever their convenience. The preferences include the number
-of QM steps between any classical timestep, the number of excited
+them, whatever their convenience. The preferences in the input.ceon file include the number
+of QM steps between any classical time-step, the number of excited
 states to include in the CIS calculation, the initial state, and the
 initial coefficients. Note that a portion of this input file, such as
 the thermostat preferences, relates to coordinate dynamics. SANDER
@@ -1374,27 +1377,27 @@ input.ceon file to avoid any confusion.
    #+end_src
 ** THREE  Energy Calculations                                       :ignore:
    #+begin_src latex
-   With the coordinates at time t=0, NEXMD can calculate the energies in
+   With the coordinates at time t = 0, NEXMD can calculate the energies in
    a similar method described in Chapter 2. NEXMD is capable of
    performing these energy calculations using Time-Dependent
    Hartree-Fock, Time-Dependent Density Functional theory, or CIS. In
    this work, we focus on the use of CIS. NEXMD can perform CIS
    calculations using any of the semi-empirical methods available in SQM.
    AM1 provides very reasonable computational cost to accuracy for our
-   systems of interest. It is the de-factor semi-empirical hamiltonian
+   systems of interest. It is the de-factor semi-empirical Hamiltonian
    for organic conjugated molecules such as the one we will analyze in
    chapters 4 and 5 \cite{silva2010benchmark} An analysis of parameter
    choices can be found in previous
    literature.\cite{nelson2012nonadiabatic} During the ground state
    energy and density calculations, NEXMD heavily relies on slightly
    modified SQM routines. These calculations follow the same principles
-   as described in the QM/MM section of the theoretical section. However,
+   as described in the QM/MM section of Chapter 2. However,
    unlike that section, we do not adequately account for the QM charges
    during the QM-Ewald calculation. Proper treatment would require
-   multiple iterations of both the ground state SCF and the excited state
+   multiple iterations of both the ground state SCF and the excited-state
    Davidson algorithm. Further details of this problem as well as a
    recommended solution can be found in the future works section of
-   Chapter 6. \cite{walker2008} For a general timestep QM/MM interaction
+   Chapter 6. \cite{walker2008} For a general time-step QM/MM interaction
    will be added to the density matrix as follows:
    \begin{enumerate}
    \item Calculate the MM Ewald potentials using the classical charges
@@ -1411,35 +1414,35 @@ input.ceon file to avoid any confusion.
      MM atoms.
    \item Calculate the QM Ewald potential using the iteration’s
      Mulliken charges, then add the Ewald potentials for both QM and
-     MM atoms to the Fock Matrix.
+     MM atoms to the Fock Matrix. Note that these Mulliken charges will be incorrectly from the ground state.
    \item The SCF procedure continues until convergence resulting in a
      density matrix that incorporates solvents.
    \end{enumerate}
 
    NEXMD uses this ground-state density to perform a Davidson
-   diagonalization routine to determine the excited state
+   diagonalization routine to determine the excited-state
    energies. NEXMD then calculates the QM-QM forces using Equation
    \ref{eq:NEXMDForces}. With the forces calculated, SANDER then
-   propagates the velocities by a single timestep. SANDER does not
+   propagates the velocities by a single time-step. SANDER does not
    yet adjust coordinates since NEXMD could still change these
    velocities in the upcoming steps.
 
    With the accelerations and velocities passed in by SANDER, NEXMD
    then chooses to hop using the Tully fewest switches surface
-   hopping technique described in chapter 2. If a hop occurs, NEXMD
-   adjusts the velocities in the nonadiabatic coupling vector’s
+   hopping technique described in Chapter 2. If a hop occurs, NEXMD
+   adjusts the velocities in the non-adiabatic coupling vector’s
    direction to conserve energy. If no hop occurs, then these
    velocities remain unchanged.  Decoherence is then managed based
    on user preferences. The current fully supported decoherence
-   methods are either break coherence at any successful hop or at
-   any time where there is a high nonadiabatic coupling. Users may
+   methods are to either break coherence at any successful hop or to break at
+   any time where there is a high non-adiabatic coupling. Users may
    also choose to ignore any decoherence correction.
 
    We want to emphasize that at no point does SANDER know of the
    multiple adiabatic states. SANDER simply propagates based on the forces and
    velocities sent to it. SANDER then uses these new velocities to update
-   the atomic coordinates, which completes its timestep. SANDER then
-   begins a new timestep, generates a new set of thermostat parameters,
+   the atomic coordinates, which completes its time-step. SANDER then
+   begins a new time-step, generates a new set of thermostat parameters,
    and forwards the new coordinates and parameters to NEXMD. NEXMD then
    checks whether any trivial crossing occurred between the potential
    energy surfaces by comparing the electron density matrices’ overlap.
@@ -1450,42 +1453,42 @@ input.ceon file to avoid any confusion.
    \begin{align}
      c_\alpha &= \sigma_\alpha e^{i\theta \alpha}\\
      \dot{\sigma}_\alpha &= - \sum_{\beta} \sigma_{\beta} \cos(\theta_{\beta} - \theta_{\alpha}) \dot{\mathbf{R}} \cdot \mathbf{d_{\alpha\beta}}\\
-     -\hbar \sigma_\alpha \dot{\theta}_\alpha &= \sigma_\alpha \text{E}_\alpha + \hbar \sum_\beta \sigma_\beta \sin(\theta_{\beta} - \theta_\alpha)\dot{\mathbf{R}} \cdot \mathbf{d_{\alpha\beta}}
+     -\hbar \sigma_\alpha \dot{\theta}_\alpha &= \sigma_\alpha \text{E}_\alpha + \hbar \sum_\beta \sigma_\beta \sin(\theta_{\beta} - \theta_\alpha)\dot{\mathbf{R}} \cdot \mathbf{d_{\alpha\beta}}.
    \end{align}
    NEXMD uses code developed by Hull, Enight, and Jackson to perform this calculation.\cite{hull1996runge}
-   Solvents are accounted for in the calculation of the Fock matrix during the ground-state SCF calculations. The nonadiabatic coupling terms are calculated numerically using Equation \ref{eq:NACouplingTerm}. The time derivative of the Fock matrix is determined using the differences of the elements between time-steps. This propagation does not require the calculation of intermediary forces.
-   Accurately calculating the nonadiabatic coupling terms requires a smaller time-step than what is necessary for nuclear coordinate propagation, and as such, we separate timesteps into smaller quantum timesteps. We use a procedure developed by Tully and Hammes-Schiffer to determine the chance of performing a hop over multiple timesteps.\cite{hammes1994proton}
+   Solvents are accounted for in the calculation of the Fock matrix during the ground-state SCF calculations. The non-adiabatic coupling terms are calculated numerically using Equation \ref{eq:NACouplingTerm}. The time derivative of the Fock matrix is determined using the differences of the elements between time-steps. This propagation does not require the calculation of intermediary forces.
+   Accurately calculating the non-adiabatic coupling terms requires a smaller time-step than what is necessary for nuclear coordinate propagation, and as such, we separate time-steps into smaller quantum time-steps. We use a procedure developed by Tully and Hammes-Schiffer to determine the chance of performing a hop over multiple time-steps.\cite{hammes1994proton}
    In their work, they showed that
    \begin{equation}
-     g_{\alpha\beta} = \frac{\sum_j^{N_q} b_{\beta\alpha}(j) \delta t}{a_\alpha\alpha}
+     g_{\alpha\beta} = \frac{\sum_j^{N_q} b_{\beta\alpha}(j) \delta t}{a_\alpha\alpha},
    \end{equation}
    where the number of intermidiary quantum steps per classical
    propogation of the nuclear coordinates is described by \(N_q\). We
-   would need to calculate n(n-1) nonadiabatic coupling terms had we
-   allowed for more than a single hop to occur between timesteps. With
-   reasonable timesteps, the likelihood of more than a single hop
+   would need to calculate n(n-1) non-adiabatic coupling terms had we
+   allowed for more than a single hop to occur between time-steps. With
+   reasonable time-steps, the likelihood of more than a single hop
    happening is extremely low; thus, we forbid the occurrence. This
-   restriction allows us to calculate only the nonadiabatic coupling from
-   the current excited state.
+   restriction allows us to calculate only the non-adiabatic coupling from
+   the current excited-state.
 
-   In our work, we use four quantum time steps for every classical time
+   In our work, we use four quantum time-steps for every classical time
    step. Previous works demonstrate this as a reasonable number to use
    for these parameters.\cite{nelson2012nonadiabatic} During each of
-   these quantum timesteps, NEXMD must calculate the energies and
-   nonadiabatic coupling terms. These calculations require interpolation
-   of the nuclear coordinates between the two classical timesteps. To
+   these quantum time-steps, NEXMD must calculate the energies and
+   non-adiabatic coupling terms. These calculations require interpolation
+   of the nuclear coordinates between the two classical time-steps. To
    perform this interpolation, SANDER must pass the coordinates,
    velocities, accelerations, and thermostat parameters to
    NEXMD. However, this transfer is not very straightforward since NEXMD
    uses a different time-step procedure than SANDER. For clarity, we will
    first only look at the case of Newtonian mechanics without
    excited-state transitions. When SANDER begins, it calculates a single
-   point calculation at time t=0 and uses the calculated forces to
+   point calculation at time t = 0 and uses the calculated forces to
    propagate the velocities (v) 1/2 a time-step (\(\delta\)) back. In its
    main loop, it reperforms the energy and force calculation at time
-   t=0. SANDER uses those accelerations to propagate v(t=-\(\delta\)/2) a
-   single timestep, making it the average velocity between t=0 and
-   t=\(\delta\). It then moves the coordinates a timestep using this
+   t = 0. SANDER uses those accelerations to propagate v(t=-\(\delta\)/2) a
+   single time-step, making it the average velocity between t = 0 and
+   t=\(\delta\). It then moves the coordinates a time-step using this
    average velocity. We show these coupled equations in equations
    \ref{eq:SANDERNewtonian} and \ref{eq:SANDERNewtonian2}.
 
@@ -1495,17 +1498,17 @@ input.ceon file to avoid any confusion.
    \end{align}
 
    NEXMD performs a theoretically equivalent algorithm but with numerical
-   differences. NEXMD calculates the energies and forces at t=0 to move
+   differences. NEXMD calculates the energies and forces at t = 0 to move
    the coordinates an entire time-step and the velocities a
-   half-time-step. It then calculates the acceleration for t=1 using the
-   coordinates at t=1 with which it uses to propagate the velocities the
+   half-time-step. It then calculates the acceleration for t = \(\delta\) using the
+   coordinates at t = \(\delta\) with which it uses to propagate the velocities the
    last half of the time-step.
    \begin{align}\label{eq:NEXMDNewtonian}
      x(\delta) &= x(0) + v(0)\delta + 1/2 a(0) \delta^2 \\
      v(\delta/2) &= v(0) + a(0)\delta/2\\
      v(\delta) &= v(\delta/2) + a(\delta)\delta/2
    \end{align}
-   NEXMD does not calculate the energies and forces at time t=0 twice as
+   NEXMD does not calculate the energies and forces at time t = 0 twice as
    performed in SANDER. The SCF calculation uses the previously
    calculated density matrix for its initial guess. Because SANDER will
    perform, at minimum, two iterations during an SCF calculation, the
@@ -1517,21 +1520,21 @@ input.ceon file to avoid any confusion.
 
    SANDER never calculates the velocities between time-steps.  As such,
    the half-step velocities needed by NEXMD for the calculations of the
-   nonadiabatic coupling vectors and the interpolation of the QM steps
+   non-adiabatic coupling vectors and the interpolation of the QM steps
    need to be the average of the old and new velocities in SANDER.
 
    Using the Langevin thermostat, NEXMD will also require the generated
    random variables for the thermostat generated by AMBER to determine
    the stochastic forces used in the QM
-   interpolation.\cite{paterlini1998constant} In AMBER, langevin
-   thermostat is accounted for in the coordinate propogation.
+   interpolation.\cite{paterlini1998constant} In AMBER, the Langevin
+   thermostat is accounted for in the coordinate propogation
    \begin{align}
      x(\delta) &= x(0) + v(\delta/2) t\\
-     x(\delta) &= x(0) + \left(v(-\delta/2) c_e + (F(0) + R(0)) \frac{c_i \delta}{m} \right) \delta
+     x(\delta) &= x(0) + \left(v(-\delta/2) c_e + (F(0) + R(0)) \frac{c_i \delta}{m} \right) \delta,
    \end{align}
-   where \(F(0)\) is the force at t=0, m the mass of the atom, and
+   where \(F(0)\) is the force at t = 0, m the mass of the atom, and
    \(R(0)\) a random perturbation generated by a gaussian distribution
-   dependent on the temperature, atom mass, timestep and friction
+   dependent on the temperature, atom mass, time-step and friction
    coefficient.  The coefficients \(c_e\) and \(c_i\) are based of the
    Langevin friction coefficient \(\gamma\)
    \begin{align}
@@ -1540,7 +1543,7 @@ input.ceon file to avoid any confusion.
    \end{align}
    In NEXMD, the Langevin equations are also included in the coordinate propogation but as
    \begin{align}
-     x(\delta) = x(0) + (v'(0)\chi_v + a'(0)\chi_a + P_r)
+     x(\delta) = x(0) + (v'(0)\chi_v + a'(0)\chi_a + P_r),
    \end{align}
    where \(\chi_v\), \(\chi_a\), and \(P_r\) are the fricition, intertia,
    and stochastic forces repectively.  The prime indicates the variable
@@ -1548,14 +1551,14 @@ input.ceon file to avoid any confusion.
 
    This can be expanded to 
    \begin{align}
-     x(\delta) = x(0) + ((v'(-\frac{\delta}{2}) + \frac{1}{2}a'(0)\chi_v + V_r(-\delta))\chi_v + a'(0)\chi_a + P_r)
+     x(\delta) = x(0) + ((v'(-\frac{\delta}{2}) + \frac{1}{2}a'(0)\chi_v + V_r(-\delta))\chi_v + a'(0)\chi_a + P_r),
    \end{align}
    where \(V_r\) is a random perturbation to the velocities.
    \(\chi_v\) and \(\chi_a\) are non-random variables and can be generated by NEXMD by feeding NEXMD the Langevin friction coefficient \(\gamma\).
    With a bit of algebra, the convertion from SANDER to NEXMD for the random variable can be derived to be
    \begin{align}
      V_r &= \frac{1}{2}(v(\delta/2) - v(-\delta/2))\nu_{an} - \frac{1}{2}a'(0)\chi_v\\
-     P_r &= v(\delta/2)) - \left( \frac{1}{2} (v(-\delta/2) + v(\delta/2))\nu_{an}\chi_v + a'(0)\chi_a \right)
+     P_r &= v(\delta/2)) - \left( \frac{1}{2} (v(-\delta/2) + v(\delta/2))\nu_{an}\chi_v + a'(0)\chi_a \right),
    \end{align}
    where \(\nu_{an} \approx 9.35E-4\) is a unit convertion from SANDER to NEXMD.
 
@@ -1564,75 +1567,40 @@ input.ceon file to avoid any confusion.
    #+end_src
 ** ONE Benchmarks [0/4]
    #+begin_src latex
-\section{Benchmarks}
+   \section{Benchmarks}
+       \noindent
+       \begin{multiFigure} 
+         \addFigure{0.45}{./Images/Timings/bo_npropogated}
+         \addFigure{0.45}{./Images/Timings/bo_nsolvents}
+         \captionof{figure}[Adiabatic timings]{Run time per time-step for PPV\(_3\)-NO\(_2\) with 3254 explicit methanol solvents during adiabatic dynamics.}
+         \label{fig:adiabaticTimings}
+       \end{multiFigure}\bigskip
+
+       \noindent
+       \begin{multiFigure} 
+         \addFigure{0.45}{./Images/Timings/nbo_npropogated}
+         \addFigure{0.45}{./Images/Timings/nbo_nsolvents}
+         \captionof{figure}[Non-adiabatic timings]{Run time per time-step for PPV\(_3\)-NO\(_2\) with 3254 explicit methanol solvents during non-adiabatic dynamics.}
+         \label{fig:nonadiabaticTimings}
+       \end{multiFigure}\bigskip
    #+end_src
 *** ONE Timings Table
     - Adiatatic and Non adiabatic timings
-    - 1st excited state with n = 2 3 4 5 10 20 state included
+    - 1st excited-state with n = 2 3 4 5 10 20 state included
     - also number of included solvents from 1 to 10
 #+begin_src latex
-    \begin{table}[H]
-      \caption{Benchmark average timings for 0 to 1 excited states}
-      \label{table:benchmarks1}
-      % \begin{center}
-      \begin{tabularx}{\textwidth}{XXXX}\hline
-N States & N Solvent & Adiabatic (ms/step) & NonAdiatic (ms/step)\\\hline
-0        & 0         &  1.34 & 2.89\\
-0        & 1         &  2.35 & 4.32\\
-0        & 3         &  3.14 & 8.85\\
-0        & 5         &  5.89 & 10.42\\
-0        & 10        & 11.87 & 13.32\\
-0        & 15        & 16.34 & 19.81\\
-1        & 0         &  1.34 & 25.22\\
-1        & 1         &  2.35 & 29.12\\
-1        & 3         &  3.14 & 32.98\\
-1        & 5         &  5.89 & 36.01\\
-1        & 10        & 11.87 & 40.33\\
-1        & 15        & 16.34 & 45.63\\\hline
-      \end{tabularx}
-    \end{table}
-
-    \begin{table}[H]
-      \caption{Benchmark timings for 3 5, and 10 excited states}
-      \label{table:benchmarks2}
-      % \begin{center}
-      \begin{tabularx}{\textwidth}{XXXX}\hline
-N States & N Solvent & Adiabatic (ms/step) & NonAdiatic (ms/step)\\\hline
-3        & 0         &  2.34 & 4.89\\
-3        & 1         &  3.35 & 8.32\\
-3        & 3         &  4.14 & 15.85\\
-3        & 5         &  7.89 & 20.42\\
-3        & 10        & 14.87 & 25.32\\
-3        & 15        & 19.34 & 38.81\\
-5        & 0         &  2.34 & 50.22\\
-5        & 1         &  3.35 & 58.12\\
-5        & 3         &  4.14 & 64.98\\
-5        & 5         &  7.89 & 72.01\\
-5        & 10        & 13.87 & 80.33\\
-5        & 15        & 20.34 & 90.63\\
-10        & 0         &  4.34 & 100.22\\
-10        & 1         &  6.35 & 120.12\\
-10        & 3         &  8.14 & 128.98\\
-10        & 5         &  14.89 & 144.01\\
-10        & 10        & 26.87 & 160.33\\
-10        & 15        & 40.34 & 180.63\\\hline
-      \end{tabularx}
-    \end{table}
 #+end_src
-*** ONE Chart for n_state timings
-*** ONE Chart for n_solvent timings
 *** ONE Description of the benchmark timings
 #+begin_src latex
-Figures \ref{table:benchmarks1} and \ref{table:benchmarks2} show the timings for the Sander-NEXMD interfaces. 
-Benchmarks consisted of a single PPV\(_3\)-NO\(_2\) molecule surrounded by 3423 CCl\(_4\) molecules.
-PPV\(_3\)-NO\(_2\) consistes of 50 atoms, and every additional CCL\l\(_4\) molecule adds an additional 5 atoms.
-A various number of solvent molecules are included in the QM region as shown in the second column.
-The adiabatic dynamics seems to increase on the order of O(3) for the number of solvents and O(1) for the number of states.
-This coincides to what we expect from the precedures found in configuration interactions.
-The order for the number solvents orresponds to what we expect using AM1 semi-empirical method.
-For non-adiabatic dynamics, the computation time seems to increase on the order of O(3) for the number of solvents and O(2) for the number of states.
-The computational order on the number of solvents does is near identical for to the adiabatic since the non-adiabatic dynamics perform the same AM1 calculations.
-The time order in the number of states however, differs because of the time used to calculate the non-adiabatic coupling vector and terms.
+Figures \ref{fig:adiabaticTimings} and \ref{fig:nonadiabaticTimings} show the timings for the Sander-NEXMD interfaces. 
+Benchmarks consisted of a single PPV\(_3\)-NO\(_2\) molecule surrounded by 3254 CH\(_3\)OH molecules.
+PPV\(_3\)-NO\(_2\) consists of 50 atoms, and every additional CH\(_3\)OH molecule adds 6 atoms for 19,754 atoms total.
+We vary both the number of solvents included in the QM region and the number of excited-states propagated.
+We performed these calculations on an AMD Ryzen 5 3600XT. Results are averaged over 8 trajectories. The initial coordinates and velocities for these 8 trajectories were sampled from a 320 ps ground state MM trajectory. Each datapoint shares these same initial conditions. Each trajectory ran for 30 0.5 fs time-steps, and the results are averaged over time.
+
+Non-adiabatic trajectories requires roughly an order of magnitude more computational time than the corresponding adiabatic cases. Increasing the number of states increases the computational costs nearly linearly, as expected for configuration interaction calculations. The computational costs for adding solvents into the QM region increase superlinearly, expected while using semi-empirical methods. Therefore, we are limited in the number of solvents we can include in the QM region and will need to be selective in which we choose.
+
+Results for ground-state QM/MM dynamics using the SANDER-NEXMD interface were identical to those with SANDER using the default SQM library with and without using a thermostat. This is due to NEXMD using this same SQM library for a backend. Results from the interface for non-adiabatic dynamics in vacuum are nearly identical to those produced from NEXMD alone. A minor difference occurs due to SANDER performing the initial energy and force calculations twice while NEXMD only performs it once. For single-point calculations, these results are identical.
 #+end_src
 * THREE Spectroscopic Analysis of PPV\(_3\)-NO\(_2\) [3/3]
   :PROPERTIES:
@@ -1648,14 +1616,14 @@ The time order in the number of states however, differs because of the time used
    NEXMD is an efficient program for the simulation of photoinduced
    dynamics of extended conjugated molecular systems involving manifolds
    of coupled electronic excited states over timescales extending up to
-   10s of picoseconds. \cite{sifain2018photoexcited, Bjorgaard2015,
+   tens of picoseconds. \cite{sifain2018photoexcited, Bjorgaard2015,
      case2020a, tretiak02_densit_matrix_analy_simul_elect,
      malone2020nexmd} It includes solvent effects using implicit
    models. These implicit solvents provide insight into the electrostatic
    forces. Still, explicit solvents should provide additional information
    about the quantum or steric effects, allowing the simulation of
    electron transfer processes due to the stabilization of charge
-   separation in the excited state.  Many multichromophoric molecular
+   separation in the excited state.\cite{woo2005solvent}  Many multichromophoric molecular
    systems are soluble in polar solvents such as water. Such simulations
    could provide sought-after insight into the effects of charged side
    groups on the structural sampling, structural rearrangement, and
@@ -1683,10 +1651,9 @@ The time order in the number of states however, differs because of the time used
    ~100 atoms at QM and 1000s at MM.  We apply our method to an
    analysis of a three-ring para-phenylene vinylene oligomer
    \((PPV_{3}-NO_{2})\).  We look at how explicit solvents affect \(PPV_{3}-NO_{2}\)'s
-   excited state structure as well as its absorption and emission
-   spectra.
+   absorption and emission spectra as well as its geometric structure.
    #+end_src
-** THREE Simulation Methods [4/4]
+** THREE Simulation Methods [0/4]
    - [ ] Add description of NMR Constraints
    #+begin_src latex
    \section{Simulation Methods}
@@ -1697,18 +1664,18 @@ The time order in the number of states however, differs because of the time used
    \begin{minipage}[c]{\textwidth}
      \centering
      \includegraphics[width=5in]{../Paper1/Images/trajectory_diagram/trajectories.pdf}
-     \captionof{figure}[Description of Adiabatic Dynamics]{Description of the Adiabatic Simulation}
+     \captionof{figure}{Description of the adiabatic simulation}
      \label{fig:adiabaticDynamics}
    \end{minipage}\bigskip
     #+end_src
 *** THREE Explanation of Simulation Diagram
     #+begin_src latex
    Figure \ref{fig:adiabaticDynamics} visually describes the layout of our simulations performed in vacuum, methanol, chloroform, and carbon tetrachloride.
-   First, we performed a 320ps molecular dynamics simulation at the ground state at 300K (NVT) using the General AMBER Force Field and periodic boundary conditions, as guided from previous convergence studies. \cite{silva2010benchmark}
-We set the classical time step to 0.5 fs, 300K (NVT), using a Langevin thermostat with friction constant 2 ps\(^{-1}\) throughout all simulations. The choices for these parameters were based on work aimed at optimizing these choices in NEXMD. \cite{nelson2012nonadiabatic}
-   128 evenly-spaced snapshots were then collected from the MM simulation and used as initial conditions for 128 individual 10 ps simulations using the semi-empirical AM1 QM/MM ground state Hamiltonian been shown to provide reasonable accuracy for the computational cost. \cite{silva2010benchmark} We use the data collected from these trajectories for the absorption calculation.
+   First, we performed a 320 ps molecular dynamics simulation at the ground state (S0) at 300K (NVT) using the General AMBER Force Field and periodic boundary conditions, as guided from previous convergence studies. \cite{silva2010benchmark}
+We set the classical time-step to 0.5 fs and use a Langevin thermostat with friction constant 2 ps\(^{-1}\) throughout all simulations. The choices for these parameters were based on work aimed at optimizing these choices in NEXMD. \cite{nelson2012nonadiabatic}
+   128 evenly-spaced snapshots were then collected from the MM simulation and used as initial conditions for 128 individual 10 ps simulations using the semi-empirical AM1 QM/MM ground state Hamiltonian that has been shown to provide reasonable accuracy for the computational cost. \cite{silva2010benchmark} We use the data collected from these trajectories for the absorption calculation.
    The resulting geometries of these ground-state QM/MM simulations were then used as the initial geometrical configuration of a final excited-state simulation. Each configuration was vertically excited to the lowest excited state with no regard to coupling or energy conservation. We propagate these excited-state QM trajectories using configuration interaction singles (CIS) with the AM1 Hamiltonian, 
-   The CIS calculations include the first excited states of the PPV\(_3\)-NO\(_2\) molecule and the stated number of solvent molecules closest to the central benzene ring.
+   The CIS calculations include the first 9 excited states of the PPV\(_3\)-NO\(_2\) molecule and the stated number of solvent molecules closest to the central phenyl.
    We treat all other solvent molecules using classical dynamics.
    We restrict the QM solvents from drifting away from the solute and the other MM solvents from drifting closer than these QM solvents.
     #+end_src
@@ -1719,24 +1686,25 @@ We set the classical time step to 0.5 fs, 300K (NVT), using a Langevin thermosta
 	  \begin{multiFigure} 
 	    \addFigure{0.45}{../Paper1/Images/ppvno2.png}
 	    \addFigure{0.45}{../Paper1/Images/vacuum-td.png}
-	    \captionof{figure}{A)Diagram of PPV\(_3\)-NO\(_2\) showing the bonds of interest. B) Transition density from ground to excited state.}
+	    \captionof{figure}{A) Diagram of PPV\(_3\)-NO\(_2\) showing the bonds of interest. B) Transition density from ground to excited state.}
 	    \label{fig:PPV3NO2}
 	  \end{multiFigure}
 \bigskip
 #+end_src
-*** THREE Explanation of NMR Constraint figure
+*** TODO Explanation of NMR Constraint figure
+Need to include the actual equation and values of this constraint
     #+begin_src latex
-    As shown in figure \ref{fig:PPV3NO2}, the excited-state density resides towards the center of the molecule on the vinyl groups nearest to the central phenyl group.
-    Charge movements on solvents far from this concentration of density cause negligible energy differences.
+    As shown in Figure \ref{fig:PPV3NO2} B, the S0-S1 transition density resides towards the center of the molecule on the vinyl groups nearest to the central phenyl group.
+    Charge movements on solvents far from this concentration of density should cause negligible effects on transition characteristics.
     To maximize the QM/MM calculation utility, we only include the solute and the solvent molecules nearest to this central phenyl group in the QM calculations.
-    To prevent these solvents from drifting during the trajectories, we implement a simple harmonic restraint using AMBER's NMR restraints.
-    We select the N solvent molecules based on the minimum atom-atom distance between the solvent and the central benzene ring.
+    To prevent these solvents from drifting during the trajectories, we implement a simple harmonic restraint using AMBER's NMR restraints with a force constant of 200 KCal/mol \AA\(^{-2}\).
+    We select the N solvent molecules based on the minimum atom-atom distance between the solvent and the central phenyl group.
     We then restrain these solvents using the harmonic constraint on the distance from the center of geometry of the solvent to the center of geometry of the central phenyl group.
-    We also restrain the solvent molecules not included in the QM calculation from getting closer to the central phenyl than the QM solvents, effectively making a spherical shield around the solute's central phenyl group.
+    We also use the same restraint to prevent the solvent molecules not included in the QM calculation from getting closer to the central phenyl than the QM solvents, effectively making a spherical shield around the solute's central phenyl group.
     Since the distance between the center of geometries and the closest atoms are not necessarily equal, solvent atoms could initially be pushed either inside or outside this shield during the transition from MM to QM.
     However, this push only occurs during the initial equilibration of the QM ground-state calculations excluded from any analysis.
     Once the QM calculations begin, these constraints persist throughout all further calculations.
-    For our CCl\(_4\) simulations with the 5 nearest solvents included (CCl\(_4\)-5QM), the restriction barrier had an average radius of 6.28 \AA from the origin at the center of the central phenyl group. 
+    For our CCl\(_4\) simulations with the 5 nearest solvents included (CCl\(_4\)-5QM), the restriction barrier had an average radius of 6.28 \AA\ from the origin at the center of the central phenyl group. 
     #+end_src
 ** THREE Results [6/6]
    #+begin_src latex
@@ -1746,52 +1714,49 @@ We set the classical time step to 0.5 fs, 300K (NVT), using a Langevin thermosta
     #+begin_src latex
     \subsection{Spectra}
 
+    Energies, coordinates, and dipole information are acquired every ten steps.
+    Equilibration times from either MM to QM state or from S0 to S1 range from 2-4 ps.
+    As such, we exclude the first four ps of each trajectory in calculating the spectra in data analysis for the absorption and emission analysis. 
 
-    \noindent
-    \begin{multiFigure} 
-      \addFigure{0.45}{../Paper1/Images/nquant_abs_comparison.png}
-      \addFigure{0.45}{../Paper1/Images/nquant_flu_comparison.png}
-      \captionof{figure}[Fluorescence and Absorption Spectra by number quantum solvents]{PPV\(_3\)-NO\(_2\) absorption, A, and fluorescence, B, spectra in CCL\(_4\) with varying number of QM solvents.}
-      \label{fig:spectrasolvents}
-    \end{multiFigure}\bigskip
+    The solvent's polarizability should affect the transition dipole moments and thus the corresponding spectra.  This effect has been shown experimentally. \cite{marcus1956electrostatic,martin1998hydrolysis,Park2013,LeDroumaguet2005}.
+    Such shifts are referred to as solvatochromic shifts.
+    Previous studies have analyzed solvatochromic shifts in conjugated substituted PPV\(_3\)-NO\(_2\) molecules with the NEXMD program in implicit solvents.\cite{Santhanamoorthi2009}
+    Results with NEXMD by TD-AM1 were redshifted from the experimental results, while single-point calculations using TD-CAM-B3LYP provided by G09 in the same implicit solvent were blue shifted.
+    Other NEXMD computations have shown comparable redshifts in spectra of similar molecules in implicit solvents compared to experiment. \cite{Bjorgaard2015}
+    We performed similar calculations in this paper; however, in explicit solvent.
+    We compare the results to those presented in implicit solvent.
+
+    We collect the vertical excitation dipoles and oscillator strengths between the ground state S0 and S1 every five fs during each trajectory's steady-state to produce the absorption/emission spectra of PPV\(_3\)-NO\(_2\).
+    We sum over excitation states averaged over the geometries and broaden the spectra using a Gaussian bin function with FWHM=0.16 eV corresponding to a 100 fs FWHM laser excitation.
+    We normalized it such that the maximum absorption is 1. 
 
     \noindent
     \begin{multiFigure} 
       \addFigure{0.45}{../Paper1/Images/spectra_abs_compared.png}
       \addFigure{0.45}{../Paper1/Images/spectra_flu_compared.png}
-      \captionof{figure}[Fluorescence and Absorption Spectra in various solvents]{PPV\(_3\)-NO\(_2\) absorption, A, and fluorescence, B, spectra in various solvents with 20 included in QM region.}
+      \captionof{figure}[Fluorescence and absorption spectra in various solvents]{PPV\(_3\)-NO\(_2\) A) absorption and B) fluorescence spectra in various solvents with 20 included in QM region.}
+      \label{fig:spectrasolvents}
+    \end{multiFigure}\bigskip
+
+    \noindent
+    \begin{multiFigure} 
+      \addFigure{0.45}{../Paper1/Images/nquant_abs_comparison.png}
+      \addFigure{0.45}{../Paper1/Images/nquant_flu_comparison.png}
+      \captionof{figure}[Fluorescence and absorption spectra by number of quantum solvents]{PPV\(_3\)-NO\(_2\) A) absorption and B) fluorescence spectra in CCL\(_4\) with varying number of QM solvents.}
       \label{fig:spectranquant}
     \end{multiFigure}\bigskip
 
+    Figure \ref{fig:spectrasolvents} A presents the absorption spectra for PPV\(_3\)-NO\(_2\) in select solvents and vacuum.
+    The shown absorption has contributions from the nine lowest energy excited states, though the S1 state is the primary contributor to the spectra.
+    We found the number of solvent molecules included in the QM region caused only minor deviations in the spectra, with the largest variance (0.02~eV) occurring between the 20QM and MM carbon tetrachloride systems, as seen in Figure \ref{fig:spectrasolvents}. As such, we only present results from trajectories with 20 QM solvents.
+    The broad absorption and fluorescence bands are common features of conjugated materials due to the large geometric relaxation in the lowest excited state. \cite{bredas2009molecular}
+    All solvent results are redshifted from those in vacuum matching findings in previous works.\cite{Park2013}
+    In Figure \ref{fig:spectranquant}, the absorbance within methanol and chloroform were very similar, with a peak shift from vacuum of -0.04 eV.
+    Within carbon tetrachloride, the magnitude of this shift increases slightly more to-0.06 eV. 
 
-        Energies, coordinates, and dipole information are acquired every ten steps.
-        Equilibration times from either MM to QM state or from the S0 to S1 state range from 2-4 ps.
-        We exclude the first four ps of each trajectory in the calculation of the spectra in data analysis for the absorption and emission analysis. 
-
-
-    Solvents's polarizability should affect the transition dipole moments and the corresponding spectra and has been shown to experimentally. \cite{marcus1956electrostatic,martin1998hydrolysis,park2013tailored,LeDroumaguet2005}.
-    Such shifts are referred to as solvatochromic shifts.
-        Previous studies have analyzed solvatochromic shifts in conjugated substituted PPV\(_3\)-NO\(_2\) molecules with the NEXMD program in implicit solvents.\cite{Santhanamoorthi2009}
-        Results with NEXMD by TD-AM1 were redshifted from the experimental results, while single-point calculations using TD-CAM-B3LYP provided by G09 in the same implicit solvent were blue shifted.
-        Other NEXMD computations have shown comparable redshifts in spectra of similar molecules in implicit solvents compared to experiment. \cite{Bjorgaard2015}
-        We performed similar calculations in this paper; however, in explicit solvent.
-        We compare the results to those presented in implicit solvent.
-
-        We collect the vertical excitation dipoles and oscillator strengths between the ground state S0 and S1 every five fs during the steady-state of each trajectory to produce the absorption/emission spectra of PPV\(_3\)-NO\(_2\).
-        We sum over excitation states averaged over the geometries and broaden the spectra using a Gaussian bin function with FWHM=0.16 eV corresponding to a 100 fs FWHM laser excitation.
-        We normalized it such that the maximum absorption is 1. 
-
-    The broad absorption and fluorescence bands shown are a common feature of conjugated matrials due to the large geometric relaxation that occurs in the lowest excited state. \cite{bredas2009molecular}
-        Figure ? presents the absorption spectra for PPV\(_3\)-NO\(_2\) in select solvents and vacuum.
-        The shown absorption has contributions from the nine lowest energy excited states, though the S1 state is the primary contributor to the spectra.
-        We found the number of solvent molecules included in the QM region caused only minor deviations in the spectra, with the largest variance (0.02~eV) occurring between the 20QM and MM CCL4 systems, as such, in figure 12, we only present results from trajectories with 20 QM solvents.
-        All solvent results are redshifted from those in vacuum matching findings in previous works.
-        The absorbance within methanol and chloroform were very similar, with a peak shift from vacuum of -0.04 eV.
-        Within carbon tetrachloride, this shift increases slightly more to-0.06 eV. 
-
-        Aligning with previously reported results, the fluorescence calculations found in figure 13 show an overall more intense redshift from vacuum, along with a more significant dispersion among the solvents. \cite{Park2013}
-        The smallest shift, at -0.06 eV, occurs in carbon tetrachloride, while the largest, at -0.12 eV, occurs in methanol.
-        Previous works have demonstrated that the energy levels of PPV\(_3\)-NO\(_2\) are further stabilized by more polar solvents, a feature clearly seen by our results. 
+    Aligning with previously reported results, the fluorescence calculations found in Figure \ref{fig:spectranquant} show an overall more intense redshift from vacuum, along with a more significant dispersion among the solvents. \cite{Park2013}
+    The smallest shift, at -0.06 eV, occurs in carbon tetrachloride, while the largest, at -0.12 eV, occurs in methanol.
+    Previous works have demonstrated that the energy levels of PPV\(_3\)-NO\(_2\) are further stabilized by more polar solvents, a feature clearly seen by our results.\cite{Park2013,woo2005solvent}
     #+end_src
     
 *** THREE Energy Relaxation
@@ -1803,128 +1768,81 @@ We set the classical time step to 0.5 fs, 300K (NVT), using a Langevin thermosta
     \begin{minipage}[c]{\textwidth}
       \centering
       \includegraphics[width=5in]{../Paper1/Images/energies.png}
-      \captionof{figure}[Potential Energy Relaation During Adiabatic Dynamics]{Potential energy difference from ground state for PPV\(_3\)NO\(_2\) in CCl\(_4\) with 5 QM solvent molecules.}
+      \captionof{figure}[Potential energy relaxation during adiabatic dynamics]{Potential energ for states S0 and S1 for PPV\(_3\)NO\(_2\) with 20 solvent molecules included in the QM region as the system relaxes on the S1 PES. Energies are reported as differences from the ground state at t = 0.}
       \label{fig:energiesAdiabatic}
     \end{minipage}\bigskip
 
-     The absorption and the fluorescence properties are judged primarily through the difference between the ground state (S0) and the first excited state (S1) energies.
-     The system starts at the S0, where it remains near the bottom of the energy well.
-     Figure \ref{fig:energiesAdiabatic} shows the energies for states S0 and S1 averaged over 128 trajectories for PPV\(_3\)-NO\(_2\) in CCL4 with five solvent molecules included in the QM calculations.
-     During the first six ps, the system runs on the ground-state S0, and the S0 energies stay near the minimum with small oscillations caused by temperature.
-     At the time 0 ps, the system instantaneously hops to the S1 potential energy surface.
-     The average energy difference at t=0 between S0 and S1 is 2.93 eV, and it corresponds reasonably well with the peak of the absorption spectrum.
-     When the system relaxes on the new surface, the S1 and S0 energies decrease and increase respectively, until the difference between the two is 2.50 eV agreeing with the peak found in the fluorescence spectra.
-     Table ? presents the fitted decay of S1 energies using   
-
-    \begin{equation}
-    E = E_d \text{e}^{-t/\tau} + c
-    \end{equation}
-    where \(E_d\) is the relaxation energy drop, \(\tau\) the time constant, and c the steady state energy at S1. 
+    The peaks of absorption and the fluorescence properties should correspond strongly with the difference between the ground state (S0) and the first excited state (S1) energies at the point of transistion.
+    Figure \ref{fig:energiesAdiabatic} shows the energies for states S0 and S1 averaged over 128 trajectories for PPV\(_3\)-NO\(_2\) in the various solvents with 20 solvent molecules included in the QM calculations.
+    During the first four ps in the chart, the system runs on the ground-state S0, and the S0 energies stay near the minimum with small oscillations caused by temperature.
+    At time t = 0, the system instantaneously hops to the S1 potential energy surface.
+    The average energy difference of around 2.95 eV at t = 0 corresponds reasonably well with whats seen in the absorption spectrums' peaks where little difference is seen between the solvents. During the first 10-20 fs of this calculation, the ground state energy rapidly increases, suggesting an ultra-fast geometric relaxation process occurs. The molecule then seems to experiences a slower, ~2 ps, relaxation process.
+    As expected the final energy values at t = 10 ps for S0 and S1 are higher and lower, respectively, than they were when t < 0.
+    Unexpectedly, PPV\(_3\)-NO\(_2\) in methanol seems to experience a minimum in s1 energy at around t = 2 ps then steadily increase until around t = 8 ps. During this time, the S0 energy also increases, alowing the energy difference found in methanol to remain lower than that found in other solvents which aligns well with the red shift found in the fluorescence calculations. This may be due to solvent rearrangement, however further inspection did not lead to anything conclusive.
     #+end_src
 
-*** THREE Torsion Angles                                            :ignore:
-    - [ ] Update the chart to be from all 20QM solvents 
+*** THREE BLA                                                       :ignore:
     #+begin_src latex
-    \subsection{Torsional Angles}
+    \subsection{Bond Length Alternation}
+    In \(\pi\) conjugated organic compounds, the electrons unevenly distribute across the carbon-carbon \(\pi\) bonds, causing a dimerization or alternation of single-like carbon bonds and double-like carbon bonds.
+    When promoted from the highest occupied molecular orbital (HOMO) to the lowest occupied molecular orbital (LOMO), the bonding-antibonding pattern switches, and the electron densities correspondingly adjust.
+    As a result, the single-like carbons become more double-like and vice versa. \cite{bredas1999excited}
+    This structural difference between the excited-state and ground-state of PPV3-molecules is presented clearly by distortions in the C=C and C-C bonds found in the vinylene segment.\cite{tretiak02_densit_matrix_analy_simul_elect, karabunarliev2000rigorous, karabunarliev2000adiabatic, nelson2014nonadiabatic}
+    These distortions can be measure by bond length alternation (BLA)
+    \begin{equation}
+      \frac{d_i + d_e}{2} - d_c,
+    \end{equation}
+    where \(d_i\) and \(d_e\) are the interior and exterior bonds, and \(d_c\) is the central bond.
+    This value represents the differences between the double and single bonds of the vinylene sections.
+    The BLA is a descriptor for \(\pi\) bond distributions. \cite{tretiak2002conformational}
+    For this system, we analyze the BLAs of two separate bond sets, the bonds d1-3 (near-set) and d4-6 (far-set) seen in Figure \ref{fig:PPV3NO2} A. 
 
     \noindent
-    \begin{minipage}[c]{\textwidth}
+    \begin{minipage}[c]{\textwidth} 
       \centering
-      \includegraphics[width=4in]{../Paper1/Images/dihedrals.png}
-      \captionof{figure}[Tortional Angles during Adiabatic Dynamics]{Tortional angle around d1-d3, near, and d4-d6, far, in S1 within CCl\(_4\)-5QM}
-      \label{dihedralAdiabatic}
+      \includegraphics[width=6in]{../Paper1/Images/bla.png}
+      \captionof{figure}[BLA of bonds during adiabatic dynamics]{BLA of bonds d1-3 (left) and d4-6 (right) during the last 4 ps of the S0 dynamics and 10 ps of the S1 dynamics.
+        QM energy and force calculations include the 20 solvents nearest the central ring.}
+      \label{fig:bla_adiabatic}
     \end{minipage}\bigskip
 
+
     \begin{table}[H]
-      \caption[]{}
+      \caption[Adiabatic bond length alternation]{Bond Length Alternation (BLA) summary for PPV\(_3\)-NO\(_2\) in various solvents with 20 solvents included in the QM region.} \label{tab:adiabaticBLA}
       % \begin{center}
-      \begin{tabularx}{\textwidth}{XXXXX}\hline
-        Molecule    & S0 Near  & S1 Near & S0 Far & S0 Far\\\hline
-        Vacuum      & 28.0 \(\pm\) 1.0\(^\circ\) & 12.5 \(\pm\) 0.5\(^\circ\) & 28.5 \(\pm\) 0.9\(^\circ\) & 17.4 \(\pm\) 0.8\(^\circ\)\\
-        CHCl\(_4\)  & 25.3 \(\pm\) 1.2\(^\circ\)  & 12.3 \(\pm\) 0.6\(^\circ\) & 25.1 \(\pm\) 1.3\(^\circ\) & 14.7 \(\pm\) 0.8\(^\circ\)\\
-        CH\(_3\)OH  & 26.6 \(\pm\) 0.9\(^\circ\)  & 11.5 \(\pm\) 0.5\(^\circ\) & 28.2 \(\pm\) 0.9\(^\circ\) & 16.2 \(\pm\) 0.8\(^\circ\)\\
-        CHCl\(_3\)  & 26.8 \(\pm\) 1.1\(^\circ\)  & 11.8 \(\pm\) 0.5\(^\circ\) & 27.8 \(\pm\) 1.2\(^\circ\) & 16.0 \(\pm\) 0.7\(^\circ\)\\\hline
+      \begin{tabularx}{\textwidth}{XXXXXXXXX}\hline
+        Molecule   & d\(_1\)  & d\(_2\) & d\(_3\) & BLA\(_{\textbf{near}}\) & d\(_1\)  & d\(_2\) & d\(_3\) & BLA\(_{\textbf{far}}\)\\\hline
+        Vacuum     & 1.429     & 1.375    & 1.418    & 0.049              & 1.441     & 1.365    & 1.427   & 0.069\\
+        CCl\(_4\)  & 1.427     & 1.376    & 1.417    & 0.046              & 1.441     & 1.365    & 1.426   & 0.068\\
+        CH\(_3\)OH & 1.422     & 1.382    & 1.415    & 0.037              & 1.444     & 1.362    & 1.431   & 0.076\\
+        CHCl\(_3\) & 1.423     & 1.380    & 1.415    & 0.039              & 1.443     & 1.365    & 1.429   & 0.074\\\hline
       \end{tabularx}
     \end{table}
 
-    Immediately after excitation from the ground A\(_g\) to the first excited state with B\(_u\) symmetry, the \(\pi\) bond along the vinylene segment encourages PPV\(_3\)-NO\(_2\) to a planar configuration.
-    We use the torsion angle around the vinylene segments as the slow nuclear coordinates of PPV\(_3\)-NO\(_2\)
-    following precendent. \cite{Clark2012}
-    The torsion angle around the vinylene segments have been shown to be highly coupled to the excited state.\cite{nelson2011nonadiabatic,panda2013electronically}
-    In PPV\(_3\)-NO\(_2\) systems, the excitation to S1 leads to relaxation towards a nearly planar structure Torsion angle around d1,d3 and d4,d6 are averaged over 128 trajectories to produce the near and far torsion angle data respectively. \cite{barford2011ultrafast}
+    Figure \ref{fig:bla_adiabatic} shows the bond length alternation of
+    PPV\(_3\)-NO\(_2\) in various solvents during the last 4 ps of the S0 trajectories and the 10 ps of the S1 trajectories. At time t = 0, the systems instantaneously transition from S0 to S1.
+    Within the first couple hundred femtoseconds after the
+    excitation to S1, the central bonds (d2 and d5) expand, while the interior (d3 and d6) and
+    exterior bonds (d1 and d4)  contract.  This bond restructuring is amplified by
+    proximity to the nitro group for all solvent environments, where we
+    see an average drop of 0.07 Å in sets d1-3 compared to a 0.04 Å drop
+    found in sets d4-6.  This amplification's strength depends on the
+    solvent environment where the BLA difference between the far and near
+    sets PPV\(_3\)-NO\(_2\) in methanol, 0.034 Å, surpasses that found in carbon
+    tetrachloride, 0.022 Å.
 
-    For our CCl4-5QM example, the dihedral angle around the near set d1 to d2 equilibrates around 23° and 12° in the S0 and S1 states, respectively.
-    For the near set, d4 to d6, these values are 23° and 15°.
-    Once again, only a noticeable difference in S1.
-    The time constants for the S1 dihedral relaxations are around 0.8 ps.
-    Relaxation of the dihedral angles occurs by four ps. 
-
-    Table 5 shows a summary of the torsion angles analysis of all tested solvents after five ps of relaxation after the jump to the first excited state.
-    The trajectories include 20 solvent molecules within the QM calculations.
-    A noticeable shift towards a planar geometry occurs in all solvents.
-    This shift is greatest near the nitro group.
-    #+end_src
-*** THREE BLA                                                       :ignore:
-    #+begin_src latex
-            \subsection{Bond Length Alternation}
-       In \(\pi\) conjugated compounds, the electrons unevenly distribute across the carbon-carbon \(\pi\) bonds causing a dimerization or alternation of single-like carbon bonds and double-like carbon bonds.
-    When promoted from the highest occupied molecular orbital (HOMO) to the lowest occupied molecular orbital (LOMO), the bonding-antibonding pattern switches, and the electron densities correspondingly adjust.
-    As a result the single-like carbons become more double-like and vice versa. \cite{bredas1999excited}
-                This structural difference between the excited-state and ground-state of PPV3-molecules are presented clearly by distortions in the C=C and C-C bonds found in the vinylene segment.\cite{tretiak02_densit_matrix_analy_simul_elect, karabunarliev2000rigorous, karabunarliev2000adiabatic, nelson2014nonadiabatic}
-                These distortions can be measure by bond length alternation (BLA)
-
-                \begin{equation}
-                \frac{d_i + d_e}{2} - d_e,
-                \end{equation}
-
-                where \(d_i\) and \(d_e\) are the interior and exterior bonds, and \(d_c\) is the central bond.
-                This value represents the differences between the double and single bonds of the vinylene sections.
-                The BLA is a descriptor for \(\pi\) bond distributions. \cite{tretiak2002conformational}
-                In this system, we analyze the BLAs of two separate bond sets, the bonds d1-3 (near-set) and d4-6 (far-set) seen in Scheme 2. 
-
-                \noindent
-                \begin{minipage}[c]{\textwidth} 
-                  \centering
-                  \includegraphics[width=5in]{../Paper1/Images/bla.png}
-                  \captionof{figure}[BLA of bonds during adiabatic dynamics]{BLA of bonds d1-3 (left) and d4-6 (right) during the last 4 ps of S0 dynamics and 10 ps of S1 dynamics.
-                    QM energy and force calculations include the 20 solvents nearest the central ring.}
-                  \label{fig:bla_adiabatic}
-                \end{minipage}\bigskip
-
-
-
-        \begin{table}[H]
-          \caption[Adiabatic Bond Length Alternation]{Bond Length Alternation summary for PPV\(_3\)-NO\(_2\) in various solvents with 20 solvents included in the QM region.}
-          % \begin{center}
-          \begin{tabularx}{\textwidth}{XXXXXXXXX}\hline
-            Molecule   & d\(_1\)  & d\(_2\) & d\(_3\) & BLA\(_{\textbf{near}}\) & d\(_1\)  & d\(_2\) & d\(_3\) & BLA\(_{\textbf{far}}\)\\\hline
-            Vacuum     & 1.429     & 1.375    & 1.418    & 0.049              & 1.441     & 1.365    & 1.427   & 0.069\\
-            CCl\(_4\)  & 1.427     & 1.376    & 1.417    & 0.046              & 1.441     & 1.365    & 1.426   & 0.068\\
-            CH\(_3\)OH & 1.422     & 1.382    & 1.415    & 0.037              & 1.444     & 1.362    & 1.431   & 0.076\\
-            CHCl\(_3\) & 1.423     & 1.380    & 1.415    & 0.039              & 1.443     & 1.365    & 1.429   & 0.074\\\hline
-          \end{tabularx}
-        \end{table}
-
-
-                Figure \ref{fig:bla_adiabatic} show the bond length alternation of PPV\(_3\)-NO\(_2\) in various solvents during the S1 trajectories where the dashed lines represent equilibrated ground state values which are near 0.110 Å for sets d1-3 and d4-6 regardless of solvent enviornment.
-                Within the first couple hundred femtoseconds after the excitation to S1, the central bonds expand, while the interior and exterior bonds contract.
-                For all solvent environments, this bond restructuring is amplified by close proximity to the amino group, where we see an average drop of 0.07 Å in sets d1-3 compared to a 0.04 Å drop in sets d4-6.
-                The strength of this amplification is dependent on the solvent environment where the BLA difference between the far and near sets PP3-NO2 in methanol, 0.034 Å, surpases that found in carbon tetrachloride, 0.022 Å.
-
-                Table 2 presents further details of the S1 BLA simulation.
-                In all cases, the exterior bond (d1 and d4) becomes slightly longer than the interior bond (d3 and d6).
-                The BLAs from the near and far sets therefore split.
-                In the near set, the S0 and S1 BLA converge to 0.1091 Å and 0.00453 Å, respectively.
-                In the far set, these numbers are 0.1103 Å and 0.0697 Å, respectively.
-                The smaller bond length spread in the near set, along with the lower BLA, suggests more delocalization on those bonds than in the far set. 
-
-                The number of solvents included in the QM calculations had little effect on the convergence of the distances or BLA.
-                PPV\(_3\)-NO\(_2\) had similar ground state BLAs of around 0.11 Å for both near and far sets matching results on similar systems regardless of the solvent. \cite{nelson2011nonadiabatic}
-                The information presented is averaged over time after relaxation across all trajectories.
-                The S1 BLAs varied between the solvents and with the distance away from the NO2 group.
-                Among the selected solvents, CH3OH has the smallest near set S1 BLA and largest far set S1 BLA.
-                CCl4 has the largest near set S1 BLA, and also the smallest far set S1 BLA and has close to vacuum-like behavior.
-                The CH3OH solvent seems to enlarge the BLA changes from the ground to excited states.
+    Table \ref{tab:adiabaticBLA} presents further details of the S1 BLA simulation.
+    The information presented is averaged over time after relaxation across all trajectories.
+    In all cases, the exterior bonds become slightly longer than the interior bond.
+    The BLAs from the near and far sets split.
+    In the near set, the S0 and S1 BLA converge to 0.1091 Å and 0.00453 Å, respectively.
+    In the far set, these numbers are 0.1103 Å and 0.0697 Å, respectively.
+    The smaller bond length spread in the near set and the lower BLA suggest more delocalization on those bonds than in the far set. 
+    The number of solvents included in the QM calculations had little effect on the convergence of the distances or BLA.
+    PPV\(_3\)-NO\(_2\) had similar ground state BLAs of around 0.11 Å for both near and far sets matching results on similar systems regardless of the solvent. \cite{nelson2011nonadiabatic}
+    The S1 BLAs varied between the solvents and the distance away from the nitro group.
+    PPV\(_3\)-NO\(_2\) presents the smallest near set S1 BLA and largest far set S1 BLA when in methanol in comparison to the other tested solvents.
+In carbon tetracholoride, it shows similar behavior to vacuum, presenting the largest near set S1 BLA and the smallest far set S1 BLA out of the solvents tested.
     #+end_src
 *** THREE Bond Orders                                               :ignore:
     :LOGBOOK:
@@ -1934,46 +1852,78 @@ We set the classical time step to 0.5 fs, 300K (NVT), using a Langevin thermosta
     #+begin_src latex
     \subsection{Wiberg Bond Orders}
     \begin{minipage}[c]{\textwidth}
-    \centering
-    \includegraphics[width=5in]{../Paper1/Images/ccl4-5s-widberg.png}
-    \captionof{figure}[Wiberg Bond Orders During Adiabatic Dynamics.]{Wiberg Bond Orders for PPV\(_3\)-NO\(_2\) in CCL\(_4\) with 5QM Solvents During Adiabatic Dynamics. }
-    \label{fig:bondOrdersAdiabatic}
+      \centering
+      \includegraphics[width=5in]{../Paper1/Images/ccl4-5s-widberg.png}
+      \captionof{figure}[Wiberg Bond Orders During Adiabatic Dynamics.]{Wiberg Bond Orders for PPV\(_3\)-NO\(_2\) in CCL\(_4\) with 5QM Solvents During Adiabatic Dynamics. }
+      \label{fig:bondOrdersAdiabatic}
     \end{minipage}\bigskip
 
+    The significant effects of the S0-S1 transitions on the Cartesian measurement of BLA encourages the analysis of these bonds' quantum mechanical behavior.
+    Because the double-bonds elongate and the single-bonds contract, we expect the single-bonds to gain a partial double-bond character and vice versa.
+    Simple bond ordering does not consider these subtleties of a quantum electronic wave-function.
+    Fortunately, the quantum mechanical descriptor, the Wiberg bond index, provides a reasonable analogy of the classical Lewis structure a chemist would expect.
+    Wiberg bond indexes are calculated from the density matrix by 
+    \begin{equation}
+      W_{AB} = \sum_{\mu\in A}\sum_{\nu \in B} | D_{\mu\nu} |^2,
+    \end{equation}
+    where \(A\) and \(B\) are indexes of the two atoms, \(\mu\) and \(\nu\) are the atomic orbitals, and \(D\) is the density matrix.
+    The method sums the electron density shared by both atoms.
+    If an electron is fully localized on a single atom, the sum of the elements equals zero providing a value that matches our intuition. 
 
-	The significant effects of S0-S1 transitions on the Cartesian measurement of BLA encourages the analysis of these bonds' quantum mechanical behavior.
-	Because the double bonds elongated and the single-bonds contracted, we expect the single-bonds to gain a partial double-bond character and vice versa.
-	Simple bond ordering does not consider these subtleties of a quantum electronic wave-function.
-	Fortunately, the quantum mechanical descriptor, Wiberg bond index, provides a reasonable analogy of the classical Lewis structure a chemist would expect.
-	Wiberg bond indexes are calculated from the density matrix by 
+    As the bond order increases, we expect the bond to become more rigid and the bond length to shrink.
+    Figure \ref{fig:bondOrdersAdiabatic} displays the bond order of bonds d1-6 for PPV\(_3\)-NO\(_2\) in carbon tetrachloride with 5 QM solvent molecules included in the QM region.
+    At time t = 0, the system instantaneously transitions to the first excited state, S1.
+    The Wiberg bond index then uses the density matrix for S1, leading to a sudden shift in its value.
+    At S1, the bond orders of d2 and d5 instantaneously drop, and expansion of their bond lengths soon follows.
+    The larger shifts in the near set correspond to the information found in the BLA analysis.
+    The interior bonds (d1 and d4) have lower bond indexes than their exterior counterparts (d3 and d6).
+    #+end_src
+*** THREE Torsion Angles                                            :ignore:
+    - [ ] Update the chart to be from all 20QM solvents 
+    #+begin_src latex
+    \subsection{Torsional Angles}
 
-	\begin{equation}
-	W_{AB} = \sum_{\mu\in A}\sum_{\nu \in B} | D_{\mu\nu} |^2
-	\end{equation}
+    \noindent
+    \begin{minipage}[c]{\textwidth}
+      \centering
+      \includegraphics[width=6in]{../Paper1/Images/dihedrals.png}
+      \captionof{figure}[Torsional angles during adiabatic dynamics]{Torsional angle around d1-d3, near, and d4-d6, far, in S1 within various solvents with 20 solvents included in the QM region.}
+      \label{fig:dihedralAdiabatic}
+    \end{minipage}\bigskip
 
-	where \(A\) and \(B\) are indexes of the two atoms, \(\mu\) and \(\nu\) are the atomic orbitals, and \(D\) is the density matrix.
-	The method sums the electron density shared by both atoms.
-	If an electron if fully localized on a single atom, the sum of the elements equals zero providing a value that matches our intuition of a bond. 
+    \begin{table}[H]
+      \caption{Adiabatic excited state torsional angle Relaxation} \label{tab:adiabaticDihedrals}
+      % \begin{center}
+      \begin{tabularx}{\textwidth}{XXXXX}\hline
+        Molecule    & S0 Near  & S1 Near & S0 Far & S1 Far\\\hline
+        Vacuum      & 28.0 \(\pm\) 1.0\(^\circ\) & 12.5 \(\pm\) 0.5\(^\circ\) & 28.5 \(\pm\) 0.9\(^\circ\) & 17.4 \(\pm\) 0.8\(^\circ\)\\
+        CCl\(_4\)  & 25.7 \(\pm\) 0.8\(^\circ\)  & 12.5 \(\pm\) 0.6\(^\circ\) & 24.5 \(\pm\) 1.1\(^\circ\) & 14.5 \(\pm\) 0.6\(^\circ\)\\
+        CH\(_3\)OH  & 26.4 \(\pm\) 1.0\(^\circ\)  & 11.7 \(\pm\) 0.7\(^\circ\) & 28.1 \(\pm\) 0.9\(^\circ\) & 16.1 \(\pm\) 0.6\(^\circ\)\\
+        CHCl\(_3\)  & 25.1 \(\pm\) 0.9\(^\circ\)  & 11.8 \(\pm\) 0.5\(^\circ\) & 26.2 \(\pm\) 1.0\(^\circ\) & 15.7 \(\pm\) 0.6\(^\circ\)\\\hline
+      \end{tabularx}
+    \end{table}
 
-	As the bond order increases, we expect the bond to become more rigid and the bond length to shrink.
-	Figure \ref{fig:bondOrdersAdiabatic} displays the bond order of bonds d1-6 for PPV\(_3\)-NO\(_2\) in CCl4 with 5 QM solvent molecules.
-	At time t=0, the system instantaneously transitions to the first excited state, S1.
-	The Wiberg bond index then uses the density matrix for S1, leading to a sudden shift in its value.
-	At S1, the bond orders of d2 and d5 instantaneously drop, and expansion of their bond lengths soon follows.
-	The larger shifts in the near set correspond to the information found in the BLA analysis.
-	The interior bonds, d1 and d4, have lower bond indexes than their exterior counterparts, d3 and d6.
+    As we've seen, in the ground, A\(_g\) state, the \(\pi\) bonds along the vinylene segments experience significant electronic spin alternation. Immediately after excitation, PPV\(_3\)-NO\(_2\) transitions from this A\(_g\) state to the lowest excited state that possesses B\(_u\) symmetry, which allows the dispersion of the electrons across these segment and a reduction in this alternation. As the single-bonds gain more double-bond-like characteristics, the segment begins to encourage a more planar configuration.  The torsion angle around the vinylene segments is highly coupled to the excited state.\cite{nelson2011nonadiabatic,panda2013electronically}
+    We can, therefore, following precedent, use the torsion angle around the vinylene segments as the slow nuclear coordinates of PPV\(_3\)-NO\(_2\). \cite{Clark2012,barford2011ultrafast}
+    Torsion angles around d1 and d3 (near) and d4 and d6 (far) are averaged over 128 trajectories to produce the torsion angles data shown in Figure \ref{fig:dihedralAdiabatic} and Table \ref{tab:adiabaticDihedrals}.
+
+    Figure \ref{fig:dihedralAdiabatic} shows these torsional angles for PPV\(_3\)-NO\(_2\) within our test solvents. Once again, at time t = 0, the molecule is excite from S0 to S1.  
+    Table \ref{tab:adiabaticDihedrals} shows a summary of the torsion angles analysis of all tested solvents after five ps of relaxation after the jump to the first excited state.
+    The trajectories include 20 solvent molecules within the QM calculations.
+    A noticeable shift towards a planar geometry occurs in all solvents.
+    This shift is greatest near the nitro group.
     #+end_src
 *** THREE Conclusion
     #+begin_src latex
     The Non-adiabatic Excited State Molecular Dynamics package (NEXMD) that SANDER is linked to for the excited state calculations done in this paper is designed to perform molecular dynamics simulations outside the Born-Oppenheimer approximations using the FSSH in implicit solvents.
-    The program has been tested well and is helpful in gaining insights into the dynamics of molecules prone to photo-excitations.
-    However, simulations in explicit solvents have been shown to produce qualitatively different results than in implicit solvent mediums.
+    The program has been tested well and helps gain insights into the dynamics of molecules prone to photo-excitations.
+    However, simulations in explicit solvents have produced qualitatively different results than in implicit solvent mediums.
     By linking AMBER's SANDER to NEXMD, we produced a quick and efficient tool to simulate explicit solvent behavior on adiabatic excited state dynamics.
     #+end_src
 * ONE Non-Adiabatic Decay of PPV3-NO2 [3/3]
   :PROPERTIES:
   :header-args: :eval never-export
-  :header-args:latex: :exports code :tangle nonadiabatic.tex
+  :header-args:latex: :exports code :tangle non-adiabatic.tex
   :END:
   #+begin_src latex
   \chapter{QM/MM Non-adiabatic Dynamics of PPV\(_3\)-NO\(_2\)}
@@ -1982,18 +1932,16 @@ We set the classical time step to 0.5 fs, 300K (NVT), using a Langevin thermosta
 :LOGBOOK:
 - Note taken on [2021-02-07 Sun 08:41] \\
   - We further our analysis of PPV3no2 by analyzing its ultra fast excited state decay
-  - Recent works have analized the nonadiabatic behaviors of PPV3NO2  to the study of its na dynamics in implicit solvent. \cite{sifain2018photoexcited}
+  - Recent works have analized the non-adiabatic behaviors of PPV3NO2  to the study of its na dynamics in implicit solvent. \cite{sifain2018photoexcited}
   - This type of work is useful for studying the donor acceptor functionality of this promising organic conjugated molecular in polarized solvents.
   - We choose methanol due to it being a common solvent with strong polarization.
   - We'll compare the population decay behavior to that found in strongly polar implicit solvents.
 :END:
    #+begin_src latex
    \section{Introduction}
-   We further our analysis of PPV3no2 by analyzing its ultra fast excited state decay.
-   Recent works have analized the nonadiabatic behaviors of PPV3NO2  to the study of its na dynamics in implicit solvent. \cite{sifain2018photoexcited,dykstra2009conformational}
-   This type of work is useful for studying the donor acceptor functionality of this promising organic conjugated molecular in polarized solvents.
-   We choose methanol due to it being a common solvent with strong polarization.
-   We'll compare the population decay behavior to that found in strongly polar implicit solvents.
+In chapter 4, we applied adiabatic excited state dynamics to PPV3NO2. While this process allowed us to analyze the steady-state absorption and fluorescence properties, it does not allow us to simulate the exciton movement during the process. Charge transfer and the study of donor-acceptor functionality are important when working with light-harvesting devices, LEDs, or any photosensitive process. (cite) A major feature of PPV oligomers is their sensitivity of these non-adiabatic characteristics to the environment. (cite) This allows users to tailor the properties based upon the choice of residues during the creation of the polymer and allows fine-tuning of these properties based on the selection of the solvent. 
+
+In this chapter, we activate the non-adiabatic routines found in NEXMD for SANDER. We integrate non-adiabatic routines found in NEXMD in SANDER to analyze and simulate PPV3-NO2 in explicit solvent. As shown in the previous chapters, the computational cost for a single trajectory is roughly an order of magnitude larger than that for adiabatic dynamics. To have reasonable precision in our results, we need to have around 5 times the number of trajectories within our swarm. (cite) Due to the high computational costs of the following calculations, we limit our analysis to a single solvent. State population decay is known to be sensitive to the solvent dielectric constant and hydrogen bonding sites. (cite) Out of the solvents we tested in the Adiabatic simulations, methanol seems like the appropriate choice. We also choose to include no more than 10 solvents within the QM region. There is very little difference in the results between 10 and 20 in the QM region during the adiabatic dynamics. Also, as will be seen later, including 10 instead of 5 solvents had an insignificant effect and extrapolation to 20 QM seemed appropriate. We show our method to simulate a pulse pump experiment. We analyze the population decay and the same geometric relaxations that we explored in the adiabatic section.
    #+end_src
 ** THREE Methods [3/3]
    #+begin_src latex
@@ -2006,27 +1954,14 @@ We set the classical time step to 0.5 fs, 300K (NVT), using a Langevin thermosta
     \begin{minipage}[c]{\textwidth}
       \centering
       \includegraphics[width=5in]{../Paper2/scripted_diagrams/simulations-1.png}
-      \captionof{figure}{Diagram of the Nonadiabatic dyanmics simulation.}
+      \captionof{figure}{Diagram of the Non-Adiabatic dyanmics simulation.}
       \label{fig:nonadiabaticSimulation}
     \end{minipage}\bigskip
     #+end_src
 *** THREE Ground State Sampling                                      :ignore:
     #+begin_src latex
-    We equilibrated the system to a temperature set to 300K. To collect a broad
-    enough sampling, we sampled from a 1024 ps, with a 0.5 fs timestep fully
-    classical trajectories using the AMBER force field. We performed a separate
-    trajectory for each situation combination of solute / with solvent including
-    whether the solvent was included in the QM calculations. We had a total of 6
-    separate 1024 ps classical trajectories, PPV3 in Vacuum, CH\(_3\)OH, and 5QM CH\(_3\)OH
-    and PPV\(_3\)-NO\(_2\) in Vacuum, CH\(_3\)OH, and 5QM CH\(_3\)OH. 1024 snapshots where taken at
-    1ps, 2ps .. 1024ps. We used the final frame of those tranjectories as the
-    initial conditions for an additional 4ps using the AM1 semiempical Hamiltonian
-    Born-Oppenheimer on the molecules to be included in future QM calculations to
-    allow the system to relax. The 4 ps timescale was determined using the
-    information form the previous paper. The simulations were described the Langevin
-    equations at a temperature set to 300 K with the Langevin friction parameter set
-    to 2 ps\(^{-1}\). The final frames of these QM trajectories were then used as the
-    initial conditions for the following pulse pump calculations.
+        Figure \ref{fig:nonadiabaticSimulation} visually describes the layout of each of our simulations. We sampled from a 1024 ps, 0.05 fs time-step fully classical trajectories using GAFF starting from an equilibrated systems at 300K to collect a broad sampling. We sampled from two long MM simulations, one in vacuum and another in methanol. From each simulation, we took 512 snapshots containing the coordinates and velocities at 2 ps intervals. We used these as the initial conditions for 4 ps ground-state QM adiabatic simulations. We choose 4 ps based on the relaxation results found in Chapter 4. In pulse-pump experiments, the excitation occurs from the lowest excited state. As such, we used the last frame of these trajectories as the coordinates for a single-point calculation at the first excited state to determine which state to promote to. The coordinates and velocities from the last QM ground-state frames were then used as the non-adiabatic calculations' initial conditions. As before, we performed all simulations using the AM1 semi-empirical Hamiltonian at 300K using a Langevin thermostat. However, we adjusted the friction constant to \(\gamma\) = 20 ps\(^{-1}\) to better compare to previous research. 
+        We run the non-adiabatic simulations for 1 ps at 0.5 fs time-steps. Note that this time-step is slightly too large and the swarm size too small to recommend for production. These should be roughly 0.1 fs and 1000, respectively. (cite) However, our parameter should provide qualitatively useful results.
     #+end_src
 *** THREE Pulse Pump Calculations                                  :ignore:
 **** THREE Quick Explanation of a pulse pump experiment
@@ -2035,34 +1970,22 @@ We set the classical time step to 0.5 fs, 300K (NVT), using a Langevin thermosta
     
     :END:
     #+begin_src latex
- Pump-Probe Spectroscopy is an experimental technique commonly performed in the
- study of ultrafast electonic statte dynamics. In the case of conjugated polymers
- in can be used to study the localized excictronic transitions that are
- accessible through an excitation from the S1 state but not the ground state S0.
- To simulate this behavior, we take the final snapshot of the QM ground state
- calculations and perform a single point calculation at the S1 state to find the
- next state with the highest oscillator strength.
-    #+end_src
-**** THREE How to choose excited states.
-    :LOGBOOK:
-    - Note taken on [2021-01-30 Sat 13:41] \\
-      - During photo excitation we need to choose the proper optically allowed and probable states.
-      - These initial excited states are determined using the Frank-Condon method
-      - Fire a 4.3 eV laser with FWHM of 100fs^-1 or 0.162eV corresponds to a spectral broadening of 0.0687eV.
-    :END:
-    #+begin_src latex
-    The unnormalized probabilities are determined using
-    \begin{equation}
-      P'(\Omega_e) = f_{ge}(\Omega_e) \times \frac{1}{\sqrt{2\pi \sigma^2}} \exp \left[ - \frac{(\Omega_e - \Omega)^2}{2\sigma^2} \right]
-    \end{equation}
-    where \(\Omega\) is the energy of the laser exciatation, \(\Omega_\alpha\) the energy difference from the first excited state to the possible future excited state \(\alpha\), \(f_{ge}(\Omega_e)\) is oscillator strength for the transition, and \(\sigma\) the spectral broadening.  
+Pump-Probe Spectroscopy is an experimental technique commonly performed in the study of ultrafast excited-state dynamics. (cite) In the case of conjugated polymers, it can help the study of localized excitonic transitions accessible through an excitation from the S1 state but not the ground state S0. (cite)
+We extracted the transition dipole frequencies and oscillator strengths from the S1 single-point calculations we ran on the final snapshot of the QM ground state. These are then used to determine the initial excited-state (Sm) of the non-adiabatic trajectories using a Frank-Condon methodology. (cite)
 
-    The probability of initially populating an excited state \(\alpha\) is then
-    \begin{equation}
-      P(\Omega_\alpha) = \frac{P'(\Omega_i)}{\sum_i P'(\Omega_i)}
-    \end{equation}
+The unnormalized initial state probabilities are determined using
+\begin{equation}
+    P'(\Omega_e) = f_{ge}(\Omega_e) \times \frac{1}{\sqrt{2\pi \sigma^2}} \exp \left[ - \frac{(\Omega_e - \Omega)^2}{2\sigma^2} \right],
+\end{equation}
+where \(\Omega\) is the energy of the laser exciatation, \(\Omega_\alpha\) the energy difference from the first excited state to the possible future excited state \(\alpha\), \(f_{ge}(\Omega_e)\) is oscillator strength for the transition, and \(\sigma\) the spectral broadening.  
 
-    The states are then chosen randomly using these weights.
+The probability of initially populating an excited state \(\alpha\) is then
+\begin{equation}
+    P(\Omega_\alpha) = \frac{P'(\Omega_i)}{\sum_i P'(\Omega_i)},
+\end{equation}
+where the sum is over the included states in the single-point calculations. Each single-point will therefore have a different distribution.
+The states are then chosen randomly using these weights. In our simulations, we use a 4.3 eV laser with full width half max (FWHM) of 1000 fs\(^{-1}\) (0.162 eV) which corresponds to a spectral broadening of 0.0687 eV.
+
     #+end_src
 ** ONE Results [7/7]
    #+begin_src latex
@@ -2072,7 +1995,6 @@ We set the classical time step to 0.5 fs, 300K (NVT), using a Langevin thermosta
      #+begin_src latex
 \subsection{Intitial Excitations}
      #+end_src
-**** ONE Excited State Density Chart from S1                         :ignore:
 **** ONE Spectra from S1 [0/2]                                       :ignore:
      :LOGBOOK:
      - Note taken on [2021-01-23 Sat 11:07] \\
@@ -2101,13 +2023,12 @@ We set the classical time step to 0.5 fs, 300K (NVT), using a Langevin thermosta
        - The addition of solvents into the QM region had little effect on the shift.
      :END:
 #+begin_src latex
-Figure \ref{s1absorption} shows the absorption spectra observerd from state S1 as energy differences from the ground state.
-Spectras were normalized over both states.
-The intensity of state S10 is noticeably lower than that from S9, while the peak of S9 is more aligned, as such the we expect the initial population after excitation to heavily weighed toward S9, which we see.
-Spectras for varying number of solvents included in the QM region as well as vacuum are shown.
-A gaussian laser wavefunction with energy of 4.3 eV with FWHM of 0.16 eV is shown above the top chart.
-The presence of solvent redshift the peak absorption spectra by roughly 0.1 eV similar to what was seen in the adiabatic spectra analysis.
-
+Figure \ref{s1absorption} shows the absorption spectra observed from state S1 as energy differences from the ground state.
+Spectras for varying number of solvents included in the QM region and vacuum are included.
+We included 12 states in the single-point calculations and normalized the spectra such that the area under the curve for all states summed to 1.
+A gaussian laser wavefunction with an energy of 4.3 eV and FWHM of 0.16 eV is shown above the top chart.
+The intensity of state S10 is noticeably lower than that from S9, while the peak of S9 is more aligned with the laser's peak. As such, we expect the initial population after excitation to be heavily weighted toward S9.
+The solvent redshifted the peak absorption spectra by roughly 0.1 eV, similar to what was seen in the adiabatic spectra analysis of the ground-state absorption. The number of solvents included in the QM region has a negligible effect on this shift.
 #+end_src
 *** ONE State Populations
     #+begin_src latex
@@ -2219,7 +2140,7 @@ Having a complete MM solvent solution seems to produce a lower energy.
 \subsection{Torsional Angle Relaxation}
     #+end_src
 **** ONE Why do we want to do dihedral angles?                       :ignore:
-     The torsion angle around the vinylene segments have been shown to be highly coupled to the excited state. cite:nelson2011nonadiabatic,panda2013electronically  
+     The torsion angle around the vinylene segments have been shown to be highly coupled to the excited state. cite:nelson2011non-adiabatic,panda2013electronically  
 **** ONE Dihedral Angle Figure                                       :ignore:
      :LOGBOOK:
      - State "WAITING"    from "TODO"       [2021-01-25 Mon 07:44] \\
@@ -2234,12 +2155,12 @@ Having a complete MM solvent solution seems to produce a lower energy.
        \centering
        \includegraphics[width=\textwidth]{../Paper2/Images/dihedral/solvent_comparison.png}
        \captionof{figure}{Dihedral angles of PPV\(_{3}\)-NO\(_{2}\) with varying number of solvents included in the QM region.}
-       \label{fig:dihedralNonadiabatic}
+       \label{fig:dihedralNon-Adiabatic}
      \end{minipage}\bigskip
      #+end_src
 **** ONE Description of the plot                                     :ignore:[0/0]
 #+begin_src latex
-Figure \ref{fig:dihedralNonadiabatic} presents the torsional angles around d1,d2,d3 (Near) and d4,d5,d6 (Far).
+Figure \ref{fig:dihedralNon-Adiabatic} presents the torsional angles around d1,d2,d3 (Near) and d4,d5,d6 (Far).
 Similar to what was reported in the adiabatic simulations, the angles reported in vacuum remain rougly 5\(^\circ\) higher than those reported in the methanol solution.
 Relaxation in the methanol solution is slightly quick than in vacuum.
 Then equilibrated torsional angle in the full MM solvent could possibly be a few degrees higher than in the mixed QM/MM solvents.
@@ -2305,13 +2226,13 @@ Little discernable differences can be sceen by adding solvents to the QM region.
  \begin{minipage}[c]{\textwidth}
    \centering
    \includegraphics[width=5in]{../Paper2/Images/bond_order/solvent_comparison.png}
-   \captionof{figure}[Wiberg Bond Orders in Nonadiabatic Dynamics]{The Wiberg Bond Orders averaged over the ensemble of trajectories for select bonds for PPV\(_3\)-NO\(_2\) with various number of solvents included in the QM region.}
-   \label{fig:bondOrderNonadiabatic}
+   \captionof{figure}[Wiberg Bond Orders in Non-Adiabatic Dynamics]{The Wiberg Bond Orders averaged over the ensemble of trajectories for select bonds for PPV\(_3\)-NO\(_2\) with various number of solvents included in the QM region.}
+   \label{fig:bondOrderNon-Adiabatic}
  \end{minipage}\bigskip
  #+end_src
 **** ONE Explanation fo Widberg Bond Figure
 #+begin_src latex
-The visual analysis of the Widberg bond orders can be found in figure \ref{fig:bondOrderNonadiabatic}.
+The visual analysis of the Widberg bond orders can be found in figure \ref{fig:bondOrderNon-Adiabatic}.
 The outer bonds d1,d3,d4,d6 slowly rise and gain more double bond characteristics while the inner bonds d2 and d5 lower and gain more single bond characteristics.
 Little solvent effect can be descerned for the bond furthest from the nitrate group d4,d5,d6.
 Noticeable solvent effects exist in the group nearest the nitrate group, with the solvent apparently amplifying the effect found in vacuum.
@@ -2321,7 +2242,7 @@ These results align well with what was found in the analysis for the bond length
 *** ONE Conclusion                                                   :ignore:
   :PROPERTIES:
   :header-args: :eval never-export
-  :header-args:latex: :exports code :tangle nonadiabatic.tex
+  :header-args:latex: :exports code :tangle non-adiabatic.tex
   :END:
 * ONE Conclusion
   :PROPERTIES:
