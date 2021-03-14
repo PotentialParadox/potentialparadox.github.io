@@ -86,7 +86,9 @@ dihedral_far <- bind_rows(
 dihedral_data <- bind_rows(
     dihedral_near,
     dihedral_far
-)
+) %>%
+    mutate(Location = factor(Location, levels = c("Near", "Far"))) %>%
+    mutate(SolventID = factor(SolventID, levels = c("Vacuum", "0", "5", "10")))
 
 dihedral_data %>%
     ggplot(aes(x = Time, y = MeanAngle, color = SolventID)) +

@@ -35,16 +35,20 @@ get_current_state_deltas <- function(state_potential_filename, states_filename){
 }
 
 vacuum_energies <- get_current_state_deltas('state-potentials-vacuum.csv', 'states-vacuum.csv') %>%
-    mutate(Solvent = "Vacuum")
+    mutate(Solvent = "Vacuum") %>%
+    mutate(Type="Measured")
 
 ch3oh_energies <- get_current_state_deltas('state-potentials-ch3oh.csv', 'states-ch3oh.csv') %>%
-    mutate(Solvent = "0")
+    mutate(Solvent = "0") %>%
+    mutate(Type="Measured")
 
 ch3oh_5s_energies <- get_current_state_deltas('state-potentials-ch3oh-5s.csv', 'states-ch3oh-5s.csv') %>%
-    mutate(Solvent = "5")
+    mutate(Solvent = "5") %>%
+    mutate(Type="Measured")
 
 ch3oh_10s_energies <- get_current_state_deltas('state-potentials-ch3oh-10s.csv', 'states-ch3oh-10s.csv') %>%
-    mutate(Solvent = "10")
+    mutate(Solvent = "10") %>%
+    mutate(Type="Measured")
 
 energies <- bind_rows(
     vacuum_energies,
@@ -55,6 +59,7 @@ energies <- bind_rows(
 
 
 energies %>%
+    mutate(Solvent = factor(Solvent, levels=c("Vacuum", "0", "5", "10"))) %>%
     ggplot(aes(x = Timefs, y = MeanEnergyeV, color = Solvent)) +
     geom_line(size=1.5) +
     theme_bw() +
@@ -72,36 +77,40 @@ energies %>%
 ggsave("~/potentialparadox.github.io/Paper2/Images/potential_energies/solvent_comparison.png", width = 10, height = 10)
 
 
-#################################################
-# Plot S1 Relaxations
-#################################################
-plot_potentials <- function (potentials, legend_breaks, legend_labels){
-  potentials %>% 
-    ggplot(aes(x = `Time-fs`, y = MeanEnergy, color = System)) +
-    geom_point(size = 0.5) +
-    labs(x="Time (fs)", y="Energy (eV)")+
-    scale_color_discrete(breaks = legend_breaks, labels = legend_labels) +
-    facet_grid(rows = vars(Solute), scales="free") +
-    theme_bw() +
-    theme(axis.text=element_text(size=20),
-          axis.title=element_text(size=20),
-          legend.title = element_blank(),
-          legend.text = element_text(size = 15),
-          legend.text.align = 0,
-          legend.position = c(0.8, 0.7)
-    )
+
+model_decay <- function(params, data){
+    A = params[1]
+    B = params[2]
+    kB = params[3]
+    C = params[4]
+    kC = params[5]
+    A + B * exp(-kB * data$Timefs) + C * exp(-kC * data$Timefs)
 }
 
-legend_breaks <- c("S0 Vacuum",
-                   "S1 Vacuum",
-                   "S1 Methanol"
-                   )
-legend_labels <- c(expression(paste(S[0], " Vacuum")),
-                   expression(paste(S[1], " Vacuum")),
-                   expression(paste(S[m], " Methanol")),
-                   expression(paste(S[m], " Methanol-5s")))
+model <- model_decay
 
-plot_potentials(potentials, legend_breaks, legend_labels)
+measure_distance <- function(mod_params, data) {
+    diff <- data$MeanEnergyeV - model(mod_params, data)
+    sqrt(mean(diff^2))
+}
 
 
+best <- optim(c(2.5, 1, 0.005, 0.5, 0.005), measure_distance, data = ch3oh_energies)
 
+s1_vacuum_fit <- purrr::partial(model, c(2.633, 0.9559, 0.0043293, 0.84108, 0.01262))
+fit_vacuum_df <- tibble("Timefs" = vacuum_energies$Timefs, Solvent = "Vacuum", Type = "Predicted", "MeanEnergyeV" = s1_vacuum_fit(vacuum_energies))
+
+s1_ch3oh_fit <- purrr::partial(model, c(2.671832, 1.67528, 0.006676))
+fit_ch3oh_df <- tibble("Timefs" = ch3oh_energies$Timefs, Solvent = "0", Type = "Predicted", "MeanEnergyeV" = s1_ch3oh_fit(ch3oh_energies))
+
+data <- bind_rows(vacuum_energies, fit_vacuum_df)
+
+data %>%
+    ggplot(aes(x=Timefs, y = MeanEnergyeV, color=Type)) +
+    geom_line() +
+    facet_wrap(~ Solvent)
+
+x = log(ch3oh_energies$MeanEnergyeV)
+
+
+plot(x)

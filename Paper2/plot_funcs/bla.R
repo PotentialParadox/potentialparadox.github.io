@@ -95,7 +95,8 @@ bla <- bind_rows(
     bla_near,
     bla_far
 ) %>%
-    mutate(Location = factor(Location, levels = c("Near", "Far")))
+    mutate(Location = factor(Location, levels = c("Near", "Far"))) %>%
+    mutate(SolventID = factor(SolventID, levels = c("Vacuum", "0", "5", "10")))
 
 ######################################
 # Ploting

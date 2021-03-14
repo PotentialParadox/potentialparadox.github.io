@@ -30,7 +30,8 @@ spectras <- bind_rows(
     ch3oh,
     ch3oh_5s,
     ch3oh_10s
-)
+) %>%
+    mutate(nSolvent = factor(nSolvent, levels=c("Vacuum", "0", "5", "10")))
 
 s10 <- vacuum %>%
     filter(State == "S10")
@@ -49,7 +50,7 @@ ggplot() +
     geom_line(data = gaussian_plot, aes(x = x, y = y), size = 1.5) +
     geom_segment(data = s10, aes(x = 4.3, y = 0.3, xend = 4.3, yend = 0.2), size=1.2, arrow = arrow(length = unit(0.5, "cm"))) +
     facet_wrap(vars(State), ncol=1) +
-    labs(x = "Energy (eV)", y = "Intensity") +
+    labs(x = "Energy (eV)", y = "Intensity", color = "Number QM Solvents") +
     theme_bw() +
     theme(axis.text=element_text(size=15),
           axis.title=element_text(size=20),
@@ -59,6 +60,6 @@ ggplot() +
           legend.title = element_text(size=20),
           legend.text = element_text(size = 18),
           legend.text.align = 0,
-          legend.position = c(0.9, 0.9)
+          legend.position = c(0.85, 0.9)
     )
 ggsave("~/potentialparadox.github.io/Paper2/Images/pulse_pump/spectra.png", width = 12, height = 12)

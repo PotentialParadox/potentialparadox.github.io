@@ -24,6 +24,8 @@ read_bondorder <- function(filename){
 
 vacuum <- read_bondorder('bond-order-vacuum.csv') %>%
     mutate(NSolvent = "Vacuum")
+ch3oh <- read_bondorder('bond-order-ch3oh-5s.csv') %>%
+    mutate(NSolvent = "0")
 ch3oh_5s <- read_bondorder('bond-order-ch3oh-5s.csv') %>%
     mutate(NSolvent = "5")
 ch3oh_10s <- read_bondorder('bond-order-ch3oh-10s.csv') %>%
@@ -32,9 +34,11 @@ ch3oh_10s <- read_bondorder('bond-order-ch3oh-10s.csv') %>%
 
 bondorders = bind_rows(
     vacuum,
+    ch3oh,
     ch3oh_5s,
     ch3oh_10s
-)
+) %>%
+    mutate(NSolvent = factor(NSolvent, levels = c("Vacuum", "0", "5", "10")))
 
 img_df = data.frame("t" = c(500), "y" = c(1.2), "Bond" = c("d2"), "Image" = "ppvno2.png", "NSolvent" = c("Vacuum"))
 ggplot() +
