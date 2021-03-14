@@ -1,78 +1,82 @@
 \documentclass[editMode]{ufdissertation}\sloppy
-  \usepackage{tikz}%       tikz is used by almost everyone, but certainly by me for this.
-  \usepackage{bm}%         bm is needed in order to boldface mathematical symbols
-  %% Uncomment the relevant line below if you have tables or figures.
-  \haveTablestrue%        Uncomment this if you have tables in your thesis.
-  \haveFigurestrue%       Uncomment this if you have figures in your thesis.
-  % \haveObjectstrue%       Uncomment this if you have Objects in your thesis. This is almost certainly not the case however.
+    \usepackage{tikz}%       tikz is used by almost everyone, but certainly by me for this.
+    \usepackage{bm}%         bm is needed in order to boldface mathematical symbols
+    \usepackage{listings,setspace}%
+    %% Uncomment the relevant line below if you have tables or figures.
+    \haveTablestrue%        Uncomment this if you have tables in your thesis.
+    \haveFigurestrue%       Uncomment this if you have figures in your thesis.
+    % \haveObjectstrue%       Uncomment this if you have Objects in your thesis. This is almost certainly not the case however.
 
-  \title{The Implementation of QM/MM for Non-Adiabatic Dynamics Using AMBER and NEXMD}%  Put your title here.
+    \title{The Implementation of QM/MM for Non-Adiabatic Dynamics Using AMBER and NEXMD}%  Put your title here.
 
-  \degreeType{Doctorate of Philosophy}%   Official name of your degree; eg "Doctorate of Philosophy".
-  \major{Physics}%                    Your official Department
-  \author{Dustin Tracy}%                  Your Name
-  \thesisType{Dissertation}%              Dissertation (PhD) or Thesis (Masters)
-  \degreeYear{2021}%                      Intended graduation year (not the year you submit the thesis)
-  \degreeMonth{May}%                   Month of graduation should be May, August, or December.
-  \chair{Adrian Roitberg}%                   Chair and Cochair (see comment block above).
-
-
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-%%% For each of the following, type in the name of the file that contains each section. 
-%       They are assumed to be tex files, but if they aren't the command takes an optional argument for the extension.
-%       So, you could load dedication.tex as your dedication file using \setDedicationFile{dedication}
-%       You could load dedication.txt instead with \setDedicationFile[txt]{dedication}.
-%       NOTE: For some compilers they may or may not add a .tex to the end of the file automatically.
-%           If you get a "couldn't find dedication.tex.tex" type error, try the command with an empty optional argument,
-%           e.g. \setDedicationFile[]{dedication}
-%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%% These are REQUIRED sections; easiest to do via these commands.
-
-\setDedicationFile{dedicationFile}%                 Dedication Page
-\setAcknowledgementsFile{acknowledgementsFile}%     Acknowledgements Page
-\setAbstractFile{abstractFile}%                     Abstract Page (This should only include the abstract itself)
-\setReferenceFile{referenceFile}{apa}%              References. First argument is your bibtex source file
-%                                                       the second argument is your bibtex style file.
-\setBiographicalFile{biographyFile}%                Biography file of the Author (you).
-
-%%% These are NOT required, so only use them if you actually need/have them.
-
-% \setAbbreviationsFile{abbreviations}%           Abbreviations Page
-% \setAppendixFile{appendix}%                     Appendix Content; hyperlinking might be weird.
-% \multipleAppendixtrue%                          Uncomment this if you have more than one appendix, 
-%                                                   comment it if you have only one appendix.
+    \degreeType{Doctorate of Philosophy}%   Official name of your degree; eg "Doctorate of Philosophy".
+    \major{Physics}%                    Your official Department
+    \author{Dustin Tracy}%                  Your Name
+    \thesisType{Dissertation}%              Dissertation (PhD) or Thesis (Masters)
+    \degreeYear{2021}%                      Intended graduation year (not the year you submit the thesis)
+    \degreeMonth{May}%                   Month of graduation should be May, August, or December.
+    \chair{Adrian Roitberg}%                   Chair and Cochair (see comment block above).
 
 
-%%%%%%%                     End of File Assignment
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+  %%% For each of the following, type in the name of the file that contains each section. 
+  %       They are assumed to be tex files, but if they aren't the command takes an optional argument for the extension.
+  %       So, you could load dedication.tex as your dedication file using \setDedicationFile{dedication}
+  %       You could load dedication.txt instead with \setDedicationFile[txt]{dedication}.
+  %       NOTE: For some compilers they may or may not add a .tex to the end of the file automatically.
+  %           If you get a "couldn't find dedication.tex.tex" type error, try the command with an empty optional argument,
+  %           e.g. \setDedicationFile[]{dedication}
+  %%%
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{document}
-%%%% Here you just need to include/input your actual work. 
-%       The above files (dedication, acknowledgement, titlepage, etc etc) will all be added for you 
-%       using the files you assigned above. 
-%       If you want to input the above files manually you can comment out the \setFILE command above 
-%       and use \input or \include here. Generally you want to use \include to get your pagebreak.
-%       NOTE: If you input manually you will have to do some/all the formatting manually.
+  %%% These are REQUIRED sections; easiest to do via these commands.
+
+  \setDedicationFile{dedicationFile}%                 Dedication Page
+  \setAcknowledgementsFile{acknowledgementsFile}%     Acknowledgements Page
+  \setAbstractFile{abstractFile}%                     Abstract Page (This should only include the abstract itself)
+  \setReferenceFile{referenceFile}{ieeetr}%              References. First argument is your bibtex source file
+  %                                                       the second argument is your bibtex style file.
+  \setBiographicalFile{biographyFile}%                Biography file of the Author (you).
+
+  %%% These are NOT required, so only use them if you actually need/have them.
+
+  %% \setAbbreviationsFile{abbreviations}%           Abbreviations Page
+  %% \setAppendixFile{appendix}%                     Appendix Content; hyperlinking might be weird.
+  % \multipleAppendixtrue%                          Uncomment this if you have more than one appendix, 
+  %                                                   comment it if you have only one appendix.
 
 
+  %%%%%%%                     End of File Assignment
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\include{introduction}% Modified from old template.
-\include{theoreticalMethods}% Modified from old template.
-\include{implementationDetails}% Modified from old template.
-\include{adiabatic}% Modified from old template.
-\include{nonadiabatic}% Modified from old template.
-\include{conclusion}% Modified from old template.
+\lstnewenvironment{mylisting}
+  {\singlespacing\lstset{basicstyle=\ttfamily\footnotesize,breaklines=true}}
+{}
 
-% \begin{algorithm}% Example showing the weird "algorithm" environment works...
-%     \captionof{algorithm}{Test Caption}
-% \end{algorithm}
-% \addObject{TestStuff!}%     This is probably the command that a normal author will use to add objects.
+  \begin{document}
+  %%%% Here you just need to include/input your actual work. 
+  %       The above files (dedication, acknowledgement, titlepage, etc etc) will all be added for you 
+  %       using the files you assigned above. 
+  %       If you want to input the above files manually you can comment out the \setFILE command above 
+  %       and use \input or \include here. Generally you want to use \include to get your pagebreak.
+  %       NOTE: If you input manually you will have to do some/all the formatting manually.
 
-% \chapter{EXAMPLES OF EDITOR/Author TOOLS, TABLES, AND IMAGES}% Notice that we can use chapter/section etc breaks in the master file if we want, and then use \input instead of \include to avoid unneccessary page breaks.
-% \input{editorAndAuthorRemarks}%     Stuff about using editorRemark and authorRemark commands
-% \input{includingTablesExamples}%    Stuff about using Tables.
-% \input{includingImagesExamples}%    Stuff about using Images.
 
-\end{document}
+  \include{introduction}% Modified from old template.
+  \include{theoreticalMethods}% Modified from old template.
+  \include{implementationDetails}% Modified from old template.
+  \include{adiabatic}% Modified from old template.
+  \include{non-adiabatic}% Modified from old template.
+  \include{conclusion}% Modified from old template.
+
+  % \begin{algorithm}% Example showing the weird "algorithm" environment works...
+  %     \captionof{algorithm}{Test Caption}
+  % \end{algorithm}
+  % \addObject{TestStuff!}%     This is probably the command that a normal author will use to add objects.
+
+  % \chapter{EXAMPLES OF EDITOR/Author TOOLS, TABLES, AND IMAGES}% Notice that we can use chapter/section etc breaks in the master file if we want, and then use \input instead of \include to avoid unneccessary page breaks.
+  % \input{editorAndAuthorRemarks}%     Stuff about using editorRemark and authorRemark commands
+  % \input{includingTablesExamples}%    Stuff about using Tables.
+  % \input{includingImagesExamples}%    Stuff about using Images.
+
+  \end{document}

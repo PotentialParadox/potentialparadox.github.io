@@ -3,7 +3,7 @@
 * DONE Masterfile
   :PROPERTIES:
   :header-args: :eval never-export
-  :header-args:latex: :exports code :tangle masterfile.tex
+  :header-args:latex: :exports code :tangle Dustin_2021_PhD_defense.tex
   :END:
   #+begin_src latex
       \documentclass[editMode]{ufdissertation}\sloppy
@@ -39,17 +39,17 @@
 
     %%% These are REQUIRED sections; easiest to do via these commands.
 
-    %% \setDedicationFile{dedicationFile}%                 Dedication Page
-    %% \setAcknowledgementsFile{acknowledgementsFile}%     Acknowledgements Page
-    %% \setAbstractFile{abstractFile}%                     Abstract Page (This should only include the abstract itself)
+    \setDedicationFile{dedicationFile}%                 Dedication Page
+    \setAcknowledgementsFile{acknowledgementsFile}%     Acknowledgements Page
+    \setAbstractFile{abstractFile}%                     Abstract Page (This should only include the abstract itself)
     \setReferenceFile{referenceFile}{ieeetr}%              References. First argument is your bibtex source file
     %                                                       the second argument is your bibtex style file.
-    %% \setBiographicalFile{biographyFile}%                Biography file of the Author (you).
+    \setBiographicalFile{biographyFile}%                Biography file of the Author (you).
 
     %%% These are NOT required, so only use them if you actually need/have them.
 
-    % \setAbbreviationsFile{abbreviations}%           Abbreviations Page
-    % \setAppendixFile{appendix}%                     Appendix Content; hyperlinking might be weird.
+    %% \setAbbreviationsFile{abbreviations}%           Abbreviations Page
+    %% \setAppendixFile{appendix}%                     Appendix Content; hyperlinking might be weird.
     % \multipleAppendixtrue%                          Uncomment this if you have more than one appendix, 
     %                                                   comment it if you have only one appendix.
 
@@ -70,12 +70,12 @@
     %       NOTE: If you input manually you will have to do some/all the formatting manually.
 
 
-    %% \include{introduction}% Modified from old template.
-    %% \include{theoreticalMethods}% Modified from old template.
-    %% \include{implementationDetails}% Modified from old template.
-    %% \include{adiabatic}% Modified from old template.
+    \include{introduction}% Modified from old template.
+    \include{theoreticalMethods}% Modified from old template.
+    \include{implementationDetails}% Modified from old template.
+    \include{adiabatic}% Modified from old template.
     \include{non-adiabatic}% Modified from old template.
-    %% \include{conclusion}% Modified from old template.
+    \include{conclusion}% Modified from old template.
 
     % \begin{algorithm}% Example showing the weird "algorithm" environment works...
     %     \captionof{algorithm}{Test Caption}
@@ -97,7 +97,7 @@
   :END:
   #+begin_src latex
   To my loving wife Sarah Stern, who's love I will alway cherish.
-  I also dedicate this work to my Grandmother Jean Tracy, who encouraged me to work for my PhD, and would have been proud of its completion.
+  I also dedicate this work to my grandmother, Jean Tracy, who encouraged me to work for my PhD, and would have been proud of its completion.
   #+end_src
 * THREE Acknowledgements
 SCHEDULED: <2021-02-08 Mon>
@@ -113,24 +113,26 @@ SCHEDULED: <2021-02-08 Mon>
   - Advisor
 :END:
   #+begin_src latex
-  My wife and family, includig the in-laws, have been supportive of my PhD pursuit since the beginning.
-  Their kindness and understanding has really helped me maintain the course.
+  My advisor, Adrian Roitberg, has been invaluable in this pursuit.
+  I often struggled throughout this work and would run into many roadblocks throughout this journey.
+  Fortunately, even short meetings with him would allow me to break through them.
+He has taught me many lessons, but the most important has probably been to choose my words carefully because presumably the person I'm talking to is listening, and a poor choice of wording might as well be a lie. I can't assume that the person listening will know what I mean.
+I also want to thank my committee members, Peter Hirschfeld, Valeria Kleiman, and Xiaoguang Zhang.
+
+  My wife and family, including the in-laws, have been supportive of my Ph.D. pursuit since the beginning.
+  Their kindness and understanding have really helped me maintain the course.
   On our daily runs, my wife and I share our thoughts of the day.
-  These runs really help me organize my thoughts and added some structure to my work.
+  These runs helped me organize my thoughts and added some structure to this work and the defense.
 
-  My advisor, Adrian Roitberg, has been extraordinarly helpful.
-  I struggled often throughout this work and would run in road block along the way.
-  Even a short meeting with him, would often get me started again.
+  The Tretiak group at Los Alamos was kind enough to host me for a couple of months to gain acquaintance with their NEXMD software package.
+  During this stay, I asked the maintainers about the software and gained first-hand insight into its use.
+  I hope my incessant questions were not too much an annoyance.
 
-  The Tretiak group at Los Alamos was kind enough to host me for a couple of months to gain aquaintance with their NEXMD software package.
-  During this stay I was able to immediately ask questions to the maintainers about software.
-  I hope my incessitant questions were not too much an annoyance.
-
-  Finally I want to thank all the member in the Roitberg group who not only helped me with this work, but also made it much less lonely.
-  I want to give special thanks to Dr. Pancham La Gupta and Dr. Justin Smith who notoriously helped me with my qualifier while being snowed-in at a bunker outside of Yosemite.
-  Kavindri Ranasinghe and Christian Deveroux for their company in room 402. 
-  I want to thank Delaram Ghoreishi and Farhad Ramezanghorbani for allowing me to quiz them about the dissertation process.
-  Everyone from the group has been exceptional and I'll forever value the friendships I made there.
+  Finally, I want to thank all the Roitberg group members who helped me with this work and made it much less lonely.
+  I want to give special thanks to Dr. Pancham La Gupta and Dr. Justin Smith, who notoriously helped me with my qualifier while being snowed-in at a bunker outside of Yosemite.
+  I want to thank Kavindri Ranasinghe and Christian Deveroux for their company in room 402. 
+  I also want to thank Delaram Ghoreishi and Farhad Ramezanghorbani for allowing me to quiz them about the dissertation process.
+  Everyone from the group has been exceptional, and I'll forever value the friendships I made there.
   #+end_src
 * THREE Biographical Sketch
   :PROPERTIES:
@@ -149,12 +151,11 @@ SCHEDULED: <2021-02-08 Mon>
   - Graduated in 2021.
 :END:
   #+begin_src latex
-Dustin Tracy was born in Ironton Ohio.
-He spent his early life in the very small town of Argillite KY.
-He spent is Adolescence and Teenage life in Lakeland, FL.
-In 2013, he graduated from the University of South Florida with degrees in accounting and physics and began the physics PhD program and the University of Florida.
-He joined the Roitberg group in 2014.
-He graduated with his PhD in 2021.
+Dustin Tracy was born in Ironton, Ohio.
+He spent his early life in the tiny town of Argillite, KY.
+He spent his adolescence and teenage life in Lakeland, FL.
+In 2013, he graduated from the University of South Florida with degrees in accounting and physics and began the physics Ph.D. program at the University of Florida.
+He joined the Roitberg group in 2014 and graduated with his Ph.D. in May 2021. The focus of his research was on developing a QM/MM method for non-adiabatic dynamics that could be used in the AMBER molecular dynamics package.
   #+end_src
 * THREE Abstract
   :PROPERTIES:
@@ -162,13 +163,15 @@ He graduated with his PhD in 2021.
   :header-args:latex: :exports code :tangle abstractFile.tex
   :END:
   #+begin_src latex
-  We present a method to link the Non-adiabatic-Excited-state Molecular Dynamics (NEXMD) package to the SANDER package supplied by AMBERTOOLS, to provide excited-state adiabatic and nonadiabtic QM/MM simulations.
-  NEXMD is a computational package particularly developped to perform simulations of the photoexcitation and subsequent non-adiabatic electronic and vibrational energy relaxation and redistribution in large multichormophoric conjugated molecules, a process that involves several coupled electronic excited states.
-  In this work, we use it solely for its capability to perform excited-state adiabatic dynamics.
-  In this report, we first describe the basic methodology behind the code, where we briefly describe the general principals behind excited state adiabatic dynamics simulations performed in NEXMD and the QM/MM calculations performed by SANDER.
-  We outline the flowchart connecting them in order to optimize their exchange allowing excited state adiabatic dynamics simulations of large conjugated materials in explicit solvent.
-  To validate functionality, we analyze the dynamics of a polyphenylene vinylene oligomer (PPV\(_3\)-NO\(_2\)) in vacuum and various explicit solvents.
-  We highlight the system's ability to generate optical spectrum, view state-dependent conformational changes, and view quantum bond orderings. 
+ During photo-excitation and relaxation processes, we can no longer rely on the Born-Oppenheimer approximation.
+  Non-adiabatic dynamics methods are therefore essential in the simulation of this behavior.
+  The Non-adiabatic-Excited-state Molecular Dynamics Package (NEXMD) is designed and optimized to perform these calculations in a highly efficient manner. However, its use is restricted to implicit solvent.
+  SANDER, a molecular dynamics program found in the AMBER molecular dynamics package, can perform hybrid quantum mechanical, classical dynamic (QM/MM) dynamics.
+    In this work, we build a library of useful routines from NEXMD and present a method to link this library to SANDER to provide excited-state adiabatic and non-adiabatic QM/MM simulations.
+  We test this new methodology on a derivative of an organic conjugated polymer Poly(p-phenylene vinylene) (PPV3-NO2).
+  We first investigate the steady-state characteristics of PPV3-NO2 at the ground state and lowest excited state in varying solvents. This analysis only required excited state adiabatic calculations, and we compare the results to those from experiment and implicit solvent experiments.
+  We then apply the non-adiabatic routines and inspect the behavior of the excited state population decays.
+For the non-adiabatic dynamics simulations, we restrict our calculations to the use of methanol as our solvent and find that this solvent's inclusion leads to similar behavior to that found in implicit solvents with a similar dielectric constant.
   #+end_src
 * THREE Introduction [5/6]
   :PROPERTIES:
@@ -330,7 +333,7 @@ Photon absorption is also a requirement in certain reactions that need that last
        \begin{multiFigure} 
 	 \addFigure{0.45}{Images/probabilities.png}
 	 \addFigure{0.45}{Images/ehrenfestVsTully.png}
-	 \captionof{figure}[Surface Hopping vs Mean-Field]{A visual description describing the difference between surface hopping and mean-field. A) The probabilities states S1 and S2. B) The potential energies of trajectories over time. Dashed lines represent the potential energies of S1, S2, and the probability-weighted average during the Ehrenfest trajectory. Solid lines represent two separate surface hopping trajectories.}
+	 \captionof{figure}[Surface hopping vs mean-field]{A visual description describing the difference between surface hopping and mean-field. A) The probabilities states S1 and S2. B) The potential energies of trajectories over time. Dashed lines represent the potential energies of S1, S2, and the probability-weighted average during the Ehrenfest trajectory. Solid lines represent two separate surface hopping trajectories.}
 	 \label{fig:surfaceHoppingVsMeanField}
        \end{multiFigure}
 \bigskip
@@ -375,7 +378,7 @@ Notice that the average energy of the hop trajectories will also diverge from th
        \begin{minipage}[c]{\textwidth}
 	 \centering
 	 \includegraphics[width=\textwidth]{./Images/naCrossings.png}
-	 \captionof{figure}[Regions of Non-Adiabatic Couplings]{Periods of trajectories where there are in general weak and strong state couplings between states S1 and S2 and a region where the energies of S1 and S2 cross.}
+	 \captionof{figure}[Regions of non-adiabatic couplings]{Periods of trajectories where there are in general weak and strong state couplings between states S1 and S2 and a region where the energies of S1 and S2 cross.}
 	 \label{fig:naCrossings}
        \end{minipage}\bigskip
        #+end_src
@@ -447,7 +450,7 @@ As such, implicit solvents, which adjusts instantaneously to any changes in the 
     \begin{multiFigure} 
       \addFigure{0.4}{../Oral/Images/qm_mm.png}
       \addFigure{0.4}{../Oral/Images/qm_mm_pme.png}
-      \captionof{figure}[QM/MM Diagram]{A) Representation of a single cell. B) Representation of the periodic nature of the system.}
+      \captionof{figure}[QM/MM diagram]{A) Representation of a single cell. B) Representation of the periodic nature of the system.}
       \label{fig:QMMMDiagram}
     \end{multiFigure}
     \bigskip
@@ -499,8 +502,6 @@ The local photochemical properties of charge transfer probes with hydrogen bondi
 Previous research has also shown that exciton motion coherency along PPV is heavily dependent on the solvent. \cite{collini2009coherent}
 Research also suggests that efficiencies in the exciton migration within PPV derivatives could be improved by selecting solvents that would promote extended conformations.\cite{bredas2009excitons}
 For these reasons, we choose for our analysis the PPV oligomer PPV\(_3\)-NO\(_2\) shown in figure \ref{fig:PPV3NO2}
-
-PPVO oligimoner are derivatives of PPV that allow tunable emission spectra across the optical spectrum. (cite:sifain2018photoexcited:85,86)
 #+end_src
 ** THREE Overview of whats covered in sequential Chapters.
    :LOGBOOK:
@@ -806,7 +807,6 @@ This method provides the exact solution to the Schr\(\ddot{\text{o}}\)dinger equ
 
 	For larger molecules, we only include the ground state determinant and either the singles (configuration interaction singles (CIS)), the doubles (CID), or both (CISD).
 	For CIS, the new wavefunction can be written as
-
 	\begin{equation}
 	\Psi_{CIS} = c_0\psi_0 + c_a^i\sum_i^N\sum_a^{K-N}\psi_a^i
 	\end{equation}
@@ -934,7 +934,6 @@ but we restrict our use to AM1 CIS as is commonly applied in the use of the NEXM
       F_{\mu\nu}^{QMMM} = F_{\mu\nu}^{SRC} + \frac{\partial}{\partial_{\rho\nu}}\left(\Delta E^{PBC}[Q,Q] + \Delta E^{PBC}[Q,q] \right)
     \end{equation}
     where \(E^{PBC}[Q,Q]\) describes the periodic energies from the QM atoms treated as Mulliken charges and \(\Delta^{PBC} [Q,q]\) the periodic energies from the MM atoms.
-    The full expansion of the periodic boundary correction to the Fock matrix can be found in appendix (FIXME:add pbc correction to an appendix?)
     \(\Delta E^{PBC}[Q,Q]\) depends on the Mulliken charges of the QM atoms which are dependent on the trace of the density matrix which isn't known until the Roothan-Hall equation is solved, therefore \(\Delta E^{PBC}[Q,Q]\) is solved for at every step of the SCF procedure.
     The correction from \(\Delta^{PBC} [Q,q]\) is simply the potential from the periodic MM atoms and is not dependent on the Mulliken charges of the QM atoms and as such can be added to the Fock matrix before the SCF routine along with the short-range electrostatic correction.
 
@@ -1397,7 +1396,7 @@ input.ceon file to avoid any confusion.
    multiple iterations of both the ground state SCF and the excited-state
    Davidson algorithm. Further details of this problem as well as a
    recommended solution can be found in the future works section of
-   Chapter 6. \cite{walker2008} For a general time-step QM/MM interaction
+   Chapter 6. \cite{Walker2008} For a general time-step QM/MM interaction
    will be added to the density matrix as follows:
    \begin{enumerate}
    \item Calculate the MM Ewald potentials using the classical charges
@@ -1913,14 +1912,7 @@ In carbon tetracholoride, it shows similar behavior to vacuum, presenting the la
     A noticeable shift towards a planar geometry occurs in all solvents.
     This shift is greatest near the nitro group.
     #+end_src
-*** THREE Conclusion
-    #+begin_src latex
-    The Non-adiabatic Excited State Molecular Dynamics package (NEXMD) that SANDER is linked to for the excited state calculations done in this paper is designed to perform molecular dynamics simulations outside the Born-Oppenheimer approximations using the FSSH in implicit solvents.
-    The program has been tested well and helps gain insights into the dynamics of molecules prone to photo-excitations.
-    However, simulations in explicit solvents have produced qualitatively different results than in implicit solvent mediums.
-    By linking AMBER's SANDER to NEXMD, we produced a quick and efficient tool to simulate explicit solvent behavior on adiabatic excited state dynamics.
-    #+end_src
-* ONE Non-Adiabatic Decay of PPV3-NO2 [3/3]
+* ONE Non-Adiabatic Decay of PPV\(_3\)-NO\(_2\) [3/3]
   :PROPERTIES:
   :header-args: :eval never-export
   :header-args:latex: :exports code :tangle non-adiabatic.tex
@@ -1931,17 +1923,17 @@ In carbon tetracholoride, it shows similar behavior to vacuum, presenting the la
 ** THREE Introduction 
 :LOGBOOK:
 - Note taken on [2021-02-07 Sun 08:41] \\
-  - We further our analysis of PPV3no2 by analyzing its ultra fast excited state decay
-  - Recent works have analized the non-adiabatic behaviors of PPV3NO2  to the study of its na dynamics in implicit solvent. \cite{sifain2018photoexcited}
+  - We further our analysis of PPV\(_3\)-NO\(_2\)no2 by analyzing its ultra fast excited state decay
+  - Recent works have analized the non-adiabatic behaviors of PPV\(_3\)-NO\(_2\)NO2  to the study of its na dynamics in implicit solvent. \cite{sifain2018photoexcited}
   - This type of work is useful for studying the donor acceptor functionality of this promising organic conjugated molecular in polarized solvents.
   - We choose methanol due to it being a common solvent with strong polarization.
   - We'll compare the population decay behavior to that found in strongly polar implicit solvents.
 :END:
    #+begin_src latex
    \section{Introduction}
-In chapter 4, we applied adiabatic excited state dynamics to PPV3NO2. While this process allowed us to analyze the steady-state absorption and fluorescence properties, it does not allow us to simulate the exciton movement during the process. Charge transfer and the study of donor-acceptor functionality are important when working with light-harvesting devices, LEDs, or any photosensitive process. (cite) A major feature of PPV oligomers is their sensitivity of these non-adiabatic characteristics to the environment. (cite) This allows users to tailor the properties based upon the choice of residues during the creation of the polymer and allows fine-tuning of these properties based on the selection of the solvent. 
+In chapter 4, we applied adiabatic excited state dynamics to PPV\(_3\)-NO\(_2\). While this process allowed us to analyze the steady-state absorption and fluorescence properties, it does not allow us to simulate exciton movement. The development of light-harvesting devices, LEDs, or any photosensitive process can be heavily benifitted by computational simulations of charge transfer and donor-acceptor functionality. A major feature of PPV oligomers is their sensitivity of these non-adiabatic characteristics to the environment.\cite{bredas1994influence} This allows users to tailor the properties based upon the choice of residues during the creation of the polymer and allows fine-tuning of these properties based on the selection of the solvent. 
 
-In this chapter, we activate the non-adiabatic routines found in NEXMD for SANDER. We integrate non-adiabatic routines found in NEXMD in SANDER to analyze and simulate PPV3-NO2 in explicit solvent. As shown in the previous chapters, the computational cost for a single trajectory is roughly an order of magnitude larger than that for adiabatic dynamics. To have reasonable precision in our results, we need to have around 5 times the number of trajectories within our swarm. (cite) Due to the high computational costs of the following calculations, we limit our analysis to a single solvent. State population decay is known to be sensitive to the solvent dielectric constant and hydrogen bonding sites. (cite) Out of the solvents we tested in the Adiabatic simulations, methanol seems like the appropriate choice. We also choose to include no more than 10 solvents within the QM region. There is very little difference in the results between 10 and 20 in the QM region during the adiabatic dynamics. Also, as will be seen later, including 10 instead of 5 solvents had an insignificant effect and extrapolation to 20 QM seemed appropriate. We show our method to simulate a pulse pump experiment. We analyze the population decay and the same geometric relaxations that we explored in the adiabatic section.
+In this chapter, we link non-adiabatic routines found in NEXMD to SANDER. We use these routines to simulate PPV\(_3\)-NO\(_2\) in explicit solvent. These simulations are used as validation for the new methodology and we are not asserting any novel insignts into the molecule's behaior. As shown in the previous chapters, the computational cost for a single trajectory is roughly an order of magnitude larger than that for adiabatic dynamics. To have reasonable precision in our results, we need to have around 5 times the number of trajectories within our swarm.\cite{nelson2012nonadiabatic} Due to the high computational costs of the following calculations, we limit our analysis to a single solvent. State population decay is known to be sensitive to the solvent dielectric constant and hydrogen bonding sites.\cite{bredas2009excitons} Out of the solvents we tested in the adiabatic simulations, methanol seems like the appropriate choice. We also choose to include no more than 10 solvents within the QM region. There is minimal difference in the results between 10 and 20 in the QM region during the adiabatic dynamics. Also, as will be seen later, including 10 instead of 5 solvents had an insignificant effect on the non-adiabatic results. We show our method to simulate a pulse pump experiment then analyze the population decay and the same geometric relaxations that we explored in the adiabatic section.
    #+end_src
 ** THREE Methods [3/3]
    #+begin_src latex
@@ -1953,15 +1945,15 @@ In this chapter, we activate the non-adiabatic routines found in NEXMD for SANDE
     \noindent
     \begin{minipage}[c]{\textwidth}
       \centering
-      \includegraphics[width=5in]{../Paper2/scripted_diagrams/simulations-1.png}
-      \captionof{figure}{Diagram of the Non-Adiabatic dyanmics simulation.}
+      \includegraphics[width=5in]{../Paper2/scripted_diagrams/simulations.png}
+      \captionof{figure}{Diagram of the non-adiabatic dyanmics simulation.}
       \label{fig:nonadiabaticSimulation}
     \end{minipage}\bigskip
     #+end_src
 *** THREE Ground State Sampling                                      :ignore:
     #+begin_src latex
-        Figure \ref{fig:nonadiabaticSimulation} visually describes the layout of each of our simulations. We sampled from a 1024 ps, 0.05 fs time-step fully classical trajectories using GAFF starting from an equilibrated systems at 300K to collect a broad sampling. We sampled from two long MM simulations, one in vacuum and another in methanol. From each simulation, we took 512 snapshots containing the coordinates and velocities at 2 ps intervals. We used these as the initial conditions for 4 ps ground-state QM adiabatic simulations. We choose 4 ps based on the relaxation results found in Chapter 4. In pulse-pump experiments, the excitation occurs from the lowest excited state. As such, we used the last frame of these trajectories as the coordinates for a single-point calculation at the first excited state to determine which state to promote to. The coordinates and velocities from the last QM ground-state frames were then used as the non-adiabatic calculations' initial conditions. As before, we performed all simulations using the AM1 semi-empirical Hamiltonian at 300K using a Langevin thermostat. However, we adjusted the friction constant to \(\gamma\) = 20 ps\(^{-1}\) to better compare to previous research. 
-        We run the non-adiabatic simulations for 1 ps at 0.5 fs time-steps. Note that this time-step is slightly too large and the swarm size too small to recommend for production. These should be roughly 0.1 fs and 1000, respectively. (cite) However, our parameter should provide qualitatively useful results.
+        Figure \ref{fig:nonadiabaticSimulation} visually describes the layout of each of our simulations. We sample from a 1024 ps, 0.05 fs time-step fully classical trajectories using GAFF starting from an equilibrated systems at 300K to collect a broad sampling. We sample from two long MM simulations, one in vacuum and another in methanol. From each simulation, we took 512 snapshots containing the coordinates and velocities at 2 ps intervals. We used these as the initial conditions for 4 ps ground-state QM adiabatic simulations. We choose 4 ps based on the relaxation results found in Chapter 4. In pulse-pump experiments, the excitation occurs from the lowest excited state. As such, we used the last frame of these trajectories as the coordinates for a single-point calculation at the first excited state to determine which state to promote to. The coordinates and velocities from the last QM ground-state frames were then used as the non-adiabatic calculations' initial conditions. As before, we performed all simulations using the AM1 semi-empirical Hamiltonian at 300K using a Langevin thermostat. However, we adjusted the friction constant to \(\gamma\) = 20 ps\(^{-1}\) to better compare to previous research. 
+        We run the non-adiabatic simulations for 1 ps at 0.5 fs time-steps. Note that this time-step is slightly too large and the swarm size too small to recommend for production. These should be roughly 0.1 fs and 1000, respectively. \cite{nelson2012nonadiabatic} However, our parameter should provide qualitatively useful results.
     #+end_src
 *** THREE Pulse Pump Calculations                                  :ignore:
 **** THREE Quick Explanation of a pulse pump experiment
@@ -1970,8 +1962,8 @@ In this chapter, we activate the non-adiabatic routines found in NEXMD for SANDE
     
     :END:
     #+begin_src latex
-Pump-Probe Spectroscopy is an experimental technique commonly performed in the study of ultrafast excited-state dynamics. (cite) In the case of conjugated polymers, it can help the study of localized excitonic transitions accessible through an excitation from the S1 state but not the ground state S0. (cite)
-We extracted the transition dipole frequencies and oscillator strengths from the S1 single-point calculations we ran on the final snapshot of the QM ground state. These are then used to determine the initial excited-state (Sm) of the non-adiabatic trajectories using a Frank-Condon methodology. (cite)
+Pump-probe spectroscopy is an experimental technique commonly performed in the study of ultrafast excited-state dynamics. In the case of conjugated polymers, it can help the study of localized excitonic transitions accessible through an excitation from the S1 state but not the ground state S0. \cite{nelson2014nonadiabatic}
+We extracted the transition dipole frequencies and oscillator strengths from the S1 single-point calculations we ran on the final snapshot of the QM ground state. These are then used to determine the initial excited-state (Sm) of the non-adiabatic trajectories using a Frank-Condon methodology. \cite{lax1952franck}
 
 The unnormalized initial state probabilities are determined using
 \begin{equation}
@@ -2024,7 +2016,7 @@ The states are then chosen randomly using these weights. In our simulations, we 
      :END:
 #+begin_src latex
 Figure \ref{s1absorption} shows the absorption spectra observed from state S1 as energy differences from the ground state.
-Spectras for varying number of solvents included in the QM region and vacuum are included.
+Spectra for varying number of solvents included in the QM region and vacuum are included.
 We included 12 states in the single-point calculations and normalized the spectra such that the area under the curve for all states summed to 1.
 A gaussian laser wavefunction with an energy of 4.3 eV and FWHM of 0.16 eV is shown above the top chart.
 The intensity of state S10 is noticeably lower than that from S9, while the peak of S9 is more aligned with the laser's peak. As such, we expect the initial population after excitation to be heavily weighted toward S9.
@@ -2034,7 +2026,7 @@ The solvent redshifted the peak absorption spectra by roughly 0.1 eV, similar to
     #+begin_src latex
 \subsection{State Population Relaxation}
     #+end_src
-**** THREE Figure for Population Decay for PPV3NO2, All-pops vacuum vs methanol :ignore:
+**** THREE Figure for Population Decay for PPV\(_3\)-NO\(_2\)NO2, All-pops vacuum vs methanol :ignore:
  #+CAPTION: Comparison of the population decays or rises of states S_1, S_2, and the initial state S\(_m\) between simulations with varying number of solvents included in the QM region.
      [[~/potentialparadox.github.io/Images/populations/solvent_comparison.png]]
  #+begin_src latex
@@ -2046,11 +2038,6 @@ The solvent redshifted the peak absorption spectra by roughly 0.1 eV, similar to
    \label{fig:stateDecay}
  \end{minipage}\bigskip
  #+end_src
-**** ONE Explanation of the population figure                        :ignore:
-     :LOGBOOK:
-     - Note taken on [2021-01-22 Fri 15:25] \\
-     - 512 trajectories with 2000 data points a piece.
-     :END:
 **** THREE Fitting Parameters using Tenua                            :ignore:
      :LOGBOOK:
      - Note taken on [2021-01-22 Fri 17:34] \\
@@ -2078,32 +2065,37 @@ The solvent redshifted the peak absorption spectra by roughly 0.1 eV, similar to
 
 **** THREE Explain How the fitting parameters were generated         :ignore:
      #+begin_src latex
-  Figure \ref{fig:stateDecay} shows the population of each state calculated as
-  the number of trajectories at the state's potential energy surface over the
-  total number of trajectories. S\(_m\) represents the initial state calculated using
-  the pulse pump calculations previously done. States S\(_7\) and S\(_9\) are included as
-  the only other "slow" states, or states that reached a population of more than
-  0.05. The other states were excluded from the graph. These charts show that the
-  addition of the NO\(_2\) oligimors dramatically speed up the state relaxation. S\(_m\)
-  ranged from S\(_9\) to S\(_15\) for PPV\(_3\) and S\(_11\) to S\(_21\) for PPV\(_{3}\)-NO\(_{2}\). Figure
-  ref:fig:s1-populations, shows the rise of the S\(_{1}\) populations over the first
-  500 fs after excitation. We model these rises by fitting the curves to the
-  function
-  \begin{equation}
-  f(t) = \frac{Ae^{t/\tau}}{A+e^{t/\tau}} - \frac{A}{1+A}
-  \end{equation}
-  where $t$ is time, $\tau$ is the relaxation, and $A$ is a constant that
-  normalizes such that the populations remain between 0 and 1. The results are displayed in ref:table:s1. 
-  We clearly see that adding a test for trivial-nonavoided crossing slows the rate
-  of relaxation from a time constant of 258~fs. This is to be expected since we
-  are now preventing transitions (mostly downward) that should not occur. The
-  methanol have mixed results with regards to PPV3 and seem to slightly slow the
-  relaxation of PPV\(_3\)-NO\(_2\). Experiments using ultrafast spectroscopy have shown that
-  for PPV thin films the time constant for relaxations should be around 200 fs.
-  However, that was on thin films and for PPV\(_3\), the energy gap !! Average S\(_1\) ->
-  S\(_m\) energy gap) than in the thin film (0.8eV). Previous research using the
-  NAESMD framework have shown a time constant of 394 fs, but this was without the
-  test for trivial non-avoided crossings.
+      Figure \ref{fig:stateDecay} shows each state's population calculated as the number of trajectories at the state's potential energy surface over the total number of trajectories. S\(_m\) represents the initial state calculated using the previously mentioned Frank Condon excitation. States S\(_1\) and S\(_2\) are included as the only other "slow" states or states that reached a population of more than 0.05 besides states 9 and 10. Roughly 85\% of Sm resided in state 9, with the remaining in S10. The other states were excluded from the graph.
+
+ Initially, all of the population resides on Sm, a split between states S9 and S10. During the first 250 fs, the population in Sm quickly decays. The addition of solvent increases the rate of this decay. The MM solvent causes the quickest relaxation, while the addition of 5 and 10 QM solvents present nearly indistinguishable results from one another. However, the additional solvents to the QM region seem to furth slow the decay rate of S2. Adding additional solvents beyond these 5 seems to have a negligible effect on the reported behaviors. The slowing of these rates corresponds well with findings reported by previous experimentation using implicit solvents, which found that the addition of polar solvents reduces the frequency of small energy gaps. \cite{sifain2018photoexcited}
+
+We model these rises by fitting the curves to the
+function
+\begin{equation}
+f(t) = 1 - (A\text{e}^{- t / \tau_1} + (1-A) \text{e}^{- t / \tau_2})
+\end{equation}
+where $t$ is time and $\tau$ the rate time constant. Results are shown in Figure \ref{fig:s1Relaxation} and Table \ref{tab:nonadiabaticPop}. We see that the MM methanol's addition causes the growth rate to slow while including 5 solvents to the QM region causes addition slowing. The addition of the final 5 solvents to the QM region results in a much milder adjustment.
+
+     \noindent
+     \begin{minipage}[c]{\textwidth}
+       \centering
+       \includegraphics[width=\textwidth]{../Paper2/Images/populations/s1_fits.png}
+       \captionof{figure}{Fittings for the S1 relaxation rates for PPV\(_{3}\)-NO\(_2\) in various solvents using \(  1 - (A\text{e}^{- t / \tau_1} + (1-A) \text{e}^{- t / \tau_2})        \)    }
+       \label{fig:s1Relaxation}
+     \end{minipage}\bigskip
+
+         \begin{table}[H]
+           \caption{Fitting parameters for the S1 relaxation rates for PPV\(_{3}\)-NO\(_2\) in various solvents using \( f(t) = 1 - (A\text{e}^{- t / \tau_1} + (1-A) \text{e}^{- t / \tau_2})  \)} \label{tab:nonadiabaticPop}
+           % \begin{center}
+           \begin{tabularx}{\textwidth}{XXXXX}\hline
+           Parameter         &  Vacuum   & MM     & 5 QM    & 10QM \\\hline
+              A              &   0     &  0.193  &  0.198   & 0.1762 \\
+          \(\tau_1\) (fs\(^{-1}\))  &   NA   &  500.0  & 495.7  &  494.4 \\
+          \(\tau_2\) (fs\(^{-1}\))  &   149.2   &  150.0  & 191.8  &  198.7 \\\hline
+           \end{tabularx}
+         \end{table}
+
+
      #+end_src
 *** ONE Potential Energies [1/2]
     #+begin_src latex
@@ -2127,13 +2119,83 @@ The solvent redshifted the peak absorption spectra by roughly 0.1 eV, similar to
  #+end_src
 **** ONE Explain the Relaxation Figure                               :ignore:
 #+begin_src latex
-Figure \ref{fig:naPERelaxation} shows the ultra-fast potential engery decay average over all trajectories inside a methanol solvent with various numbers of solvent included in the QM region and vacuum.
+Figure \ref{fig:naPERelaxation} shows the potential relaxation of PPV\(_3\)-NO\(_2\)  in various solvents with a varying number of solvents included in the QM regions. 
 Reported energies are in respect to the ground state energies at the initial step.
-The initial relaxation rates up to aroun 100 fs, are similar in all instances.
-Over time, the rate in vacuum seems to slow quicker than in solvent.
-The energy in solvent also equilibrat at around 0.2 eV higher than the solvent.
-No noticiable differences can be decerned between the inclusion of 5 or 10 solvents in the QM region.
-Having a complete MM solvent solution seems to produce a lower energy.
+During the first 200 fs, the system quickly relaxes at a fast rate. The rate then slows during the remaining  800 fs. In vacuum, PPV\(_3\)-NO\(_2\) seems to approach equilibrium at around 750 fs. The PPV\(_3\)-NO\(_2\) in methanol are still decaying at the end of the dynamics while being roughly 0.2 eV below the equilibrium state in vacuum. MM only solvents produce the fastest relaxation rate throughout the entire simulation and approach the lowest equilibrium point. The addition of solvents into the QM region past the initial 5 does not have an appreciable effect on this decay. These energies should decay toward their equilibrium energies at state S1. From the adiabatic calculations performed in Chapter 3, these energies were 2.66 eV and 2.73 eV for vacuum and 20 included solvents in the QM region, respectively. Note that the final energies of PPV in methanol in the non-adiabatic trajectories are in reverse order to these findings; however, during the adiabatic dynamics, the potential of PPV\(_3\)-NO\(_2\) at S1 in methanol reached a minimum at around 2 ps, which was below that found in vacuum. 
+#+end_src
+*** ONE Bond Length Alternation [0/2]
+    :LOGBOOK:
+    - Note taken on [2021-01-26 Tue 08:28] \\
+    It looks like I might have made a mistake with the BLA's
+    
+    My plots show the following:
+    :END:
+    #+begin_src latex
+\subsection{Bond Length Alternation}
+    #+end_src
+**** ONE Bond Length Adjustment Figure                               :ignore:
+     :LOGBOOK:
+     - State "WAITING"    from "TODO"       [2021-01-25 Mon 06:29] \\
+     waiting for updated data for ch3oh and vacuum
+     - Note taken on [2021-01-23 Sat 08:12] \\
+     Because I don't have solvents included in the trajectory files, I'll need to have a stripped version of the input_coordinate file and the prmtop.
+     To do this, I'm creating an executable called strip_init_and_prmtop.sh, which will create a stripped prmtop called, stripped.prmtop, and rename the
+     snap_for_qmexcited_t{traj}_r0.rst to stripped.rst. I'll then update libbla.py to handle this.
+     :END:
+ #+begin_src latex
+ \noindent
+ \begin{minipage}[c]{\textwidth}
+   \centering
+   \includegraphics[width=\textwidth]{../Paper2/Images/bla/solvent_comparison.png}
+   \captionof{figure}[Bond Length Alternation during non-adiabatic dynamics]{The bond length alternations for bonds d1, d2, and d3 (Near) and d4, d5, d6 (Far)}
+   \label{fig:naBLA}
+ \end{minipage}\bigskip
+ #+end_src
+**** ONE Explain the BLA Figure                                      :ignore:
+#+begin_src latex
+We look at the bond length alternation to analyze the fast nuclear geometric responses to the state decay.
+Figure \ref{fig:naBLA} demonstrates the variation in the bond length alternation for a various number of included QM solvents and vacuum.
+The relaxation in vacuum occurs at a slower rate and to a higher minimum than the corresponding alternations in the methanol solvent. This feature corresponds well to our findings in the potential energy decay; however, the final BLA of vacuum at t = 1 ps is greater than 0.01 \AA\ than what was measured at the S1 steady-state calculations performed in Chapter 4. By 1 ps, the population of the S1 state is $\sim$ 1 in the non-adiabatic simulation.
+
+During relaxation, the BLAs for PPV\(_3\)-NO\(_2\) in methanol presented very similar behavior regardless of how many solvents were included in the QM region. They decayed quicker than vacuum and finished near their steady-state values, corresponding to the findings in Chapter 4.
+#+end_src
+*** ONE Wiberg Bond Analysis [1/2]
+    #+begin_src latex
+    \subsection{Wiberg Bond Orders}
+    #+end_src
+**** THREE Wiberg Bond Analysis Figure                              :ignore:
+ :LOGBOOK:
+ - Note taken on [2021-01-25 Mon 11:11] \\
+ For the plots I had to look up the relation between the atom ID and the bond notation that I use in the paper the relations are as follows:
+ 
+ 6-7 -> d1
+ 7-8 -> d2
+ 8-9 -> d3
+ 17-16 -> d4
+ 16-15 -> d5
+ 15-14 -> d6
+ - Note taken on [2021-01-12 Tue 11:40] \\
+ Look to paper1, for inspiration on how to design this
+ :END:
+ #+CAPTION: The Wiberg Bond Orders averaged over the ensemble of trajectories for select bonds for PPV_3\_NO_2 with various number of solvents included in the QM region.
+[[../Paper2/Images/bond_order/solvent_comparison.png]]
+ #+begin_src latex
+ \noindent
+ \begin{minipage}[c]{\textwidth}
+   \centering
+   \includegraphics[width=5in]{../Paper2/Images/bond_order/solvent_comparison.png}
+   \captionof{figure}[Wiberg bond orders in non-adiabatic dynamics]{The Wiberg bond orders averaged over the ensemble of trajectories for select bonds for PPV\(_3\)-NO\(_2\) with various number of solvents included in the QM region.}
+   \label{fig:bondOrderNon-Adiabatic}
+ \end{minipage}\bigskip
+ #+end_src
+**** ONE Explanation fo Wiberg Bond Figure
+#+begin_src latex
+Figure \ref{fig:bondOrderNon-Adiabatic} presents the Wiberg bond orders for PPV\(_3\)-NO\(_2\) during the non-adiabatic simulations with a varying number of solvents included in the QM region and vacuum.
+The outer bonds d1,d3,d4,d6 slowly rise and gain more double-bond characteristics while the inner bonds d2 and d5 lower and gain more single-bond characteristics.
+We discern small solvent effects in the bonds furthest from the nitro group d4,d5,d6.
+Noticeable solvent effects exist in the group nearest the nitro group, with the solvent apparently amplifying the effect found in vacuum.
+The significant differences between bond-orders in vacuum vs. methanol is consistent with what was reported in the BLA analysis.
+We find that the inclusion of solvent in the QM region has relatively negligible effects on the bond order.
 #+end_src
 *** ONE Dihedral Angles
     #+begin_src latex
@@ -2160,84 +2222,8 @@ Having a complete MM solvent solution seems to produce a lower energy.
      #+end_src
 **** ONE Description of the plot                                     :ignore:[0/0]
 #+begin_src latex
-Figure \ref{fig:dihedralNon-Adiabatic} presents the torsional angles around d1,d2,d3 (Near) and d4,d5,d6 (Far).
-Similar to what was reported in the adiabatic simulations, the angles reported in vacuum remain rougly 5\(^\circ\) higher than those reported in the methanol solution.
-Relaxation in the methanol solution is slightly quick than in vacuum.
-Then equilibrated torsional angle in the full MM solvent could possibly be a few degrees higher than in the mixed QM/MM solvents.
-Relaxations are faster, and approach a lower minimum near the nitrate group.
-#+end_src
-*** ONE Bond Length Alternation [0/2]
-    :LOGBOOK:
-    - Note taken on [2021-01-26 Tue 08:28] \\
-    It looks like I might have made a mistake with the BLA's
-    
-    My plots show the following:
-    :END:
-    #+begin_src latex
-\subsection{Bond Length Alternation}
-    #+end_src
-**** ONE Bond Length Adjustment Figure                               :ignore:
-     :LOGBOOK:
-     - State "WAITING"    from "TODO"       [2021-01-25 Mon 06:29] \\
-     waiting for updated data for ch3oh and vacuum
-     - Note taken on [2021-01-23 Sat 08:12] \\
-     Because I don't have solvents included in the trajectory files, I'll need to have a stripped version of the input_coordinate file and the prmtop.
-     To do this, I'm creating an executable called strip_init_and_prmtop.sh, which will create a stripped prmtop called, stripped.prmtop, and rename the
-     snap_for_qmexcited_t{traj}_r0.rst to stripped.rst. I'll then update libbla.py to handle this.
-     :END:
- #+begin_src latex
- \noindent
- \begin{minipage}[c]{\textwidth}
-   \centering
-   \includegraphics[width=\textwidth]{../Paper2/Images/bla/solvent_comparison.png}
-   \captionof{figure}[Bond Length Alternation during Non-Adiabatic Dynamics]{The bond length alternations for bonds d1, d2, and d3 (Near) and d4, d5, d6 (Far)}
-   \label{fig:naBLA}
- \end{minipage}\bigskip
- #+end_src
-**** ONE Explain the BLA Figure                                      :ignore:
-#+begin_src latex
-Figure \ref{fig:naBLA} demonstrates the variation in the bond length alternation for various number of included QM solvents and vacuum.
-In all instances vacuum relaxes at a slower rate and to a higher minimum than the corresponding alternations in methanol solvent.
-Relaxation are quicker and toward a lower minimum near the nitrate group.
-Little discernable differences can be sceen by adding solvents to the QM region.
-#+end_src
-*** ONE Wiberg Bond Analysis [1/2]
-    #+begin_src latex
-\subsection{Widberg Bond Orders}
-    #+end_src
-**** THREE Widberg Bond Analysis Figure                              :ignore:
- :LOGBOOK:
- - Note taken on [2021-01-25 Mon 11:11] \\
- For the plots I had to look up the relation between the atom ID and the bond notation that I use in the paper the relations are as follows:
- 
- 6-7 -> d1
- 7-8 -> d2
- 8-9 -> d3
- 17-16 -> d4
- 16-15 -> d5
- 15-14 -> d6
- - Note taken on [2021-01-12 Tue 11:40] \\
- Look to paper1, for inspiration on how to design this
- :END:
- #+CAPTION: The Wiberg Bond Orders averaged over the ensemble of trajectories for select bonds for PPV_3\_NO_2 with various number of solvents included in the QM region.
-[[../Paper2/Images/bond_order/solvent_comparison.png]]
- #+begin_src latex
- \noindent
- \begin{minipage}[c]{\textwidth}
-   \centering
-   \includegraphics[width=5in]{../Paper2/Images/bond_order/solvent_comparison.png}
-   \captionof{figure}[Wiberg Bond Orders in Non-Adiabatic Dynamics]{The Wiberg Bond Orders averaged over the ensemble of trajectories for select bonds for PPV\(_3\)-NO\(_2\) with various number of solvents included in the QM region.}
-   \label{fig:bondOrderNon-Adiabatic}
- \end{minipage}\bigskip
- #+end_src
-**** ONE Explanation fo Widberg Bond Figure
-#+begin_src latex
-The visual analysis of the Widberg bond orders can be found in figure \ref{fig:bondOrderNon-Adiabatic}.
-The outer bonds d1,d3,d4,d6 slowly rise and gain more double bond characteristics while the inner bonds d2 and d5 lower and gain more single bond characteristics.
-Little solvent effect can be descerned for the bond furthest from the nitrate group d4,d5,d6.
-Noticeable solvent effects exist in the group nearest the nitrate group, with the solvent apparently amplifying the effect found in vacuum.
-The inclusion of solvent in the QM region has relatively negligible effects on the bond order compared to the addition of MM solvents.
-These results align well with what was found in the analysis for the bond length alternation.
+Figure \ref{fig:dihedralNon-Adiabatic} presents the torsional angles around d1,d2,d3 (Near) and d4,d5,d6 (Far). The initial angles at t = 0 are within two sigmas from what was reported in the S0 steady-state analysis in Chapter 3. The torsional angle in vacuum starts and remains roughly 5\(^\circ\) higher than in methanol throughout the 1 ps simulation.
+The torsional relaxation in the methanol solution is slightly quicker than in vacuum, with the simulation in vacuum showing minimal curvature in the torsional angle over the time period.  Relaxations are faster and approach a lower minimum near the nitro group. Also, the differences between MM and QM/MM solvent are more exaggerated near the nitro group. 
 #+end_src
 *** ONE Conclusion                                                   :ignore:
   :PROPERTIES:
@@ -2253,19 +2239,35 @@ These results align well with what was found in the analysis for the bond length
   \chapter{Conclusion}
   #+end_src
 ** ONE Summary
+#+begin_src latex
+\section{Summary}
+#+end_src
+*** We built a system that uses NEXMD and AMBER
+#+begin_src  latex
+We've built a library for the NEXMD programming package. We then successfully linked SANDER to this library to provide excited state and non-adiabatic routines to SANDER. This process is fairly seamless and required little change to either stand-alone version since most modifications were created as wrapper routines.
+We could get proper excited state energies and forces by forwarding the coordinates, velocities, and charges from SANDER to NEXMD's SCF.
+With some additional tweaking, we were also able to perform non-adiabatic calculations as well.
+The interface performed well in comparison tests to the stand-alone versions of NEXMD and SANDER.
+#+end_src
+*** We showed that it works with adiabatic
+#+begin_src  latex
+For a validation test system, we choose to work with PPV\(_3\)-NO\(_2\) in various solvents.
+Chapter 4 performed adiabatic dynamics at ground state and lowest excited state to produce the steady-state absorption and fluorescence spectra.
+We noticed significant solvatochromic shifts in the fluorescence spectra, with the shift lengths being proportional to the explicit solvent's dielectric constants.
+These results matched previously performed experimental and theoretical works validating that we have included a QM/MM explicit solvent in our calculations.\cite{Park2013,Bjorgaard2015}
+#+end_src
+*** We showed that it works with non-adiabatic
+#+begin_src latex
+In Chapter 5, we proceeded to validate the non-adiabatic simulations in PPV3-NO2 in methanol.
+The addition of explicit solvent caused a noticeable reduction in the decay rate of S2, corresponding well with computational simulation performed in implicit solvents with similar dielectric constants.\cite{sifain2018photoexcited}
+By being selective in which solvents to add in the QM region and through the use of harmonic restraints, only a few solvents included in the QM region provide a significant benefit.
+However, electrons are fairly localized on methanol, and these findings may not be appropriate if using a solvent with a more delocalized electronic structure.
+#+end_src
 ** ONE Future Works
 #+begin_src latex
-We presented a method the integrated the excited state non-adiabatic dynamics capabilities of NEXMD with the QM/MM periodic box solvent simulation capabilities found in SANDER.
-We demonstrate how certain solvents can be included in the QM region and restrained near the solvent.
-We perform our new methodology on the organic conjugated molecule PPV\(_3\)-NO\(_2\).
-We analyze the effects that the addition of solvents have on the steady state absorption and fluorescence of PPV\(_3\)-NO\(_2\) in various solvents with differing dielectric constants and found that the addition of solvents to the QM region blueshifted the absorption and redshifted the fluorescence.
-
-Future work can done to implement a QM/MM approach using recent classical dynamics functionality employing machine learning algorithms such as ANI.
-The calculation of the non-adiabatic coupling terms is the bottleneck in most of these non-adiabatic trajectories, as such work into predicting these terms using supervised learning approaches is encouraged.
-The scripts used to model the simulations done in this paper are extensive and the work to make them user friendly should be continued.
-
+\section{Future Work}
 #+end_src
-** Furture Applications
+*** Furture Applications
 - Notes on Solar Cells
   - Really high efficiency solar cells can get 46% efficiency
   - silicon can only get a theoretical maximum of 30% most are ~15%
@@ -2282,4 +2284,48 @@ The scripts used to model the simulations done in this paper are extensive and t
     - Also very flexible, cheap
   - How much power?
     - Sun provides roughly 100-250W/m
+#+begin_src  latex
+The electron transfer mechanisms of 9-(N-pyrrolidinyl)- and 9-(N-piperidinyl)perylene-3,4-dicarboximides strongly depend on solvent polarity.
+These chromophores absorb in the visible spectrum.\cite{miller2002ultrafast}
+They are also assumed to have a significant charge transfer character in the lowest excited singlet state.
+Even in low polarity solvents, a strong charge-transfer response is known to occur.\cite{schmidt1989intramolecular,greenfield1996multistep}
+As such, researchers have yet to properly estimate the reaction energies using implicit solvents that depend on the dielectric constant alone.
+These types of changes in the charge separation characteristics exist in other perylene structures as well.
+When paired with naphthalene monoimide, the order of charge separation and exciton energy transfers of the perylene PTCA is dependent on the solvent.\cite{philip2020directing,inan2018tailoring,dubey2016tunable} 
+In an experimental study of donor-acceptor functionality between dyads and triads of alternating triphenylene and perylene diimides linked by a flexible covalent bond in a DCM solution, researchers found that the energy transfer competes with a nonradiative quenching process.\cite{lee2016electronic}
+They also found that the charge transfer was 6 times faster in the triad than in the dyad.
+
+When using our QM/MM explicit solvents method, the non-adiabatic characteristics' response is not solely dependent on the solvent's polarity and includes steric effects and localized electron densities.
+If this methodology performs well at predicting the charge separation times of derivatives of perylene in various solvents, then this will allow researchers to filter possible combinations for future experimental works.
+
+Besides perylene, other systems have also shown possible benefits from using our QM/MM method. The charge separation and recombination in zinc(II) tetraphenylporphyrin-amino naphtha-
+lene diimide dyads were found to be solvent-dependent. In this case, understanding solvent effects could help gain increased charge separation times and minimize energy loss.\cite{robotham2013ultrafast}
+Also, there has been work on developing an optoelectronic switch using Zn(II) porphyrin (ZnP) compounds covalently linked to naphtaleneimide (NI) and naphthalenediimide (NDI) by having different states of the porphyrin give electron transfer to different donors.\cite{wallin2010state} Once again, simulating solvent effects could help fine-tune the absorption regions and direct electronic energy transfer.
+#+end_src
+*** Computational Improvements
+#+begin_src latex
+Future work can also add some improvements to the current methodology.
+First, the QM Ewald procedure needs to be fixed.
+We were forced to use the ground state's Mulliken charges for the QM Ewald calculations during our simulations.
+If we were to use the current excited state charges, we would need to perform a few iterations through the entire ground-state SCF and excited state Davidson algorithms since the QM Ewald procedure is performed in the ground-state SCF.
+This would have been computationally too expensive.
+Though we can't use the state's proper QM charges at that time-step, the charges don't usually change significantly between time-steps.
+As such, we can use the charges from the previous step for these calculations.
+SANDER is already designed to perform the initial step twice, so we would only need to save the charges from the usually ignored first step, save them, and then use an appropriate conditional in the SCF routine to use the values.
+
+The scripts used to model the simulations done in this paper are extensive, and work to make them user-friendly should be continued.
+These scripts are open source and available at \href{https://github.com/PotentialParadox/pynasqm}{https://github.com/PotentialParadox/pynasqm}.
+During the development of the NEXMD-SANDER interface, the developers of NEXMD built a user-friendly CLI to manage the production of setup files for the non-adiabatic simulations.
+The functionality of this CLI closely resembles that of the scripts used in this work.
+The scripts for this work provide the ability to work with SANDER files and restraint functions that are, of course, not provided by the NEXMD CLI.
+Future work could dramatically improve the user experience by combining these two script managers.
+
+Future work could implement a QM/MM approach using recent classical dynamics functionality employing machine learning algorithms such as ANI.
+These machine learning algorithms are trained to ab initio methods such as DFT and coupled-cluster, and their accuracy has improved at a dramatic rate.
+Future works could pair these machine learning algorithms with the QM/MM routines to allow all the solvent to present QM-like behavior, greatly benefiting simulations using solvents with delocalized electronic structures.
+
+Future work could also use a supervised learning machine algorithm to predict the non-adiabatic coupling terms quickly.
+The calculation of the non-adiabatic coupling terms is the bottleneck in most of these non-adiabatic trajectories as such work into predicting these terms using supervised learning approaches is encouraged.
+Some work has already been attempted to some success, yet no work has been done to add this functionality to NEXMD. \cite{westermayr2020machine}
+#+end_src
 * ONE Appendix on Start Scripts

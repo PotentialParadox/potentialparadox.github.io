@@ -1,7 +1,9 @@
-We present a method to link the Non-adiabatic-Excited-state Molecular Dynamics (NEXMD) package to the SANDER package supplied by AMBERTOOLS, to provide excited-state adiabatic and nonadiabtic QM/MM simulations.
-NEXMD is a computational package particularly developped to perform simulations of the photoexcitation and subsequent nonadiabatic electronic and vibrational energy relaxation and redistribution in large multichormophoric conjugated molecules, a process that involves several coupled electronic excited states.
-In this work, we use it solely for its capability to perform excited-state adiabatic dynamics.
-In this report, we first describe the basic methodology behind the code, where we briefly describe the general principals behind excited state adiabatic dynamics simulations performed in NEXMD and the QM/MM calculations performed by SANDER.
-We outline the flowchart connecting them in order to optimize their exchange allowing excited state adiabatic dynamics simulations of large conjugated materials in explicit solvent.
-To validate functionality, we analyze the dynamics of a polyphenylene vinylene oligomer (PPV3-NO2) in vacuum and various explicit solvents.
-We highlight the system's ability to generate optical spectrum, view state-dependent conformational changes, and view quantum bond orderings.
+During photo-excitation and relaxation processes, we can no longer rely on the Born-Oppenheimer approximation.
+  Non-adiabatic dynamics methods are therefore essential in the simulation of this behavior.
+  The Non-adiabatic-Excited-state Molecular Dynamics Package (NEXMD) is designed and optimized to perform these calculations in a highly efficient manner. However, its use is restricted to implicit solvent.
+  SANDER, a molecular dynamics program found in the AMBER molecular dynamics package, can perform hybrid quantum mechanical, classical dynamic (QM/MM) dynamics.
+    In this work, we build a library of useful routines from NEXMD and present a method to link this library to SANDER to provide excited-state adiabatic and non-adiabatic QM/MM simulations.
+  We test this new methodology on a derivative of an organic conjugated polymer Poly(p-phenylene vinylene) (PPV3-NO2).
+  We first investigate the steady-state characteristics of PPV3-NO2 at the ground state and lowest excited state in varying solvents. This analysis only required excited state adiabatic calculations, and we compare the results to those from experiment and implicit solvent experiments.
+  We then apply the non-adiabatic routines and inspect the behavior of the excited state population decays.
+For the non-adiabatic dynamics simulations, we restrict our calculations to the use of methanol as our solvent and find that this solvent's inclusion leads to similar behavior to that found in implicit solvents with a similar dielectric constant.
