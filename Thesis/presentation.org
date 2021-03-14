@@ -1,0 +1,248 @@
+* Title
+Hi, I'm Dustin Tracy.
+I want to say I'm really excited to be presenting this work today.
+Well, this feeling could be either anxiety of excitement, but I'm deciding on the later.
+
+* Adiabatic Dyanmics
+The title of this work is The Implementation of QM/MM Nonadiabatic Dynamics using SANDER and NEXMD.
+The first thing to we need to know is what is Adiabatic Dynamics.
+What I have here is a potential energy surface of a molecule along a single arbitrary coordinate system.
+Usually when we simulate the behavior of molecules, we assume that the electrons move much much quicker than the nuclie.
+This restricts the motion of the molecule to a single potential energy.
+
+* Jablonski
+However, we know that there are many energy levels, and each level corresponds to another potential energy surface.
+Show plot of Jablonski diagram.
+During a photoexcitation event, such as during absorption, the Born-Oppenheimer approximation breaks down, and the system can hop between different states.
+Such photoexcitation events are common in important research fields such as the development of optical sensors, light emitting diodes, and solar harvesting devices.
+Here, we have a Jablonski diagram.
+Each line corresponds to a unique potential energy surface.
+In this example S symbolizes a singlet state, while T a triple state.
+Once the molecule is at this excited-state, it will relax back towards the ground-state if it isn't at a high temperature.
+There are two primary mechanisms through which this can occur.
+The first is by releasing the energy thermally either throughout the rest of the molecule or to the environment. This method is referred to as internal conversion and manifests as reductions to the vibrational and rotational modes.
+The second is through photon-emission.
+A photo-emission process from the first excited state to the ground state is referred to as fluorescence and can be seen by the figure's green arrow.
+Fluorescence occurs over a period of nanoseconds.
+Transition processes from singlet states to the triplet states are possible dependent on the spin-orbit coupling strength, in a process called an intersystem conversion.
+Photo-emission from the triplet state to the ground state would be called phosphorescence.
+Phosphorescence is relatively very rare compared to fluorescence with time order ~1s.
+For this reason, we do not consider this behavior in our simulations.
+Kasha's rule states that photon-emission occurs only in appreciable yields from the lowest excited state to the ground state.\cite{Kasha1950}
+This rule suggests that in most cases where an electron is excited to a state beyond the first excited state, that electron will have to relax to the first excited state through internal conversion.\cite{shenai2016internal}
+Also, there needs to be a strong coupling between the ground and the first excited state for any luminescence to occur.
+
+Show Zoomed in Jablonski Diagram
+When the molecule is excited to S2 through photo-excitation, it will begin to relax along S2's potential energy surface following the orange arrow.
+In reality, this process would be quantized and occur as a gradual reduction in the vibration and rotational modes.
+In our simulations, though, we treat these reductions classically, and the molecule can move smoothly along the potential energy surface of each excited state. 
+However, eventually, the molecule traversing the potential energy surface of S2 will cross the potential energy surface of S1. This point is called a conical intersection.
+At these intersections, there are generally strong couplings between the two states.
+This coupling allows the molecule to transition from S2 to S1.
+A choice now needs to be made whether to stay on the potential energy surface of the S2 or switch to S1.
+
+* Optical Switch Example
+As an example, I'm present an extremely simplified version of an optical switch.
+We have a triad with two different acceptors and donor in the center.
+We wish to design this stystem such that excitation to the donor to s1 causes and electronic energy transfer to acceptor A, while excitations to S2 causes it to go to acceptor B.
+The direction of this transfer will of course be heavily dependent of the composition and structure of the acceptor and donors.
+However, it will also be heavily dependent  the solvent choices.
+A proper simulation tool to filter and guide future experimental research into these devices should be able to simulate intramolecula non-adiabatic transfer processes but should also be able to account for these solvent effects.
+
+* Ehrenfest MDQT Example
+There a few ways we can tackle non-adiabatic dynamics.
+Show figure comparing Ehrenfest to MDQT
+Two ones that I'm going to compare here are the mean-field theory (A.K.A Ehrenfest) and molecular dynamics with quantum transitions proposed by Tully.
+In Ehrenfest methods, the forces acting on the molecule at any time-step is the population-weighted average of the forces acting at all relevant excited states.
+While in MDQT methods, only the forces of one state are used for any single time-step, however between time-steps, the molecule is allowed to transition between states. MDQT depend on ensemble averages of many independent trajectories, where the system's behavior is then reconciled  based on the statistics of the ensemble.
+
+Ths figure attempts  to show the practical differences between these two methods.
+The population chart on the left shows the probability of being in states S1 and S2 at some arbitrary time.
+These probabilities merge to around 0.5 each at around the halfway point.
+
+The dashed lines represent the energies along the Ehrenfest trajectory.
+Blue and red represent the S2 and S1 energies, respectively.
+The black dashed line represents the Ehrenfest mean-field energy determined as the population-weighted average energies of S1 and S1.
+As the probability of state S2 drops from one, the mean-field energy diverges from that of S2.
+Eventually, the mean-field energy becomes the average of S1 and S2.
+
+The solid lines represent the energies along two separate surface hopping trajectories.
+At around the halfway point, the trajectory SH-S1 hops from the S2 to S1.
+Trajectory SH-S2 remains on S2.
+Because these trajectories are allowed to be moved by forces generated at their respective potential energy surfaces, their energies will, in general, be lower than their mean-field counterparts.
+Notice that the average energy of the hop trajectories will also diverge from the Ehrenfest method.
+
+In this work we use MDQT, specifically the Tully Fewest Switches Surface hopping method.
+
+* Tully Surface Hopping
+When we wite out the time-dependent hamiltonian, expand into a basis set of adiabatic states, then solve for to rate of change in the basis set coefficients, we encouter a coupling term between the states.
+This term is referred to as the non-adiabatic couping term; written out as so.
+
+With a bit of algebra, we can show that the net population flow are
+show equation
+
+We can convert this flow into a probability to hop
+show equation
+
+We apply this probability to perform a montecarlo like decision between time-steps to determine wether a hop should occur.
+
+* Introduction to NEXMD
+    NEXMD, currently being developed by the Tretiak lab in Los Alamos, has a proven track record of performance on stimulating ultra-fast non-adiabatic behaviors.
+    Its ability to solve the state coupling equations on-the-fly has found great utility for systems with hundreds of atoms.
+    Numerous studies have implemented the research method into topics, including the study of chlorophyll organic conjugated molecules and \(\pi\) conjugated macrocycles.  \cite{zheng2017photoinduced,nelson2014nonadiabatic,alfonso2016interference,wu2006exciton,Ondarse-Alvarez2016}
+    Such studies with NEXMD have, thus far, been limited to implicit solvents.
+    No method to provide NEXMD with QM/MM capabilities have yet to be implemented.
+    The current iteration of NEXMD relies on a modified version of the same SQM library that SANDER uses as its backend. This allows NEXMD to more naturally share state with SANDER and make it a prime candidate for SANDER's gaining excited-state and non-adiabatic dynamics capabilities.
+
+* Introduce AMBER and SANDER
+
+    AMBER is primarily known as a classical force-field molecular dynamics package.
+    It's a massive project maintained by people across the globe that's been designed to work with extensive systems ranging in the tens of thousands of atoms. \cite{case2020a}
+    AMBER can use a huge range of simulations from replica-exchange to study ph-dependent conformation changes to QM/MM umbrella sampling using nudge elastic bands. \cite{cruzeiro2020exploring, ghoreishi2019fast,sarkar2019ph}
+    AMBER is a package that contains many smaller programs. One of these programs, SANDER, originally an acronym for Simulated Annealing with Nmr-Derived Energy Restraints, is one of the main engines for running molecule dynamic simulations. 
+    Most importantly for this research, it has a proven track record of doing QM/MM solvent-solute simulations using periodic boundary conditions.
+    It has been designed to perform the QM/MM calculations using various libraries specializing in QM calculations as a backend. But by default, it uses the Semi-empirical Quantum Mechanic (SQM) package. These libraries only need to find the forces and energies of the QM region. Note that these packages will still need to know the presence of MM atoms to treat them as external point charges. SANDER will perform the rest of the QM/MM interaction calculations as well as the coordinate propagation. No work has yet been done to allow excited-state dynamics to be performed with SANDER.
+
+*  How to find the density matrix
+Our final goal is pretty ambition, so we'll start  smaller with the goal of perform adiabatic excited state dynamics.
+How does NEXMD perform these calculations in vacuum
+The ground state adiabatic wave function is composed as a single slater-determinate of single-electron molecular orbitals.
+Each molecular orbital is composed of a linear sum of atomic orbitals. The number of atomic orbitals corresopnds is a direct result of the size of the basis set the user chooses. The coefficients of these atomic orbitals are used to  form the electonic density function.
+The energy of a system can be found using the Hamiltonian $Full Hamiltonian$
+However, this is infeasible for all but the smallest of systems. We therefore need to make a few approximations.
+A very common approximation is to assume that each electron feels the average charge of all the electrons, thereby fully ignore any electron-electron correlation.
+The elements of this approximate hamiltonian are
+$ Fock elements$
+And the coefficients can be solved using the Roothan-Hall equation.
+However, this Fock operators is dependent on the coefficients are dependent on the same coefficients that we need to solve for.
+In order to get around this we make an initial guess of the coefficients then proceded to iterate until convergence in a procedure called SCF method.
+Further simplifications can be done by approximating the integrals. These approximations are referred to as semi-emprical methods.
+
+*  To find the excited states 
+To find excited states, it uses a method similar to configuration interaction singlets.
+
+The Hartree-Fock's slater determinant, \(\psi_0\), contains the lowest energy molecular orbitals.
+These filled orbitals are known as the occupied orbitals which we label with letters ab....
+The other available orbitals that weren't filled are considered virtual labeled ij....
+
+New determinants can be made by swapping virtual and occupied orbitals.
+For example
+\begin{equation}
+    \psi_c^i
+\end{equation}
+would be a determinant created by swapping occupied orbitals \(c\) and \(d\) with orbitals \(i\) and \(j\).
+
+For CIS, the new wavefunction can be written as
+\begin{equation}
+\Psi_{CIS} = c_0\psi_0 + c_a^i\sum_i^N\sum_a^{K-N}\psi_a^i
+\end{equation}
+where \(c_0\) and \(\psi_0\) are the coefficients and determinant for the Hartree-Fock ground state respectively.
+
+NEXMD performs a conceptionally similar calculation using the two-particle Liouville operator which it can perform anlytically
+$Liouville Operator function$
+where the Liouville operator can be defined in terms of the Fock and interchange operators.
+$Liouville operator$
+
+The forces can be found using the gradients of these energies
+$ Gradient Equations$
+
+* How SANDER performs QM/MM
+SANDER splits the total Hamiltonian of the sytems into three parts. H_{MM}, H_{QM}, and a hybrid term
+$H_{QM} equation$
+In two steps. First, the single electron hamiltonian is added to the fock operator before the SCF routine.
+$2-37$
+During the SCF routine, we  use the Mulliken charges from the SCF routine to caclulated the long distance interactions using particle mesh ewald which performs the resective interaction by converting to and from Fourier space. 
+After SCF, we add the interaction between the mulliken charges of the solute and the charges of the MM solvents within the cutoff distance.
+$new equation$
+It's important to recognice that this last term does not effect the electron density. It only affects the reported forces.
+* How to add QM/MM for Excited State Adiabatics?
+Because NEXMD uses the same SQM library as SANDER dose for the ground state SCF calculations geting the QM/MM ground state energies from NEXMD is fairly trivial, we just need to make sure to pass NEXMD the appropriate coordinates, atom types, and charges.
+But what about the excited state calculations?
+$Show excited-state equation again$
+These all depend on the density matrix created during the ground state SCF calculations.
+Lets look at the three adjustments we need to make for QM/MM.
+Remember, first we need to create a potential using the MM atoms within the cutoff.
+Being in an excited state won't have any effect on this.
+Next, during the SCF calulation we apply long range ewald terms.
+The charges from the MM atoms will remain the same, but the Mulliken charges from the QM region  won't.
+Proper treatment of these QM charges will require the cycling through both the ground state QM and excited-sate QM calculation, and would be extremely expensive.
+This  lot of work for something that will have negligible affect on behavior.
+So we don't change it.
+Feel free to ask about this after the presentation.
+This is all we need to perform the ground state SCF and excited state davidson algorithms.
+Finally we need to add the coulombic interaction between the MM solvents within the cuttoff and the QM molecules.
+This interaction requires the we use the excited state electron densitity which we already have, so we just need to pass it that and we're done.
+* Adiabatic flow chart.
+$ Show adiabatic flow chart $
+So let do a quick review.
+Sander collects the initial coordinates, atom types, velocities and passes those to NEXMD ground-state, and excited state routines.
+Because NEXMD uses the same SQM library, it already has the routines to properly account for the external charges in the solvent.
+We then use then adjust the final coulomb QM/MM interaction force to use the excited state density.
+Then let SANDER perform the rest of the propogation.
+* Testing Adiabatic Dynamics
+So lets test it.
+For our test system, we will use the organic conjugated polymeter PPV3-NO2, shown below.
+$ Show PPV3-NO2 $
+The is a derivative of poly-para-phenylene vinylene, famous for being the first organic conjugated polymer to be used for light emitting diodes.
+Theres been some recent research on how this molecule is affected by solvents, which give use some great data to compare to.
+Also, the geometry of this molecule has also  been shown to be very dependent on the electronic state, which allows us to see some significant geometic  adjustment.
+For our solvents we choose 3 common solvents with a variet of dielect constants, since the steady state has been known to be dependent on solvent polaritiy, with a redshift occuring with highe delectric constants.
+* Adiabatic Setup
+$ Show the adiabatic setup $
+We sampled 128 coordinate and velocity snapshots from a 320 ps fully MM ground-state trajectory.
+We ran a 10 ps ground-state QM trajectory from these. 
+From the final frames of the S0 qm trajectories, we instaneously move the system to the first excited, ignoring energy conservation or vibrational overlap, and run for an addition 10 ps.
+All calculations we performed at 300K using a Langevin thermostat with a friction constant of 2 ps.
+We also included a varying number of solvent in the QM region of these calculations.
+These solvents were strategecally sectelected near the central of the molecule and were restricted from drifting by a simple harmonic force.
+* Steady state absorption and florescence
+$ Show spectra in various solvents $
+!! Know how to calculate these spectra !!
+Here we see the general trend of redshifting for solvents with higher dielectric constants an almost 0.1 eV shift in the peak fluorescence of methanol.
+This is a little smaller than what was found in implicit solvents, but differences are expected since the spectra aren't fully dependent on solvent's dielectric constant.
+$Show spectra with various number of qm solvents$
+When we compared the number of solvents, we do see an effect. Here I'm showing the calculations in carbon tetrachloride.
+For the aborption the majority of the affect occurs witht the inclusion of the first 5 QM.
+In the fluorescence calculations, this shift is fairly consistent.
+* So how do we add QM/MM fo r Non-adiabatic dynamics 
+Great, now on to non-adiabatic dynamics.
+The two most important terms that need to be calculated here, are the non-adibatic coupling vector and the non-adiabatic coupling scalar terms.
+$Non-adiabatic coupling terms$
+For the vector,  the gradient of the ground-state fock matrix should already be accounted for with our adjustments prior to the SCF routine, and this won't be affected by the addition of the MM-QM interaction forces post Energy-Calculations. In otherwords, we can use these calls as it.
+This scalar on the otherhand, it depends on the time derivative of the Fock Matrix, something that would definitely be affected by post SFC external force.
+Fortunately, this scalar is calculated numerically between timesteps.
+It does this by calculating singlepoits at intermitten QM steps between each MM timestep.
+We just need to make sure that we provide NEXMD enough information to properly do this interpolation.
+* What does this look like
+$ Show non-adiabatic schema $
+Walk through the swim chart
+* Testing Non-Adiabatic Dynamics
+So lets test it.
+For our test system, we will use the same organic conjugated polymeter PPV3-NO2, shown below.
+$ Show PPV3-NO2 $
+Performing non-adiabatic dynamics will be roughly a little more than  order of magnitude more expensive than the previous adiabatic calculations.
+We therefore limited our scope to the use of a single solvent, methanol.
+Earlier studies have shown that the growth rate of the lowest excited after excitation to a higher state was shown to be decreased with solvents with high dielectric constants.
+* Non-Adiabatic Setup
+$ Show the non-adiabatic trajectory layout$
+We perform the same solvent restraints..
+Need higher resolution and therefore we use 512 independent trajectories at 2 ps intervals.
+We performed a 4 ps QM/MM ground state relaxation.
+In this experiment we attempted to simulate a pulse-pump experiment.
+We therefore performed single point calculations using the last frame at the lowest excited state to decide.
+Then used the calculated oscillator strengths to peform a frank-condon like excitation to a higher state Sm, which was roughly split 85-15 between states 9 and 10.
+These trajectories were then allowed to relax for another 1 ps.
+* State Population Decay.
+$ Show sifain's results $
+$ Show my results $
+* Conclusion
+** Summary
+Added the ability to perform QM/MM excited state dyanmics using AMBER with NEXMD.
+Added the ability to perform QM/MM non-adiabatic dynamics using AMBER with NEXMD
+Created a scripts  to near effortlessly set up these types of simulations, including the ability select and restrain the nearest solvents to an atom cluster on the solute using AMBER's NMR restraints and CCPTraj.
+** Future works
+Studies of charge separation and recombinations in perylene derivatives.
+zinc(II) tetraphenylporphyrin-amino naphtha- lene diimide dyads
+Zn(II) porphyrin (ZnP) compounds covalently linked to naphtaleneimide (NI) and naphthalenediimide (NDI)
+Improve treatment of QM ewald calculations
+Combine my script utility with the GetExcited package from NEXMD
