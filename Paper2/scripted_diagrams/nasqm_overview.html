@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-02-27 Sat 09:34 -->
+<!-- 2021-03-15 Mon 14:06 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
 <meta name="generator" content="Org mode" />
-<meta name="author" content="dustin" />
+<meta name="author" content="Dustin Tracy" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -218,15 +218,43 @@
 </head>
 <body>
 <div id="content">
-
-<div id="org9b21e3e" class="figure">
-<p><img src="nasqm_overview.png" alt="nasqm_overview.png" />
-</p>
+<div class="org-src-container">
+<pre class="src src-plantuml">@startuml
+|#AntiqueWhite|AMBER|
+|Sync|
+|#AntiqueWhite|NEXMD|
+start
+:calculate QM energies;
+:calculate QM forces;
+|Sync|
+:QM energies, forces, and density matrix;
+|AMBER|
+:finish force calculations;
+:propogate nuclear velocities;
+|Sync|
+:QM accelerations and velocities;
+|NEXMD|
+:choose state using fewest switches;
+|Sync|
+:velocities;
+|AMBER|
+:propogate nuclear coordinates;
+:generate thermostat parameters;
+|Sync|
+:QM coordinates;
+:MM charges;
+:thermostat parameters;
+|NEXMD|
+:account for trivial crossings;
+:propogate coefficients;
+stop
+@endum
+</pre>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: dustin</p>
-<p class="date">Created: 2021-02-27 Sat 09:34</p>
+<p class="author">Author: Dustin Tracy</p>
+<p class="date">Created: 2021-03-15 Mon 14:06</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

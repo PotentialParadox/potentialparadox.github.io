@@ -31,6 +31,3 @@ stop
 @endum
 #+end_src
 
-#+RESULTS:
-[[file:nasqm_overview.png]]
-

@@ -103,7 +103,7 @@ We apply this probability to perform a montecarlo like decision between time-ste
     Most importantly for this research, it has a proven track record of doing QM/MM solvent-solute simulations using periodic boundary conditions.
     It has been designed to perform the QM/MM calculations using various libraries specializing in QM calculations as a backend. But by default, it uses the Semi-empirical Quantum Mechanic (SQM) package. These libraries only need to find the forces and energies of the QM region. Note that these packages will still need to know the presence of MM atoms to treat them as external point charges. SANDER will perform the rest of the QM/MM interaction calculations as well as the coordinate propagation. No work has yet been done to allow excited-state dynamics to be performed with SANDER.
 
-*  How to find the density matrix
+* How to find the density matrix
 Our final goal is pretty ambition, so we'll start  smaller with the goal of perform adiabatic excited state dynamics.
 How does NEXMD perform these calculations in vacuum
 The ground state adiabatic wave function is composed as a single slater-determinate of single-electron molecular orbitals.
@@ -118,7 +118,7 @@ However, this Fock operators is dependent on the coefficients are dependent on t
 In order to get around this we make an initial guess of the coefficients then proceded to iterate until convergence in a procedure called SCF method.
 Further simplifications can be done by approximating the integrals. These approximations are referred to as semi-emprical methods.
 
-*  To find the excited states 
+* To find the excited states 
 To find excited states, it uses a method similar to configuration interaction singlets.
 
 The Hartree-Fock's slater determinant, \(\psi_0\), contains the lowest energy molecular orbitals.
@@ -128,9 +128,9 @@ The other available orbitals that weren't filled are considered virtual labeled 
 New determinants can be made by swapping virtual and occupied orbitals.
 For example
 \begin{equation}
-    \psi_c^i
+    \psi_a^i
 \end{equation}
-would be a determinant created by swapping occupied orbitals \(c\) and \(d\) with orbitals \(i\) and \(j\).
+would be a determinant created by swapping occupied orbital \(a\) orbital \(i\).
 
 For CIS, the new wavefunction can be written as
 \begin{equation}
@@ -204,7 +204,7 @@ $Show spectra with various number of qm solvents$
 When we compared the number of solvents, we do see an effect. Here I'm showing the calculations in carbon tetrachloride.
 For the aborption the majority of the affect occurs witht the inclusion of the first 5 QM.
 In the fluorescence calculations, this shift is fairly consistent.
-* So how do we add QM/MM fo r Non-adiabatic dynamics 
+* So how do we add QM/MM for Non-adiabatic dynamics 
 Great, now on to non-adiabatic dynamics.
 The two most important terms that need to be calculated here, are the non-adibatic coupling vector and the non-adiabatic coupling scalar terms.
 $Non-adiabatic coupling terms$
