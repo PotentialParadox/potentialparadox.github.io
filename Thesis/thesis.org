@@ -6,88 +6,94 @@
   :header-args:latex: :exports code :tangle Dustin_2021_PhD_defense.tex
   :END:
   #+begin_src latex
-      \documentclass[editMode]{ufdissertation}\sloppy
-      \usepackage{tikz}%       tikz is used by almost everyone, but certainly by me for this.
-      \usepackage{bm}%         bm is needed in order to boldface mathematical symbols
-      \usepackage{listings,setspace}%
-      %% Uncomment the relevant line below if you have tables or figures.
-      \haveTablestrue%        Uncomment this if you have tables in your thesis.
-      \haveFigurestrue%       Uncomment this if you have figures in your thesis.
-      % \haveObjectstrue%       Uncomment this if you have Objects in your thesis. This is almost certainly not the case however.
+  \documentclass[editMode]{ufdissertation}\sloppy
+  \usepackage{tikz}%       tikz is used by almost everyone, but certainly by me for this.
+  \usepackage{bm}%         bm is needed in order to boldface mathematical symbols
+  \usepackage{listings,setspace}%
+  %% Uncomment the relevant line below if you have tables or figures.
+  \haveTablestrue%        Uncomment this if you have tables in your thesis.
+  \haveFigurestrue%       Uncomment this if you have figures in your thesis.
+  % \haveObjectstrue%       Uncomment this if you have Objects in your thesis. This is almost certainly not the case however.
 
-      \title{The Implementation of QM/MM for Non-Adiabatic Dynamics Using AMBER and NEXMD}%  Put your title here.
+  % Allow the ability to highlight changes
+  \usepackage{soul}
+  \usepackage{color}
+  \DeclareRobustCommand{\hlc}[1]{{\sethlcolor{cyan}\hl{#1}}}
+  \DeclareRobustCommand{\hlr}[1]{{\sethlcolor{red}\hl{#1}}}
 
-      \degreeType{Doctorate of Philosophy}%   Official name of your degree; eg "Doctorate of Philosophy".
-      \major{Physics}%                    Your official Department
-      \author{Dustin Tracy}%                  Your Name
-      \thesisType{Dissertation}%              Dissertation (PhD) or Thesis (Masters)
-      \degreeYear{2021}%                      Intended graduation year (not the year you submit the thesis)
-      \degreeMonth{May}%                   Month of graduation should be May, August, or December.
-      \chair{Adrian Roitberg}%                   Chair and Cochair (see comment block above).
+  \title{The Implementation of QM/MM for Non-Adiabatic Dynamics Using AMBER and NEXMD}%  Put your title here.
 
-
-      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-    %%% For each of the following, type in the name of the file that contains each section. 
-    %       They are assumed to be tex files, but if they aren't the command takes an optional argument for the extension.
-    %       So, you could load dedication.tex as your dedication file using \setDedicationFile{dedication}
-    %       You could load dedication.txt instead with \setDedicationFile[txt]{dedication}.
-    %       NOTE: For some compilers they may or may not add a .tex to the end of the file automatically.
-    %           If you get a "couldn't find dedication.tex.tex" type error, try the command with an empty optional argument,
-    %           e.g. \setDedicationFile[]{dedication}
-    %%%
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-    %%% These are REQUIRED sections; easiest to do via these commands.
-
-    \setDedicationFile{dedicationFile}%                 Dedication Page
-    \setAcknowledgementsFile{acknowledgementsFile}%     Acknowledgements Page
-    \setAbstractFile{abstractFile}%                     Abstract Page (This should only include the abstract itself)
-    \setReferenceFile{referenceFile}{ieeetr}%              References. First argument is your bibtex source file
-    %                                                       the second argument is your bibtex style file.
-    \setBiographicalFile{biographyFile}%                Biography file of the Author (you).
-
-    %%% These are NOT required, so only use them if you actually need/have them.
-
-    %% \setAbbreviationsFile{abbreviations}%           Abbreviations Page
-    %% \setAppendixFile{appendix}%                     Appendix Content; hyperlinking might be weird.
-    % \multipleAppendixtrue%                          Uncomment this if you have more than one appendix, 
-    %                                                   comment it if you have only one appendix.
+  \degreeType{Doctorate of Philosophy}%   Official name of your degree; eg "Doctorate of Philosophy".
+  \major{Physics}%                    Your official Department
+  \author{Dustin Tracy}%                  Your Name
+  \thesisType{Dissertation}%              Dissertation (PhD) or Thesis (Masters)
+  \degreeYear{2021}%                      Intended graduation year (not the year you submit the thesis)
+  \degreeMonth{May}%                   Month of graduation should be May, August, or December.
+  \chair{Adrian Roitberg}%                   Chair and Cochair (see comment block above).
 
 
-    %%%%%%%                     End of File Assignment
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+  %%% For each of the following, type in the name of the file that contains each section. 
+  % They are assumed to be tex files, but if they aren't the command takes an optional argument for the extension.
+  % So, you could load dedication.tex as your dedication file using \setDedicationFile{dedication}
+  % You could load dedication.txt instead with \setDedicationFile[txt]{dedication}.
+  % NOTE: For some compilers they may or may not add a .tex to the end of the file automatically.
+  % If you get a "couldn't find dedication.tex.tex" type error, try the command with an empty optional argument,
+  % e.g. \setDedicationFile[]{dedication}
+  %%% 
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+  %%% These are REQUIRED sections; easiest to do via these commands.
+
+  \setDedicationFile{dedicationFile}%                 Dedication Page
+  \setAcknowledgementsFile{acknowledgementsFile}%     Acknowledgements Page
+  \setAbstractFile{abstractFile}%                     Abstract Page (This should only include the abstract itself)
+  \setReferenceFile{referenceFile}{ieeetr}%              References. First argument is your bibtex source file
+  % the second argument is your bibtex style file.
+  \setBiographicalFile{biographyFile}%                Biography file of the Author (you).
+
+  %%% These are NOT required, so only use them if you actually need/have them.
+
+  %% \setAbbreviationsFile{abbreviations}%           Abbreviations Page
+  %% \setAppendixFile{appendix}%                     Appendix Content; hyperlinking might be weird.
+  % \multipleAppendixtrue%                          Uncomment this if you have more than one appendix, 
+  % comment it if you have only one appendix.
+
+
+  %%%%%%% End of File Assignment
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
   \lstnewenvironment{mylisting}
-    {\singlespacing\lstset{basicstyle=\ttfamily\footnotesize,breaklines=true}}
+  {\singlespacing\lstset{basicstyle=\ttfamily\footnotesize,breaklines=true}}
   {}
 
-    \begin{document}
-    %%%% Here you just need to include/input your actual work. 
-    %       The above files (dedication, acknowledgement, titlepage, etc etc) will all be added for you 
-    %       using the files you assigned above. 
-    %       If you want to input the above files manually you can comment out the \setFILE command above 
-    %       and use \input or \include here. Generally you want to use \include to get your pagebreak.
-    %       NOTE: If you input manually you will have to do some/all the formatting manually.
+  \begin{document}
+  %%%% Here you just need to include/input your actual work. 
+  % The above files (dedication, acknowledgement, titlepage, etc etc) will all be added for you 
+  % using the files you assigned above. 
+  % If you want to input the above files manually you can comment out the \setFILE command above 
+  % and use \input or \include here. Generally you want to use \include to get your pagebreak.
+  % NOTE: If you input manually you will have to do some/all the formatting manually.
 
 
-    \include{introduction}% Modified from old template.
-    \include{theoreticalMethods}% Modified from old template.
-    \include{implementationDetails}% Modified from old template.
-    \include{adiabatic}% Modified from old template.
-    \include{non-adiabatic}% Modified from old template.
-    \include{conclusion}% Modified from old template.
+  \include{introduction}% Modified from old template.
+  \include{theoreticalMethods}% Modified from old template.
+  \include{implementationDetails}% Modified from old template.
+  \include{adiabatic}% Modified from old template.
+  \include{non-adiabatic}% Modified from old template.
+  \include{conclusion}% Modified from old template.
 
-    % \begin{algorithm}% Example showing the weird "algorithm" environment works...
-    %     \captionof{algorithm}{Test Caption}
-    % \end{algorithm}
-    % \addObject{TestStuff!}%     This is probably the command that a normal author will use to add objects.
+  % \begin{algorithm}% Example showing the weird "algorithm" environment works...
+  %   \captionof{algorithm}{Test Caption}
+  % \end{algorithm}
+  % \addObject{TestStuff!}%     This is probably the command that a normal author will use to add objects.
 
-    % \chapter{EXAMPLES OF EDITOR/Author TOOLS, TABLES, AND IMAGES}% Notice that we can use chapter/section etc breaks in the master file if we want, and then use \input instead of \include to avoid unneccessary page breaks.
-    % \input{editorAndAuthorRemarks}%     Stuff about using editorRemark and authorRemark commands
-    % \input{includingTablesExamples}%    Stuff about using Tables.
-    % \input{includingImagesExamples}%    Stuff about using Images.
+  % \chapter{EXAMPLES OF EDITOR/Author TOOLS, TABLES, AND IMAGES}% Notice that we can use chapter/section etc breaks in the master file if we want, and then use \input instead of \include to avoid unneccessary page breaks.
+  % \input{editorAndAuthorRemarks}%     Stuff about using editorRemark and authorRemark commands
+  % \input{includingTablesExamples}%    Stuff about using Tables.
+  % \input{includingImagesExamples}%    Stuff about using Images.
 
-    \end{document}
+  \end{document}
 
   #+end_src
 * THREE Dedication
@@ -99,7 +105,7 @@
   To my loving wife Sarah Stern, who's love I will alway cherish.
   I also dedicate this work to my grandmother, Jean Tracy, who encouraged me to work for my PhD, and would have been proud of its completion.
   #+end_src
-* THREE Acknowledgements
+* THREE Acknowledgments
 SCHEDULED: <2021-02-08 Mon>
   :PROPERTIES:
   :header-args: :eval never-export
@@ -222,7 +228,7 @@ The photophysical characteristics of these molecules change significantly in the
 An immense amount of improvements to simulates this behavior have been made in just that last decade alone. This paper aims to provide an additional tool to help further illuminate these understanding.
 #+end_src
 
-** THREE Qualitaive Overview of Non-Adiabatic Dynamics [3/3]
+** THREE Qualitative Overview of Non-Adiabatic Dynamics [3/3]
    #+begin_src latex
    \section{Qualitative Overview of Non-Adiabatic Dynamics}
    #+end_src
@@ -271,25 +277,28 @@ An immense amount of improvements to simulates this behavior have been made in j
      - Because of the dependence on the tranistion dipole moment, transitions between similar symmmetries are unlikely.
      :END:
 #+begin_src latex
-Figure \ref{fig:jablonski} A shows a Jablonski diagram.
+\authorRemark{I removed the vibrational modes from figure 1-1 B}
+\hlc{Figure} \ref{fig:jablonski} A \hlc{show four potential energy surfaces along an arbitrary coordinate with energies in arbitrary units.}
 S\(_{0-2}\) represent the potential energy surfaces for the three lowest singlet states.
 T\(_1\) represents the first excited triplet state.
 Along each curve, the electronic symmetry does not change.
-No vibrational or rotational modes are shown since we will treat these classically.
+No vibrational or rotational modes are shown since we will treat \hlc{dynamics} classically.
 Immediately after an electron photon absorption, the molecule is promoted to an excited state, as can be seen by the purple arrow.
 This excited state could either the one immediately above it, or it could be one the many above that one.
 The decision of which state to excited to is determined by the energy of the excitation and oscillator strength.
 
 Once the molecule is at this excited-state, it will relax back towards the ground-state if it isn't at a high temperature.
 There are two primary mechanisms through which this can occur.
-The first is by releasing the energy thermally either throughout the rest of the molecule or to the environment. This method is referred to as internal conversion and manifests as reductions to the vibrational and rotational modes.
+The first is by releasing the energy thermally either throughout the rest of the molecule or to the environment. This method is referred to as internal conversion and manifests as reductions through the vibrational and rotational modes.
 The second is through photon-emission.
 A photo-emission process from the first excited state to the ground state is referred to as fluorescence and can be seen by the figure's green arrow.
 Fluorescence occurs over a period of nanoseconds.
-Transition processes from singlet states to the triplet states are possible dependent on the spin-orbit coupling strength, in a process called an intersystem conversion.
-Photo-emission from the triplet state to the ground state would be called phosphorescence.
-Phosphorescence is relatively very rare compared to fluorescence with time order ~1s.
-For this reason, we do not consider this behavior in our simulations.
+Transition processes from singlet states to the triplet states are \hlr{possible} dependent on the spin-orbit coupling strength, in a process called an intersystem conversion.
+Photo-emission from the triplet state to the ground state is called phosphorescence.
+\hlc{Phosphorescence occurs on timescales significantly longer than fluorescence.
+Our method will not consider timescales of this length.
+As such, we do not consider this behavior in our simulations and forbid conversions from singlet to triplet states.}
+
 
 Kasha's rule states that photon-emission occurs only in appreciable yields from the lowest excited state to the ground state.\cite{Kasha1950}
 This rule suggests that in most cases where an electron is excited to a state beyond the first excited state, that electron will have to relax to the first excited state through internal conversion.\cite{shenai2016internal}
@@ -299,10 +308,9 @@ Figure \ref{fig:jablonski} B is a zoomed-in picture of the portion of Figure \re
 When the molecule is excited to S2 through photo-excitation, it will begin to relax along S2's potential energy surface following the orange arrow.
 In reality, this process would be quantized and occur as a gradual reduction in the vibration and rotational modes.
 In our simulations, though, we treat these reductions classically, and the molecule can move smoothly along the potential energy surface of each excited state. 
-However, eventually, the molecule traversing the potential energy surface of S2 will cross the potential energy surface of S1. This point is called a conical intersection.
-At these intersections, there are generally strong couplings between the two states.
-This coupling allows the molecule to transition from S2 to S1.
-A choice now needs to be made whether to stay on the potential energy surface of the S2 or switch to S1.
+However, eventually, the molecule traversing the potential energy surface of S2 will cross the potential energy surface of S1.
+\hlr{This point is called a conical intersection}
+At these intersections, there are generally strong couplings between the two states, \hlc{and the molecular wavefunction splits between the two states.}
 #+end_src
 **** THREE Explanation of decay [3/3]
 ***** THREE Must go beyon the Born-Oppenheimer
@@ -317,26 +325,31 @@ A choice now needs to be made whether to stay on the potential energy surface of
      :END:
 #+begin_src latex
 In computation chemistry, it is common to assume that electrons move significantly faster than nuclei and treat the nuclei as parameters to the equations used to solve for electronic behaviors.
-This assumption is known as the Born-Oppenheimer approximation. It forces the molecule to traverse along a single potential energy surface, making it impossible for transitions from one excited state to another to occur. This approximation breaks in regions where there are degeneracies of states or where the nuclei's velocities are significant.
+This assumption is known as the Born-Oppenheimer approximation and allows us to separate the electron and nuclear terms of the Hamiltonian dramatically reducing computational costs.
+\hlc{This approximation, however, restricts a molecule to traverse along a single potential energy surface, making it impossible for transitions from one excited state to another to occur.}
+\authorRemark{I'm really confused on how to answer Valeria's question here.}
+It breaks in regions such as shown in Figure \ref{fig:jablonski} B where there are degeneracies of states or where the nuclear velocities are significant.
 Simulations of molecular dynamics restricted to a single potential energy surface are referred to as adiabatic dynamics.
 Simulations that allow such surface-hopping are non-adiabatic.
 
 When the Born-Oppenheimer approximation breaks, accounting for non-adiabatic behavior become necessary.
 These situations frequently occur within processes of interest to photochemistry and photophysics.
 For example, the excitation to a non-equilibrium state followed by relaxation through internal conversion is common to processes such as photosynthesis, solar-cell photo-absorption, optical detectors, and the excitation of the visual nerve.
-Photon absorption is also a requirement in certain reactions that need that last little kick.\cite{vincent2016little}
+\hlc{Non-adiabatic treatment of dynamics has been shown to more accurately model the kinetic energy found in certain photodissociation experiments over born-oppenheimer ensembles.}\cite{vincent2016little}
 #+end_src
 ***** THREE Mean-Field vs MDQT [2/2]
 ****** THREE Diagram showing mean-field and surface hopping
        #+begin_src latex
-       \noindent
-       \begin{multiFigure} 
-	 \addFigure{0.45}{Images/probabilities.png}
-	 \addFigure{0.45}{Images/ehrenfestVsTully.png}
-	 \captionof{figure}[Surface hopping vs mean-field]{A visual description describing the difference between surface hopping and mean-field. A) The probabilities states S1 and S2. B) The potential energies of trajectories over time. Dashed lines represent the potential energies of S1, S2, and the probability-weighted average during the Ehrenfest trajectory. Solid lines represent two separate surface hopping trajectories.}
-	 \label{fig:surfaceHoppingVsMeanField}
-       \end{multiFigure}
-\bigskip
+		     \noindent
+		     \begin{multiFigure} 
+		       \addFigure{0.45}{Images/ehrenfestVsTully.png}
+		       \addFigure{0.45}{Images/probabilities.png}
+		       \captionof{figure}[Surface hopping vs mean-field]{A visual description describing the difference between surface hopping and mean-field. A) The potential energies of trajectories over time. Dashed lines represent the potential energies of S1, S2, and the probability-weighted average during the Ehrenfest trajectory. Solid lines represent two separate surface hopping trajectories. B) The probabilities states S1 and S2.}
+		       \label{fig:surfaceHoppingVsMeanField}
+		     \end{multiFigure}
+	      \bigskip
+
+       \authorRemark{I changed Probability to \(|\Psi|^2\)}
        #+end_src
 ****** THREE Explanation of the Mean-Field vs Surface Hopping 
        :LOGBOOK:
@@ -350,20 +363,20 @@ Photon absorption is also a requirement in certain reactions that need that last
 	 - The average potential of the two tully PE will not equal the potential energy of ehrenfest
        :END:
 #+begin_src latex
-Two common methods to extend the Born Oppenheimer approximation are using a mean-field, ofter referred to as Ehrenfest, or through molecular dynamics with quantum transitions (MDQT).\cite{Hammes-Schiffer1994} Alternative methods such as using mixed quantum-classical dynamics exist but will not be discussed in this work. \cite{habershon2013ring,kapral2006progress} In Ehrenfest methods, the forces acting on the molecule at any time-step is the population-weighted average of the forces acting at all relevant excited states. In MDQT methods, only the forces of one state are used for any single time-step. \cite{prezhdo1997evaluation}
+Two common methods to extend the Born Oppenheimer approximation are using a mean-field, ofter referred to as Ehrenfest, or through molecular dynamics with quantum transitions (MDQT).\cite{Hammes-Schiffer1994} Alternative methods such as using mixed quantum-classical dynamics exist but will not be discussed in this work. \cite{habershon2013ring,kapral2006progress} In Ehrenfest methods, the forces acting on the molecule at any time-step is the population-weighted average of the forces acting \hlc{on} all relevant excited states. In MDQT methods, only the forces of one state are used for any single time-step. \cite{prezhdo1997evaluation}
 Between time-steps, the molecule is allowed to transition between states.
 To simulate state populations, MDQT methods employ a swarm of independent trajectories. Each trajectory is given a different random seed and allowed to hop between surfaces based on the non-adiabatic couplings. A study of the system's behavior is then done based on the statistics of the ensemble.
 
-Figures \ref{fig:surfaceHoppingVsMeanField} A and B attempt to show the practical differences between these two methods.
+Figures \ref{fig:surfaceHoppingVsMeanField} A and B attempt to show the practical differences between these two methods \hlc{using mock data for instructional purposes}.
 The population chart on the left shows the probability of being in states S1 and S2 at some arbitrary time.
-These probabilities merge to around 0.5 each at around the halfway point.
+\hlr{These probabilities merge to around 0.5 each at around the halfway point.}
 
 Figure \ref{fig:surfaceHoppingVsMeanField} B presents arbitrary state energies over the same time frame for this trajectory.
 The dashed lines represent the energies along the Ehrenfest trajectory.
 Blue and red represent the S2 and S1 energies, respectively.
 The black dashed line represents the Ehrenfest mean-field energy determined as the population-weighted average energies of S1 and S1.
-As the probability of state S2 drops from one, the mean-field energy diverges from that of S2.
-Eventually, the mean-field energy becomes the average of S1 and S2.
+As the energy of S2 approaches that of S1 the probability of state S2 drops from one and the mean-field energy diverges from that of S2.
+Eventually, the mean-field energy becomes the average of S1 and S2. \hlc{Figure} \ref{fig:surfaceHoppingVsMeanField} \hlc{B displays the} \(|\Psi|^2\) \hlc{during this interaction.}
 
 The solid lines represent the energies along two separate surface hopping trajectories.
 At around the halfway point, the trajectory SH-S1 hops from the S2 to S1.
@@ -395,11 +408,14 @@ Notice that the average energy of the hop trajectories will also diverge from th
 #+begin_src latex
 Multiple methods to have been proposed and used to simulate these non-adiabatic processes.
 These methods include treating the nuclear coordinates quantum mechanically or simiclassically, or by using a hybrid quantum mechanical, classical treatment to account for the non-adiabaticity.
-One of the more popular version of the latter, and the one which we use in this work, is Molecular Dynamics with Quantum Transitions (MDQT), were the system propogates classically along adiabatic potential energy surfaces, but a quantum evalutation is made at each time-step to determine whether to transition to another state.
+One of the more popular version of the latter, and the one which we use in this work, is Molecular Dynamics with Quantum Transitions (MDQT), were the system \hlc{propagates} classically along adiabatic potential energy surfaces, but a quantum evalutation is made at each time-step to determine whether to transition to another state.
 The probability of hopping from one state to another is proportional to the coupling between the states, known as the non-adiabatic coupling or vibronic coupling. These non-adiabatic couplings depend on nuclear velocities and the energy differences between the states. Figure \ref{fig:naCrossings} shows three approaches from potential surfaces S1 (blue) and S2 (red), where the non-adiabatic coupling is non-negligible. When the energy differences are relatively large, with a shallow approach as in the left figure, the coupling is weak, and hops become unlikely. Such regions are known as weak avoided crossings. When the approach is steep and the energy difference small, the nuclear velocities become significant, and strong coupling occurs. In these strong avoided crossings, a surface hop becomes likely.
 
 In the far-right figure, the energies of the two states cross.
-At the exact point of crossing, the coupling approaches infinity; however, if the states' spatial separation is large, the non-adiabatic coupling at all other points will be vanishingly small. In such situations, a hop would be non-physical. We call these intersections between non-interacting potential energy surfaces trivial crossings. Because the surface hopping algorithm is not appropriate for trivial crossings, we differentiate the interacting and non-interacting crossings using a Min-Cost assignment algorithm. \cite{fernandez2012identification} 
+At the exact point of crossing, the coupling approaches infinity.
+\hlc{In large complicated systems, it is possible that the spatial separation between the two states could make the transition non-physical.
+In such situation, though the non-adiabatic coupling approaches infinity at the crossing, at all other points it will be vanishingly small.}
+We call these intersections between non-interacting potential energy surfaces trivial crossings. Because the surface hopping algorithm is not appropriate for trivial crossings, we differentiate the interacting and non-interacting crossings using a Min-Cost assignment algorithm. \cite{fernandez2012identification} 
 In general, states in molecular dynamics programs are referred to based on their energy orderings. When a crossing exists, the orderings of these potential energy surfaces switch. If a surface-hop occurs at the intersection, the molecule should switch surfaces which means staying on the same energy level since the energy levels will have switched. More importantly, if a hop doesn't occur due to non-interacting states, we should still change the energy level; otherwise, non-physical energy transfers will occur. Ensuring proper accounting between the potential energy surfaces and energy levels can be done by comparing electronic density overlaps between the states between time-steps. 
 #+end_src
 *** THREE Qualitative explanation of how solvent could affect this dynamics [0/0]:ignore:
@@ -412,10 +428,13 @@ In general, states in molecular dynamics programs are referred to based on their
     - look at furukawahino.pdf
     :END:
     #+begin_src latex
-        \subsection{Solvent Effects}
-The determination of which state to excite to is strongly affected by the transition dipole moments. These transition dipole moments are sensitive to polarization from external electronic fields or charges. The energy differences between the excited states can be affected by these external charges (de)-stabilizing the dipoles.
-This ability of the solvent to affect the spectra of a solute is known as solvatochromism. \cite{marini2010solvatochromism} Systems with strong electric fields frequently occur in biological systems.\cite{park1999vibrational,kriegl2003ligand} 
-These electric fields can profoundly affect the steady-state fluorescence and absorption spectra, a phenomenon known as the Stark effect. \cite{Park2013} The solvents in these systems can extend or shield these effects. In fact, solvents themselves can induce the effect. The Stark effect is largely responsible for the redshift in proteins' emissions in fluid solvents with high dielectric constants.\cite{callis1997tryptophan,park1999vibrational} Solvents provide a large source of external charges that can significantly affect the non-adiabatic behavior and characteristics of a molecule.\cite{furukawa2015external} We can exploit these changes to build useful devices and methodologies. For example, researchers have developed environmental-sensitive fluorescence probes using this effect. \cite{klymchenko2004bimodal} 6-propionyl-2-dimethylaminonaph-thalene experiences a very noticeable emission color shift with the addition of cholesterol.\cite{massey1998effect,bondar1999preferential}
+		   \subsection{Solvent Effects}
+	   The determination of which state to excite to is strongly affected by the transition dipole moments. These transition dipole moments are sensitive to polarization from external electronic fields or charges. The energy differences between the excited states can be affected by these external charges (de)-stabilizing the dipoles.
+	   This ability of the solvent to affect the spectra of a solute is known as solvatochromism. \cite{marini2010solvatochromism}
+	   \hlr{Systems with} Strong electric fields frequently occur in biological systems.\cite{park1999vibrational,kriegl2003ligand} 
+	   These electric fields can profoundly affect the steady-state fluorescence and absorption spectra, a phenomenon known as the Stark effect. \cite{Park2013} The solvents in these systems can extend or shield these effects. In fact, solvents themselves can induce the effect. The Stark effect is largely responsible for the redshift in proteins' emissions in fluid solvents with high dielectric constants.\cite{callis1997tryptophan,park1999vibrational} Solvents provide a large source of external charges that can significantly affect the non-adiabatic behavior and characteristics of a molecule.\cite{furukawa2015external} \hlc{Researchers} can exploit these changes to build useful devices and methodologies.\cite{massey1998effect,bondar1999preferential}
+	   For example, researchers have developed environmental-sensitive fluorescence probes using this effect. \cite{klymchenko2004bimodal}
+	   \hlr{6-propionyl-2-dimethylaminonaph-thalene experiences a very noticeable emission color shift with the addition of cholesterol.}
     #+end_src
 ** THREE QM/MM would be useful                                      :ignore:
    :LOGBOOK:
@@ -427,10 +446,10 @@ These electric fields can profoundly affect the steady-state fluorescence and ab
    - [ ] Make sure to explaine the different methods
    :END:
    #+begin_src latex
-For many areas in which non-adiabatic dynamics simulations would be of interest, solvents play a crucial role. \cite{bagchi1989dynamics,woo2005solvent}
-In situations where ultrafast electronic relaxations occur, the electronic decay is often faster than the solvent's time to equilibrate.
-As such, implicit solvents, which adjusts instantaneously to any changes in the solute, become imprecise approximation. However, performing non-adiabatic dynamics on large systems is far too computationally expensive.
-
+   For many areas in which non-adiabatic dynamics simulations would be of interest, solvents play a crucial role. \cite{bagchi1989dynamics,woo2005solvent}
+   In situations where ultrafast electronic relaxations occur, the electronic decay is often faster than the solvent's time to equilibrate.
+   As such, implicit solvents, which adjusts instantaneously to any changes in the solute, become imprecise approximations.
+   However, performing non-adiabatic dynamics on large systems \hlc{with explicit solvents treated at the same level of theory is too computationally expensive.}
    #+end_src
 ** THREE Qualitative explanation of QM/MM [0/0]                     :ignore:
     :LOGBOOK:
@@ -446,25 +465,26 @@ As such, implicit solvents, which adjusts instantaneously to any changes in the 
 	- The net energy of these systems will the sum of the QM region, the MM region, and the coupling between them.
     :END:
     #+begin_src latex
-    \subsection{QM/MM}
-    \begin{multiFigure} 
-      \addFigure{0.4}{../Oral/Images/qm_mm.png}
-      \addFigure{0.4}{../Oral/Images/qm_mm_pme.png}
-      \captionof{figure}[QM/MM diagram]{A) Representation of a single cell. B) Representation of the periodic nature of the system.}
-      \label{fig:QMMMDiagram}
-    \end{multiFigure}
-    \bigskip
+	\subsection{QM/MM}
+	\begin{multiFigure} 
+	  \addFigure{0.4}{../Oral/Images/qm_mm.png}
+	  \addFigure{0.4}{../Oral/Images/qm_mm_pme.png}
+	  \captionof{figure}[QM/MM diagram]{A) Representation of a single cell. B) Representation of the periodic nature of the system.}
+	  \label{fig:QMMMDiagram}
+	\end{multiFigure}
+	\bigskip
 
-    In the previous sections, we have discussed how we can use quantum mechanics (QM) for chemical calculations. However, in many applications, the accuracy of QM is not needed, and a more computationally cheaper method would be more appropriate. Many computational chemists use classical electrical force field dynamics for these situations, treating atoms as point charges. QM/MM was developed to manage computational costs by separating a calculation into a quantum mechanical (QM) region and a classical mechanical (MM) region.\cite{warshel1976theoretical,Karplus2014} This allows the user to have the accuracy where needed while not wasting resources on unwanted calculations such as the dynamics of water molecules far from the protein of interest.
+	In the previous sections, we have discussed how we can use quantum mechanics (QM) for chemical calculations. However, in many applications, the accuracy of QM is not needed, and a more computationally cheaper method would be more appropriate. Many computational chemists use classical electrical force field dynamics for these situations, treating atoms as point charges. QM/MM was developed to manage computational costs by separating a calculation into a quantum mechanical (QM) region and a classical mechanical (MM) region.\cite{warshel1976theoretical,Karplus2014} This allows the user to have the accuracy where needed while not wasting resources on unwanted calculations such as the dynamics of water molecules far from the protein of interest.
 
-    To ease the computational cost, we employ QM/MM methodologies to perform the non-adiabatic calculation only on interest areas. Similar methods have been employed in the study of retinal photochemistry and organic semiconductors. \cite{weingart2012modelling,demoulin2017fine,heck2015multi,bayliss1954solvent} In this work, we implement a new method of performing non-adiabatic QM/MM using the SANDER package AMBERTOOLS combined with the high-performance Non-Adiabatic simulator NEXMD.
-    We will have a QM solute and a few nearby QM solvents surrounded by MM solvents for the vast majority of our calculations.
+	To ease the computational cost, we employ QM/MM methodologies to perform the non-adiabatic calculation only on interest areas. Similar methods have been employed in the study of retinal photochemistry and organic semiconductors.\cite{weingart2012modelling,demoulin2017fine,heck2015multi,bayliss1954solvent}
+	In this work, we implement a new method of performing non-adiabatic QM/MM using the SANDER package AMBERTOOLS combined with the high-performance Non-Adiabatic simulator NEXMD.
+	We will have a QM solute and a few nearby QM solvents surrounded by MM solvents for the vast majority of our calculations.
 
-    Figure \ref{fig:QMMMDiagram} gives an example of a QM/MM system.
-    We treat every atom of the molecule at the QM level of theory. The MM atoms in the volume immediately surrounding the molecule, labeled QMCut, will be the MM atoms explicitly included in calculating the ground-state density function. 
+	Figure \ref{fig:QMMMDiagram} gives an example of a QM/MM system.
+	We treat every atom of the molecule at the QM level of theory. The MM atoms in the volume immediately surrounding the molecule, labeled QMCut, will be the MM atoms explicitly included in calculating the ground-state density function. 
 
-    Long-range interactions, from those outside the cutoff, are vital for accurately simulating solvents. 
-    We treat the provided box as a cell that is repeated infinitely many times in all directions, known as a periodic boundary condition. We then treat the charges and potentials as sums in Fourier space in a process known as Particle Mesh Ewald.\cite{Darden1993} Note that the charge in the QM region must be treated as single point charges for these calculations. Once the sums are complete, a fast Fourier transform is performed to obtain energies and forces caused by these long-distance inter-box interactions. \cite{Walker2008}
+	Long-range interactions, from those outside the cutoff, are vital for accurately simulating solvents. 
+	We treat the provided box as a cell that is repeated infinitely many times in all directions, known as a periodic boundary condition. We then treat the charges and potentials as sums in Fourier space in a process known as Particle Mesh Ewald.\cite{Darden1993} Note that the charge in the QM region must be treated as single point charges for these calculations. Once the sums are complete, a fast Fourier transform is performed to obtain energies and forces caused by these long-distance inter-box interactions. \cite{Walker2008}
     #+end_src
 ** TWO Organic Conjugate Molecules
 #+begin_src latex
@@ -487,12 +507,13 @@ PPV, like other conjugated organic polymers, possesses ultra-fast exciton relaxa
 Its bond length alternation dependence on the lowest excited state destabilizing the would be lowest singlet 2A\(_g\) state that would be forbidden and causing the 1B\(_u\) state to be the lowest, allowing the molecule to luminesce.\cite{soos1993band}
 PPV, therefore, has a sufficiently weak electron-hole binding energy to produce a much higher luminescence efficiency than the 25\% that would be expected with strong electron-hole binding. \cite{cao1999improved}
 Its nonlinear response to electronic excitations has made it an excellent candidate to develop solid state LEDs. \cite{burroughes1990light,gustafsson1993plastic,friend1997electronic}
+PPV derivatives can also be used as transistors or sensors.\cite{willander1993polymer,partridge1996high}
 It has been of great interest since discovering a two-step fabrication process that made its production cheap and efficient decades ago.\cite{gagnon1987synthesis}
 
-Possessing 2 chromophores connected by a conjugated bridge, PPV can be called a charge-transfer probe.
-The local and bulk photophysical properties of charge-transfer probes are known to be very sensitive to environmental effects.\cite{marini2010solvatochromism}
-Understanding how these effects modify electron-hole separation and mobility could significantly help the development of further light-harvesting advancements.
-PPV derivatives can also be used as transistors or sensors.\cite{willander1993polymer,partridge1996high}
+\authorComment{For this next paragraph, my entire argument relied on the first sentense, which was incorrect}
+\hlr{Possessing 2 chromophores connected by a conjugated bridge, PPV can be called a charge-transfer probe.
+The local and bulk photophysical properties of charge-transfer probes are known to be very sensitive to environmental effects.
+Understanding how these effects modify electron-hole separation and mobility could significantly help the development of further light-harvesting advancements.}
 
 The optimized geometries of the excited states differ significantly from the ground state.
 The excited state is more planar, and there is a sharp decrease in the alternation of the vinyl groups' bond lengths.
@@ -532,7 +553,7 @@ Chapter 5 applies the non-adiabatic methodology to analyze the effects included 
 
 Finally, in chapter 6, we summarize our findings and suggest future continuations of the work.  We propose some further improvements and as well some systems of interest to analyze. 
 #+end_src
-* THREE Theoretial Methods [7/7]
+* THREE Theoretical Methods [7/7]
   :PROPERTIES:
   :header-args: :eval never-export
   :header-args:latex: :exports code :tangle theoreticalMethods.tex
@@ -664,8 +685,8 @@ Finally, in chapter 6, we summarize our findings and suggest future continuation
     We begin with the generalized Hamiltonian of a molecular system,\cite{engel2012quantum}
     \begin{align} \label{eq:fullhamiltonian}
       \begin{split}
-        \mathbf{H} =& -\frac{\hbar^2}{2m_e}\sum_i^{electrons}\nabla_i^2-\frac{\hbar^2}{2}\sum_{A}^{nuclei}\frac{1}{M_{A}}\nabla_{A}^2 - \frac{e^2}{4\pi\varepsilon_0} \sum_i^{electrons}\sum_A^{nuclei}\frac{Z_A}{r_{iA}} \\
-        & + \frac{e^2}{4\pi\varepsilon_0}\sum_{i}^{electrons}\sum_{j<i}^{electrons}\frac{1}{r_{ij}} + \frac{e^2}{4\pi\varepsilon_0}\sum_{A}^{nuclei}\sum_{B<A}^{nuclei}\frac{Z_AZ_B}{R_{AB}}
+	\mathbf{H} =& -\frac{\hbar^2}{2m_e}\sum_i^{electrons}\nabla_i^2-\frac{\hbar^2}{2}\sum_{A}^{nuclei}\frac{1}{M_{A}}\nabla_{A}^2 - \frac{e^2}{4\pi\varepsilon_0} \sum_i^{electrons}\sum_A^{nuclei}\frac{Z_A}{r_{iA}} \\
+	& + \frac{e^2}{4\pi\varepsilon_0}\sum_{i}^{electrons}\sum_{j<i}^{electrons}\frac{1}{r_{ij}} + \frac{e^2}{4\pi\varepsilon_0}\sum_{A}^{nuclei}\sum_{B<A}^{nuclei}\frac{Z_AZ_B}{R_{AB}}
       \end{split}
     \end{align}
     where $A$ and $B$ are summed over all the nuclei, and the $i$ and $j$ are summed over the electrons. 
@@ -690,59 +711,32 @@ Finally, in chapter 6, we summarize our findings and suggest future continuation
     \begin{align}
       \label{eq:helectric}
       \mathbf{H}_e =& -\frac{1}{2}\sum_i^{electrons}\nabla_i^2 + \sum_i^{electrons} V_{average}(i) -  \sum_i^{electrons}\sum_A^{nuclei}\frac{Z_A}{r_{iA}} \\
-      \mathbf{H}_N =& -\frac{\hbar^2}{2}\sum_{A}^{nuclei}\frac{1}{M_{A}}\nabla_{A}^2  + \sum_{A}^{nuclei}\sum_{B<A}^{nuclei}\frac{Z_AZ_B}{R_{AB}}
+      \mathbf{H}_N =& -\frac{1}{2}\sum_{A}^{nuclei}\frac{1}{M_{A}}\nabla_{A}^2  + \sum_{A}^{nuclei}\sum_{B<A}^{nuclei}\frac{Z_AZ_B}{R_{AB}}
     \end{align}
-    In actuality, the electrons of one orbit will affect electrons of the orbit of another.
-    The electrons will repulse each-other and their paths will change accordingly, thereby reducing the overall energy.
+    \hlc{In actuality, the electrons will repell each-other and their paths will change accordingly, thereby reducing the overall energy.}
     This approximation to the method fails to take this into account.
     We call the difference between the actual energy $E$ and the Hartree-Fock energy $\epsilon$ the
     coulomb correlation energy $E_{corrrelation}$.
     %There have been numerous ways developed to help alleviate this problem, including perturbation theory, coupled cluster theory, and higher lever configuration interaction.
 
-    In most simulations, more than a single electron needs to be considered.
-    In these systems, the total electron wavefunction must satisfy the Pauli-Exclusion principle.
-    We should treated treat all electrons as indistinguishable, no more than one electron per set of quantum numbers, and the sign must invert for any exchange of electrons.
-    We can fulfill that requirement if we assume that a total electron wavefunction is a single slater-determinant of single-electron molecular orbitals
+    \hlc{In systems with more than a single electron}, steps must be taken to ensure that the total electron wavefunction satisfies the Pauli-Exclusion principle.
+    All electrons are indistinguishable, no more than one electron can claim the same set of quantum numbers, and the sign must invert for any exchange of electrons.
+    We can fulfill these requirements if we assume that a total electron wavefunction is a single slater-determinant of single-electron molecular orbitals
     \begin{equation} \label{eq:slater-determinant} \psi(\bm{r};\bm{R}) =
       \left|p \cdots s\right> = \frac{1}{\sqrt{N!}}
       \begin{vmatrix}
-        \chi_{p}(\bm{r}_1) & \cdots & \cdots \chi_{s}(\bm{r}_1) \\
-        \vdots             & \ddots         &       \vdots      \\
-        \chi_{p}(\bm{r}_n) & \cdots & \cdots \chi_{s}(\bm{r}_n)
+	\chi_{p}(\bm{r}_1) & \cdots & \cdots \chi_{s}(\bm{r}_1) \\
+	\vdots             & \ddots         &       \vdots      \\
+	\chi_{p}(\bm{r}_n) & \cdots & \cdots \chi_{s}(\bm{r}_n)
       \end{vmatrix},
     \end{equation}
     where \(\psi\) is the total many electron wavefuntion that depend parametrically on the nuclear coordinates due to the Born-Oppenheimer approximation.
     The $p \cdots s$ are the subscripts of the single electon molecular orbitals, and $1 \cdots n$ are the indices for the electrons.
 
     Things simplify greatly if the molecular orbitals are othornormal to each other. $\left<\right.i\left|\right.j\left>\right. = \delta_{ij}$.
-    Intuition tells us that because of the Hamiltonian is an operator that acts on at most 2 electrons at a time, and the electron orbitals are orthonormal, any perturbation beyond 2 will integrate to 0.
-    In fact, there's a whole set of rules to reduce electron integral summations called the Slater-Condon rules.
-    \begin{enumerate}
-    \item
-      $ \left | \cdots mn \cdots \right > \rightarrow \left | \cdots mn
-      \cdots \right > \Rightarrow \sum_i \left< i \right| h \left| i
-      \right> + \frac{1}{2} \sum_{ij} \left( \left< ij | ij \right> - \left< ij | ji \right> \right) $
-    \item
-      $ \left | \cdots mn \cdots \right > \rightarrow \left | \cdots pn
-      \cdots \right > \Rightarrow \left< m \right| h \left| p \right> +
-      \sum_{i} \left( \left<mi | pi \right> - \left<mi | ip \right> \right) $
-    \item
-      $ \left | \cdots mn \cdots \right > \rightarrow \left | \cdots pq
-      \cdots \right > \Rightarrow \left< mn | pq \right> - \left< mn | qp \right> $
-    \item
-      $ \left | \cdots lmn \cdots \right > \rightarrow \left | \cdots pqr
-      \cdots \right > \Rightarrow 0 $,
-    \end{enumerate}
-    where the first arrow represents the perturbations of electrons. \(\left| \cdots mn \cdots \right> \rightarrow \left| \cdots pn \cdots \right>\) would present a perturbation of a single electron and
-    \(h\) is the core electron Hamiltonian
-    \begin{equation}\label{eq:CoreElectron}
-      h(i) = -\frac{1}{2}\nabla_i^2 - \sum_{A=1}^N \frac{Z_A}{r_{iA}}
-    \end{equation}
-    The integral rule for the two electron integrals is
-    \begin{equation}
-      \left< ij | kl \right> = \int dx_1 dx_2 \chi_i^*(x_1) \chi_j^*(x_2) \frac{1}{r_{12}} \chi_k(x_1) \chi_l(x_2)
-    \end{equation}
-
+    \hlc{Intuition tells us that since the Hamiltonian is an operator that acts on at most 2 electrons, and the electron orbitals are orthonormal, any perturbation of orbital beyond 2 will integrate to 0 since after application of the operators, the final overlap would be 0.}
+    In fact, there's a whole set of rules to reduce electron integral summations called the Slater-Condon rules.\cite{slater1929theory}
+    \authorRemark{I removed the list of slater condon rules. They weren't helpful for gaining any understanding. I replaced the explanation with a citation to slater's original work.}
     Using these rules and a bit of algebra, the Hamiltonian simplifies to what's called the Fock operator with elements
     \begin{equation}\label{eq:Fockelement}
       F_{\mu\nu} = h_{\mu\nu}
@@ -752,10 +746,7 @@ Finally, in chapter 6, we summarize our findings and suggest future continuation
       - \frac{1}{2} \left< \mu \lambda \right| \sigma \nu \left>\right.
       \right)
     \end{equation}
-    where \(\rho_{\lambda \sigma}\) is the densitity matrix
-    \begin{equation}
-      \rho_{\lambda \sigma} = \left< \psi \right| c_\lambda^\dagger c_\sigma \left | \psi \right>.
-    \end{equation}
+    where \(\rho_{\lambda \sigma}\) is the densitity matrix.
     We can now substituted $\mathbf{F}$ for $\mathbf{H}$ in equation \ref{eq:SchrodingerMatrix} to produce the Roothan-Hall equation
     \begin{equation}
       \mathbf{Fc}=\varepsilon\mathbf{Sc},
@@ -803,7 +794,7 @@ Finally, in chapter 6, we summarize our findings and suggest future continuation
 	\end{equation}
 	The full CI wavefunction, \(\Psi\), is linear combination of all of these determinants.
 This method provides the exact solution to the Schr\(\ddot{\text{o}}\)dinger equation within the basis set.
-	The choose function limits the use full CI to small molecules.
+	The choose function limits the use of full CI to small molecules.
 
 	For larger molecules, we only include the ground state determinant and either the singles (configuration interaction singles (CIS)), the doubles (CID), or both (CISD).
 	For CIS, the new wavefunction can be written as
@@ -1108,8 +1099,8 @@ but we restrict our use to AM1 CIS as is commonly applied in the use of the NEXM
                \end{equation}
                which can be written in terms of a state density matrix
                \begin{align}
-                 i\hbar a_{kl} &= c_k c_l^*\\
-                 i\hbar \dot{a}_{kl} &= \dot{c}_k c_l^* + c_k \dot{c}_l^* \\
+                 i\hbar a_{kl} &= i\hbar c_k c_l^*\\
+                 i\hbar \dot{a}_{kl} &= i\hbar \dot{c}_k c_l^* + i\hbar c_k \dot{c}_l^* \\
                  i\hbar \dot{a}_{kl} &= \sum_j \left[ a_{jl} (\mathbf{V}_{kj} - i\hbar \dot{\mathbf{R}} \cdot \mathbf{d}_{kj})
                    - a_{kj} ( \mathbf{V}_{lj} + i\hbar \dot{\mathbf{R}} \cdot \mathbf{d}_{lj}^*) \right] \\
                  i\hbar \dot{a}_{kl} &= \sum_j \left[ a_{jl} (\mathbf{V}_{kj} - i\hbar \dot{\mathbf{R}} \cdot \mathbf{d}_{kj})
@@ -1780,7 +1771,7 @@ Need to include the actual equation and values of this constraint
     Unexpectedly, PPV\(_3\)-NO\(_2\) in methanol seems to experience a minimum in s1 energy at around t = 2 ps then steadily increase until around t = 8 ps. During this time, the S0 energy also increases, alowing the energy difference found in methanol to remain lower than that found in other solvents which aligns well with the red shift found in the fluorescence calculations. This may be due to solvent rearrangement, however further inspection did not lead to anything conclusive.
     #+end_src
 
-*** THREE BLA                                                       :ignore:
+*** THREE Bond Length Alternation                                  :ignore:
     #+begin_src latex
     \subsection{Bond Length Alternation}
     In \(\pi\) conjugated organic compounds, the electrons unevenly distribute across the carbon-carbon \(\pi\) bonds, causing a dimerization or alternation of single-like carbon bonds and double-like carbon bonds.

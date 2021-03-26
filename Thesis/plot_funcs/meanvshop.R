@@ -1,5 +1,6 @@
 # Inspired by the 1990 Tully Paper
 library(tidyverse)
+library(latex2exp)
 
 
 # Create the manual points for the higher energy state S2
@@ -100,7 +101,7 @@ ggplot() +
     theme_bw() +
     scale_color_manual(breaks = c("S1", "S2"), values = c("red", "blue")) +
     labs(x = "Time", 
-         y = "Probability") +
+         y = TeX(r'($ | \Psi | ^2$)')) +
     theme(axis.text=element_blank(),
           strip.text = element_text(size=12),
           axis.title=element_text(size=20),
