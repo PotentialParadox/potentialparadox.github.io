@@ -40,7 +40,7 @@
     the solute−solvent boundary.
   - Trivial Crossing were taken into account
   - In order to guarantee statistical convergence, each ensemble was comprised
-    of 635 trajectories.
+    of 635 trajectories
   - The laser excitations are at 4.30 eV with 0.15 eV line widths which mimic
     the initial excitation for nonadiabatic dynamics into high-energy absorption
     bands.
