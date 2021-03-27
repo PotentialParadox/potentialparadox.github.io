@@ -510,7 +510,7 @@ Its nonlinear response to electronic excitations has made it an excellent candid
 PPV derivatives can also be used as transistors or sensors.\cite{willander1993polymer,partridge1996high}
 It has been of great interest since discovering a two-step fabrication process that made its production cheap and efficient decades ago.\cite{gagnon1987synthesis}
 
-\authorComment{For this next paragraph, my entire argument relied on the first sentense, which was incorrect}
+\authorRemark{For this next paragraph, my entire argument relied on the first sentense, which was incorrect}
 \hlr{Possessing 2 chromophores connected by a conjugated bridge, PPV can be called a charge-transfer probe.
 The local and bulk photophysical properties of charge-transfer probes are known to be very sensitive to environmental effects.
 Understanding how these effects modify electron-hole separation and mobility could significantly help the development of further light-harvesting advancements.}
@@ -1721,11 +1721,15 @@ Need to include the actual equation and values of this constraint
 
     The solvent's polarizability should affect the transition dipole moments and thus the corresponding spectra.  This effect has been shown experimentally. \cite{marcus1956electrostatic,martin1998hydrolysis,Park2013,LeDroumaguet2005}.
     Such shifts are referred to as solvatochromic shifts.
+    \hlc{PPV derivative are known to possess intramolecular charge transfer (ICT) character in the lowest excited state.}\cite{woo2005solvent}
+    \hlc{ICT states are highly polar.
+    Previous work has suggested that the smaller sensitivity of the absorption to solvent polarity is due to the ICT state being derived through relaxation of the excited state.}\cite{fayed1999intramolecular}
+    \hlc{As such, an increase in the polarity of the solvent is believed to cause a stabilization of these states leading to the corresponding redshift in the experimental emission spectra.}
     Previous studies have analyzed solvatochromic shifts in conjugated substituted PPV\(_3\)-NO\(_2\) molecules with the NEXMD program in implicit solvents.\cite{Santhanamoorthi2009}
     Results with NEXMD by TD-AM1 were redshifted from the experimental results, while single-point calculations using TD-CAM-B3LYP provided by G09 in the same implicit solvent were blue shifted.
     Other NEXMD computations have shown comparable redshifts in spectra of similar molecules in implicit solvents compared to experiment. \cite{Bjorgaard2015}
     We performed similar calculations in this paper; however, in explicit solvent.
-    We compare the results to those presented in implicit solvent.
+    \hlr{We compare the results to those presented in implicit solvent.}
 
     We collect the vertical excitation dipoles and oscillator strengths between the ground state S0 and S1 every five fs during each trajectory's steady-state to produce the absorption/emission spectra of PPV\(_3\)-NO\(_2\).
     We sum over excitation states averaged over the geometries and broaden the spectra using a Gaussian bin function with FWHM=0.16 eV corresponding to a 100 fs FWHM laser excitation.
@@ -1735,7 +1739,7 @@ Need to include the actual equation and values of this constraint
     \begin{multiFigure} 
       \addFigure{0.45}{../Paper1/Images/spectra_abs_compared.png}
       \addFigure{0.45}{../Paper1/Images/spectra_flu_compared.png}
-      \captionof{figure}[Fluorescence and absorption spectra in various solvents]{PPV\(_3\)-NO\(_2\) A) absorption and B) fluorescence spectra in various solvents with 20 included in QM region.}
+      \captionof{figure}[Fluorescence andabsorption spectra in various solvents]{PPV\(_3\)-NO\(_2\) A) absorption and B) fluorescence spectra in various solvents with 20 included in QM region.}
       \label{fig:spectrasolvents}
     \end{multiFigure}\bigskip
 
@@ -1751,7 +1755,8 @@ Need to include the actual equation and values of this constraint
     The shown absorption has contributions from the nine lowest energy excited states, though the S1 state is the primary contributor to the spectra.
     We found the number of solvent molecules included in the QM region caused only minor deviations in the spectra, with the largest variance (0.02~eV) occurring between the 20QM and MM carbon tetrachloride systems, as seen in Figure \ref{fig:spectrasolvents}. As such, we only present results from trajectories with 20 QM solvents.
     The broad absorption and fluorescence bands are common features of conjugated materials due to the large geometric relaxation in the lowest excited state. \cite{bredas2009molecular}
-    All solvent results are redshifted from those in vacuum matching findings in previous works.\cite{Park2013}
+    All solvent results are redshifted from those in vacuum matching previous experimental work.\cite{Park2013}
+
     In Figure \ref{fig:spectranquant}, the absorbance within methanol and chloroform were very similar, with a peak shift from vacuum of -0.04 eV.
     Within carbon tetrachloride, the magnitude of this shift increases slightly more to-0.06 eV. 
 

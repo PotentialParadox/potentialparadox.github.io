@@ -546,6 +546,8 @@
 - [[~/Documents/paper2/papers/Bjorgaard2015.pdf]]
   - Josiah's paper on fluorescence in different implicent solvents
 - [[~/Documents/paper2/papers/barford2011ultrafast.pdf]]
+- [[~/Documents/paper2/papers/fayed1999intramolecular.pdf]]
+  - Paper describing behavior of intramolecular charge transfer in solvents
 **  Papers to read for chapter 6 from sebastian
 - [[~/Documents/paper2/papers/miller2002ultrafast.pdf]]
 - [[~/Documents/paper2/papers/lee201electronic.pdf]]
