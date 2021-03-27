@@ -144,19 +144,17 @@ We will continue this chapter in atomic units where these equations become
 \begin{align}
   \label{eq:helectric}
   \mathbf{H}_e =& -\frac{1}{2}\sum_i^{electrons}\nabla_i^2 + \sum_i^{electrons} V_{average}(i) -  \sum_i^{electrons}\sum_A^{nuclei}\frac{Z_A}{r_{iA}} \\
-  \mathbf{H}_N =& -\frac{\hbar^2}{2}\sum_{A}^{nuclei}\frac{1}{M_{A}}\nabla_{A}^2  + \sum_{A}^{nuclei}\sum_{B<A}^{nuclei}\frac{Z_AZ_B}{R_{AB}}
+  \mathbf{H}_N =& -\frac{1}{2}\sum_{A}^{nuclei}\frac{1}{M_{A}}\nabla_{A}^2  + \sum_{A}^{nuclei}\sum_{B<A}^{nuclei}\frac{Z_AZ_B}{R_{AB}}
 \end{align}
-In actuality, the electrons of one orbit will affect electrons of the orbit of another.
-The electrons will repulse each-other and their paths will change accordingly, thereby reducing the overall energy.
+\hlc{In actuality, the electrons will repell each-other and their paths will change accordingly, thereby reducing the overall energy.}
 This approximation to the method fails to take this into account.
 We call the difference between the actual energy $E$ and the Hartree-Fock energy $\epsilon$ the
 coulomb correlation energy $E_{corrrelation}$.
 %There have been numerous ways developed to help alleviate this problem, including perturbation theory, coupled cluster theory, and higher lever configuration interaction.
 
-In most simulations, more than a single electron needs to be considered.
-In these systems, the total electron wavefunction must satisfy the Pauli-Exclusion principle.
-We should treated treat all electrons as indistinguishable, no more than one electron per set of quantum numbers, and the sign must invert for any exchange of electrons.
-We can fulfill that requirement if we assume that a total electron wavefunction is a single slater-determinant of single-electron molecular orbitals
+\hlc{In systems with more than a single electron}, steps must be taken to ensure that the total electron wavefunction satisfies the Pauli-Exclusion principle.
+All electrons are indistinguishable, no more than one electron can claim the same set of quantum numbers, and the sign must invert for any exchange of electrons.
+We can fulfill these requirements if we assume that a total electron wavefunction is a single slater-determinant of single-electron molecular orbitals
 \begin{equation} \label{eq:slater-determinant} \psi(\bm{r};\bm{R}) =
   \left|p \cdots s\right> = \frac{1}{\sqrt{N!}}
   \begin{vmatrix}
@@ -169,34 +167,9 @@ where \(\psi\) is the total many electron wavefuntion that depend parametrically
 The $p \cdots s$ are the subscripts of the single electon molecular orbitals, and $1 \cdots n$ are the indices for the electrons.
 
 Things simplify greatly if the molecular orbitals are othornormal to each other. $\left<\right.i\left|\right.j\left>\right. = \delta_{ij}$.
-Intuition tells us that because of the Hamiltonian is an operator that acts on at most 2 electrons at a time, and the electron orbitals are orthonormal, any perturbation beyond 2 will integrate to 0.
-In fact, there's a whole set of rules to reduce electron integral summations called the Slater-Condon rules.
-\begin{enumerate}
-\item
-  $ \left | \cdots mn \cdots \right > \rightarrow \left | \cdots mn
-  \cdots \right > \Rightarrow \sum_i \left< i \right| h \left| i
-  \right> + \frac{1}{2} \sum_{ij} \left( \left< ij | ij \right> - \left< ij | ji \right> \right) $
-\item
-  $ \left | \cdots mn \cdots \right > \rightarrow \left | \cdots pn
-  \cdots \right > \Rightarrow \left< m \right| h \left| p \right> +
-  \sum_{i} \left( \left<mi | pi \right> - \left<mi | ip \right> \right) $
-\item
-  $ \left | \cdots mn \cdots \right > \rightarrow \left | \cdots pq
-  \cdots \right > \Rightarrow \left< mn | pq \right> - \left< mn | qp \right> $
-\item
-  $ \left | \cdots lmn \cdots \right > \rightarrow \left | \cdots pqr
-  \cdots \right > \Rightarrow 0 $,
-\end{enumerate}
-where the first arrow represents the perturbations of electrons. \(\left| \cdots mn \cdots \right> \rightarrow \left| \cdots pn \cdots \right>\) would present a perturbation of a single electron and
-\(h\) is the core electron Hamiltonian
-\begin{equation}\label{eq:CoreElectron}
-  h(i) = -\frac{1}{2}\nabla_i^2 - \sum_{A=1}^N \frac{Z_A}{r_{iA}}
-\end{equation}
-The integral rule for the two electron integrals is
-\begin{equation}
-  \left< ij | kl \right> = \int dx_1 dx_2 \chi_i^*(x_1) \chi_j^*(x_2) \frac{1}{r_{12}} \chi_k(x_1) \chi_l(x_2)
-\end{equation}
-
+\hlc{Intuition tells us that since the Hamiltonian is an operator that acts on at most 2 electrons, and the electron orbitals are orthonormal, any perturbation of orbital beyond 2 will integrate to 0 since after application of the operators, the final overlap would be 0.}
+In fact, there's a whole set of rules to reduce electron integral summations called the Slater-Condon rules.\cite{slater1929theory}
+\authorRemark{I removed the list of slater condon rules. They weren't helpful for gaining any understanding. I replaced the explanation with a citation to slater's original work.}
 Using these rules and a bit of algebra, the Hamiltonian simplifies to what's called the Fock operator with elements
 \begin{equation}\label{eq:Fockelement}
   F_{\mu\nu} = h_{\mu\nu}
@@ -206,10 +179,7 @@ Using these rules and a bit of algebra, the Hamiltonian simplifies to what's cal
   - \frac{1}{2} \left< \mu \lambda \right| \sigma \nu \left>\right.
   \right)
 \end{equation}
-where \(\rho_{\lambda \sigma}\) is the densitity matrix
-\begin{equation}
-  \rho_{\lambda \sigma} = \left< \psi \right| c_\lambda^\dagger c_\sigma \left | \psi \right>.
-\end{equation}
+where \(\rho_{\lambda \sigma}\) is the densitity matrix.
 We can now substituted $\mathbf{F}$ for $\mathbf{H}$ in equation \ref{eq:SchrodingerMatrix} to produce the Roothan-Hall equation
 \begin{equation}
   \mathbf{Fc}=\varepsilon\mathbf{Sc},
@@ -253,7 +223,6 @@ This method provides the exact solution to the Schr\(\ddot{\text{o}}\)dinger equ
 
 	For larger molecules, we only include the ground state determinant and either the singles (configuration interaction singles (CIS)), the doubles (CID), or both (CISD).
 	For CIS, the new wavefunction can be written as
-
 	\begin{equation}
 	\Psi_{CIS} = c_0\psi_0 + c_a^i\sum_i^N\sum_a^{K-N}\psi_a^i
 	\end{equation}
@@ -501,8 +470,8 @@ where the superscript \(t\) denotes the derivative in respect to time.
           \end{equation}
           which can be written in terms of a state density matrix
           \begin{align}
-            i\hbar a_{kl} &= c_k c_l^*\\
-            i\hbar \dot{a}_{kl} &= \dot{c}_k c_l^* + c_k \dot{c}_l^* \\
+            i\hbar a_{kl} &= i\hbar c_k c_l^*\\
+            i\hbar \dot{a}_{kl} &= i\hbar \dot{c}_k c_l^* + i\hbar c_k \dot{c}_l^* \\
             i\hbar \dot{a}_{kl} &= \sum_j \left[ a_{jl} (\mathbf{V}_{kj} - i\hbar \dot{\mathbf{R}} \cdot \mathbf{d}_{kj})
               - a_{kj} ( \mathbf{V}_{lj} + i\hbar \dot{\mathbf{R}} \cdot \mathbf{d}_{lj}^*) \right] \\
             i\hbar \dot{a}_{kl} &= \sum_j \left[ a_{jl} (\mathbf{V}_{kj} - i\hbar \dot{\mathbf{R}} \cdot \mathbf{d}_{kj})

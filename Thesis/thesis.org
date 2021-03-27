@@ -1621,7 +1621,7 @@ Results for ground-state QM/MM dynamics using the SANDER-NEXMD interface were id
 
    Adequate sampling of the solvent and solute configuration space,
    including hundreds to thousands of solvent molecules, currently
-   cannot be achieved by QM calculations alone due to the infeasible
+   cannot be achieved by QM calculations alone due to the \hlc{large}
    computational cost of such extensive
    systems. \cite{barbatti2011nonadiabatic} QM/MM methods exist to allow
    the computationally expensive QM calculations to be performed only on
@@ -1665,7 +1665,7 @@ Results for ground-state QM/MM dynamics using the SANDER-NEXMD interface were id
 We set the classical time-step to 0.5 fs and use a Langevin thermostat with friction constant 2 ps\(^{-1}\) throughout all simulations. The choices for these parameters were based on work aimed at optimizing these choices in NEXMD. \cite{nelson2012nonadiabatic}
    128 evenly-spaced snapshots were then collected from the MM simulation and used as initial conditions for 128 individual 10 ps simulations using the semi-empirical AM1 QM/MM ground state Hamiltonian that has been shown to provide reasonable accuracy for the computational cost. \cite{silva2010benchmark} We use the data collected from these trajectories for the absorption calculation.
    The resulting geometries of these ground-state QM/MM simulations were then used as the initial geometrical configuration of a final excited-state simulation. Each configuration was vertically excited to the lowest excited state with no regard to coupling or energy conservation. We propagate these excited-state QM trajectories using configuration interaction singles (CIS) with the AM1 Hamiltonian, 
-   The CIS calculations include the first 9 excited states of the PPV\(_3\)-NO\(_2\) molecule and the stated number of solvent molecules closest to the central phenyl.
+   The CIS calculations include the first 9 excited states of the PPV\(_3\)-NO\(_2\) molecule and \hlc{up to 20} solvent molecules closest to the central phenyl.
    We treat all other solvent molecules using classical dynamics.
    We restrict the QM solvents from drifting away from the solute and the other MM solvents from drifting closer than these QM solvents.
     #+end_src
@@ -1694,7 +1694,18 @@ Need to include the actual equation and values of this constraint
     Since the distance between the center of geometries and the closest atoms are not necessarily equal, solvent atoms could initially be pushed either inside or outside this shield during the transition from MM to QM.
     However, this push only occurs during the initial equilibration of the QM ground-state calculations excluded from any analysis.
     Once the QM calculations begin, these constraints persist throughout all further calculations.
-    For our CCl\(_4\) simulations with the 5 nearest solvents included (CCl\(_4\)-5QM), the restriction barrier had an average radius of 6.28 \AA\ from the origin at the center of the central phenyl group. 
+    The average radii for the restraint barriers are shown Table \ref{tab:restraints}.
+
+    \begin{table}[H]
+      \caption[Restraint radius]{The radius, in \AA, of the restraint shield averaged over trajectories for varying number of solvents included in the QM region.} \label{tab:restraints}
+      % \begin{center}
+      \begin{tabularx}{\textwidth}{XXXXXXXXX}\hline
+	Solvent   & 5  & 10 & 20 \\\hline
+	CCl\(_4\)  & 6.3  & 7.5    & 9.7 \\
+	CH\(_3\)OH & 5.5 &  6.5   & 8.0 \\
+	CHCl\(_3\) & 6.3 &  7.6   & 9.4 \\\hline
+      \end{tabularx}
+    \end{table}
     #+end_src
 ** THREE Results [6/6]
    #+begin_src latex

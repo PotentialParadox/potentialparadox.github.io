@@ -30,25 +30,28 @@ An immense amount of improvements to simulates this behavior have been made in j
 	  \end{multiFigure}
 \bigskip
 
-Figure \ref{fig:jablonski} A shows a Jablonski diagram.
+\authorRemark{I removed the vibrational modes from figure 1-1 B}
+\hlc{Figure} \ref{fig:jablonski} A \hlc{show four potential energy surfaces along an arbitrary coordinate with energies in arbitrary units.}
 S\(_{0-2}\) represent the potential energy surfaces for the three lowest singlet states.
 T\(_1\) represents the first excited triplet state.
 Along each curve, the electronic symmetry does not change.
-No vibrational or rotational modes are shown since we will treat these classically.
+No vibrational or rotational modes are shown since we will treat \hlc{dynamics} classically.
 Immediately after an electron photon absorption, the molecule is promoted to an excited state, as can be seen by the purple arrow.
 This excited state could either the one immediately above it, or it could be one the many above that one.
 The decision of which state to excited to is determined by the energy of the excitation and oscillator strength.
 
 Once the molecule is at this excited-state, it will relax back towards the ground-state if it isn't at a high temperature.
 There are two primary mechanisms through which this can occur.
-The first is by releasing the energy thermally either throughout the rest of the molecule or to the environment. This method is referred to as internal conversion and manifests as reductions to the vibrational and rotational modes.
+The first is by releasing the energy thermally either throughout the rest of the molecule or to the environment. This method is referred to as internal conversion and manifests as reductions through the vibrational and rotational modes.
 The second is through photon-emission.
 A photo-emission process from the first excited state to the ground state is referred to as fluorescence and can be seen by the figure's green arrow.
 Fluorescence occurs over a period of nanoseconds.
-Transition processes from singlet states to the triplet states are possible dependent on the spin-orbit coupling strength, in a process called an intersystem conversion.
-Photo-emission from the triplet state to the ground state would be called phosphorescence.
-Phosphorescence is relatively very rare compared to fluorescence with time order ~1s.
-For this reason, we do not consider this behavior in our simulations.
+Transition processes from singlet states to the triplet states are \hlr{possible} dependent on the spin-orbit coupling strength, in a process called an intersystem conversion.
+Photo-emission from the triplet state to the ground state is called phosphorescence.
+\hlc{Phosphorescence occurs on timescales significantly longer than fluorescence.
+Our method will not consider timescales of this length.
+As such, we do not consider this behavior in our simulations and forbid conversions from singlet to triplet states.}
+
 
 Kasha's rule states that photon-emission occurs only in appreciable yields from the lowest excited state to the ground state.\cite{Kasha1950}
 This rule suggests that in most cases where an electron is excited to a state beyond the first excited state, that electron will have to relax to the first excited state through internal conversion.\cite{shenai2016internal}
@@ -58,44 +61,48 @@ Figure \ref{fig:jablonski} B is a zoomed-in picture of the portion of Figure \re
 When the molecule is excited to S2 through photo-excitation, it will begin to relax along S2's potential energy surface following the orange arrow.
 In reality, this process would be quantized and occur as a gradual reduction in the vibration and rotational modes.
 In our simulations, though, we treat these reductions classically, and the molecule can move smoothly along the potential energy surface of each excited state. 
-However, eventually, the molecule traversing the potential energy surface of S2 will cross the potential energy surface of S1. This point is called a conical intersection.
-At these intersections, there are generally strong couplings between the two states.
-This coupling allows the molecule to transition from S2 to S1.
-A choice now needs to be made whether to stay on the potential energy surface of the S2 or switch to S1.
+However, eventually, the molecule traversing the potential energy surface of S2 will cross the potential energy surface of S1.
+\hlr{This point is called a conical intersection}
+At these intersections, there are generally strong couplings between the two states, \hlc{and the molecular wavefunction splits between the two states.}
 
 In computation chemistry, it is common to assume that electrons move significantly faster than nuclei and treat the nuclei as parameters to the equations used to solve for electronic behaviors.
-This assumption is known as the Born-Oppenheimer approximation. It forces the molecule to traverse along a single potential energy surface, making it impossible for transitions from one excited state to another to occur. This approximation breaks in regions where there are degeneracies of states or where the nuclei's velocities are significant.
+This assumption is known as the Born-Oppenheimer approximation and allows us to separate the electron and nuclear terms of the Hamiltonian dramatically reducing computational costs.
+\hlc{This approximation, however, restricts a molecule to traverse along a single potential energy surface, making it impossible for transitions from one excited state to another to occur.}
+\authorRemark{I'm really confused on how to answer Valeria's question here.}
+It breaks in regions such as shown in Figure \ref{fig:jablonski} B where there are degeneracies of states or where the nuclear velocities are significant.
 Simulations of molecular dynamics restricted to a single potential energy surface are referred to as adiabatic dynamics.
 Simulations that allow such surface-hopping are non-adiabatic.
 
 When the Born-Oppenheimer approximation breaks, accounting for non-adiabatic behavior become necessary.
 These situations frequently occur within processes of interest to photochemistry and photophysics.
 For example, the excitation to a non-equilibrium state followed by relaxation through internal conversion is common to processes such as photosynthesis, solar-cell photo-absorption, optical detectors, and the excitation of the visual nerve.
-Photon absorption is also a requirement in certain reactions that need that last little kick.\cite{vincent2016little}
+\hlc{Non-adiabatic treatment of dynamics has been shown to more accurately model the kinetic energy found in certain photodissociation experiments over born-oppenheimer ensembles.}\cite{vincent2016little}
 
 \noindent
-       \begin{multiFigure} 
-	 \addFigure{0.45}{Images/probabilities.png}
-	 \addFigure{0.45}{Images/ehrenfestVsTully.png}
-	 \captionof{figure}[Surface hopping vs mean-field]{A visual description describing the difference between surface hopping and mean-field. A) The probabilities states S1 and S2. B) The potential energies of trajectories over time. Dashed lines represent the potential energies of S1, S2, and the probability-weighted average during the Ehrenfest trajectory. Solid lines represent two separate surface hopping trajectories.}
-	 \label{fig:surfaceHoppingVsMeanField}
-       \end{multiFigure}
-\bigskip
+	      \begin{multiFigure} 
+		\addFigure{0.45}{Images/ehrenfestVsTully.png}
+		\addFigure{0.45}{Images/probabilities.png}
+		\captionof{figure}[Surface hopping vs mean-field]{A visual description describing the difference between surface hopping and mean-field. A) The potential energies of trajectories over time. Dashed lines represent the potential energies of S1, S2, and the probability-weighted average during the Ehrenfest trajectory. Solid lines represent two separate surface hopping trajectories. B) The probabilities states S1 and S2.}
+		\label{fig:surfaceHoppingVsMeanField}
+	      \end{multiFigure}
+       \bigskip
 
-Two common methods to extend the Born Oppenheimer approximation are using a mean-field, ofter referred to as Ehrenfest, or through molecular dynamics with quantum transitions (MDQT).\cite{Hammes-Schiffer1994} Alternative methods such as using mixed quantum-classical dynamics exist but will not be discussed in this work. \cite{habershon2013ring,kapral2006progress} In Ehrenfest methods, the forces acting on the molecule at any time-step is the population-weighted average of the forces acting at all relevant excited states. In MDQT methods, only the forces of one state are used for any single time-step. \cite{prezhdo1997evaluation}
+\authorRemark{I changed Probability to \(|\Psi|^2\)}
+
+Two common methods to extend the Born Oppenheimer approximation are using a mean-field, ofter referred to as Ehrenfest, or through molecular dynamics with quantum transitions (MDQT).\cite{Hammes-Schiffer1994} Alternative methods such as using mixed quantum-classical dynamics exist but will not be discussed in this work. \cite{habershon2013ring,kapral2006progress} In Ehrenfest methods, the forces acting on the molecule at any time-step is the population-weighted average of the forces acting \hlc{on} all relevant excited states. In MDQT methods, only the forces of one state are used for any single time-step. \cite{prezhdo1997evaluation}
 Between time-steps, the molecule is allowed to transition between states.
 To simulate state populations, MDQT methods employ a swarm of independent trajectories. Each trajectory is given a different random seed and allowed to hop between surfaces based on the non-adiabatic couplings. A study of the system's behavior is then done based on the statistics of the ensemble.
 
-Figures \ref{fig:surfaceHoppingVsMeanField} A and B attempt to show the practical differences between these two methods.
+Figures \ref{fig:surfaceHoppingVsMeanField} A and B attempt to show the practical differences between these two methods \hlc{using mock data for instructional purposes}.
 The population chart on the left shows the probability of being in states S1 and S2 at some arbitrary time.
-These probabilities merge to around 0.5 each at around the halfway point.
+\hlr{These probabilities merge to around 0.5 each at around the halfway point.}
 
 Figure \ref{fig:surfaceHoppingVsMeanField} B presents arbitrary state energies over the same time frame for this trajectory.
 The dashed lines represent the energies along the Ehrenfest trajectory.
 Blue and red represent the S2 and S1 energies, respectively.
 The black dashed line represents the Ehrenfest mean-field energy determined as the population-weighted average energies of S1 and S1.
-As the probability of state S2 drops from one, the mean-field energy diverges from that of S2.
-Eventually, the mean-field energy becomes the average of S1 and S2.
+As the energy of S2 approaches that of S1 the probability of state S2 drops from one and the mean-field energy diverges from that of S2.
+Eventually, the mean-field energy becomes the average of S1 and S2. \hlc{Figure} \ref{fig:surfaceHoppingVsMeanField} \hlc{B displays the} \(|\Psi|^2\) \hlc{during this interaction.}
 
 The solid lines represent the energies along two separate surface hopping trajectories.
 At around the halfway point, the trajectory SH-S1 hops from the S2 to S1.
@@ -113,21 +120,28 @@ Notice that the average energy of the hop trajectories will also diverge from th
 
 Multiple methods to have been proposed and used to simulate these non-adiabatic processes.
 These methods include treating the nuclear coordinates quantum mechanically or simiclassically, or by using a hybrid quantum mechanical, classical treatment to account for the non-adiabaticity.
-One of the more popular version of the latter, and the one which we use in this work, is Molecular Dynamics with Quantum Transitions (MDQT), were the system propogates classically along adiabatic potential energy surfaces, but a quantum evalutation is made at each time-step to determine whether to transition to another state.
+One of the more popular version of the latter, and the one which we use in this work, is Molecular Dynamics with Quantum Transitions (MDQT), were the system \hlc{propagates} classically along adiabatic potential energy surfaces, but a quantum evalutation is made at each time-step to determine whether to transition to another state.
 The probability of hopping from one state to another is proportional to the coupling between the states, known as the non-adiabatic coupling or vibronic coupling. These non-adiabatic couplings depend on nuclear velocities and the energy differences between the states. Figure \ref{fig:naCrossings} shows three approaches from potential surfaces S1 (blue) and S2 (red), where the non-adiabatic coupling is non-negligible. When the energy differences are relatively large, with a shallow approach as in the left figure, the coupling is weak, and hops become unlikely. Such regions are known as weak avoided crossings. When the approach is steep and the energy difference small, the nuclear velocities become significant, and strong coupling occurs. In these strong avoided crossings, a surface hop becomes likely.
 
 In the far-right figure, the energies of the two states cross.
-At the exact point of crossing, the coupling approaches infinity; however, if the states' spatial separation is large, the non-adiabatic coupling at all other points will be vanishingly small. In such situations, a hop would be non-physical. We call these intersections between non-interacting potential energy surfaces trivial crossings. Because the surface hopping algorithm is not appropriate for trivial crossings, we differentiate the interacting and non-interacting crossings using a Min-Cost assignment algorithm. \cite{fernandez2012identification} 
+At the exact point of crossing, the coupling approaches infinity.
+\hlc{In large complicated systems, it is possible that the spatial separation between the two states could make the transition non-physical.
+In such situation, though the non-adiabatic coupling approaches infinity at the crossing, at all other points it will be vanishingly small.}
+We call these intersections between non-interacting potential energy surfaces trivial crossings. Because the surface hopping algorithm is not appropriate for trivial crossings, we differentiate the interacting and non-interacting crossings using a Min-Cost assignment algorithm. \cite{fernandez2012identification} 
 In general, states in molecular dynamics programs are referred to based on their energy orderings. When a crossing exists, the orderings of these potential energy surfaces switch. If a surface-hop occurs at the intersection, the molecule should switch surfaces which means staying on the same energy level since the energy levels will have switched. More importantly, if a hop doesn't occur due to non-interacting states, we should still change the energy level; otherwise, non-physical energy transfers will occur. Ensuring proper accounting between the potential energy surfaces and energy levels can be done by comparing electronic density overlaps between the states between time-steps.
 
 \subsection{Solvent Effects}
 The determination of which state to excite to is strongly affected by the transition dipole moments. These transition dipole moments are sensitive to polarization from external electronic fields or charges. The energy differences between the excited states can be affected by these external charges (de)-stabilizing the dipoles.
-This ability of the solvent to affect the spectra of a solute is known as solvatochromism. \cite{marini2010solvatochromism} Systems with strong electric fields frequently occur in biological systems.\cite{park1999vibrational,kriegl2003ligand} 
-These electric fields can profoundly affect the steady-state fluorescence and absorption spectra, a phenomenon known as the Stark effect. \cite{Park2013} The solvents in these systems can extend or shield these effects. In fact, solvents themselves can induce the effect. The Stark effect is largely responsible for the redshift in proteins' emissions in fluid solvents with high dielectric constants.\cite{callis1997tryptophan,park1999vibrational} Solvents provide a large source of external charges that can significantly affect the non-adiabatic behavior and characteristics of a molecule.\cite{furukawa2015external} We can exploit these changes to build useful devices and methodologies. For example, researchers have developed environmental-sensitive fluorescence probes using this effect. \cite{klymchenko2004bimodal} 6-propionyl-2-dimethylaminonaph-thalene experiences a very noticeable emission color shift with the addition of cholesterol.\cite{massey1998effect,bondar1999preferential}
+This ability of the solvent to affect the spectra of a solute is known as solvatochromism. \cite{marini2010solvatochromism}
+\hlr{Systems with} Strong electric fields frequently occur in biological systems.\cite{park1999vibrational,kriegl2003ligand} 
+These electric fields can profoundly affect the steady-state fluorescence and absorption spectra, a phenomenon known as the Stark effect. \cite{Park2013} The solvents in these systems can extend or shield these effects. In fact, solvents themselves can induce the effect. The Stark effect is largely responsible for the redshift in proteins' emissions in fluid solvents with high dielectric constants.\cite{callis1997tryptophan,park1999vibrational} Solvents provide a large source of external charges that can significantly affect the non-adiabatic behavior and characteristics of a molecule.\cite{furukawa2015external} \hlc{Researchers} can exploit these changes to build useful devices and methodologies.\cite{massey1998effect,bondar1999preferential}
+For example, researchers have developed environmental-sensitive fluorescence probes using this effect. \cite{klymchenko2004bimodal}
+\hlr{6-propionyl-2-dimethylaminonaph-thalene experiences a very noticeable emission color shift with the addition of cholesterol.}
 
 For many areas in which non-adiabatic dynamics simulations would be of interest, solvents play a crucial role. \cite{bagchi1989dynamics,woo2005solvent}
 In situations where ultrafast electronic relaxations occur, the electronic decay is often faster than the solvent's time to equilibrate.
-As such, implicit solvents, which adjusts instantaneously to any changes in the solute, become imprecise approximation. However, performing non-adiabatic dynamics on large systems is far too computationally expensive.
+As such, implicit solvents, which adjusts instantaneously to any changes in the solute, become imprecise approximations.
+However, performing non-adiabatic dynamics on large systems \hlc{with explicit solvents treated at the same level of theory is too computationally expensive.}
 
 \subsection{QM/MM}
 \begin{multiFigure} 
@@ -140,7 +154,8 @@ As such, implicit solvents, which adjusts instantaneously to any changes in the 
 
 In the previous sections, we have discussed how we can use quantum mechanics (QM) for chemical calculations. However, in many applications, the accuracy of QM is not needed, and a more computationally cheaper method would be more appropriate. Many computational chemists use classical electrical force field dynamics for these situations, treating atoms as point charges. QM/MM was developed to manage computational costs by separating a calculation into a quantum mechanical (QM) region and a classical mechanical (MM) region.\cite{warshel1976theoretical,Karplus2014} This allows the user to have the accuracy where needed while not wasting resources on unwanted calculations such as the dynamics of water molecules far from the protein of interest.
 
-To ease the computational cost, we employ QM/MM methodologies to perform the non-adiabatic calculation only on interest areas. Similar methods have been employed in the study of retinal photochemistry and organic semiconductors. \cite{weingart2012modelling,demoulin2017fine,heck2015multi,bayliss1954solvent} In this work, we implement a new method of performing non-adiabatic QM/MM using the SANDER package AMBERTOOLS combined with the high-performance Non-Adiabatic simulator NEXMD.
+To ease the computational cost, we employ QM/MM methodologies to perform the non-adiabatic calculation only on interest areas. Similar methods have been employed in the study of retinal photochemistry and organic semiconductors.\cite{weingart2012modelling,demoulin2017fine,heck2015multi,bayliss1954solvent}
+In this work, we implement a new method of performing non-adiabatic QM/MM using the SANDER package AMBERTOOLS combined with the high-performance Non-Adiabatic simulator NEXMD.
 We will have a QM solute and a few nearby QM solvents surrounded by MM solvents for the vast majority of our calculations.
 
 Figure \ref{fig:QMMMDiagram} gives an example of a QM/MM system.
@@ -168,12 +183,12 @@ PPV, like other conjugated organic polymers, possesses ultra-fast exciton relaxa
 Its bond length alternation dependence on the lowest excited state destabilizing the would be lowest singlet 2A\(_g\) state that would be forbidden and causing the 1B\(_u\) state to be the lowest, allowing the molecule to luminesce.\cite{soos1993band}
 PPV, therefore, has a sufficiently weak electron-hole binding energy to produce a much higher luminescence efficiency than the 25\% that would be expected with strong electron-hole binding. \cite{cao1999improved}
 Its nonlinear response to electronic excitations has made it an excellent candidate to develop solid state LEDs. \cite{burroughes1990light,gustafsson1993plastic,friend1997electronic}
+PPV derivatives can also be used as transistors or sensors.\cite{willander1993polymer,partridge1996high}
 It has been of great interest since discovering a two-step fabrication process that made its production cheap and efficient decades ago.\cite{gagnon1987synthesis}
 
-Possessing 2 chromophores connected by a conjugated bridge, PPV can be called a charge-transfer probe.
-The local and bulk photophysical properties of charge-transfer probes are known to be very sensitive to environmental effects.\cite{marini2010solvatochromism}
-Understanding how these effects modify electron-hole separation and mobility could significantly help the development of further light-harvesting advancements.
-PPV derivatives can also be used as transistors or sensors.\cite{willander1993polymer,partridge1996high}
+\hlr{Possessing 2 chromophores connected by a conjugated bridge, PPV can be called a charge-transfer probe.
+The local and bulk photophysical properties of charge-transfer probes are known to be very sensitive to environmental effects.
+Understanding how these effects modify electron-hole separation and mobility could significantly help the development of further light-harvesting advancements.}
 
 The optimized geometries of the excited states differ significantly from the ground state.
 The excited state is more planar, and there is a sharp decrease in the alternation of the vinyl groups' bond lengths.
