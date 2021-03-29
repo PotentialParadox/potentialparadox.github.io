@@ -120,10 +120,11 @@ SCHEDULED: <2021-02-08 Mon>
 :END:
   #+begin_src latex
   My advisor, Adrian Roitberg, has been invaluable in this pursuit.
-  I often struggled throughout this work and would run into many roadblocks throughout this journey.
+  I often struggled and ran into many roadblocks throughout this journey.
   Fortunately, even short meetings with him would allow me to break through them.
-He has taught me many lessons, but the most important has probably been to choose my words carefully because presumably the person I'm talking to is listening, and a poor choice of wording might as well be a lie. I can't assume that the person listening will know what I mean.
-I also want to thank my committee members, Peter Hirschfeld, Valeria Kleiman, and Xiaoguang Zhang.
+  He has taught me many lessons, but the most important has probably been to carefully listen to any question or request, and if their is any doubt, repeat to them what I think they asked in my own words.
+  Choose my words in respones carefully because presumably the person I'm talking to is listening, and a poor choice of wording might as well be a lie.
+  I also want to thank my committee members, Peter Hirschfeld, Valeria Kleiman, and Xiaoguang Zhang.
 
   My wife and family, including the in-laws, have been supportive of my Ph.D. pursuit since the beginning.
   Their kindness and understanding have really helped me maintain the course.
@@ -159,7 +160,7 @@ I also want to thank my committee members, Peter Hirschfeld, Valeria Kleiman, an
   #+begin_src latex
 Dustin Tracy was born in Ironton, Ohio.
 He spent his early life in the tiny town of Argillite, KY.
-He spent his adolescence and teenage life in Lakeland, FL.
+He spent his adolescence and teenage life in Lakeland, FL where he attended Lakeland Senior High School.
 In 2013, he graduated from the University of South Florida with degrees in accounting and physics and began the physics Ph.D. program at the University of Florida.
 He joined the Roitberg group in 2014 and graduated with his Ph.D. in May 2021. The focus of his research was on developing a QM/MM method for non-adiabatic dynamics that could be used in the AMBER molecular dynamics package.
   #+end_src
@@ -1783,72 +1784,74 @@ Need to include the actual equation and values of this constraint
     During the first four ps in the chart, the system runs on the ground-state S0, and the S0 energies stay near the minimum with small oscillations caused by temperature.
     At time t = 0, the system instantaneously hops to the S1 potential energy surface.
     The average energy difference of around 2.95 eV at t = 0 corresponds reasonably well with whats seen in the absorption spectrums' peaks where little difference is seen between the solvents. During the first 10-20 fs of this calculation, the ground state energy rapidly increases, suggesting an ultra-fast geometric relaxation process occurs. The molecule then seems to experiences a slower, ~2 ps, relaxation process.
-    As expected the final energy values at t = 10 ps for S0 and S1 are higher and lower, respectively, than they were when t < 0.
+    As expected the final energy values at t = 10 ps for S0 and S1 are higher and lower, respectively, than they were when t \(<\) 0.
     Unexpectedly, PPV\(_3\)-NO\(_2\) in methanol seems to experience a minimum in s1 energy at around t = 2 ps then steadily increase until around t = 8 ps. During this time, the S0 energy also increases, alowing the energy difference found in methanol to remain lower than that found in other solvents which aligns well with the red shift found in the fluorescence calculations. This may be due to solvent rearrangement, however further inspection did not lead to anything conclusive.
     #+end_src
 
 *** THREE Bond Length Alternation                                  :ignore:
     #+begin_src latex
-    \subsection{Bond Length Alternation}
-    In \(\pi\) conjugated organic compounds, the electrons unevenly distribute across the carbon-carbon \(\pi\) bonds, causing a dimerization or alternation of single-like carbon bonds and double-like carbon bonds.
-    When promoted from the highest occupied molecular orbital (HOMO) to the lowest occupied molecular orbital (LOMO), the bonding-antibonding pattern switches, and the electron densities correspondingly adjust.
-    As a result, the single-like carbons become more double-like and vice versa. \cite{bredas1999excited}
-    This structural difference between the excited-state and ground-state of PPV3-molecules is presented clearly by distortions in the C=C and C-C bonds found in the vinylene segment.\cite{tretiak02_densit_matrix_analy_simul_elect, karabunarliev2000rigorous, karabunarliev2000adiabatic, nelson2014nonadiabatic}
-    These distortions can be measure by bond length alternation (BLA)
-    \begin{equation}
-      \frac{d_i + d_e}{2} - d_c,
-    \end{equation}
-    where \(d_i\) and \(d_e\) are the interior and exterior bonds, and \(d_c\) is the central bond.
-    This value represents the differences between the double and single bonds of the vinylene sections.
-    The BLA is a descriptor for \(\pi\) bond distributions. \cite{tretiak2002conformational}
-    For this system, we analyze the BLAs of two separate bond sets, the bonds d1-3 (near-set) and d4-6 (far-set) seen in Figure \ref{fig:PPV3NO2} A. 
+	\subsection{Bond Length Alternation}
+	In \(\pi\) conjugated organic compounds, the electrons unevenly distribute across the carbon-carbon \(\pi\) bonds, causing a dimerization or alternation of single-like carbon bonds and double-like carbon bonds.
+	When promoted from the highest occupied molecular orbital (HOMO) to the lowest occupied molecular orbital (LOMO), the bonding-antibonding pattern switches, and the electron densities correspondingly adjust.
+	As a result, the single-like carbons become more double-like and vice versa. \cite{bredas1999excited}
+	This structural difference between the excited-state and ground-state of PPV3-molecules is presented clearly by distortions in the C=C and C-C bonds found in the vinylene segment.\cite{tretiak02_densit_matrix_analy_simul_elect, karabunarliev2000rigorous, karabunarliev2000adiabatic, nelson2014nonadiabatic}
+	These distortions can be measured by bond length alternation (BLA)
+	\begin{equation}
+	  \frac{d_i + d_e}{2} - d_c,
+	\end{equation}
+	where \(d_i\) and \(d_e\) are the interior and exterior bonds, and \(d_c\) is the central bond.
+	This value represents the differences between the double and single bonds of the vinylene sections.
+	The BLA is a descriptor for \(\pi\) bond distributions. \cite{tretiak2002conformational}
+	For this system, we analyze the BLAs of two separate bond sets, the bonds d1-3 (near-set) and d4-6 (far-set) seen in Figure \ref{fig:PPV3NO2} A. 
 
-    \noindent
-    \begin{minipage}[c]{\textwidth} 
-      \centering
-      \includegraphics[width=6in]{../Paper1/Images/bla.png}
-      \captionof{figure}[BLA of bonds during adiabatic dynamics]{BLA of bonds d1-3 (left) and d4-6 (right) during the last 4 ps of the S0 dynamics and 10 ps of the S1 dynamics.
-        QM energy and force calculations include the 20 solvents nearest the central ring.}
-      \label{fig:bla_adiabatic}
-    \end{minipage}\bigskip
+	\noindent
+	\begin{minipage}[c]{\textwidth} 
+	  \centering
+	  \includegraphics[width=6in]{../Paper1/Images/bla.png}
+	  \captionof{figure}[BLA of bonds during adiabatic dynamics]{BLA of bonds d1-3 (left) and d4-6 (right) during the last 4 ps of the S0 dynamics and 10 ps of the S1 dynamics.
+	    QM energy and force calculations include the 20 solvents nearest the central ring.}
+	  \label{fig:bla_adiabatic}
+	\end{minipage}\bigskip
+
+    \authorRemark{I've added \AA\ to both BLA graphs}
 
 
-    \begin{table}[H]
-      \caption[Adiabatic bond length alternation]{Bond Length Alternation (BLA) summary for PPV\(_3\)-NO\(_2\) in various solvents with 20 solvents included in the QM region.} \label{tab:adiabaticBLA}
-      % \begin{center}
-      \begin{tabularx}{\textwidth}{XXXXXXXXX}\hline
-        Molecule   & d\(_1\)  & d\(_2\) & d\(_3\) & BLA\(_{\textbf{near}}\) & d\(_1\)  & d\(_2\) & d\(_3\) & BLA\(_{\textbf{far}}\)\\\hline
-        Vacuum     & 1.429     & 1.375    & 1.418    & 0.049              & 1.441     & 1.365    & 1.427   & 0.069\\
-        CCl\(_4\)  & 1.427     & 1.376    & 1.417    & 0.046              & 1.441     & 1.365    & 1.426   & 0.068\\
-        CH\(_3\)OH & 1.422     & 1.382    & 1.415    & 0.037              & 1.444     & 1.362    & 1.431   & 0.076\\
-        CHCl\(_3\) & 1.423     & 1.380    & 1.415    & 0.039              & 1.443     & 1.365    & 1.429   & 0.074\\\hline
-      \end{tabularx}
-    \end{table}
+	\begin{table}[H]
+	  \caption[Adiabatic bond length alternation]{Bond Length Alternation (BLA) summary for PPV\(_3\)-NO\(_2\) in various solvents with 20 solvents included in the QM region.} \label{tab:adiabaticBLA}
+	  % \begin{center}
+	  \begin{tabularx}{\textwidth}{XXXXXXXXX}\hline
+	    Molecule   & d\(_1\)  & d\(_2\) & d\(_3\) & BLA\(_{\textbf{near}}\) & d\(_1\)  & d\(_2\) & d\(_3\) & BLA\(_{\textbf{far}}\)\\\hline
+	    Vacuum     & 1.429     & 1.375    & 1.418    & 0.049              & 1.441     & 1.365    & 1.427   & 0.069\\
+	    CCl\(_4\)  & 1.427     & 1.376    & 1.417    & 0.046              & 1.441     & 1.365    & 1.426   & 0.068\\
+	    CH\(_3\)OH & 1.422     & 1.382    & 1.415    & 0.037              & 1.444     & 1.362    & 1.431   & 0.076\\
+	    CHCl\(_3\) & 1.423     & 1.380    & 1.415    & 0.039              & 1.443     & 1.365    & 1.429   & 0.074\\\hline
+	  \end{tabularx}
+	\end{table}
 
-    Figure \ref{fig:bla_adiabatic} shows the bond length alternation of
-    PPV\(_3\)-NO\(_2\) in various solvents during the last 4 ps of the S0 trajectories and the 10 ps of the S1 trajectories. At time t = 0, the systems instantaneously transition from S0 to S1.
-    Within the first couple hundred femtoseconds after the
-    excitation to S1, the central bonds (d2 and d5) expand, while the interior (d3 and d6) and
-    exterior bonds (d1 and d4)  contract.  This bond restructuring is amplified by
-    proximity to the nitro group for all solvent environments, where we
-    see an average drop of 0.07 Å in sets d1-3 compared to a 0.04 Å drop
-    found in sets d4-6.  This amplification's strength depends on the
-    solvent environment where the BLA difference between the far and near
-    sets PPV\(_3\)-NO\(_2\) in methanol, 0.034 Å, surpasses that found in carbon
-    tetrachloride, 0.022 Å.
+	Figure \ref{fig:bla_adiabatic} shows the bond length alternation of
+	PPV\(_3\)-NO\(_2\) in various solvents during the last 4 ps of the S0 trajectories and the 10 ps of the S1 trajectories. At time t = 0, the systems instantaneously transition from S0 to S1.
+	Within the first couple hundred femtoseconds after the
+	excitation to S1, the central bonds (d2 and d5) expand, while the interior (d3 and d6) and
+	exterior bonds (d1 and d4)  contract.  This bond restructuring is amplified by
+	proximity to the nitro group for all solvent environments, where we
+	see an average drop of 0.07 Å in sets d1-3 compared to a 0.04 Å drop
+	found in sets d4-6.  This amplification's strength depends on the
+	solvent environment where the BLA difference between the far and near
+	sets PPV\(_3\)-NO\(_2\) in methanol, 0.034 Å, surpasses that found in carbon
+	tetrachloride, 0.022 Å.
 
-    Table \ref{tab:adiabaticBLA} presents further details of the S1 BLA simulation.
-    The information presented is averaged over time after relaxation across all trajectories.
-    In all cases, the exterior bonds become slightly longer than the interior bond.
-    The BLAs from the near and far sets split.
-    In the near set, the S0 and S1 BLA converge to 0.1091 Å and 0.00453 Å, respectively.
-    In the far set, these numbers are 0.1103 Å and 0.0697 Å, respectively.
-    The smaller bond length spread in the near set and the lower BLA suggest more delocalization on those bonds than in the far set. 
-    The number of solvents included in the QM calculations had little effect on the convergence of the distances or BLA.
-    PPV\(_3\)-NO\(_2\) had similar ground state BLAs of around 0.11 Å for both near and far sets matching results on similar systems regardless of the solvent. \cite{nelson2011nonadiabatic}
-    The S1 BLAs varied between the solvents and the distance away from the nitro group.
-    PPV\(_3\)-NO\(_2\) presents the smallest near set S1 BLA and largest far set S1 BLA when in methanol in comparison to the other tested solvents.
-In carbon tetracholoride, it shows similar behavior to vacuum, presenting the largest near set S1 BLA and the smallest far set S1 BLA out of the solvents tested.
+	Table \ref{tab:adiabaticBLA} presents further details of the S1 BLA simulation.
+	The information presented is averaged over time after relaxation across all trajectories.
+	In all cases, the exterior bonds become slightly longer than the interior bond.
+	The BLAs from the near and far sets split.
+	In the near set, the S0 and S1 BLA converge to 0.1091 Å and 0.00453 Å, respectively.
+	In the far set, these numbers are 0.1103 Å and 0.0697 Å, respectively.
+	The smaller bond length spread in the near set and the lower BLA suggest more delocalization on those bonds than in the far set. 
+	The number of solvents included in the QM calculations had little effect on the convergence of the distances or BLA.
+	PPV\(_3\)-NO\(_2\) had similar ground state BLAs of around 0.11 Å for both near and far sets matching results on similar systems regardless of the solvent. \cite{nelson2011nonadiabatic}
+	The S1 BLAs varied between the solvents and the distance away from the nitro group.
+	PPV\(_3\)-NO\(_2\) presents the smallest near set S1 BLA and largest far set S1 BLA when in methanol in comparison to the other tested solvents.
+    In carbon tetracholoride, it shows similar behavior to vacuum, presenting the largest near set S1 BLA and the smallest far set S1 BLA out of the solvents tested.
     #+end_src
 *** THREE Bond Orders                                               :ignore:
     :LOGBOOK:
@@ -1875,6 +1878,7 @@ In carbon tetracholoride, it shows similar behavior to vacuum, presenting the la
     where \(A\) and \(B\) are indexes of the two atoms, \(\mu\) and \(\nu\) are the atomic orbitals, and \(D\) is the density matrix.
     The method sums the electron density shared by both atoms.
     If an electron is fully localized on a single atom, the sum of the elements equals zero providing a value that matches our intuition. 
+\hlc{Wiber bond orders closer to 2 suggest stronger double-bond characteristics while indexes closer to 1 suggest more single-bond characteristics.}
 
     As the bond order increases, we expect the bond to become more rigid and the bond length to shrink.
     Figure \ref{fig:bondOrdersAdiabatic} displays the bond order of bonds d1-6 for PPV\(_3\)-NO\(_2\) in carbon tetrachloride with 5 QM solvent molecules included in the QM region.
@@ -2072,16 +2076,40 @@ The solvent redshifted the peak absorption spectra by roughly 0.1 eV, similar to
 
 **** THREE Explain How the fitting parameters were generated         :ignore:
      #+begin_src latex
-      Figure \ref{fig:stateDecay} shows each state's population calculated as the number of trajectories at the state's potential energy surface over the total number of trajectories. S\(_m\) represents the initial state calculated using the previously mentioned Frank Condon excitation. States S\(_1\) and S\(_2\) are included as the only other "slow" states or states that reached a population of more than 0.05 besides states 9 and 10. Roughly 85\% of Sm resided in state 9, with the remaining in S10. The other states were excluded from the graph.
+     Figure \ref{fig:stateDecay} shows each state's population calculated as the number of trajectories at the state's potential energy surface over the total number of trajectories.
+     S\(_m\) represents the initial state calculated using the previously mentioned Frank Condon excitation.
+     States S\(_1\) and S\(_2\) are included as the only other "slow" states or states that reached a population of more than 0.05 besides states 9 and 10.
+     Roughly 85\% of Sm resided in state 9, with the remaining in S10.
+     The other states were excluded from the graph.
 
- Initially, all of the population resides on Sm, a split between states S9 and S10. During the first 250 fs, the population in Sm quickly decays. The addition of solvent increases the rate of this decay. The MM solvent causes the quickest relaxation, while the addition of 5 and 10 QM solvents present nearly indistinguishable results from one another. However, the additional solvents to the QM region seem to furth slow the decay rate of S2. Adding additional solvents beyond these 5 seems to have a negligible effect on the reported behaviors. The slowing of these rates corresponds well with findings reported by previous experimentation using implicit solvents, which found that the addition of polar solvents reduces the frequency of small energy gaps. \cite{sifain2018photoexcited}
+     Initially, all of the population resides on Sm, a split between states S9 and S10.
+     During the first 250 fs, the population in Sm quickly decays.
+     The addition of solvent increases the rate of this decay.
+     The MM solvent causes the quickest relaxation, while the addition of 5 and 10 QM solvents present nearly indistinguishable results from one another.
+     However, the additional solvents to the QM region seem to furth slow the decay rate of S2.
+     Adding additional solvents beyond these 5 seems to have a negligible effect on the reported behaviors.
+     The slowing of these rates corresponds well with findings reported by previous experimentation using implicit solvents, which found that the addition of polar solvents reduces the frequency of small energy gaps. \cite{sifain2018photoexcited}
+     \hlc{Figure} \ref{fig:energy_gaps} \hlc{presents the energy gaps between the excited states averaged over time and trajectories.}
+     \hlc{The higher energy gaps from S2 to S1 corresponds well to the slower decay seen in the S2 populations.
+     The increasing of the gap from S2 to S1 when solvent is included is a likely explation for decreased decay and growth rates in the populations of S2 and S1 respectively.}
 
-We model these rises by fitting the curves to the
-function
-\begin{equation}
-f(t) = 1 - (A\text{e}^{- t / \tau_1} + (1-A) \text{e}^{- t / \tau_2})
-\end{equation}
-where $t$ is time and $\tau$ the rate time constant. Results are shown in Figure \ref{fig:s1Relaxation} and Table \ref{tab:nonadiabaticPop}. We see that the MM methanol's addition causes the growth rate to slow while including 5 solvents to the QM region causes addition slowing. The addition of the final 5 solvents to the QM region results in a much milder adjustment.
+\authorRemark{I've inserted this energy gap chart. I'm wondering if its worth finding these transition energies only when at the transition state.}
+
+     \noindent
+     \begin{minipage}[c]{\textwidth}
+       \centering
+       \includegraphics[width=\textwidth]{../Paper2/Images/energy_gaps/solvent_comparison.png}
+       \captionof{figure}{Energy gaps between the excited states over the entire 1 ps averaged over time and trajectories.}
+       \label{fig:energy_gaps}
+     \end{minipage}\bigskip
+
+
+     We model the populations over time by fitting the curves to the
+     function
+     \begin{equation}
+       f(t) = 1 - (A\text{e}^{- t / \tau_1} + (1-A) \text{e}^{- t / \tau_2})
+     \end{equation}
+     where $t$ is time and $\tau$ the rate time constant. Results are shown in Figure \ref{fig:s1Relaxation} and Table \ref{tab:nonadiabaticPop}. We see that the MM methanol's addition causes the growth rate to slow while including 5 solvents to the QM region causes addition slowing. The addition of the final 5 solvents to the QM region results in a much milder adjustment.
 
      \noindent
      \begin{minipage}[c]{\textwidth}
@@ -2091,16 +2119,16 @@ where $t$ is time and $\tau$ the rate time constant. Results are shown in Figure
        \label{fig:s1Relaxation}
      \end{minipage}\bigskip
 
-         \begin{table}[H]
-           \caption{Fitting parameters for the S1 relaxation rates for PPV\(_{3}\)-NO\(_2\) in various solvents using \( f(t) = 1 - (A\text{e}^{- t / \tau_1} + (1-A) \text{e}^{- t / \tau_2})  \)} \label{tab:nonadiabaticPop}
-           % \begin{center}
-           \begin{tabularx}{\textwidth}{XXXXX}\hline
-           Parameter         &  Vacuum   & MM     & 5 QM    & 10QM \\\hline
-              A              &   0     &  0.193  &  0.198   & 0.1762 \\
-          \(\tau_1\) (fs\(^{-1}\))  &   NA   &  500.0  & 495.7  &  494.4 \\
-          \(\tau_2\) (fs\(^{-1}\))  &   149.2   &  150.0  & 191.8  &  198.7 \\\hline
-           \end{tabularx}
-         \end{table}
+     \begin{table}[H]
+       \caption{Fitting parameters for the S1 relaxation rates for PPV\(_{3}\)-NO\(_2\) in various solvents using \( f(t) = 1 - (A\text{e}^{- t / \tau_1} + (1-A) \text{e}^{- t / \tau_2})  \)} \label{tab:nonadiabaticPop}
+       % \begin{center}
+       \begin{tabularx}{\textwidth}{XXXXX}\hline
+	 Parameter         &  Vacuum   & MM     & 5 QM    & 10QM \\\hline
+	 A              &   0     &  0.193  &  0.198   & 0.1762 \\
+	 \(\tau_1\) (fs\(^{-1}\))  &   NA   &  500.0  & 495.7  &  494.4 \\
+	 \(\tau_2\) (fs\(^{-1}\))  &   149.2   &  150.0  & 191.8  &  198.7 \\\hline
+       \end{tabularx}
+     \end{table}
 
 
      #+end_src
