@@ -1,4 +1,5 @@
 library(tidyverse)
+library(latex2exp)
 setwd('~/Documents/paper2/bla')
 
 
@@ -107,7 +108,8 @@ bla %>%
     geom_line(size=1.5) +
     scale_y_continuous(limits = c(0, 0.12), breaks = seq(0, 0.10, by=0.02)) +
     scale_x_continuous(breaks = seq(0, 1, by = 0.2)) +
-    labs(x = "Time (ps)", 
+    labs(x = "Time (ps)",
+         y = expression(paste("BLA (", ring(A), ")" )),
          color = "Number QM Solvents") +
     facet_wrap(~ Location) +
     theme_bw() +
